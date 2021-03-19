@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, DELETE, UPDATE } from "../constants/actionTypes.js"
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes.js"
 
 const reducer = (groceries = [], action) => {
     switch(action.type) {
@@ -6,10 +6,10 @@ const reducer = (groceries = [], action) => {
             return action.payload
         case(CREATE):
             return [...groceries, action.payload]
-        // case(UPDATE):
-        //     return groceries.map((post) => (post._id === action.payload._id ? action.payload : post))
-        // case(DELETE):
-        //     return groceries.filter((post) => post._id !== action.payload)
+        case(UPDATE):
+            return groceries.map((post) => (post._id === action.payload._id ? action.payload : post))
+        case(DELETE):
+            return groceries.filter((post) => post._id !== action.payload)
         default:
             return groceries       
     }

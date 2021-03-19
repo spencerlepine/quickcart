@@ -1,13 +1,11 @@
 import express from "express"
-import { getGroceries, createGrocery } from "../controllers/groceries.js"
-// , updateGrocery, deleteGrocery, likeGrocery } from "../controllers/groceries.js"
+import { getGroceries, createGrocery, updateGrocery, deleteGrocery } from "../controllers/groceries.js"
 
 const router = express.Router();
 
 router.get('/', getGroceries)
 router.post('/', createGrocery)
-// router.patch('/:id', updateGrocery)
-// router.delete('/:id', deleteGrocery)
-// router.patch('/:id/likeGrocery', likeGrocery)
+router.patch('/:id', updateGrocery)
+router.delete('/:id', deleteGrocery)
 
 export default router

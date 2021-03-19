@@ -24,3 +24,27 @@ export const createGrocery = async (req, res) => {
         res.status(409).json(error.message)
     }
 }
+
+export const updateGrocery = async (req, res) => {
+    const { id: _id } = req.params
+    const groceryItem = req.body
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with that id")
+    }
+
+    const updateGroceryItem = await GroceryItem.findByIdAndUpdate(_id, { ...groceryItem, _id }, { new: true })
+    res.json(updateGroceryItem)
+}
+
+export const deleteGrocery = async (req, res) => {
+    const { id: _id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with that id")
+    }
+
+    await GroceryItem.findByIdAndDelete(_id)
+    
+    res.json("Item deleted successfully")
+}
