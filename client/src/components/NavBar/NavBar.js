@@ -18,6 +18,7 @@ const NavBar = () => {
             <Link style={highlightLink('/', pathname)} className={classes.link} to="/">🏠Home</Link>
             <Link style={highlightLink('/overview', pathname)} className={classes.link} to="/overview">📒Overview</Link>
             <Link style={highlightLink('/form', pathname)} className={classes.link} to="/form">🆕Add Item</Link>
+            <Link style={highlightLink('/cart', pathname)} className={classes.link} to="/cart">🛒Cart</Link>
         </div>
     )
 }
