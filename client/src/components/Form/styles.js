@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
     },
     formHeader: {
-      color: "#c33282",
+      color: "#3286c3",
       textShadow: "1px 1px 0 #7a7a7a59",
       textDecoration: "uppercase",
       marginBottom: "20px",
