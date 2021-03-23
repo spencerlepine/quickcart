@@ -46,15 +46,13 @@ const Form = () => {
             dispatch(updateGrocery(currentId, itemData))
             history.push("/overview")
             clearForm()
+        } else if (itemData.name && itemData.purchase_price && itemData.purchase_size && itemData.serving && itemData.servings_per) {
+            dispatch(createGrocery(itemData))
+            history.push("/overview")
+            clearForm()
         } else {
-            if (itemData.name && itemData.purchase_price && itemData.purchase_size && itemData.serving && itemData.servings_per) {
-                dispatch(createGrocery(itemData))
-                history.push("/overview")
-                clearForm()
-            }
+            alert("Please enter valid data")
         }
-
-        alert("Please enter valid data")
     }
 
     const clearForm = () => {
