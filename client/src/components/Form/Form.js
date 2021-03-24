@@ -67,7 +67,7 @@ const Form = () => {
     }
 
     return (
-        <div>
+        <div className={classes.formDiv}>
             <Container component="main" maxWidth="xs">
                 <div className={classes.paper}>
                     <form className={classes.form} noValidate onSubmit={handleSubmit}>

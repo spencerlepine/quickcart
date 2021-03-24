@@ -3,10 +3,12 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
     cartItem: {
         display: "flex",
+        borderBottom: "1px solid lightgray",
     },
     itemPrice: {
         marginLeft: "auto",
-        marginRight: "10px"
+        marginRight: "10px",
+        color: "#008643",
     },
     itemName: {
         paddingRight: "4vh"

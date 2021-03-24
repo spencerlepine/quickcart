@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
+    formDiv: {
+        marginTop: "5%",
+    },
     paper: {
       marginTop: theme.spacing(2),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      backgroundColor: "#e5dfdb !important",
     },
     avatar: {
       margin: theme.spacing(1),
@@ -17,7 +21,8 @@ export default makeStyles((theme) => ({
       marginBottom: "1vh",
       backgroundColor: "white",
       padding: "8vh",
-      borderRadius: "1vh"
+      borderRadius: "1vh",
+      boxShadow: "1px 1px 1px #000",
     },
     button: {
       margin: theme.spacing(3, 0, 2),

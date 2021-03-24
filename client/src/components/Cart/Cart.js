@@ -1,14 +1,9 @@
 import React from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import CartItem from "./CartItem/CartItem"
-//import { useHistory } from "react-router-dom"
-// import { createGrocery } from "../../actions/groceries"
-// import { setId } from "../../actions/selectedItem"
-// import { updateGrocery } from "../../actions/groceries"
 import useStyles from "./styles.js"
 
 const Cart = () => {
-    const dispatch = useDispatch()
     const classes = useStyles()
     const cartItems = useSelector((state) => state.cart)
 
@@ -18,7 +13,7 @@ const Cart = () => {
 
     return (
         <div className={classes.cartView}>
-            <p>Total: {totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</p>
+            <h4 className={classes.total}>{totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h4>
             {cartItems.map((item, i) => <CartItem item={item} />)}
         </div>
     )
