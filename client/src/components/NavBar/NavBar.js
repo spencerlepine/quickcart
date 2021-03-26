@@ -1,5 +1,9 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
+import SearchBar from "./SearchBar/SearchBar"
+import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
+import ListAltIcon from "@material-ui/icons/ListAlt"
 import useStyles from "./styles"
 
 const NavBar = () => {
@@ -14,10 +18,31 @@ const NavBar = () => {
     }
 
     return (
-        <div className={classes.navbarContainer}>
-            <Link style={highlightLink('/', pathname)} className={classes.link} to="/">📒Overview</Link>
-            <Link style={highlightLink('/cart', pathname)} className={classes.link} to="/cart">🛒Cart</Link>
-            <Link style={highlightLink('/form', pathname)} className={classes.link} to="/form">🆕Add Item</Link>
+        <div className={classes.navBar}>
+            <div className={classes.navbarContainer}>
+                <Link
+                    style={highlightLink('/', pathname)}
+                    className={classes.link}
+                    to="/">
+                    <ListAltIcon fontSize="large" /><p>Overview</p>
+                </Link>
+
+                <Link
+                    style={highlightLink('/form', pathname)}
+                    className={classes.link}
+                    to="/form">
+                    <AddCircleOutlineIcon fontSize="large" /><p>Add Item</p>
+                </Link>
+
+                <SearchBar />
+
+                <Link
+                    style={{ ...highlightLink('/cart', pathname), marginLeft: "auto"}}
+                    className={classes.link}
+                    to="/cart">
+                        <ShoppingBasketIcon fontSize="large" /><p>Basket</p>
+                </Link>
+            </div>
         </div>
     )
 }

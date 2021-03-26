@@ -17,7 +17,7 @@ const Overview = () => {
     const tableItems = groceries.map((item, i) => <FoodItem key={i} groceryItem={item} CellComponent={TableCell} RowComponent={TableRow} />)
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.root}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>

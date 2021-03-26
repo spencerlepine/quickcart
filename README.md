@@ -1,8 +1,11 @@
 # To do:
 
-- add categories
+- add categories / https://shop-redq.vercel.app/grocery-two
+- handle null list (deleted ALL items in DB?)
 
 - clear storage in cart
 
-- food item dropdown for details
-- copy and paste these files into actual folder commit
+- food item dropdown for details?
+
+- commit add search bar
+- food tiles?
