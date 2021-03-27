@@ -14,13 +14,18 @@ const SearchBar = () => {
         dispatch(setSearchQuery(text))
     }
 
+    const handleCancel = () => {
+        setSearchText("")
+        dispatch(setSearchQuery(""))
+    }
+
     return (
         <div className={classes.searchBar}>
             <SearchBarElem
-                onRequestSearch={() => alert('yeet')}
-                placeholder="Search grovery item..."
+                placeholder="Search grocery item..."
                 value={searchText}
                 onChange={handleChange}
+                onCancelSearch={handleCancel}
                 autoFocus
             />
         </div>

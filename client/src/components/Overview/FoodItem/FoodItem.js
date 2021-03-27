@@ -4,6 +4,7 @@ import { deleteGrocery } from "../../../actions/groceries"
 import { addToCart } from "../../../actions/cart"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
+import searchMatch from "./searchMatch"
 import useStyles from "./styles"
 
 const FoodItem = ({ groceryItem, CellComponent, RowComponent }) => {
@@ -19,7 +20,7 @@ const FoodItem = ({ groceryItem, CellComponent, RowComponent }) => {
 
     return (
         <>
-        {(currentSearch === (groceryItem.name.toLowerCase()) || currentSearch.length < 3)
+        {(searchMatch(currentSearch, groceryItem.name) || currentSearch.length < 3)
             &&
         <RowComponent>
             <CellComponent align="center" className={classes.tableBox}><button onClick={() => dispatch(addToCart(groceryItem))} className={classes.addButton}>🛒Add</button></CellComponent>

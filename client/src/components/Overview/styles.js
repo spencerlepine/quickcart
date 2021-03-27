@@ -9,4 +9,14 @@ export default makeStyles(() => ({
         margin: "5% auto",
         backgroundColor: "#fff",
     },
+    warning: {
+        width: "20em",
+        margin: "2em auto",
+        padding: "2em",
+    },
+    warningText: {
+        padding: "1em",
+        margin: "auto",
+        width: "fit-content",
+    },
 }));

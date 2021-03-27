@@ -9,7 +9,6 @@ export default makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      backgroundColor: "#e5dfdb !important",
     },
     avatar: {
       margin: theme.spacing(1),
