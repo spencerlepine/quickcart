@@ -44,11 +44,11 @@ const Form = () => {
         event.preventDefault()
         if (currentId) {
             dispatch(updateGrocery(currentId, itemData))
-            history.push("/overview")
+            history.push("/")
             clearForm()
         } else if (itemData.name && itemData.purchase_price && itemData.purchase_size && itemData.serving && itemData.servings_per) {
             dispatch(createGrocery(itemData))
-            history.push("/overview")
+            history.push("/")
             clearForm()
         } else {
             alert("Please enter valid data")

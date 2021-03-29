@@ -6,14 +6,15 @@ const validStoredCart = () => {
     let valid = true
 
     if (parseCart) {
-        const validKeys = ["quantity", "_id", "name", "purchase_price", "purchase_size", "servings_per", "serving", "__v"]
+        const validKeys = ["quantity", "_id", "name", "purchase_price", "purchase_size", "serving", "servings_per", "__v"]
         parseCart.forEach(item => {
             if (JSON.stringify(Object.keys(item)) !== JSON.stringify(validKeys)) {    
                 valid = false
+                console.log(JSON.stringify(Object.keys(item)))
+                console.log(JSON.stringify(validKeys))
             }
         })
     }
-
     return valid ? parseCart : []
 }
 
