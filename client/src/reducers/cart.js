@@ -2,34 +2,32 @@ import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_QUANTITY } from "../constants/act
 
 const validStoredCart = () => {
     let stored = localStorage.getItem('cart')
-    const parseCart = JSON.parse(stored)
+    const parseCart = JSON.parse(stored) || []
     let valid = true
 
-    if (parseCart) {
+    if (parseCart === []) {
+        return []
+    } else if (parseCart) {
         const validKeys = ["quantity", "_id", "name", "purchase_price", "purchase_size", "serving", "servings_per", "__v"]
         parseCart.forEach(item => {
-            if (JSON.stringify(Object.keys(item)) !== JSON.stringify(validKeys)) {    
-                valid = false
-                console.log(JSON.stringify(Object.keys(item)))
-                console.log(JSON.stringify(validKeys))
-            }
+            validKeys.map(key => {valid = item.hasOwnProperty(key)})
         })
+
+        
     }
     return valid ? parseCart : []
 }
 
-const startingCart = validStoredCart()
-
-const reducer = (cartItems = startingCart, action) => {
+const reducer = (cartItems = validStoredCart(), action) => {
     switch(action.type) {
         case(ADD_TO_CART): {
             let newCart = [...cartItems, {quantity: 1, ...action.payload}]
-            
+
             cartItems.forEach((item) => {
                 if (item._id === action.payload._id) {
                     newCart = cartItems.map(item =>
                         item._id === action.payload._id ?
-                        {...action.payload, quantity: item.quantity + 1}
+                        {...item, quantity: item.quantity + 1}
                         : item)
                 }
             })

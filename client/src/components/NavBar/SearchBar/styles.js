@@ -6,5 +6,11 @@ export default makeStyles(() => ({
         position: "relative",
         top: "3px",
         width: "100%",
+        gridRow: "2",
+        "@media (max-width: 900px)": {
+            width: "90%",
+            gridColumnStart: "1",
+            gridColumnEnd: "4",
+        },
     }
 }));

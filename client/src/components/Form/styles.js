@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      minWidth: '70wh', // Fix IE 11 issue.
       marginTop: theme.spacing(1),
       marginBottom: "1vh",
       backgroundColor: "white",

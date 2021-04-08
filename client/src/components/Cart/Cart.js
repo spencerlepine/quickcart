@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import CartItem from "./CartItem/CartItem"
 import useStyles from "./styles.js"
 
@@ -8,13 +9,18 @@ const Cart = () => {
     const cartItems = useSelector((state) => state.cart)
 
     let totalCost = 0
-    cartItems.forEach((item) => totalCost += item.quantity * parseFloat(item.purchase_price['$numberDecimal']))
-
-
+    if (cartItems) {
+        cartItems.forEach((item) => totalCost += item.quantity * parseFloat(item.purchase_price['$numberDecimal']))
+    }
+    
     return (
         <div className={classes.cartView}>
-            <h4 className={classes.total}>{totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h4>
-            {cartItems.map((item, i) => <CartItem item={item} />)}
+            <div className={classes.cartHeader}>
+                <Link to="/"><h2>MORE</h2></Link>
+                <h4 className={classes.total}>{totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h4>
+                <hr />
+            </div>
+            {cartItems !== null && cartItems.map((item, i) => <CartItem item={item} />)}
         </div>
     )
 }

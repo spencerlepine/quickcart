@@ -7,8 +7,11 @@ export default makeStyles((theme) => ({
     },
     itemPrice: {
         marginLeft: "auto",
-        marginRight: "10px",
+        marginRight: "5%",
         color: "#008643",
+        "@media (max-width: 900px)": {
+            marginLeft: "5%",
+        },
     },
     itemName: {
         paddingRight: "4vh"
@@ -29,17 +32,17 @@ export default makeStyles((theme) => ({
         fontSize: "2em",
         fontWeight: "bold",
         textAlign: "center",
-        background: "#43ace3",
-        color: "#fff",
+        color: "#43ace3",
         display: "inline-block",
         '&:hover' : {
-            background: "#3b9ac6",
+            color: "#3b9ac6",
+            textShadow: "1px 1px #ececec"
         },
       },
       delete: {
           width: "1.3em",
           height: "100%",
-          backgroundColor: "#ff6363",
+          color: "#ff6363",
           margin: "auto 5px",
           fontSize: "1.5em",
           textAlign: "center"

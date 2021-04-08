@@ -18,7 +18,7 @@ const CartItem = ({ item }) => {
     return (
         <div className={classes.cartItem}>
             <p className={classes.itemName}>{item.name}</p>
-            <p className={classes.itemPrice}>{(parseFloat(item.purchase_price["$numberDecimal"])).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</p>
+            <p className={classes.itemPrice}>{(parseFloat(item.purchase_price["$numberDecimal"])*item.quantity).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</p>
             <div className={classes.btn} onClick={() => dispatch(changeCartQuantity(item, 1))}>+</div>
             <p className={classes.itemCount}>{item.quantity}</p>
             {item.quantity > 1 ? <div className={classes.btn} onClick={() => handleDecrement(item)}>-</div> :

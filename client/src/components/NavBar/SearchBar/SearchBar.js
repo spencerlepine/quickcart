@@ -10,8 +10,8 @@ const SearchBar = () => {
     const [searchText, setSearchText] = useState()
     
     const handleChange = (text) => {
-        setSearchText(text)
-        dispatch(setSearchQuery(text))
+        setSearchText(text.trim())
+        dispatch(setSearchQuery(text.trim()))
     }
 
     const handleCancel = () => {
