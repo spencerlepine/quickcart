@@ -22,6 +22,9 @@ export default makeStyles((theme) => ({
       padding: "8vh",
       borderRadius: "1vh",
       boxShadow: "1px 1px 1px #000",
+      '& div': {
+        marginBottom: "15px",
+      },
     },
     button: {
       margin: theme.spacing(3, 0, 2),
@@ -31,5 +34,5 @@ export default makeStyles((theme) => ({
       textShadow: "1px 1px 0 #7a7a7a59",
       textDecoration: "uppercase",
       marginBottom: "20px",
-    }
+    },
   }));

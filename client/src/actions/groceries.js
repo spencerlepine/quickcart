@@ -6,7 +6,25 @@ export const getGroceries = () => async (dispatch) => {
     try {
         const { data } = await api.fetchGroceries()
 
-        dispatch({ type: FETCH_ALL, payload: data })
+        let grouped = [data[0]]
+    
+        for (let i = 1; i < data.length; i++) {
+            // Go through grouped and find the alphabetic place for this
+            for (let a = 0; a < grouped.length; a++) {
+                if (a === grouped.length - 1) {
+                    grouped.push(data[i])
+                    break
+                } else if (data[i].category === grouped[a].category) {
+                    grouped.splice(a, 0, data[i])
+                    break
+                } else if (data[i].category < grouped[a].category) {
+                    grouped.splice(a, 0, data[i])
+                    break
+                }
+            }
+        }
+
+        dispatch({ type: FETCH_ALL, payload: grouped })
     } catch (error) {
         console.log(error.message)
     }

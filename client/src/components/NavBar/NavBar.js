@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link, useLocation } from "react-router-dom"
 import SearchBar from "./SearchBar/SearchBar"
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
@@ -9,18 +9,7 @@ import useStyles from "./styles.js"
 const NavBar = () => {
     const classes = useStyles()
     const { pathname } = useLocation()
-    const [mobileView, setMobileView] = useState(false)
-
-    useEffect(() => {
-        const setResponsiveness = () => {
-            return window.innerWidth < 900
-            ? setMobileView(true)
-            : setMobileView(false);
-        };
-        setResponsiveness();
-        window.addEventListener("resize", () => setResponsiveness());
-    }, []);
-
+    
     const highlightLink = (path, thisPath) => {
         return ({
             backgroundColor: pathname === path ? "#171717" : "#333333",
@@ -45,7 +34,7 @@ const NavBar = () => {
                     <AddCircleOutlineIcon fontSize="large" /><p>Add Item</p>
                 </Link>
 
-                <SearchBar />
+                {pathname === '/' && <SearchBar />}
 
                 <Link
                     style={{ ...highlightLink('/cart', pathname), marginLeft: "auto"}}

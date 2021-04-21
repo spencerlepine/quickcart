@@ -8,10 +8,7 @@ const Cart = () => {
     const classes = useStyles()
     const cartItems = useSelector((state) => state.cart)
 
-    let totalCost = 0
-    if (cartItems) {
-        cartItems.forEach((item) => totalCost += item.quantity * parseFloat(item.purchase_price['$numberDecimal']))
-    }
+    let totalCost = cartItems.reduce((total, item) => total += item.quantity * parseFloat(item.purchase_price['$numberDecimal']), 0)
     
     return (
         <div className={classes.cartView}>
@@ -20,7 +17,7 @@ const Cart = () => {
                 <h4 className={classes.total}>{totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</h4>
                 <hr />
             </div>
-            {cartItems !== null && cartItems.map((item, i) => <CartItem item={item} />)}
+            {cartItems !== null && cartItems.map((item, i) => <CartItem key={i} item={item} />)}
         </div>
     )
 }

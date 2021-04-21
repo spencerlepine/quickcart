@@ -18,17 +18,26 @@ const FoodItem = ({ groceryItem, CellComponent, RowComponent }) => {
         history.push("/form")
     }
 
+    let expectedKeys = [
+        "_id",
+        "name",
+        "purchase_price",
+        "purchase_size",
+        "serving_cost",
+        "category",
+        "last_purchased",
+        "priority",
+    ]
+    let completeItem = Object.keys(groceryItem).filter(key => expectedKeys.includes(key))
+    
     return (
         <>
         {(searchMatch(currentSearch, groceryItem.name) || currentSearch.length < 3)
             &&
-        <RowComponent>
+        <RowComponent style={{backgroundColor: completeItem.length >= 8 ? "#00000000" : "#ffbbbb"}}>
             <CellComponent align="center" className={classes.tableBox}><button onClick={() => dispatch(addToCart(groceryItem))} className={classes.addButton}>🛒Add</button></CellComponent>
-            <CellComponent className={classes.tableBox}>{groceryItem.name}</CellComponent>
-            <CellComponent className={classes.tableBox}>{parseFloat(groceryItem.purchase_price["$numberDecimal"]).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</CellComponent>
-            <CellComponent className={classes.tableBox} style={{color: "gray"}}>{groceryItem.purchase_size}</CellComponent>
-            <CellComponent className={classes.tableBox} style={{color: "gray"}}>{groceryItem.serving}</CellComponent>
-            <CellComponent className={classes.tableBox} style={{color: "gray"}}>{groceryItem.servings_per}</CellComponent>
+            <CellComponent className={classes.tableBox}>{groceryItem.name}</CellComponent> 
+            <CellComponent className={classes.tableBox} style={{color: "gray"}}>{groceryItem.serving_cost ? parseFloat(groceryItem.serving_cost["$numberDecimal"]).toLocaleString('en-US', {style: 'currency', currency: 'USD'}) : 0}</CellComponent>
             <CellComponent align="center" className={classes.tableBox}><button onClick={handleEdit} className={classes.editButton}>🏷️Edit</button></CellComponent>
             <CellComponent align="center" className={classes.tableBox}><button onClick={() => { if (window.confirm("Delete permanently?")) { dispatch(deleteGrocery(groceryItem._id))}}} className={classes.deleteButton}>🗑️Delete</button></CellComponent>
         </RowComponent>}
