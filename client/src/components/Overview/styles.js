@@ -1,11 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     root: {
         backgroundColor: "rgb(249, 249, 249) !important",
     },
-    table: {
+    itemsGrid: {
         width: "fit-content !important",
+        display: "grid",
+        gridTemplateColumns: "auto auto auto auto",
+        ['@media (max-width:1000px)']: { // eslint-disable-line no-useless-computed-key
+            gridTemplateColumns: "auto auto auto",
+        },
+        ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+            gridTemplateColumns: "auto auto",
+        },
+        
         margin: "5% auto",
         backgroundColor: "#fff",
     },

@@ -1,11 +1,10 @@
 # To do:
-
-- add categories / https://shop-redq.vercel.app/grocery-two
-- handle null list (deleted ALL items in DB?)
-
 - clear storage in cart
 
-- food item dropdown for details?
+- indents to 2 spaces
+- remove semicolons
+- standard double quotes
 
-- commit add search bar
-- food tiles?
+- loading bars
+- addeed to cart indication
+- upload image (store with base64)

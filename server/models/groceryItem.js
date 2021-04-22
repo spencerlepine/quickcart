@@ -8,6 +8,7 @@ const grocerySchema = mongoose.Schema({
     category: String,
     last_purchased: String,
     priority: String,
+    image: String,
 })
 
 const GroceryItem = mongoose.model('GroceryItem', grocerySchema)

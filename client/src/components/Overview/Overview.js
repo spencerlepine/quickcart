@@ -3,9 +3,9 @@ import { useSelector, useDispatch} from "react-redux"
 import { Link } from "react-router-dom"
 import { getGroceries } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
-import FoodItem from "./FoodItem/FoodItem"
+import FoodCard from "./FoodCard/FoodCard"
 import useStyles from "./styles"
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 
 const Overview = () => {
     const dispatch = useDispatch()
@@ -17,27 +17,14 @@ const Overview = () => {
     }, [dispatch])
 
     const groceries = useSelector(state => state.groceries)
-    const tableItems = groceries.map((item, i) => <FoodItem key={i} groceryItem={item} CellComponent={TableCell} RowComponent={TableRow} />)
+    const foodItems = groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
     
     return (
-        <>{tableItems.length
+        <>{foodItems.length
             ?
-        <TableContainer component={Paper} className={classes.root}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Serving Cost</TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {tableItems}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div class={classes.itemsGrid}>
+            {foodItems}
+        </div>
             :
         <Paper square className={classes.warning}>
             <h2 className={classes.warningText}>No items saved</h2>

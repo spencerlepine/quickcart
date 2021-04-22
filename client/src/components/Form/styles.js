@@ -1,38 +1,111 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
-    formDiv: {
-        marginTop: "5%",
-    },
-    paper: {
-      marginTop: theme.spacing(2),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+    formContainer: {
+        marginTop: "2%",
     },
     form: {
-      minWidth: '70wh', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+      maxWidth: '600px',
+      margin: "auto",
+      padding: "24px",
       marginBottom: "1vh",
       backgroundColor: "white",
-      padding: "8vh",
       borderRadius: "1vh",
-      boxShadow: "1px 1px 1px #000",
+    },
+    itemDetails: {
+      display: "grid",
+      gridTemplateColumns: "auto auto",
+      paddingLeft: ".9375rem",
+      paddingRight: ".9375rem",
+      gridRowGap: "15px",
+    },
+    itemName: {
+      gridColumnStart: "1",
+      gridColumnEnd: "3",
+      '& input': {
+        color: "rgb(57, 57, 57)",
+        fontSize: "24px",
+        fontWeight: "600",
+        lineHeight: "32px",
+        padding: "6px",
+      }
+    },
+    itemSize: {
+      width: "30vw",
+      '& input': {
+        margin: "0px",
+        fontWeight: "400",
+        color: "rgb(142, 142, 142)",  
+        fontSize: "16px",
+        lineHeight: "17px",
+        padding: "6px",
+      },
+    },
+    imageContainer: {
+      width: "50%",
+      margin: "auto",
+      '& img': {
+        width: "100%",
+        maxWidth: "416px",
+        maxHeight: "416px",
+      }
+    },
+    itemPrice: {
+      '& input': {
+        fontSize: "26px",
+        lineHeigt: "26px",
+        fontWeight: "700",
+        padding: "6px",
+      }
+    },
+    priceIndicator: {
+      position: "absolute",
+      fontSize: "26px",
+      margin: "0",
+      padding: "0",
+      left: "-15px",  
+      bottom: "15px",
+    },
+    itemPriority: {
+      margin: "inherit",
+      ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+            gridColumnStart: "1",
+            gridColumnEnd: "3",
+            margin: "auto",
+      },
+    },
+    dollarSign: {
+      position: "relative",
+      width: "50%",
+      marginLeft: "auto",
       '& div': {
-        marginBottom: "15px",
+        marginTop: "0",
+      }
+    },
+    divLabel: {
+      fontSize: "13px",
+      padding: "0",
+      color: "#403e3e",
+    },
+    itemServing: {
+      color: "#6261a0",
+      '& input': {
+        color: "#6261a0",
+      }
+    },
+    itemDate: {
+      width: "fit-content",
+      margin: "20px",
+      marginLeft: "auto",
+      margin: "inherit",
+      ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+            gridColumnStart: "1",
+            gridColumnEnd: "3",
+            margin: "20px auto 20px auto",
       },
     },
     button: {
-      margin: theme.spacing(3, 0, 2),
-    },
-    formHeader: {
-      color: "#3286c3",
-      textShadow: "1px 1px 0 #7a7a7a59",
-      textDecoration: "uppercase",
-      marginBottom: "20px",
-    },
+      gridColumnStart: "1",
+      gridColumnEnd: "3",
+    }
   }));

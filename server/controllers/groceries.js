@@ -4,6 +4,22 @@ import GroceryItem from "../models/groceryItem.js"
 export const getGroceries = async (req, res) => {
     try {
         const groceryItems = await GroceryItem.find()
+        
+        res.status(200).json(groceryItems)
+    } catch(error) {
+        res.status(404).json(error.message)
+    }
+}
+
+export const getGroceriesCategories = async (req, res) => {
+    try {
+        const groceryItems = await GroceryItem.aggregate(
+            [
+                {
+                    $group:{_id:"$category"}
+                }
+            ]
+        )
 
         res.status(200).json(groceryItems)
     } catch(error) {
