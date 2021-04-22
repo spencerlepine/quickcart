@@ -8,3 +8,15 @@
 - loading bars
 - addeed to cart indication
 - upload image (store with base64)
+
+- suggested groceries
+- something from each category
+- get OLDEST first
+- sort by priority
+
+- cart vegetables pound input?
+
+-https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
+
+- backup list to csv?
+- upload cvs?

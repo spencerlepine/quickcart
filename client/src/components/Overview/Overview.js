@@ -5,7 +5,7 @@ import { getGroceries } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
 import FoodCard from "./FoodCard/FoodCard"
 import useStyles from "./styles"
-import { Paper } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Overview = () => {
     const dispatch = useDispatch()
@@ -18,7 +18,7 @@ const Overview = () => {
 
     const groceries = useSelector(state => state.groceries)
     const foodItems = groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
-    
+
     return (
         <>{foodItems.length
             ?
@@ -26,10 +26,9 @@ const Overview = () => {
             {foodItems}
         </div>
             :
-        <Paper square className={classes.warning}>
-            <h2 className={classes.warningText}>No items saved</h2>
-            <Link to="form"><h3 className={classes.warningText}>NEW ITEM</h3></Link>
-        </Paper>
+        <div className={classes.warning}>
+            {groceries.length === 0 && <CircularProgress />}
+        </div>
         }</>
     )
 }

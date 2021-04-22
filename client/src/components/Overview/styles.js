@@ -14,18 +14,12 @@ export default makeStyles((theme) => ({
         ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
             gridTemplateColumns: "auto auto",
         },
-        
-        margin: "5% auto",
+        margin: "0 auto 5% auto",
         backgroundColor: "#fff",
     },
     warning: {
-        width: "20em",
+        width: "fit-content",
         margin: "2em auto",
         padding: "2em",
-    },
-    warningText: {
-        padding: "1em",
-        margin: "auto",
-        width: "fit-content",
     },
 }));

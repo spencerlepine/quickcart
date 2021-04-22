@@ -9,6 +9,7 @@ export default makeStyles(() => ({
         fontFamily: "Eina, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
         '& img': {
             maxHeight: "22vw",
+            minHeight: "120px",
             height: "18vw", 
             margin: "10px auto",
         },
