@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { createGrocery, deleteGrocery } from "../../actions/groceries"
+import { createGrocery, deleteGrocery, updateGrocery } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
-import { updateGrocery } from "../../actions/groceries"
 // import { makeStyles } from '@material-ui/core/styles'
 import useStyles from "./styles.js"
 

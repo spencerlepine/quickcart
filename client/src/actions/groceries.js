@@ -1,5 +1,5 @@
 import * as api from "../api/index.js"
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes.js"
+import { FETCH_ALL, CREATE, UPDATE, DELETE, CLEAR_ALL } from "../constants/actionTypes.js"
 
 // action creators
 export const getGroceries = () => async (dispatch) => {
@@ -55,6 +55,16 @@ export const deleteGrocery = (id) => async (dispatch) => {
         await api.deleteGrocery(id)
 
         dispatch({ type: DELETE, payload: id })
+    } catch(error) {
+        console.log(error.message)
+    }
+}
+
+export const clearGroceries = () => async (dispatch) => {
+    try {
+        await api.clearGroceries()
+
+        dispatch({ type: CLEAR_ALL, payload: [] })
     } catch(error) {
         console.log(error.message)
     }

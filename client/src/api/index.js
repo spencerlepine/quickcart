@@ -7,4 +7,6 @@ export const createGrocery = (newGrocery) => axios.post(url, newGrocery)
 
 export const updateGrocery = (id, updatedGrocery) => axios.patch(`${url}/${id}`, updatedGrocery)
 
-export const deleteGrocery = (id) => axios.delete(`${url}/${id}`)   
+export const deleteGrocery = (id) => axios.delete(`${url}/${id}`) 
+
+export const clearGroceries = () => axios.delete(`${url}/`)

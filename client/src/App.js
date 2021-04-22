@@ -4,6 +4,8 @@ import NavBar from "./components/NavBar/NavBar"
 import Overview from "./components/Overview/Overview"
 import Form from "./components/Form/Form"
 import Cart from "./components/Cart/Cart"
+import Settings from "./components/Settings/Settings"
+import Footer from "./components/Footer/Footer"
 import "./index.css"
 
 function App() {
@@ -20,7 +22,11 @@ function App() {
                 <Route path="/cart">
                     <Cart />
                 </Route>
+                <Route path="/settings">
+                    <Settings />
+                </Route>
             </Switch>
+            <Footer />
         </BrowserRouter>
     );
 }

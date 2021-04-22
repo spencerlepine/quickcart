@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch} from "react-redux"
 import { Link } from "react-router-dom"
+import { setSearchQuery } from "../../actions/search"
 import { getGroceries } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
 import FoodCard from "./FoodCard/FoodCard"
@@ -14,10 +15,11 @@ const Overview = () => {
     useEffect(() => {
         dispatch(getGroceries())
         dispatch(setId(null))
+        dispatch(setSearchQuery(""))
     }, [dispatch])
 
     const groceries = useSelector(state => state.groceries)
-    const foodItems = groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+    const foodItems = groceries ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />) : []
 
     return (
         <>{foodItems.length

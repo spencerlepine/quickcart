@@ -5,7 +5,6 @@
 - remove semicolons
 - standard double quotes
 
-- loading bars
 - addeed to cart indication
 - upload image (store with base64)
 
@@ -18,5 +17,8 @@
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
 
-- backup list to csv?
-- upload cvs?
+- finish Settings UI
+- Clear current DB
+- User Import feedback (invalid backup file)
+- Slim down backup file (filter on EXPORT, not import)
+- handle empty grocery db (when it was cleared, it still made FoodCard Objs)
