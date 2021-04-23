@@ -42,12 +42,35 @@ export default makeStyles((theme) => ({
       },
     },
     imageContainer: {
+      position: "relative",
       width: "50%",
       margin: "auto",
+      minWidth: "50%",
+      height: "max(10vh, auto)",
+      minHeight: "160px",
       '& img': {
         width: "100%",
         maxWidth: "416px",
         maxHeight: "416px",
+      },
+      '& button': {
+        content: '"X"',
+        position: "absolute",
+        display: 'block',
+        top: "0",
+        right: "10px",
+        borderRadius: "50%",
+        height: "35px",
+        width: "35px",
+        color: "white",
+        background: "#fb4848",
+        border: "2px solid #cc3131",
+        fontSize: "1.1em",
+        fontWeight: "900",
+        '&:hover': {
+          backgroundColor: "#dc3434",
+          boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
+        },
       }
     },
     itemPrice: {
@@ -105,5 +128,28 @@ export default makeStyles((theme) => ({
     button: {
       gridColumnStart: "1",
       gridColumnEnd: "3",
-    }
+    },
+    fileInput: {
+      height: "100%",
+      minHeight: "150px",
+      outline: "2px dashed black",
+      outlineOffset: "-10px",
+      margin: "auto",
+      display: "block",
+      '& div': {
+        height: "fit-content",
+        width: "fit-content",
+        margin: "auto",
+        position: "relative",
+        bottom: "-50px",
+        '& input': {
+          
+        }
+      },
+      '& input': {
+        // minHeight: "150px",
+        height: "100%",
+        margin: "auto",
+      },
+    },
   }));

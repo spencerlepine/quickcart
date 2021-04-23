@@ -1,13 +1,14 @@
 import React from "react"
-import { Link} from "react-router-dom"
 import useStyles from "./styles.js"
 
 const Footer = () => {
     const classes = useStyles()
-  
+    
+    const currentDate = new Date()
+
     return (
         <footer className={classes.Footer}>
-            <Link to="/settings">Settings</Link>
+            <p>&#169;{currentDate.getFullYear()} Spencer Lepine</p>
         </footer>
     )
 }

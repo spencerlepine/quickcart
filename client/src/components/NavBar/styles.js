@@ -14,7 +14,7 @@ export default makeStyles(() => ({
             width: "100%",
             margin: "0",
             display: "grid",
-            gridTemplateColumns: "auto auto auto",
+            gridTemplateColumns: "auto auto auto auto",
         },
     },
     link: {
@@ -40,6 +40,5 @@ export default makeStyles(() => ({
                 display: "None",
             },
         },
-        
     }
 }));

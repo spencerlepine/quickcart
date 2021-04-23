@@ -10,7 +10,7 @@ export default makeStyles(() => ({
         "@media (max-width: 900px)": {
             width: "90%",
             gridColumnStart: "1",
-            gridColumnEnd: "4",
+            gridColumnEnd: "5",
         },
     }
 }));

@@ -18,9 +18,9 @@ const schema = {
   purchase_size: "",
   serving_cost: "",
   category: "",
-  last_purchased: "2021-04-20",
+  last_purchased: new Date().toISOString().slice(0, 10),
   priority: 0,
-  image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wgARCADFAMUDASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAIDBAEFB//EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAH7KAAAAAAAAAAAAAAAAQJ8yURvhiG1iHoz8uZ6LNoroAAAAABkJZeIAAAATgPQs8zaXCgAABApyd5AAAAAADvB6M8G+gAAGPX5scAAWWGdoGdoGdoGdKIA3YbzaKAAr8/bigADVGVBNSLlMyd+LUU12VgCUZHpOdoACjFtxQABqovrIc9AYtztZ46omGuyuAHedPRlztAAQ871POiAANWnz5m5hG5hG5hEa+8AFlek1igAGbTw8xOEAAAAAAAd9DNsAoAACvB6dMYXeAAAAACxuO9KAAAAAhj3jy26iKEhF0cWXGbRomc6UAAAAAAAA50R70AAAAAAAAAAAAAAAAAAAf/EACMQAAIBAwQDAQEBAAAAAAAAAAECAAMTIBEhMDISMUAQUCL/2gAIAQEAAQUC/t6wusuCXBLggYfEzARqhmuQYiLUg35nqcakiI/lyVH5qb68VVucbRG1GbnQfBTOhzrHf4aR1XE+j7wRfKWjLRloy0ZaMtGWjDscKJ/1jU640Izt5XGlxpcaXGlxpSYmP3wX3jW640I/f9Ck/lCP3wHtfWFb1jQj91BYsNCi+UG0qJrKEfvivXCt1xoQgtUUBQyhoNv3Td++A9j1g/XGhAM374J2yYaNgrFZcaXGlxpcaXGlxpcaHc4URnWHxINFyO4YaHnpLw1F8hzIvkRtxVE1h25FUtFGg42UNGQjiSnANOdqYMNMwgiaH80gUwUoqgfJoJ4rNB/e/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAwEBPwEp/8QAFBEBAAAAAAAAAAAAAAAAAAAAcP/aAAgBAgEBPwEp/8QAHxAAAgEEAwEBAAAAAAAAAAAAAAExESAhQBAwUGBh/9oACAEBAAY/AvgJ08XyZ76LYotii9Gm/KJRKJRKJRKKaLHkkkkkkdR6LHZjhjuXWx8UZ+cVQx3LrY+M2VHovoejjorbW+vlV+IzpxZnVghe/wD/xAAmEAEAAgAEBQUBAQAAAAAAAAABABEgITAxQVFhkaEQQHHB8FDx/9oACAEBAAE/If7aDdqC4+vF9Zxfsm4sVyEU7uLYo4MoFjrVRVXPSVyYA66lzqgo2SrTv7nkqyfN6Gbxbb9h8PoW9L2WScsSpPKK04VvSFaCIiIiGzkw0UxOni+uHAyDyn5E/In5E/In5Ezsup5uFUXUvrnm4C1G3r+bh2Pmbrppv1zzZSCLIdcuJgBQUTrviTfPm4TcnjYRwYvrggc5SCEVABQUeoRDjvPNw7EFAwm3i+uAXRvj83CbBiZcGGw5p1ztOudp1ztOudp1ztOudp1ztEot3DnY3B+xM2UxjBQx6vYXNttH5SJTTrJ0IAUaQZzeBVOox0g1GoZnvGeZohe0RzykAUa+xZMPtnN0J1Ep5S3Ji9iNxTZz2i247T/CgGwf3v/aAAwDAQACAAMAAAAQ888888888888888882Oee08888884+8888sS88888e8888888U888u88++++08+888W88uOOOU84088e886SccU8sc88a88++++c8u888s08888888O8888K888888m888888M+40yO888888888sc8888888888888888888//EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQMBAT8QKf/EABoRAAIDAQEAAAAAAAAAAAAAAAARATBAIFD/2gAIAQIBAT8QwsYx+DNs2zwqZ4Yx4I0Lf//EACoQAQABAgMHBAIDAAAAAAAAAAERADEgIfAwQVFhcYGhQJGxwRDRUOHx/9oACAEBAAE/EP5u1/U0imZLlvmprCdf6muWe7+qXkdWUeYofIZMK296ESRE9CPlTwKRgUSUjN+eGzJTkpRqBHOoYk2qgSsFSm4MLUySuylTRwrhTg2agSsBSoyBd1r62kyIaC1nzsocyHemtdtuJbMoCZIX2BPPOxTMrvoFNzlc1q1CIIyNseRHLTXT0WdHPE38wms4JzvF8O5kJmtY1rGtY1rGtY1rGtY0riKoYwpcw+xpjEsRhbPTP6xaHegaCAIVy/srl/ZXL+yuX9lcv7KV3IjIONedwizOWeXihknDmBwZ+D7xaHevI4HKpdz6fi7s+687hcO8FKeMD4w/H9mLQ715GjJ9XcUnCEtzK37D/AoaYLFZwOU3/wB18D7rzuHOXOvF/GFk82fSJ+sWh3oT9+XcUZPq71qAlrJcoSYLH5LyGPVXncLBGwi1ykAwx2UAlThv8TVsnDod6yMEpebj87hUyO/CziAiNmmQvO/DnyG9JOwUpSlKVdAJcMrRkWy7fvHOAddat6EIBdooCFzcbi00hZlu9Bk/ktrXnYhIW2pmCE2wEDmaMlAbIWOPnSk4TaGQE3mggxtEEI4qsbgJsUUBWlTpFARgNsgkJJQKipDdT1g1yoKYutIEo9q5j2pElI5kUnC2nie9Izg5a/dAFzi+jSb1cn1Ff4SrAuh/Pf/Z"
+  image: ""
 }
 
 const Form = () => {
@@ -56,6 +56,7 @@ const Form = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target
+
     setItemData((prevItems) => ({ ...prevItems, [name]: value }))
   }
 
@@ -109,7 +110,21 @@ const Form = () => {
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
 
         <div className={classes.imageContainer}>
-          <img src={itemData.image} alt={itemData.name}></img>
+          {itemData.image
+            ?
+            <>
+              <img src={itemData.image} alt={itemData.name}></img>
+              <button onClick={() => handleChange({ target: { name: "image", value: "" } })}>X</button>
+            </>
+            :
+            <div className={`${classes.fileInput}`}>
+              <div>
+                <FileBase type="file" multiple={false} onDone={({ base64 }) => {
+                  handleChange({ target: { name: "image", value: base64 } })
+                }} />
+              </div>
+            </div>
+          }
         </div>
 
         <div className={classes.itemDetails}>

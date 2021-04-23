@@ -2,6 +2,7 @@ import React from "react"
 import { Link, useLocation } from "react-router-dom"
 import SearchBar from "./SearchBar/SearchBar"
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
+import SettingsIcon from "@material-ui/icons/Settings"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
 import ListAltIcon from "@material-ui/icons/ListAlt"
 import useStyles from "./styles.js"
@@ -41,6 +42,13 @@ const NavBar = () => {
                     className={classes.link}
                     to="/cart">
                         <ShoppingBasketIcon fontSize="large" /><p>Basket</p>
+                </Link>
+
+                <Link
+                    style={{ ...highlightLink('/settings', pathname), marginLeft: "auto"}}
+                    className={classes.link}
+                    to="/settings">
+                        <SettingsIcon fontSize="large" />
                 </Link>
             </div>
         </div>
