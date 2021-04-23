@@ -11,7 +11,7 @@ const Backup = () => {
 
     const groceries = useSelector(state => state.groceries)
 
-    function convertToCSV(objArray) {
+    /*function convertToCSV(objArray) {
         let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         let str = '';
 
@@ -40,7 +40,7 @@ const Backup = () => {
 
             var line = '';
             for (var index in filteredObj) {
-                if (line != '') line += ','
+                if (line !== '') line += ','
 
                 line += filteredObj[index];
             }
@@ -49,15 +49,14 @@ const Backup = () => {
         }
 
         return str;
-    }
+    }*/
 
     function save(data, filename) {
         const groceryCount = data.length
-        let jsonGroceries = JSON.stringify(groceries)
-        //let csvFilteredGroceries = convertToCSV(data)
+        const jsonGroceries = JSON.stringify(groceries)
+        //const csvFilteredGroceries = convertToCSV(data)
 
-        // Change backup format here
-        data = jsonGroceries
+        data = jsonGroceries //csvFilteredGroceries
 
         if(!data) {
             console.error('Console.save: No data')

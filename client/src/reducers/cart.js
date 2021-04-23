@@ -8,12 +8,12 @@ const validStoredCart = () => {
     if (parseCart === []) {
         return []
     } else if (parseCart) {
-        const validKeys = ["quantity", "_id", "name", "purchase_price", "purchase_size", "serving", "servings_per", "__v"]
-        parseCart.forEach(item => {
-            validKeys.map(key => {valid = item.hasOwnProperty(key)})
-        })
-
+        const validKeys = ["quantity", "_id", "name", "purchase_price", "serving_cost"]
         
+        // Validate each item contains these keys
+        parseCart.forEach(item => {
+            valid = validKeys.every(key => item.hasOwnProperty(key))
+        })  
     }
     return valid ? parseCart : []
 }

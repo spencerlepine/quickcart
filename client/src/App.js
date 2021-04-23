@@ -5,6 +5,7 @@ import Overview from "./components/Overview/Overview"
 import Form from "./components/Form/Form"
 import Cart from "./components/Cart/Cart"
 import Settings from "./components/Settings/Settings"
+import Error from "./components/Error/Error"
 import Footer from "./components/Footer/Footer"
 import "./index.css"
 
@@ -24,6 +25,9 @@ function App() {
                 </Route>
                 <Route path="/settings">
                     <Settings />
+                </Route>
+                <Route path="/">
+                    <Error />
                 </Route>
             </Switch>
             <Footer />

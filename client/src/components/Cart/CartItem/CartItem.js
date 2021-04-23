@@ -6,6 +6,7 @@ import useStyles from "./styles.js"
 const CartItem = ({ item }) => {
     const classes = useStyles()
     const dispatch = useDispatch()
+    console.log(item)  
 
     const handleDecrement = (item) => {
         if (item.quantity === 1) {

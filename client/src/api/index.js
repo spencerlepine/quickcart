@@ -1,6 +1,6 @@
 import axios from "axios"
 //const url = //'https://grocery-server-sl.herokuapp.com/groceries/' //http://localhost:5000/groceries'
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://grocery-server-sl.herokuapp.com"
 const url = baseUrl + "/groceries"
 
 export const fetchGroceries = () => axios.get(url)

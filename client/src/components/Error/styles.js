@@ -1,9 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
-    settingsContainer: {
+    errorContainer: {
         width: "fit-content",
-        margin: "2em auto",
-        padding: "2em",
+        margin: "auto",
     },
 }));

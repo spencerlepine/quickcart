@@ -21,20 +21,7 @@ const FoodItem = ({ groceryItem, CellComponent, RowComponent }) => {
         e.stopPropagation()
         dispatch(addToCart(groceryItem))
     }
-
-    let expectedKeys = [
-        "_id",
-        "name",
-        "purchase_price",
-        "purchase_size",
-        "serving_cost",
-        "category",
-        "last_purchased",
-        "priority",
-    ]
     
-    //let completeItem = Object.keys(groceryItem).filter(key => expectedKeys.includes(key))
-
     return (
         <>
             {(searchMatch(currentSearch, groceryItem.name) || currentSearch.length < 3)

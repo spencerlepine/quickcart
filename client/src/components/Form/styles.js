@@ -95,9 +95,7 @@ export default makeStyles((theme) => ({
     },
     itemDate: {
       width: "fit-content",
-      margin: "20px",
       marginLeft: "auto",
-      margin: "inherit",
       ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
             gridColumnStart: "1",
             gridColumnEnd: "3",

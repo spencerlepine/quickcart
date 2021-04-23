@@ -3,12 +3,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { createGrocery, deleteGrocery, updateGrocery } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
-// import { makeStyles } from '@material-ui/core/styles'
 import useStyles from "./styles.js"
+import FileBase from 'react-file-base64'
 
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
-import Container from "@material-ui/core/Container"
 import Select from "@material-ui/core/Select"
 import Rating from "@material-ui/lab/Rating"
 import StarBorderIcon from '@material-ui/icons/StarBorder'
@@ -110,7 +109,7 @@ const Form = () => {
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
 
         <div className={classes.imageContainer}>
-          <img src={itemData.image}></img>
+          <img src={itemData.image} alt={itemData.name}></img>
         </div>
 
         <div className={classes.itemDetails}>
@@ -165,7 +164,7 @@ const Form = () => {
               />
           </div>
             
-          {itemData.last_purchased === "2021-04-20" && <div className={classes.itemDate}>
+          <div className={classes.itemDate}>
               <TextField
               name="last_purchased"
               label="Last Purchased"
@@ -177,7 +176,7 @@ const Form = () => {
               }}
               onChange={handleChange}
               />
-          </div>}
+          </div>
           
           <Button
             type="submit"
@@ -188,18 +187,6 @@ const Form = () => {
           >
             {currentId ? "Update" : "Submit"}
           </Button>
-
-          {/* {Object.values(itemData).filter((val) => val).length > 2 && (
-            <Button
-              onClick={clearForm}
-              color="secondary"
-              fullWidth
-              variant="contained"
-              className={classes.button}
-            >
-              Clear
-            </Button>
-          )} */}
 
           {currentId && <Button
               onClick={handleDelete}

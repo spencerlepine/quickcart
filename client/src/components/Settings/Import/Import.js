@@ -6,7 +6,7 @@ const Import = () => {
   const dispatch = useDispatch();
 
   // https://stackoverflow.com/questions/27979002/convert-csv-data-into-json-format-using-javascript
-  function csvJSON(csv) {
+  /*function csvJSON(csv) {
     //var csv is the CSV file with headers
 
     var lines = csv.split("\n");
@@ -32,10 +32,12 @@ const Import = () => {
 
     //return result; //JavaScript object
     return JSON.stringify(result); //JSON
-  }
+  }*/
 
   const importData = ({ target }) => {
-    //dispatch(clearGroceries)
+    if (window.confirm("Overwrite existing data?")) {
+      dispatch(clearGroceries());
+    }
 
     var fr = new FileReader();
 
@@ -46,7 +48,8 @@ const Import = () => {
 
       storageAccessed.forEach((grocery) => {
         // Save me in Mongo Cluster
-        const allowed = [
+        const allowedKeys = [
+          "_id",
           "name",
           "purchase_price",
           "purchase_size",
@@ -59,7 +62,7 @@ const Import = () => {
 
         let filteredObj = {};
         for (const prop in grocery) {
-          if (allowed.includes(prop)) {
+          if (allowedKeys.includes(prop)) {
             if (typeof grocery[prop] === "object") {
               filteredObj[prop] = grocery[prop]["$numberDecimal"];
             } else {
