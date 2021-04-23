@@ -23,4 +23,10 @@ export default makeStyles(() => ({
         display: "grid",
         gridTemplateColumns: "auto auto",
     },
+    itemsGrid: {
+        display: "flex",
+        overflow: "scroll",
+        margin: "0 auto 5% auto",
+        backgroundColor: "#fff",
+    },
 }));

@@ -62,7 +62,7 @@ export const deleteGrocery = (id) => async (dispatch) => {
 
 export const clearGroceries = () => async (dispatch) => {
     try {
-        await api.clearGroceries()
+        await api.deleteAll()
 
         dispatch({ type: CLEAR_ALL, payload: [] })
     } catch(error) {

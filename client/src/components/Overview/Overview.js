@@ -1,10 +1,9 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch} from "react-redux"
-import { Link } from "react-router-dom"
 import { setSearchQuery } from "../../actions/search"
 import { getGroceries } from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
-import FoodCard from "./FoodCard/FoodCard"
+import FoodCard from "../FoodCard/FoodCard"
 import useStyles from "./styles"
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -19,17 +18,17 @@ const Overview = () => {
     }, [dispatch])
 
     const groceries = useSelector(state => state.groceries)
-    const foodItems = groceries ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />) : []
-
+    const foodItems = groceries && groceries[0] !== undefined ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />) : []
+    
     return (
         <>{foodItems.length
             ?
-        <div class={classes.itemsGrid}>
+        <div className={classes.itemsGrid}>
             {foodItems}
         </div>
             :
         <div className={classes.warning}>
-            {groceries.length === 0 && <CircularProgress />}
+            <CircularProgress />
         </div>
         }</>
     )

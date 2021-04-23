@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 
 import groceryRoutes from "./routes/groceries.js"
+import reccomendedRoutes from "./routes/reccomended.js"
 
 const app = express()
 dotenv.config()
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ limit:  "30mb", extended: true }))
 app.use(cors())
 
 app.use('/groceries', groceryRoutes)
+app.use('/reccomended', reccomendedRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to Spencer\'s Grocery API')

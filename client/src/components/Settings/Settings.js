@@ -5,6 +5,7 @@ import useStyles from "./styles"
 
 import Backup from "./Backup/Backup"
 import Import from "./Import/Import"
+import Clear from "./Clear/Clear"
 
 const Settings = () => {
     const dispatch = useDispatch()
@@ -14,7 +15,7 @@ const Settings = () => {
        <div>
            <Backup />
            <Import />
-           <button onClick={()=>alert('delete?')}>Clear Database</button>
+           <Clear />
        </div>
     )
 }

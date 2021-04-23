@@ -11,6 +11,18 @@ export const getGroceries = async (req, res) => {
     }
 }
 
+export const getGrocery = async (req, res) => {
+    const { id: _id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with that id")
+    }
+
+    const thisGroceryItem = await GroceryItem.findById(_id)
+    
+    res.json(thisGroceryItem)
+}
+
 export const getGroceriesCategories = async (req, res) => {
     try {
         const groceryItems = await GroceryItem.aggregate(
@@ -63,4 +75,10 @@ export const deleteGrocery = async (req, res) => {
     await GroceryItem.findByIdAndDelete(_id)
     
     res.json("Item deleted successfully")
+}
+
+export const deleteAll = async (req, res) => {
+    await GroceryItem.deleteMany()
+    
+    res.json("Database cleared successfully")
 }

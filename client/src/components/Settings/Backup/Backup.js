@@ -74,6 +74,11 @@ const Backup = () => {
             e    = document.createEvent('MouseEvents'),
             a    = document.createElement('a')
 
+        if (data === "[null]") {
+            alert("No items found!")
+            return
+        }
+
         alert(`Saving data for ${groceryCount} groceries items (${Math.round(blob.size / 1000)}kb)`)
 
         a.download = filename
