@@ -41,5 +41,5 @@
 -- LIMIT the items to no more than 10 in that collection
 
 Other:
--- Authentication/Password?
+-- Demo password and groceries
 -- Stats: Database size out of 512mb, total grocery count

@@ -1,10 +1,11 @@
 import * as api from "../api/index.js"
-import { FETCH_ALL, CREATE, UPDATE, DELETE, CLEAR_ALL } from "../constants/actionTypes.js"
+import { FETCH_ALL, CREATE, UPDATE, DELETE, CLEAR_ALL, SET_KEY } from "../constants/actionTypes.js"
 
 // action creators
 export const getGroceries = (key) => async (dispatch) => {
     try {
         const { data } = await api.fetchGroceries({ key })
+        dispatch({ type: SET_KEY, payload: key })
 
         let grouped = [data[0]]
     
@@ -26,6 +27,7 @@ export const getGroceries = (key) => async (dispatch) => {
 
         dispatch({ type: FETCH_ALL, payload: grouped })
     } catch (error) {
+        dispatch({ type: SET_KEY, payload: null })
         console.log(error.message)
     }
 }

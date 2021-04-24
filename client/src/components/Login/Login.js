@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import useStyles from "./styles.js"
-import { setAuthKey } from "../../actions/authentication"
+import { getGroceries } from "../../actions/groceries.js"
 
 const Login = () => {
   const [keyFormValue, setKeyFormValue] = useState("")
@@ -34,8 +34,7 @@ const Login = () => {
   const handleSubmit = (savedKey=null) => {
     const usableKey = savedKey || keyFormValue
     if (typeof usableKey === "string" && usableKey.length > 9) {
-      localStorage.setItem('groceryAuthKey', usableKey)
-      dispatch(setAuthKey(usableKey))
+      dispatch(getGroceries(usableKey))
     }
   }
 
