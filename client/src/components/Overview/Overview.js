@@ -21,15 +21,15 @@ const Overview = () => {
       : []
 
   useEffect(() => {
-    setTimeout(() => {
-      if (JSON.stringify(groceries) === "[]") {
+    if (JSON.stringify(groceries) === "[]" && authKey) {
+      setTimeout(() => {
         // Go back to login page if it couldn't load
         localStorage.setItem('groceryAuthKey', null)
         dispatch(setAuthKey(null))
-      } else {
-        return
-      }
-    }, 2000)
+      }, 2000)
+    } else {
+      return
+    }
   }, [authKey])
 
   useEffect(() => {
