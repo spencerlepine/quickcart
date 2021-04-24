@@ -15,7 +15,6 @@ const Login = () => {
 
     if (savedKey) {
       handleSubmit(savedKey)
-      history.push('/')
     }
   }, [])
 
