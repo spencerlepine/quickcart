@@ -12,14 +12,16 @@ import Select from "@material-ui/core/Select"
 import Rating from "@material-ui/lab/Rating"
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 
+const todaysDate = new Date().toISOString().slice(0, 10)
+
 const schema = {
   name: "",
   purchase_price: "",
   purchase_size: "",
   serving_cost: "",
   category: "",
-  last_purchased: new Date().toISOString().slice(0, 10),
-  priority: 0,
+  last_purchased: todaysDate,
+  priority: "0",
   image: ""
 }
 

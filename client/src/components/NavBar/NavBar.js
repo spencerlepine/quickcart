@@ -1,15 +1,19 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar/SearchBar"
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import SettingsIcon from "@material-ui/icons/Settings"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
 import ListAltIcon from "@material-ui/icons/ListAlt"
 import useStyles from "./styles.js"
 
+
 const NavBar = () => {
     const classes = useStyles()
     const { pathname } = useLocation()
+
+    const cartLength = useSelector((state) => state.cart.length)
     
     const highlightLink = (path, thisPath) => {
         return ({
@@ -41,12 +45,15 @@ const NavBar = () => {
                     style={{ ...highlightLink('/cart', pathname), marginLeft: "auto"}}
                     className={classes.link}
                     to="/cart">
-                        <ShoppingBasketIcon fontSize="large" /><p>Basket</p>
+                        <div className={classes.cartLink}>
+                            <ShoppingCartIcon fontSize="large" color="action" />
+                            {cartLength > 0 && <p>{cartLength}</p>}
+                        </div>
                 </Link>
 
                 <Link
-                    style={{ ...highlightLink('/settings', pathname), marginLeft: "auto"}}
-                    className={classes.link}
+                    style={{ ...highlightLink('/settings', pathname)}}
+                    className={`${classes.link} ${classes.settingIcon}`}
                     to="/settings">
                         <SettingsIcon fontSize="large" />
                 </Link>

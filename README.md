@@ -25,15 +25,20 @@
 
 - Dynamically handle properties (hard-coded in several places)
 
-- Grocery cart "purchase button"
--- Get date to "2021-MN-DY"
--- Dispatch an update for every one
--- Could not find grocery with this ID
-
 - store cart on server with different collection?
 -- store each food object (with a QUANTITY prop)
 -- delete object by food id
 -- update object quantity by id
+
+-- sort groceries by category, display breadList, display vegeatbleList, displayALL of them when you display groceries
+-- display categories with emojis at top (hide when searching)
+-- ADD category button 
+
+-- delete items from list on click on POP/delete the div
+
+-- new schema with SAMPLE DATA
+-- upload/edit sample grocery items for a DEMO
+-- LIMIT the items to no more than 10 in that collection
 
 Other:
 -- Authentication/Password?

@@ -3,7 +3,7 @@ import { getGroceries, createGrocery, updateGrocery, deleteGrocery, deleteAll } 
 
 const router = express.Router();
 
-router.get('/', getGroceries)
+router.get('/:key', getGroceries)
 router.post('/', createGrocery)
 router.patch('/:id', updateGrocery)
 router.delete('/:id', deleteGrocery)

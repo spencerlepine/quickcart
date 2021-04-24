@@ -1,26 +1,21 @@
 import mongoose from "mongoose"
 import GroceryItem from "../models/groceryItem.js"
+import dotenv from "dotenv"
 
 export const getGroceries = async (req, res) => {
     try {
+        const { key } = req.params
+        if (key !== process.env.USER_KEY) {
+            res.status(404).json("invalid authentication key")
+            return
+        }
+
         const groceryItems = await GroceryItem.find()
         
         res.status(200).json(groceryItems)
     } catch(error) {
         res.status(404).json(error.message)
     }
-}
-
-export const getGrocery = async (req, res) => {
-    const { id: _id } = req.params
-
-    if (!mongoose.Types.ObjectId.isValid(_id)) {
-        return res.status(404).send("No post with that id")
-    }
-
-    const thisGroceryItem = await GroceryItem.findById(_id)
-    
-    res.json(thisGroceryItem)
 }
 
 export const getGroceriesCategories = async (req, res) => {

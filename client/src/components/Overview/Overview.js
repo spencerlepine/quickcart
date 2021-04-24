@@ -1,37 +1,62 @@
 import React, { useEffect } from "react"
-import { useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { setSearchQuery } from "../../actions/search"
 import { getGroceries } from "../../actions/groceries"
+import { setAuthKey } from "../../actions/authentication"
 import { setId } from "../../actions/selectedItem"
 import FoodCard from "../FoodCard/FoodCard"
 import useStyles from "./styles"
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress"
+import Login from "../Login/Login"
 
 const Overview = () => {
-    const dispatch = useDispatch()
-    const classes = useStyles()
+  const dispatch = useDispatch()
+  const classes = useStyles()
 
-    useEffect(() => {
-        dispatch(getGroceries())
-        dispatch(setId(null))
-        dispatch(setSearchQuery(""))
-    }, [dispatch])
+  const authKey = useSelector((state) => state.authentication)
+  const groceries = useSelector((state) => state.groceries)
+  const foodItems =
+    groceries && groceries[0] !== undefined
+      ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+      : []
 
-    const groceries = useSelector(state => state.groceries)
-    const foodItems = groceries && groceries[0] !== undefined ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />) : []
-    
-    return (
-        <>{foodItems.length
-            ?
-        <div className={classes.itemsGrid}>
-            {foodItems}
-        </div>
-            :
-        <div className={classes.warning}>
-            <CircularProgress />
-        </div>
-        }</>
-    )
+  useEffect(() => {
+    setTimeout(() => {
+      if (JSON.stringify(groceries) === "[]") {
+        // Go back to login page if it couldn't load
+        localStorage.setItem('groceryAuthKey', null)
+        dispatch(setAuthKey(null))
+      } else {
+        return
+      }
+    }, 2000)
+  }, [authKey])
+
+  useEffect(() => {
+    if (authKey && typeof authKey === "string" && authKey.length === 10) {
+      dispatch(getGroceries(authKey))
+    }
+    dispatch(setId(null))
+    dispatch(setSearchQuery(""))
+  }, [dispatch, authKey])
+
+  return (
+    <>
+      {(authKey !== null && authKey.length === 10) ? (
+        <>
+            {foodItems.length ? (
+            <div className={classes.itemsGrid}>{foodItems}</div>
+            ) : (
+            <div className={classes.warning}>
+                <CircularProgress />
+            </div>
+            )}
+        </>
+      ) : (
+        <Login />
+      )}
+    </>
+  )
 }
 
 export default Overview

@@ -17,12 +17,21 @@ export default makeStyles((theme) => ({
         paddingRight: "4vh"
     },
     itemCount: {
-        padding: "6px",
-        border: "2px solid gray",
         margin: "auto 5px",
-        height: "100%",
-        width: "1em",
-        textAlign: "center"
+        textAlign: "center",
+        position: "relative",
+        cursor: "pointer",
+        height: "44px",
+        width: "56px",
+        border: "1px solid rgb(224, 224, 224)",
+        padding: "0px",
+        lineHeight: "40px",
+        borderRadius: "4px",
+        zIndex: "100",
+        backgroundColor: "transparent",
+        '&:hover': {
+            backgroundColor: "rgb(247, 247, 247)",
+        },
     },
     btn: {
         width: "1em",

@@ -40,5 +40,25 @@ export default makeStyles(() => ({
                 display: "None",
             },
         },
-    }
+    },
+    settingIcon: {
+        marginLeft: "0",
+        "@media (max-width: 900px)": {
+            marginLeft: "auto",
+        },
+    },
+    cartLink: {
+        display: "flex",
+        backgroundColor: "ghostwhite",
+        padding: "0px 10px 0px 10px",
+        borderRadius: "15px",
+        '& p': {
+            color: "#333333",
+            fontWeight: "700",
+            margin: "auto",
+        },
+        '& svg': {
+            color: "#333333",
+        }
+    },
 }));
