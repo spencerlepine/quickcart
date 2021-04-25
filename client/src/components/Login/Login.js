@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
 import useStyles from "./styles.js"
 import { getGroceries } from "../../actions/groceries.js"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 const Login = () => {
   const [keyFormValue, setKeyFormValue] = useState("")
+  const [pendingLogin, setPendingLogin] = useState(false)
   const dispatch = useDispatch()
-  const history = useHistory()
   const classes = useStyles()
 
   useEffect(() => {
@@ -32,23 +32,34 @@ const Login = () => {
 
   const handleSubmit = (savedKey=null) => {
     const usableKey = savedKey || keyFormValue
-    if (typeof usableKey === "string" && usableKey.length > 9) {
-      dispatch(getGroceries(usableKey))
+    if (!savedKey) {
+      setPendingLogin(true)
     }
+    dispatch(getGroceries(usableKey))
+    setTimeout(() => {
+      setPendingLogin(false)
+      setKeyFormValue("")
+    }, 1000)
   }
 
   return (
     <div className={classes.loginPrompt}>
-      <input 
+      {pendingLogin
+        ?
+      <CircularProgress />
+        :
+      <>
+        <input 
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         value={keyFormValue}
         placeholder="demo123">
-      </input>
-      <button 
-        onClick={() => handleSubmit()}
-        className={classes.loginButton}
-      >Login</button>
+        </input>
+        <button
+          onClick={() => handleSubmit()}
+          className={classes.loginButton}
+        >Login</button>
+      </>}
     </div>
   )
 }

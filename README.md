@@ -3,8 +3,6 @@
 - remove semicolons
 - standard double quotes
 
-- addeed to cart indication
-
 - suggested groceries
 -- something from each category
 -- get OLDEST first
@@ -17,11 +15,9 @@
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
 
 - finish Settings UI
+- cart buttons UI
 - finish form Image upload UI
 - User Import feedback (invalid backup file)
-
-- Default Props (handle empty fields in FoodCard)
-- Add proptypes across files
 
 - Dynamically handle properties (hard-coded in several places)
 
@@ -34,11 +30,10 @@
 -- display categories with emojis at top (hide when searching)
 -- ADD category button 
 
--- delete items from list on click on POP/delete the div
 
--- new schema with SAMPLE DATA
--- upload/edit sample grocery items for a DEMO
--- LIMIT the items to no more than 10 in that collection
+- DEMO
+-- new SCHEMA with different link get/demo_groceries
+-- upload/edit these groceries?
 
 Other:
 -- Demo password and groceries

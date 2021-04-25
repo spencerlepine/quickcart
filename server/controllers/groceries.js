@@ -1,11 +1,17 @@
 import mongoose from "mongoose"
 import GroceryItem from "../models/groceryItem.js"
+import DemoGroceryItem from "../models/demoGroceryItem.js"
 import dotenv from "dotenv"
 
 export const getGroceries = async (req, res) => {
     try {
         const { key } = req.params
-        if (key !== process.env.USER_KEY) {
+
+        if (key === "demo123") {
+            const groceryItems = await DemoGroceryItem.find()
+        
+            res.status(200).json(groceryItems)
+        } else if (key !== process.env.USER_KEY) {
             res.status(404).json("invalid authentication key")
             return
         }

@@ -2,19 +2,24 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export default makeStyles((theme) => ({
     cartItem: {
+        paddingTop: "10px",
         display: "flex",
         borderBottom: "1px solid lightgray",
     },
     itemPrice: {
         marginLeft: "auto",
-        marginRight: "5%",
+        marginRight: "5px",
         color: "#008643",
         "@media (max-width: 900px)": {
-            marginLeft: "5%",
+            color: "rgb(66, 66, 66)",
+            fontSize: "14px",
         },
     },
     itemName: {
-        paddingRight: "4vh"
+        "@media (max-width: 900px)": {
+            color: "rgb(50, 50, 50)",
+            fontSize: "14px",
+        },
     },
     itemCount: {
         margin: "auto 5px",

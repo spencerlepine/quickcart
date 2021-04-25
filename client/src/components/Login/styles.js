@@ -3,7 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
   loginPrompt: {
     margin: "auto",
+    marginTop: "20vh",
+    height: "63vh",
+    minHeight: "136px",
     width: "fit-content",
+    ['@media (max-width:900px)']: { // eslint-disable-line no-useless-computed-key
+      height: "56vh",
+    },
     "& input": {
       backgroundColor: "rgb(255, 255, 255)",
       border: "1px solid rgb(189, 189, 189)",

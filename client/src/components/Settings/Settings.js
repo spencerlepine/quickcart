@@ -13,7 +13,6 @@ const Settings = () => {
            <Backup />
            <Import />
            <Clear />
-           {localStorage.getItem('groceryAuthKey')}
        </div>
     )
 }

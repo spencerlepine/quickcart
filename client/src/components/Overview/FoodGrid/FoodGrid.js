@@ -6,7 +6,6 @@ import FoodCard from "../../FoodCard/FoodCard"
 import useStyles from "./styles"
 import CircularProgress from "@material-ui/core/CircularProgress"
 
-
 const FoodGrid = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
@@ -23,13 +22,15 @@ const FoodGrid = () => {
 
   return (
     <>
-        {foodItems.length ? (
+        {foodItems.length > 0 && (
         <div className={classes.itemsGrid}>{foodItems}</div>
-        ) : (
-        <div className={classes.warning}>
-            <CircularProgress />
-        </div>
         )}
+        
+        {/* : (
+        <div className={classes.emptyPrompt}>
+            <EmptyPrompt />
+        </div>
+        )} */}
     </>
   )
 }

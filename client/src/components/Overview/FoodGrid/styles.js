@@ -14,7 +14,7 @@ export default makeStyles(() => ({
         margin: "0 auto 5% auto",
         backgroundColor: "#fff",
     },
-    warning: {
+    emptyPrompt: {
         width: "fit-content",
         margin: "2em auto",
         padding: "2em",

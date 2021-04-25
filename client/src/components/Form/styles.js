@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
     formContainer: {
         marginTop: "2%",
+        minHeight: "80vh",
     },
     form: {
       maxWidth: '600px',

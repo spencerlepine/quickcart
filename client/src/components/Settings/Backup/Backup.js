@@ -4,9 +4,10 @@ import { useSelector, useDispatch} from "react-redux"
 
 const Backup = () => {
     const dispatch = useDispatch()
+    const authKey = useSelector((state) => state.authentication)
 
     useEffect(() => {
-        dispatch(getGroceries())
+        dispatch(getGroceries(authKey))
     }, [dispatch])
 
     const groceries = useSelector(state => state.groceries)
