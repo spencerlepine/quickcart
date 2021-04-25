@@ -12,6 +12,7 @@ export default makeStyles(() => ({
       maxHeight: "18vw",
       minHeight: "120px",
       height: "16vw",
+      width: "16vw",
       display: "inherit",
       margin: "10px auto",
     },

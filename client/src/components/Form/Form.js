@@ -31,6 +31,7 @@ const Form = () => {
   const history = useHistory()
   const classes = useStyles()
 
+  const authKey = useSelector((state) => state.authentication)
   const currentId = useSelector((state) => state.selectedItem)
   const currentItem = useSelector((state) =>
     currentId ? state.groceries.find((item) => item._id === currentId) : null
@@ -63,6 +64,11 @@ const Form = () => {
   }
 
   const handleDelete = () => {
+    if (authKey === "demo123") {
+      alert("You are in DEMO mode")
+      return
+    }
+
     if (window.confirm("Delete permanently?")) {
       dispatch(deleteGrocery(currentId))
       history.push("/")
@@ -71,6 +77,12 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    if (authKey === "demo123") {
+      alert("You are in DEMO mode")
+      return
+    }
+
     if (currentId) {
       dispatch(updateGrocery(currentId, itemData))
       history.push("/")

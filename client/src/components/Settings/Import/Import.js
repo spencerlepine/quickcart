@@ -68,6 +68,8 @@ const Import = () => {
             } else {
               filteredObj[prop] = grocery[prop]
             }
+          } else {
+            alert(`${filteredObj.name} was invalid.`)
           }
         }
 

@@ -2,14 +2,13 @@
 Make a shopping list with personal grocery data to help budget.
 
 ## Demo:
-Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ````demo123```.
+Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123```.
 
 ## Technologies:
-- [React](https://reactjs.org/)
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [React Router](https://reactrouter.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Expressjs](https://expressjs.com/)
+- [React](https://reactjs.org/)/[Redux](https://redux.js.org/)
+- [Nodejs](https://nodejs.org/)
 
 ---
 

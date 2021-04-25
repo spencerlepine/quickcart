@@ -16,8 +16,6 @@
 
 - finish Settings UI
 - cart buttons UI
-- finish form Image upload UI
-- User Import feedback (invalid backup file)
 
 - Dynamically handle properties (hard-coded in several places) (get getSchema?)
 
