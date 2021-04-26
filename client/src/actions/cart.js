@@ -1,28 +1,59 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_QUANTITY } from "../constants/actionTypes.js"
+import * as api from "../api/index.js";
+import {
+  FETCH_CART,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  UPDATE_ITEM,
+} from "../constants/actionTypes.js";
 
 // action creators
-export const addToCart = (itemToAdd) => async (dispatch) => {
-    try {
-        dispatch({ type: ADD_TO_CART, payload: itemToAdd })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
+export const fetchCart = (key) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchCart({ key })
 
-export const removeFromCart = (idToRemove) => async (dispatch) => {
-    try {
-        dispatch({ type: REMOVE_FROM_CART, payload: idToRemove })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
+    dispatch({ type: FETCH_CART, payload: data })
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
-export const changeCartQuantity = (itemToUpdate, change) => async (dispatch) => {
-    const updatedCartItem = {...itemToUpdate, quantity: itemToUpdate.quantity + change}
+export const addToCart = (key, itemToAdd) => async (dispatch) => {
+  try {
+    const result = await api.fetchCartItem({ key }, itemToAdd._id);
 
-    try {
-        dispatch({ type: CHANGE_QUANTITY, payload: updatedCartItem })
-    } catch (error) {
-        console.log(error.message)
+    if (result.data) {
+      // This item is already in the cart, just update the quantity
+      const updatedQuantity = {
+        ...itemToAdd,
+        quantity: itemToAdd.quantity + 1,
+      };
+      const { data } = await api.updateCartItem({ key }, updatedQuantity);
+
+      dispatch({ type: UPDATE_ITEM, payload: data });
+    } else {
+      const { data } = await api.addToCart({ key }, itemToAdd);
+
+      dispatch({ type: ADD_TO_CART, payload: data });
     }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const removeFromCart = (key, idToRemove) => async (dispatch) => {
+  try {
+    dispatch({ type: REMOVE_FROM_CART, payload: idToRemove });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const updateCartItem = (key, updatedItem) => async (dispatch) => {
+  try {
+    const { data } = await api.updateCartItem({ key }, updatedItem);
+
+    dispatch({ type: UPDATE_ITEM, payload: data })
+  } catch (error) {
+    console.log(error.message);
+  }
 }

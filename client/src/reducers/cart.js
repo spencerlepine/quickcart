@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_QUANTITY } from "../constants/actionTypes.js"
+import { FETCH_CART, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_ITEM } from "../constants/actionTypes.js"
 
 const validStoredCart = () => {
     let stored = localStorage.getItem('cart')
@@ -20,27 +20,15 @@ const validStoredCart = () => {
 
 const reducer = (cartItems = validStoredCart(), action) => {
     switch(action.type) {
+        case(FETCH_CART): 
+            return action.payload
         case(ADD_TO_CART): {
-            let newCart = [...cartItems, {quantity: 1, ...action.payload}]
-
-            cartItems.forEach((item) => {
-                if (item._id === action.payload._id) {
-                    newCart = cartItems.map(item =>
-                        item._id === action.payload._id ?
-                        {...item, quantity: item.quantity + 1}
-                        : item)
-                }
-            })
-
-            localStorage.setItem('cart', JSON.stringify(newCart))
-            return newCart
-        } case(CHANGE_QUANTITY): {
+            return [...cartItems, action.payload]
+        } case(UPDATE_ITEM): {
             let newCart = cartItems.map((item) => (item._id === action.payload._id) ? action.payload : item)
-            localStorage.setItem('cart', JSON.stringify(newCart))
             return newCart
         } case(REMOVE_FROM_CART): {
             let newCart = cartItems.filter((item) => (item._id === action.payload && item.quantity > 1) || item._id !== action.payload)
-            localStorage.setItem('cart', JSON.stringify(newCart))
             return newCart
         } default:
             return cartItems      

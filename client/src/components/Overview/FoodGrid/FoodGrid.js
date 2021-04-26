@@ -4,7 +4,6 @@ import { setId } from "../../../actions/selectedItem"
 
 import FoodCard from "../../FoodCard/FoodCard"
 import useStyles from "./styles"
-import CircularProgress from "@material-ui/core/CircularProgress"
 
 const FoodGrid = () => {
   const dispatch = useDispatch()

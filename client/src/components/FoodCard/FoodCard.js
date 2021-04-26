@@ -1,28 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { setId } from "../../actions/selectedItem";
-import { addToCart } from "../../actions/cart";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import searchMatch from "./searchMatch";
-import useStyles from "./styles";
+import React from "react"
+import PropTypes from "prop-types"
+import { setId } from "../../actions/selectedItem"
+import { addToCart } from "../../actions/cart"
+import { useSelector, useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
+import searchMatch from "./searchMatch"
+import useStyles from "./styles"
 
 const FoodItem = ({ groceryItem }) => {
-  const classes = useStyles();
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const currentSearch = useSelector((state) => state.search);
+  const classes = useStyles()
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const authKey = useSelector((state) => state.authentication)
+  const currentSearch = useSelector((state) => state.search)
 
   const handleEdit = (e) => {
-    dispatch(setId(groceryItem._id));
-    history.push("/form");
-  };
+    dispatch(setId(groceryItem._id))
+    history.push("/form")
+  }
 
   const handleAdd = (e) => {
-    e.stopPropagation();
-    dispatch(addToCart(groceryItem));
-  };
-  
+    e.stopPropagation()
+    dispatch(addToCart(authKey, groceryItem))
+  }
+
   return (
     <>
       {(searchMatch(currentSearch, groceryItem.name) ||
@@ -48,8 +50,8 @@ const FoodItem = ({ groceryItem }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 FoodItem.propTypes = {
   groceryItem: PropTypes.shape({
@@ -62,6 +64,6 @@ FoodItem.propTypes = {
     priority: PropTypes.string,
     image: PropTypes.string,
   }),
-};
+}
 
-export default FoodItem;
+export default FoodItem

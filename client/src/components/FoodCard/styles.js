@@ -11,6 +11,7 @@ export default makeStyles(() => ({
     "& img": {
       maxHeight: "18vw",
       minHeight: "120px",
+      minWidth: "120px",
       height: "16vw",
       width: "16vw",
       display: "inherit",

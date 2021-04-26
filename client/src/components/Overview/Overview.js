@@ -13,7 +13,12 @@ const Overview  = () => {
 
   useEffect(() => {
     if (authKey) {
-      localStorage.setItem('groceryAuthKey', authKey)
+      if (localStorage.getItem('groceryAuthKey') !== authKey) {
+        alert("Saving the authKey to storage!")
+        localStorage.setItem('groceryAuthKey', authKey)
+      }
+      
+      return
     }
   }, [authKey])
 

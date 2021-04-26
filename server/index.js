@@ -6,6 +6,7 @@ import cors from "cors"
 
 import groceryRoutes from "./routes/groceries.js"
 import reccomendedRoutes from "./routes/reccomended.js"
+import cartRoutes from "./routes/cart.js"
 
 const app = express()
 dotenv.config()
@@ -16,6 +17,7 @@ app.use(cors())
 
 app.use('/groceries', groceryRoutes)
 app.use('/reccomended', reccomendedRoutes)
+app.use('/cart', cartRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to Spencer\'s Grocery API')

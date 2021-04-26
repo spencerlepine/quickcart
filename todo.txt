@@ -3,6 +3,10 @@
 - remove semicolons
 - standard double quotes
 
+-printable list
+
+-serving cost with color range (red/yellow/green) 
+
 - suggested groceries
 -- something from each category
 -- get OLDEST first
@@ -30,3 +34,11 @@
 
 - GET categories in grocery agreagte request reducer
 - logout button in settings (clear localStorage, clear authKey in state)
+
+-get rid of decimal128? Only use Number?
+
+- delete from cart
+- clear cart (on purchase)
+
+Extra:
+- export to CSV
