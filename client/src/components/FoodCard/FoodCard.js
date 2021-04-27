@@ -40,7 +40,7 @@ const FoodItem = ({ groceryItem }) => {
           <h4>{groceryItem.name}</h4>
           <p className={classes.foodPrice}>
             {parseFloat(
-              groceryItem.purchase_price["$numberDecimal"]
+              groceryItem.purchase_price
             ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
           </p>
           <p className={classes.foodSize}>{groceryItem.purchase_size}</p>

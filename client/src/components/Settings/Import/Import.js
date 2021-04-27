@@ -66,11 +66,7 @@ const Import = () => {
         let filteredObj = {}
         for (const prop in grocery) {
           if (allowedKeys.includes(prop)) {
-            if (typeof grocery[prop] === "object") {
-              filteredObj[prop] = grocery[prop]["$numberDecimal"]
-            } else {
-              filteredObj[prop] = grocery[prop]
-            }
+            filteredObj[prop] = grocery[prop]
           }
         }
 

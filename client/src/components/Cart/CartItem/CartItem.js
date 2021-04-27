@@ -39,7 +39,7 @@ const CartItem = ({ cartItem }) => {
       <p className={classes.itemName}>{cartItem.name}</p>
       <p className={classes.itemPrice}>
         {(
-          parseFloat(cartItem["purchase_price"]["$numberDecimal"]) *
+          parseFloat(cartItem["purchase_price"]) *
           cartItem.quantity
         ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </p>

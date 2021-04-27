@@ -30,7 +30,7 @@ const CartHeader = ({ cartItems }) => {
   let totalCost = cartItems.reduce(
     (total, item) =>
       (total +=
-        item.quantity * parseFloat(item.purchase_price["$numberDecimal"])),
+        item.quantity * parseFloat(item.purchase_price)),
     0
   )
 

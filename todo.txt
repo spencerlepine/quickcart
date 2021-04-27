@@ -38,7 +38,7 @@
 
 - Recipes (connected with ids)
 
-- commit -m 'complete cart api CRUD'
+- clear cart when you empty list?
 
 Extra:
 - export to CSV

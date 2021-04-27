@@ -33,9 +33,7 @@ const Backup = () => {
             let filteredObj = {}
             for (const prop in array[i]) {
                 if (allowed.includes(prop)) {
-                    if (typeof array[i][prop] === "object") {
-                        filteredObj[prop] = array[i][prop]["$numberDecimal"]
-                    } else { filteredObj[prop] = array[i][prop] }
+                  filteredObj[prop] = array[i][prop]
                     
                 }
             }

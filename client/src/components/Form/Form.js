@@ -53,10 +53,10 @@ const Form = () => {
       let validCurrentItem = {
         ...currentItem,
         purchase_price: parseFloat(
-          currentItem["purchase_price"]["$numberDecimal"]
+          currentItem["purchase_price"]
         ).toFixed(2),
         serving_cost: currentItem["serving_cost"]
-          ? parseFloat(currentItem["serving_cost"]["$numberDecimal"]).toFixed(2)
+          ? parseFloat(currentItem["serving_cost"]).toFixed(2)
           : 0,
         image: currentItem.image || schema.image,
       }
