@@ -7,7 +7,22 @@ import { useHistory } from "react-router-dom"
 import searchMatch from "./searchMatch"
 import useStyles from "./styles"
 
-const FoodItem = ({ groceryItem }) => {
+const getPriceColor = (priceFloat) => {
+  if (priceFloat <= 0.10) {
+    return "green" 
+  } else if (priceFloat <= 0.20) {
+    return "#9bb31c"
+  } else if (priceFloat <= 0.30) {
+    return "rgb(154 156 34)"
+  } else if (priceFloat <= 0.40) {
+    return "#b3851c"
+  } else if (priceFloat <= 0.50) {
+    return "#b3471c"
+  }  else if (priceFloat > 0.50) {
+    return "#7b2909"
+  }
+}
+const FoodCard = ({ groceryItem }) => {
   const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -41,7 +56,13 @@ const FoodItem = ({ groceryItem }) => {
           <p className={classes.foodPrice}>
             {parseFloat(
               groceryItem.purchase_price
-            ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
+              ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
+            &nbsp;-&nbsp;
+            <span className={classes.servingCost} style={{color: getPriceColor(groceryItem.serving_cost)}}>
+              {parseFloat(
+              groceryItem.serving_cost
+              ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
+            </span>
           </p>
           <p className={classes.foodSize}>{groceryItem.purchase_size}</p>
           <button onClick={handleAdd} className={classes.addButton}>
@@ -53,12 +74,12 @@ const FoodItem = ({ groceryItem }) => {
   )
 }
 
-FoodItem.propTypes = {
+FoodCard.propTypes = {
   groceryItem: PropTypes.shape({
     name: PropTypes.string,
-    purchase_price: PropTypes.object,
+    purchase_price: PropTypes.number,
     purchase_size: PropTypes.string,
-    serving_cost: PropTypes.object,
+    serving_cost: PropTypes.number,
     category: PropTypes.string,
     last_purchased: PropTypes.string,
     priority: PropTypes.string,
@@ -66,4 +87,4 @@ FoodItem.propTypes = {
   }),
 }
 
-export default FoodItem
+export default FoodCard

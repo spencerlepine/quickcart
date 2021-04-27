@@ -1,8 +1,6 @@
 # To do:
 -printable list
 
--serving cost with color range (red/yellow/green) 
-
 - suggested groceries
 -- something from each category
 -- get OLDEST first
@@ -29,12 +27,6 @@
 -- ADD category button 
 
 - GET categories in grocery agreagte request reducer
-- logout button in settings (clear localStorage, clear authKey in state)
-
--get rid of decimal128? Only use Number?
-
-- delete from cart
-- clear cart (on purchase)
 
 - Recipes (connected with ids)
 
@@ -42,3 +34,4 @@
 
 Extra:
 - export to CSV
+- seperate overview into pages (splice groceries)

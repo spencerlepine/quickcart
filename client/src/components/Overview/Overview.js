@@ -15,7 +15,6 @@ const Overview  = () => {
   useEffect(() => {
     if (authKey) {
       if (localStorage.getItem('groceryAuthKey') !== authKey) {
-        alert("Saving the authKey to storage!")
         localStorage.setItem('groceryAuthKey', authKey)
       }
       
