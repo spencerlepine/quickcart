@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useDispatch } from "react-redux"
-import { removeFromCart } from "../../../actions/cart"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteCartItem } from "../../../actions/cart"
 import { updateGrocery } from "../../../actions/groceries"
 import useStyles from "./styles.js"
 
@@ -11,6 +11,8 @@ const CartHeader = ({ cartItems }) => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
+ const authKey = useSelector(state => state.authentication)
+ 
   const handleCartPurchase = () => {
     if (cartItems.length) {
       cartItems.forEach((item) => {
@@ -18,7 +20,7 @@ const CartHeader = ({ cartItems }) => {
           ...item,
           last_purchased: todaysDate,
         }
-        dispatch(removeFromCart(item._id))
+        dispatch(deleteCartItem(authKey, item._id))
         dispatch(updateGrocery(item["_id"], updatedPurchaseDate))
       })
       alert(`Updated ${cartItems.length} item(s)`)

@@ -11,7 +11,7 @@ const Login = () => {
   const classes = useStyles()
 
   useEffect(() => {
-    const savedKey = localStorage.getItem('groceryAuthKey')
+    const savedKey = localStorage.getItem("groceryAuthKey")
 
     if (savedKey) {
       handleSubmit(savedKey)
@@ -25,12 +25,12 @@ const Login = () => {
 
   // Pass the key to submit
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit()
     }
   }
 
-  const handleSubmit = (savedKey=null) => {
+  const handleSubmit = (savedKey = null) => {
     const usableKey = savedKey || keyFormValue
     if (!savedKey) {
       setPendingLogin(true)
@@ -44,22 +44,24 @@ const Login = () => {
 
   return (
     <div className={classes.loginPrompt}>
-      {pendingLogin
-        ?
-      <CircularProgress />
-        :
-      <>
-        <input 
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        value={keyFormValue}
-        placeholder="demo123">
-        </input>
-        <button
-          onClick={() => handleSubmit()}
-          className={classes.loginButton}
-        >Login</button>
-      </>}
+      {pendingLogin ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <input
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            value={keyFormValue}
+            placeholder="demo123"
+          ></input>
+          <button
+            onClick={() => handleSubmit()}
+            className={classes.loginButton}
+          >
+            Login
+          </button>
+        </>
+      )}
     </div>
   )
 }

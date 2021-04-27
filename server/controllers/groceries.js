@@ -67,8 +67,13 @@ export const updateGrocery = async (req, res) => {
 }
 
 export const deleteGrocery = async (req, res) => {
-    const { id: _id } = req.params
+    const { key, id: _id } = req.params
 
+    if (key !== process.env.USER_KEY) {
+        res.status(404).json("invalid authentication key")
+        return
+    }
+    
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send("No post with that id")
     }
@@ -78,7 +83,14 @@ export const deleteGrocery = async (req, res) => {
     res.json("Item deleted successfully")
 }
 
-export const deleteAll = async (req, res) => {
+export const deleteAllGroceries = async (req, res) => {
+    const { key } = req.params
+
+    if (key !== process.env.USER_KEY) {
+        res.status(404).json("invalid authentication key")
+        return
+    }
+
     await GroceryItem.deleteMany()
     
     res.json("Database cleared successfully")

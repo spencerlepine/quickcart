@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
-    root: {
-        backgroundColor: "rgb(249, 249, 249) !important",
-    },
-}));
+  root: {
+    backgroundColor: "rgb(249, 249, 249) !important",
+  },
+}))

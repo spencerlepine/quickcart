@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { createGrocery, deleteGrocery, updateGrocery } from "../../actions/groceries"
+import {
+  createGrocery,
+  deleteGrocery,
+  updateGrocery,
+} from "../../actions/groceries"
 import { setId } from "../../actions/selectedItem"
 import useStyles from "./styles.js"
-import FileBase from 'react-file-base64'
+import FileBase from "react-file-base64"
 
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
 import Select from "@material-ui/core/Select"
 import Rating from "@material-ui/lab/Rating"
-import StarBorderIcon from '@material-ui/icons/StarBorder'
+import StarBorderIcon from "@material-ui/icons/StarBorder"
 
 const todaysDate = new Date().toISOString().slice(0, 10)
 
@@ -22,11 +26,11 @@ const schema = {
   category: "",
   last_purchased: todaysDate,
   priority: "0",
-  image: ""
+  image: "",
 }
 
 const Form = () => {
-  const [itemData, setItemData] = useState(schema)
+  const [thisGrocery, setthisGrocery] = useState(schema)
   const dispatch = useDispatch()
   const history = useHistory()
   const classes = useStyles()
@@ -39,7 +43,7 @@ const Form = () => {
 
   const clearForm = () => {
     dispatch(setId(null))
-    setItemData(schema)
+    setthisGrocery(schema)
   }
 
   useEffect(() => {
@@ -48,19 +52,23 @@ const Form = () => {
       // Translate the purchase price decimal data for the form to read
       let validCurrentItem = {
         ...currentItem,
-        purchase_price: parseFloat(currentItem["purchase_price"]["$numberDecimal"]).toFixed(2),
-        serving_cost: currentItem["serving_cost"] ? parseFloat(currentItem["serving_cost"]["$numberDecimal"]).toFixed(2) : 0,
-        image: currentItem.image || schema.image
+        purchase_price: parseFloat(
+          currentItem["purchase_price"]["$numberDecimal"]
+        ).toFixed(2),
+        serving_cost: currentItem["serving_cost"]
+          ? parseFloat(currentItem["serving_cost"]["$numberDecimal"]).toFixed(2)
+          : 0,
+        image: currentItem.image || schema.image,
       }
 
-      setItemData(validCurrentItem)
+      setthisGrocery(validCurrentItem)
     }
   }, [currentId, currentItem])
 
   const handleChange = (event) => {
     const { name, value } = event.target
 
-    setItemData((prevItems) => ({ ...prevItems, [name]: value }))
+    setthisGrocery((prevItems) => ({ ...prevItems, [name]: value }))
   }
 
   const handleDelete = () => {
@@ -84,20 +92,20 @@ const Form = () => {
     }
 
     if (currentId) {
-      dispatch(updateGrocery(currentId, itemData))
+      dispatch(updateGrocery(currentId, thisGrocery))
       history.push("/")
       clearForm()
     } else if (
-        itemData.name &&
-        itemData.purchase_price &&
-        itemData.purchase_size &&
-        itemData.serving_cost &&
-        itemData.category &&
-        itemData.last_purchased &&
-        itemData.priority &&
-        itemData.image
+      thisGrocery.name &&
+      thisGrocery.purchase_price &&
+      thisGrocery.purchase_size &&
+      thisGrocery.serving_cost &&
+      thisGrocery.category &&
+      thisGrocery.last_purchased &&
+      thisGrocery.priority &&
+      thisGrocery.image
     ) {
-      dispatch(createGrocery(itemData))
+      dispatch(createGrocery(thisGrocery))
       history.push("/")
       clearForm()
     } else {
@@ -105,7 +113,7 @@ const Form = () => {
     }
   }
 
-  const Field = (name, placeholder, thisClass="") => (
+  const Field = (name, placeholder, thisClass = "") => (
     <TextField
       className={thisClass}
       onChange={handleChange}
@@ -115,54 +123,62 @@ const Form = () => {
       fullWidth
       name={name}
       placeholder={placeholder || name}
-      value={itemData[name]}
+      value={thisGrocery[name]}
     />
   )
 
   return (
     <div className={classes.formContainer}>
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
-
         <div className={classes.imageContainer}>
-          {itemData.image
-            ?
+          {thisGrocery.image ? (
             <>
-              <img src={itemData.image} alt={itemData.name}></img>
-              <button onClick={() => handleChange({ target: { name: "image", value: "" } })}>X</button>
+              <img src={thisGrocery.image} alt={thisGrocery.name}></img>
+              <button
+                onClick={() =>
+                  handleChange({ target: { name: "image", value: "" } })
+                }
+              >
+                X
+              </button>
             </>
-            :
+          ) : (
             <div className={`${classes.fileInput}`}>
               <div>
-                <FileBase type="file" multiple={false} onDone={({ base64 }) => {
-                  handleChange({ target: { name: "image", value: base64 } })
-                }} />
+                <FileBase
+                  type="file"
+                  multiple={false}
+                  onDone={({ base64 }) => {
+                    handleChange({ target: { name: "image", value: base64 } })
+                  }}
+                />
               </div>
             </div>
-          }
+          )}
         </div>
 
         <div className={classes.itemDetails}>
           {Field("name", "Eggs", classes.itemName)}
 
           {Field("purchase_size", "Dozen", classes.itemSize)}
-          
+
           <div className={classes.dollarSign}>
             <p className={classes.priceIndicator}>$</p>
             {Field("purchase_price", "2.50", classes.itemPrice)}
           </div>
-          
+
           <div className={classes.itemCategory}>
-              <label className={classes.divLabel}>Category</label>
-              <br />
-              <Select
+            <label className={classes.divLabel}>Category</label>
+            <br />
+            <Select
               native
-              value={itemData.category}
+              value={thisGrocery.category}
               onChange={handleChange}
               inputProps={{
-                  name: "category",
-                  id: "age-native-simple",
+                name: "category",
+                id: "age-native-simple",
               }}
-              >
+            >
               <option label="None" value="" />
               <option value={"bread"}>Bread</option>
               <option value={"grains"}>Grains</option>
@@ -172,41 +188,41 @@ const Form = () => {
               <option value={"meat"}>Meat</option>
               <option value={"snacks"}>Snacks</option>
               <option value={"other"}>Other</option>
-              </Select>
+            </Select>
           </div>
 
           <div className={`${classes.dollarSign} ${classes.itemServing}`}>
-              <label className={classes.divLabel}>Serving Cost:</label>
-              <p className={classes.priceIndicator}>$</p>
-              {Field("serving_cost", "1.49", classes.itemPrice)}
+            <label className={classes.divLabel}>Serving Cost:</label>
+            <p className={classes.priceIndicator}>$</p>
+            {Field("serving_cost", "1.49", classes.itemPrice)}
           </div>
 
           <div className={classes.itemPriority}>
-              <label>Priority</label>
-              <br />
-              <Rating
+            <label>Priority</label>
+            <br />
+            <Rating
               name="priority"
-              value={parseInt(itemData.priority)}
+              value={parseInt(thisGrocery.priority)}
               precision={1}
               emptyIcon={<StarBorderIcon fontSize="inherit" />}
               onChange={handleChange}
-              />
+            />
           </div>
-            
+
           <div className={classes.itemDate}>
-              <TextField
+            <TextField
               name="last_purchased"
               label="Last Purchased"
               type="date"
-              value={itemData.last_purchased}
+              value={thisGrocery.last_purchased}
               className={classes.textField}
               InputLabelProps={{
-                  shrink: true,
+                shrink: true,
               }}
               onChange={handleChange}
-              />
+            />
           </div>
-          
+
           <Button
             type="submit"
             fullWidth
@@ -217,7 +233,8 @@ const Form = () => {
             {currentId ? "Update" : "Submit"}
           </Button>
 
-          {currentId && <Button
+          {currentId && (
+            <Button
               onClick={handleDelete}
               color="secondary"
               fullWidth
@@ -225,7 +242,8 @@ const Form = () => {
               className={classes.button}
             >
               Delete
-            </Button>}
+            </Button>
+          )}
         </div>
       </form>
     </div>

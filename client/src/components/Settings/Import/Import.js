@@ -1,9 +1,12 @@
 import React from "react"
 import { clearGroceries, createGrocery } from "../../../actions/groceries"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router"
 
 const Import = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const authKey = useSelector(state => state.authentication)
 
   // https://stackoverflow.com/questions/27979002/convert-csv-data-into-json-format-using-javascript
   /*function csvJSON(csv) {
@@ -36,7 +39,7 @@ const Import = () => {
 
   const importData = ({ target }) => {
     if (window.confirm("Overwrite existing data?")) {
-      dispatch(clearGroceries())
+      dispatch(clearGroceries(authKey))
     }
 
     var fr = new FileReader()
@@ -55,7 +58,7 @@ const Import = () => {
           "purchase_size",
           "serving_cost",
           "category",
-          "last_purchase",
+          "last_purchased",
           "priority",
           "image",
         ]
@@ -68,8 +71,6 @@ const Import = () => {
             } else {
               filteredObj[prop] = grocery[prop]
             }
-          } else {
-            alert(`${filteredObj.name} was invalid.`)
           }
         }
 
@@ -77,6 +78,7 @@ const Import = () => {
       })
 
       window.alert("Successfully imported your data :)")
+      history.push("/")
     }
   }
 

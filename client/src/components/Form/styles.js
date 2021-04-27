@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   formContainer: {
@@ -153,4 +153,4 @@ export default makeStyles((theme) => ({
       height: "15vh",
     },
   },
-}));
+}))

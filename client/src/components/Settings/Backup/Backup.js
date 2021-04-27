@@ -1,23 +1,24 @@
 import React, { useEffect } from "react"
 import { getGroceries } from "../../../actions/groceries"
-import { useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 const Backup = () => {
-    const dispatch = useDispatch()
-    const authKey = useSelector((state) => state.authentication)
+  const dispatch = useDispatch()
+  const authKey = useSelector((state) => state.authentication)
 
-    useEffect(() => {
-        dispatch(getGroceries(authKey))
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getGroceries(authKey))
+    // eslint-disable-next-line
+  }, [dispatch])
 
-    const groceries = useSelector(state => state.groceries)
+  const groceries = useSelector((state) => state.groceries)
 
-    /*function convertToCSV(objArray) {
-        let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-        let str = '';
+  /*function convertToCSV(objArray) {
+        let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray
+        let str = ''
 
         // Filter out the extra keys - https://stackoverflow.com/questions/38750705/filter-object-properties-by-key-in-es6
-        const allowed = ['name', 'purchase_price', 'purchase_size', 'serving_cost', 'category', 'last_purchase', 'priority', 'image'];
+        const allowed = ['name', 'purchase_price', 'purchase_size', 'serving_cost', 'category', 'last_purchase', 'priority', 'image']
 
         // Get the headers from the first object
         for (const header in array[0]) {
@@ -39,66 +40,86 @@ const Backup = () => {
                 }
             }
 
-            var line = '';
+            var line = ''
             for (var index in filteredObj) {
                 if (line !== '') line += ','
 
-                line += filteredObj[index];
+                line += filteredObj[index]
             }
 
-            str += line + '\r\n';
+            str += line + '\r\n'
         }
 
-        return str;
+        return str
     }*/
 
-    function save(data, filename) {
-        const groceryCount = data.length
-        const jsonGroceries = JSON.stringify(groceries)
-        //const csvFilteredGroceries = convertToCSV(data)
+  function save(data, filename) {
+    const groceryCount = data.length
+    const jsonGroceries = JSON.stringify(groceries)
+    //const csvFilteredGroceries = convertToCSV(data)
 
-        data = jsonGroceries //csvFilteredGroceries
+    data = jsonGroceries //csvFilteredGroceries
 
-        if(!data) {
-            console.error('Console.save: No data')
-            return;
-        }
-
-        if(!filename) filename = 'console.json'
-
-        if(typeof filtered === "object"){
-            data = JSON.stringify(data, undefined, 4)
-        }
-
-        var blob = new Blob([data], {type: 'text/json'}),
-            e    = document.createEvent('MouseEvents'),
-            a    = document.createElement('a')
-
-        if (data === "[null]") {
-            alert("No items found!")
-            return
-        }
-
-        alert(`Saving data for ${groceryCount} groceries items (${Math.round(blob.size / 1000)}kb)`)
-
-        a.download = filename
-        a.href = window.URL.createObjectURL(blob)
-        a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
-        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
-        a.dispatchEvent(e)
+    if (!data) {
+      console.error("Console.save: No data")
+      return
     }
 
-    const saveCart = () => {
-        let todaysDate = new Date();
-        const fileName = `${todaysDate.getMonth()}_${todaysDate.getDate()}_${todaysDate.getFullYear()}_Backup(Groceries).txt`
-        save(groceries, [fileName])
+    if (!filename) filename = "console.json"
+
+    if (typeof filtered === "object") {
+      data = JSON.stringify(data, undefined, 4)
     }
 
-    return (
-        <div>
-            <button onClick={saveCart}>Export Data</button>
-        </div>
+    var blob = new Blob([data], { type: "text/json" }),
+      e = document.createEvent("MouseEvents"),
+      a = document.createElement("a")
+
+    if (data === "[null]") {
+      alert("No items found!")
+      return
+    }
+
+    alert(
+      `Saving data for ${groceryCount} groceries items (${Math.round(
+        blob.size / 1000
+      )}kb)`
     )
+
+    a.download = filename
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl = ["text/json", a.download, a.href].join(":")
+    e.initMouseEvent(
+      "click",
+      true,
+      false,
+      window,
+      0,
+      0,
+      0,
+      0,
+      0,
+      false,
+      false,
+      false,
+      false,
+      0,
+      null
+    )
+    a.dispatchEvent(e)
+  }
+
+  const saveCart = () => {
+    let todaysDate = new Date()
+    const fileName = `${todaysDate.getMonth()}_${todaysDate.getDate()}_${todaysDate.getFullYear()}_Backup(Groceries).txt`
+    save(groceries, [fileName])
+  }
+
+  return (
+    <div>
+      <button onClick={saveCart}>Export Data</button>
+    </div>
+  )
 }
 
 export default Backup

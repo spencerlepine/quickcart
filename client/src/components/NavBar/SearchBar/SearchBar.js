@@ -5,31 +5,31 @@ import SearchBarElem from "material-ui-search-bar"
 import useStyles from "./styles"
 
 const SearchBar = () => {
-    const classes = useStyles()
-    const dispatch = useDispatch()
-    const [searchText, setSearchText] = useState()
-    
-    const handleChange = (text) => {
-        setSearchText(text.trim())
-        dispatch(setSearchQuery(text.trim()))
-    }
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const [searchText, setSearchText] = useState()
 
-    const handleCancel = () => {
-        setSearchText("")
-        dispatch(setSearchQuery(""))
-    }
+  const handleChange = (text) => {
+    setSearchText(text.trim())
+    dispatch(setSearchQuery(text.trim()))
+  }
 
-    return (
-        <div className={classes.searchBar}>
-            <SearchBarElem
-                placeholder="Search grocery item..."
-                value={searchText}
-                onChange={handleChange}
-                onCancelSearch={handleCancel}
-                autoFocus
-            />
-        </div>
-    )
+  const handleCancel = () => {
+    setSearchText("")
+    dispatch(setSearchQuery(""))
+  }
+
+  return (
+    <div className={classes.searchBar}>
+      <SearchBarElem
+        placeholder="Search grocery item..."
+        value={searchText}
+        onChange={handleChange}
+        onCancelSearch={handleCancel}
+        autoFocus
+      />
+    </div>
+  )
 }
 
 export default SearchBar

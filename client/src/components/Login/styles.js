@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
   loginPrompt: {
@@ -7,7 +7,7 @@ export default makeStyles(() => ({
     height: "63vh",
     minHeight: "136px",
     width: "fit-content",
-    ['@media (max-width:900px)']: { // eslint-disable-line no-useless-computed-key
+    "@media (max-width:900px)": {
       height: "56vh",
     },
     "& input": {
@@ -51,4 +51,4 @@ export default makeStyles(() => ({
     color: "rgb(255, 255, 255)",
     width: "100%",
   },
-}));
+}))

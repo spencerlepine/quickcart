@@ -1,8 +1,4 @@
 # To do:
-- indents to 2 spaces
-- remove semicolons
-- standard double quotes
-
 -printable list
 
 -serving cost with color range (red/yellow/green) 
@@ -39,6 +35,10 @@
 
 - delete from cart
 - clear cart (on purchase)
+
+- Recipes (connected with ids)
+
+- commit -m 'complete cart api CRUD'
 
 Extra:
 - export to CSV

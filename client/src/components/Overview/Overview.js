@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { setSearchQuery } from "../../actions/search"
+import { fetchCart } from "../../actions/cart"
 import useStyles from "./styles"
 
 import FoodGrid from "./FoodGrid/FoodGrid"
@@ -23,6 +24,7 @@ const Overview  = () => {
   }, [authKey])
 
   useEffect(() => {
+    dispatch(fetchCart(authKey))
     dispatch(setSearchQuery(""))
   }, [])
 
