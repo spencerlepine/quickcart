@@ -1,10 +1,13 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { setSearchQuery } from "../../actions/search"
+import { setSelectedCategory } from "../../actions/selectedCategory"
+
 import { fetchCart } from "../../actions/cart"
 import useStyles from "./styles"
 
 import FoodGrid from "./FoodGrid/FoodGrid"
+import Categories from "./Categories/Categories"
 
 const Overview  = () => {
   const dispatch = useDispatch()
@@ -25,10 +28,17 @@ const Overview  = () => {
   useEffect(() => {
     dispatch(fetchCart(authKey))
     dispatch(setSearchQuery(""))
+    dispatch(setSelectedCategory(null))
   }, [])
 
   return (
-    <FoodGrid />
+    <>{
+      authKey && 
+      <>
+        <Categories />
+        <FoodGrid />
+      </>
+    }</>
   )
 }
 

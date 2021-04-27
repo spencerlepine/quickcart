@@ -24,3 +24,5 @@ export const updateGrocery = (keyObj, id, updatedGrocery) => axios.patch(`${url}
 export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/${id}`) 
 
 export const deleteAllGroceries = (keyObj) => axios.delete(`${url}/${keyObj.key}`) 
+
+export const fetchCategories = (keyObj) => axios.get(`${url}/categories/${keyObj.key}`)

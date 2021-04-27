@@ -29,6 +29,7 @@ const FoodCard = ({ groceryItem }) => {
 
   const authKey = useSelector((state) => state.authentication)
   const currentSearch = useSelector((state) => state.search)
+  const currentSelectedCategory = useSelector((state) => state.selectedCategory)
 
   const handleEdit = (e) => {
     dispatch(setId(groceryItem._id))
@@ -40,10 +41,13 @@ const FoodCard = ({ groceryItem }) => {
     dispatch(addToCart(authKey, groceryItem))
   }
 
+  const selectionMatches = (currentSelectedCategory === null && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
+  const showThisItem = selectionMatches || searchMatch(currentSearch, groceryItem.name)
+
+  // show every thing if currentSearch.length < 3
   return (
     <>
-      {(searchMatch(currentSearch, groceryItem.name) ||
-        currentSearch.length < 3) && (
+      {(showThisItem) && (
         <div className={classes.foodCard} onClick={handleEdit}>
           <img
             alt={groceryItem.name}
