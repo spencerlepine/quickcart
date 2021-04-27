@@ -6,6 +6,8 @@
 -- get OLDEST first
 -- sort by priority
 
+- updateGrocery or createGrocery might be broken (if they do not pass through authKey yet)
+
 - cart vegetables pound input?
 -- purchase price is BY POUND
 -- serving cost is (fruit: 1 piece) - (vegetable: handful)

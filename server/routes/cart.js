@@ -7,7 +7,6 @@ router.get('/:key', fetchCart)
 router.get('/:key/:id', fetchCartItem)
 router.post('/:key', addToCart)
 router.patch('/:key/:id', updateCartItem)
-router.patch('/:key/:id', updateCartItem)
 router.delete('/:key/:id', removeFromCart)
 
 export default router

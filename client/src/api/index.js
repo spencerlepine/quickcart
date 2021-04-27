@@ -13,13 +13,13 @@ export const removeCartItem = (keyObj, id) => axios.delete(`${baseUrl}/cart/${ke
 
 export const updateCartItem = (keyObj, updatedCartItem) => axios.patch(`${baseUrl}/cart/${keyObj.key}/${updatedCartItem._id}`, updatedCartItem)
 
-export const fetchReccomended = () => axios.get(baseUrl + "/reccomended")
+export const fetchReccomended = (keyObj) => axios.get(baseUrl + `/reccomended/${keyObj.key}`)
 
-export const createGrocery = (newGrocery) => axios.post(url, newGrocery)
+export const createGrocery = (keyObj, newGrocery) => axios.post(url + `/${keyObj.key}`, newGrocery)
 
 export const addToCart = (keyObj, itemToAdd) => axios.post(`${baseUrl}/cart/${keyObj.key}`, itemToAdd)
 
-export const updateGrocery = (id, updatedGrocery) => axios.patch(`${url}/${id}`, updatedGrocery)
+export const updateGrocery = (keyObj, id, updatedGrocery) => axios.patch(`${url}/${keyObj.key}/${id}`, updatedGrocery)
 
 export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/${id}`) 
 

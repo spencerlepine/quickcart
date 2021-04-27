@@ -70,7 +70,7 @@ const Import = () => {
           }
         }
 
-        dispatch(createGrocery(filteredObj))
+        dispatch(createGrocery(authKey, filteredObj))
       })
 
       window.alert("Successfully imported your data :)")

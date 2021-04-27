@@ -3,6 +3,6 @@ import { getReccomended } from "../controllers/reccomended.js"
 
 const router = express.Router();
 
-router.get('/', getReccomended)
+router.get('/:key', getReccomended)
 
 export default router

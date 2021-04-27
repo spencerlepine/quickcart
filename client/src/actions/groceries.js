@@ -39,7 +39,7 @@ export const getGroceries = (key) => async (dispatch) => {
   }
 }
 
-export const createGrocery = (newGrocery) => async (dispatch) => {
+export const createGrocery = (key, newGrocery) => async (dispatch) => {
   try {
     const { data } = await api.createGrocery(newGrocery)
 
@@ -49,7 +49,7 @@ export const createGrocery = (newGrocery) => async (dispatch) => {
   }
 }
 
-export const updateGrocery = (id, groceryItem) => async (dispatch) => {
+export const updateGrocery = (key, id, groceryItem) => async (dispatch) => {
   try {
     const { data } = await api.updateGrocery(id, groceryItem)
 

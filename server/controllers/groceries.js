@@ -24,8 +24,26 @@ export const getGroceries = async (req, res) => {
     }
 }
 
-export const getGroceriesCategories = async (req, res) => {
+export const getGroceryCategories = async (req, res) => {
     try {
+        const { key } = req.params
+
+        if (key === "demo123") {
+            const groceryItems = await DemoGroceryItem.aggregate(
+                [
+                    {
+                        $group:{_id:"$category"}
+                    }
+                ]
+            )
+
+            res.status(200).json(groceryItems)
+            return
+        } else if (key !== process.env.USER_KEY) {
+            res.status(404).json("invalid authentication key")
+            return
+        }
+
         const groceryItems = await GroceryItem.aggregate(
             [
                 {
@@ -41,7 +59,13 @@ export const getGroceriesCategories = async (req, res) => {
 }
 
 export const createGrocery = async (req, res) => {
+    const { key } = req.params
     const groceryItem = req.body
+    
+    if (key !== process.env.USER_KEY) {
+        res.status(404).json("invalid authentication key")
+        return
+    }
 
     const newGrocery = new GroceryItem(groceryItem)
 
@@ -55,8 +79,13 @@ export const createGrocery = async (req, res) => {
 }
 
 export const updateGrocery = async (req, res) => {
-    const { id: _id } = req.params
+    const {  key, id: _id } = req.params
     const groceryItem = req.body
+    
+    if (key !== process.env.USER_KEY) {
+        res.status(404).json("invalid authentication key")
+        return
+    }
 
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send("No post with that id")

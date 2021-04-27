@@ -92,7 +92,7 @@ const Form = () => {
     }
 
     if (currentId) {
-      dispatch(updateGrocery(currentId, thisGrocery))
+      dispatch(updateGrocery(authKey, currentId, thisGrocery))
       history.push("/")
       clearForm()
     } else if (
@@ -105,7 +105,7 @@ const Form = () => {
       thisGrocery.priority &&
       thisGrocery.image
     ) {
-      dispatch(createGrocery(thisGrocery))
+      dispatch(createGrocery(authKey, thisGrocery))
       history.push("/")
       clearForm()
     } else {
