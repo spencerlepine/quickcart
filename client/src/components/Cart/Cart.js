@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { fetchReccomended } from "../../actions/reccomended"
 import { fetchCart } from "../../actions/cart"
 
 import CartHeader from "./CartHeader/CartHeader"
@@ -17,13 +16,16 @@ const Cart = () => {
   const authKey = useSelector((state) => state.authentication)
   const cartItems = useSelector((state) => state.cart)
   const reccomendedItems = useSelector((state) => state.reccomended)
-  const reccomendedCards = reccomendedItems
-    ? reccomendedItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
-    : []
+
+  const reccomendedCards = []
+  let keyCount = 0
+  for (const prop in reccomendedItems) {
+    reccomendedCards.push(...reccomendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
+    keyCount += reccomendedItems[prop].length
+  }
 
   useEffect(() => {
     dispatch(fetchCart(authKey))
-    dispatch(fetchReccomended())
   }, [dispatch])
 
   return (

@@ -16,12 +16,12 @@ const Categories = () => {
   }, [])
 
   const categoryComponents = categories.map((category, i) => (
-    <CategorySelector categoryName={category["_id"]} key={i} />
+    <CategorySelector categoryName={category["_id"]} key={i} selectionValue={category["_id"]} />
   ))
 
   return (
     <div className={classes.categoriesContainter}>
-      <CategorySelector categoryName="None" />
+      <CategorySelector categoryName="all" selectionValue={null} />
       {categoryComponents}
     </div>
   )

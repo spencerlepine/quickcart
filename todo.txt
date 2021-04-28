@@ -27,10 +27,11 @@
 -- sort groceries by category, display breadList, display vegeatbleList, displayALL of them when you display groceries
 -- display categories with emojis at top (hide when searching)
 -- ADD category button 
-
-- GET categories in grocery agreagte request reducer
+-- form input displays categories
 
 - Recipes (connected with ids)
+
+- category emojis in seperate file
 
 - clear cart when you empty list?
 

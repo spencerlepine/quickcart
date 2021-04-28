@@ -22,6 +22,7 @@ export default makeStyles(() => ({
       fontSize: "16px",
       fontWeight: "600",
       marginBottom: "0",
+      maxWidth: "150px",
     },
     "& p": {
       padding: "1px 5px 1px 0px",

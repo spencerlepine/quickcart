@@ -41,7 +41,7 @@ export const getGroceries = (key) => async (dispatch) => {
 
 export const createGrocery = (key, newGrocery) => async (dispatch) => {
   try {
-    const { data } = await api.createGrocery(newGrocery)
+    const { data } = await api.createGrocery({ key }, newGrocery)
 
     dispatch({ type: CREATE, payload: data })
   } catch (error) {
@@ -51,7 +51,7 @@ export const createGrocery = (key, newGrocery) => async (dispatch) => {
 
 export const updateGrocery = (key, id, groceryItem) => async (dispatch) => {
   try {
-    const { data } = await api.updateGrocery(id, groceryItem)
+    const { data } = await api.updateGrocery({ key }, id, groceryItem)
 
     dispatch({ type: UPDATE, payload: data })
   } catch (error) {
@@ -61,7 +61,7 @@ export const updateGrocery = (key, id, groceryItem) => async (dispatch) => {
 
 export const deleteGrocery = (key, id) => async (dispatch) => {
   try {
-    await api.deleteGrocery(key, id)
+    await api.deleteGrocery({ key }, id)
 
     dispatch({ type: DELETE, payload: id })
   } catch (error) {

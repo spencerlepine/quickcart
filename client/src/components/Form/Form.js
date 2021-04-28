@@ -182,12 +182,13 @@ const Form = () => {
               <option label="None" value="" />
               <option value={"bread"}>Bread</option>
               <option value={"grains"}>Grains</option>
+              <option value={"dairy"}>Dairy</option>
               <option value={"breakfast"}>Breakfast</option>
-              <option value={"fruit"}>Fruit</option>
-              <option value={"vegetable"}>Vegetable</option>
+              <option value={"fruits"}>Fruit</option>
+              <option value={"vegetables"}>Vegetable</option>
               <option value={"meat"}>Meat</option>
               <option value={"snacks"}>Snacks</option>
-              <option value={"other"}>Other</option>
+              <option value={"pantry"}>Pantry</option>
             </Select>
           </div>
 

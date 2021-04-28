@@ -7,7 +7,9 @@ import { fetchCart } from "../../actions/cart"
 import useStyles from "./styles"
 
 import FoodGrid from "./FoodGrid/FoodGrid"
+import ReccomendedGrid from "./ReccomendedGrid/ReccomendedGrid"
 import Categories from "./Categories/Categories"
+import { fetchReccomended } from "../../actions/reccomended"
 
 const Overview  = () => {
   const dispatch = useDispatch()
@@ -27,8 +29,10 @@ const Overview  = () => {
 
   useEffect(() => {
     dispatch(fetchCart(authKey))
+    dispatch(fetchReccomended(authKey))
     dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
+    return
   }, [])
 
   return (
@@ -37,7 +41,7 @@ const Overview  = () => {
       <>
         <Categories />
         <FoodGrid />
-      </>
+       </>
     }</>
   )
 }
