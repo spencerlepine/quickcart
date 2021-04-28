@@ -15,13 +15,13 @@ const Cart = () => {
 
   const authKey = useSelector((state) => state.authentication)
   const cartItems = useSelector((state) => state.cart)
-  const reccomendedItems = useSelector((state) => state.reccomended)
+  const recommendedItems = useSelector((state) => state.recommended)
 
-  const reccomendedCards = []
+  const recommendedCards = []
   let keyCount = 0
-  for (const prop in reccomendedItems) {
-    reccomendedCards.push(...reccomendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
-    keyCount += reccomendedItems[prop].length
+  for (const prop in recommendedItems) {
+    recommendedCards.push(...recommendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
+    keyCount += recommendedItems[prop].length
   }
 
   useEffect(() => {
@@ -48,11 +48,11 @@ const Cart = () => {
         </>
       )}
 
-      {reccomendedCards.length > 0 && (
+      {recommendedCards.length > 0 && (
         <>
           <h3>Recommended</h3>
           <hr />
-          <div className={classes.itemsGrid}>{reccomendedCards}</div>
+          <div className={classes.itemsGrid}>{recommendedCards}</div>
         </>
       )}
     </div>

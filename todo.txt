@@ -1,7 +1,5 @@
 # To do:
 -printable list
--update ReadMe
-- demo updates DemoGroceryItem
 
 - cart vegetables pound input?
 -- purchase price is BY POUND
