@@ -43,35 +43,26 @@ export const getReccomended = async (req, res) => {
             let thisCategoryList = [...groupedGroceries[prop]]
             // Sort by proirity
             thisCategoryList.sort((groceryA, groceryB) => {
-                // The HIGHER the priority (Bigger)
-                const priorityA = groceryA["priority"] 
+                const priorityA = groceryA["priority"]
                 const priorityB = groceryB["priority"]
-                return priorityB - priorityA
-            })
 
-            // thisCategoryList.sort((groceryA, groceryB) => {
-            //     // The LOWER the serving cost (Smaller)
-            //     const servingCostA = groceryA["serving_cost"] 
-            //     const servingCostB = groceryB["serving_cost"]
-            //     return servingCostA - servingCostB
-            // })
+                const servingCostA = Math.max(0, 5 - ( groceryA["serving_cost"] * 2.5 ))
+                const servingCostB = Math.max(0, 5 - ( groceryB["serving_cost"] * 2.5 ))
 
-            thisCategoryList.sort((groceryA, groceryB) => {
-                // SHORTER life span (Smaller)
-                const lifeSpanA = groceryA["purchase_cost"] / groceryA["serving_cost"] 
-                const lifeSpanB = groceryB["purchase_cost"] / groceryB["serving_cost"] 
-                return lifeSpanA - lifeSpanB
-            })
+                const lifeSpanA = Math.min(groceryA["purchase_price"] / ( groceryA["serving_cost"] ), 15) / 3
+                const lifeSpanB = Math.min(groceryB["purchase_price"] / ( groceryB["serving_cost"] ), 15) / 3
 
-            thisCategoryList.sort((groceryA, groceryB) => {
-                // The OLDER the purchase date (Bigger)
-                const lastPurchaseA = groceryA["last_purchased"]
-                const lastPurchaseB = groceryB["last_purchased"]
-                return Date.parse(lastPurchaseB) - Date.parse(lastPurchaseA)
+                const lastPurchaseA = parseInt((Date.now() - Date.parse(groceryA["last_purchased"]) ) / 100000000)
+                const lastPurchaseB = parseInt((Date.now() - Date.parse(groceryB["last_purchased"]) ) / 100000000)
+
+                const scoreA = priorityA + servingCostA + lifeSpanA + lastPurchaseA
+                const scoreB = priorityB + servingCostB + lifeSpanB + lastPurchaseB
+
+                return scoreB - scoreA
             })
 
             // Return top 3 from each category
-            groupedGroceries[prop] = thisCategoryList.slice(0, 3)
+            groupedGroceries[prop] = thisCategoryList.slice(0, Math.min(thisCategoryList.length, 6))
         }
 
         res.status(200).json(groupedGroceries)
