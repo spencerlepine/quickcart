@@ -50,7 +50,7 @@ const Cart = () => {
 
       {reccomendedCards.length > 0 && (
         <>
-          <h3>Reccommended</h3>
+          <h3>Recommended</h3>
           <hr />
           <div className={classes.itemsGrid}>{reccomendedCards}</div>
         </>

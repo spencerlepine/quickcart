@@ -3,7 +3,7 @@ import GroceryItem from "../models/groceryItem.js"
 import DemoGroceryItem from "../models/demoGroceryItem.js"
 import CartItem from "../models/cartItem.js"
 
-export const getReccomended = async (req, res) => {
+export const getRecommended = async (req, res) => {
     try {
         const { key } = req.params
         // Fetch all of the grocery items

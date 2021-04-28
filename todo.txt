@@ -2,7 +2,6 @@
 -printable list
 -update ReadMe
 - demo updates DemoGroceryItem
--reccomended page
 
 - cart vegetables pound input?
 -- purchase price is BY POUND

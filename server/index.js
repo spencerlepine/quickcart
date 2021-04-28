@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 
 import groceryRoutes from "./routes/groceries.js"
-import reccomendedRoutes from "./routes/reccomended.js"
+import recommendedRoutes from "./routes/recommended.js"
 import cartRoutes from "./routes/cart.js"
 
 const app = express()
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ limit:  "30mb", extended: true }))
 app.use(cors())
 
 app.use('/groceries', groceryRoutes)
-app.use('/reccomended', reccomendedRoutes)
+app.use('/recommended', recommendedRoutes)
 app.use('/cart', cartRoutes)
 
 app.get('/', (req, res) => {
