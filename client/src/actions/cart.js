@@ -25,7 +25,7 @@ export const addToCart = (key, itemToAdd) => async (dispatch) => {
       // This item is already in the cart, just update the quantity
       const updatedQuantity = {
         ...itemToAdd,
-        quantity: itemToAdd.quantity + 1,
+        quantity: result.data.quantity + 1,
       }
       const { data } = await api.updateCartItem({ key }, updatedQuantity)
 

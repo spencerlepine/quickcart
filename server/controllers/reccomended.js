@@ -1,18 +1,19 @@
 import mongoose from "mongoose"
 import GroceryItem from "../models/groceryItem.js"
+import DemoGroceryItem from "../models/demoGroceryItem.js"
 import CartItem from "../models/cartItem.js"
 
 export const getReccomended = async (req, res) => {
     try {
         const { key } = req.params
-
-        if (key !== process.env.USER_KEY) {
+        // Fetch all of the grocery items
+        let groceryItems = await GroceryItem.find()
+        if (key === "demo123") {
+            groceryItems = await DemoGroceryItem.find()
+        } else if (key !== process.env.USER_KEY) {
             res.status(404).json("invalid authentication key")
             return
         }
-
-        // Fetch all of the grocery items
-        const groceryItems = await GroceryItem.find()
 
         // Get rid of items that are in the cart already
         const availableGroceries = []

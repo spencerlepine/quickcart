@@ -4,7 +4,6 @@ import { FETCH_RECCOMENDED } from "../constants/actionTypes.js"
 // action creators
 export const fetchReccomended = (key) => async (dispatch) => {
   try {
-    console.log("action is fetching reccomended")
     const { data } = await api.fetchReccomended({ key })
 
     dispatch({ type: FETCH_RECCOMENDED, payload: data })

@@ -13,7 +13,6 @@ const reducer = (cartItems = [], action) => {
       return [...cartItems, action.payload]
     }
     case UPDATE_ITEM: {
-      console.log("setting new cartItems in reducer?")
       let newCart = cartItems.map((item) =>
         item._id === action.payload._id ? action.payload : item
       )

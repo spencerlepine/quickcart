@@ -1,12 +1,8 @@
 # To do:
 -printable list
-
-- suggested groceries
--- something from each category
--- get OLDEST first
--- sort by priority
-
-- updateGrocery or createGrocery might be broken (if they do not pass through authKey yet)
+-update ReadMe
+- demo updates DemoGroceryItem
+-reccomended page
 
 - cart vegetables pound input?
 -- purchase price is BY POUND
@@ -17,17 +13,9 @@
 - finish Settings UI
 - cart buttons UI
 
-- Dynamically handle properties (hard-coded in several places) (get getSchema?)
-
-- store cart on server with different collection?
--- store each food object (with a QUANTITY prop)
--- delete object by food id
--- update object quantity by id
-
 -- sort groceries by category, display breadList, display vegeatbleList, displayALL of them when you display groceries
 -- display categories with emojis at top (hide when searching)
 -- ADD category button 
--- form input displays categories
 
 - Recipes (connected with ids)
 
@@ -37,4 +25,4 @@
 
 Extra:
 - export to CSV
-- seperate overview into pages (splice groceries)
+- seperate overview food cards into pages (page 2, next) (splice groceries)

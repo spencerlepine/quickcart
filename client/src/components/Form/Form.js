@@ -72,11 +72,6 @@ const Form = () => {
   }
 
   const handleDelete = () => {
-    if (authKey === "demo123") {
-      alert("You are in DEMO mode")
-      return
-    }
-
     if (window.confirm("Delete permanently?")) {
       dispatch(deleteGrocery(currentId))
       history.push("/")
@@ -85,11 +80,6 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
-    if (authKey === "demo123") {
-      alert("You are in DEMO mode")
-      return
-    }
 
     if (currentId) {
       dispatch(updateGrocery(authKey, currentId, thisGrocery))
