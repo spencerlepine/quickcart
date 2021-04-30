@@ -1,6 +1,7 @@
 # To do:
 -printable list
 
+- recommended error checking (don't generate anything if the groceryItem db is full)
 - cart vegetables pound input?
 -- purchase price is BY POUND
 -- serving cost is (fruit: 1 piece) - (vegetable: handful)
