@@ -1,9 +1,11 @@
 import React, { useEffect } from "react"
 import { getGroceries } from "../../../actions/groceries"
 import { useSelector, useDispatch } from "react-redux"
+import useStyles from "./styles"
 
 const Backup = () => {
   const dispatch = useDispatch()
+  const classes = useStyles()
   const authKey = useSelector((state) => state.authentication)
 
   useEffect(() => {
@@ -115,7 +117,7 @@ const Backup = () => {
 
   return (
     <div>
-      <button onClick={saveCart}>Export Data</button>
+      <button className={classes.backupButton} onClick={saveCart}>Export Data</button>
     </div>
   )
 }

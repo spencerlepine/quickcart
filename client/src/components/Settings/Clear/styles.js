@@ -1,9 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
-  warning: {
+  clearButton: {
     width: "fit-content",
     margin: "2em auto",
-    padding: "2em",
+    color: "white",
+    backgroundColor: "#b31219",
+    padding: "0.5em 1em",
+    border: "2px solid #520b0b",
+    borderRadius: "4px",
   },
 }))

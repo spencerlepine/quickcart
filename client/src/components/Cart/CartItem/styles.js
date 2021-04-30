@@ -16,6 +16,8 @@ export default makeStyles((theme) => ({
     },
   },
   itemName: {
+    fontSize: "14px",
+    color: "rgb(50, 50, 50)",
     "@media (max-width: 900px)": {
       color: "rgb(50, 50, 50)",
       fontSize: "14px",
@@ -61,4 +63,12 @@ export default makeStyles((theme) => ({
     fontSize: "1.5em",
     textAlign: "center",
   },
+  itemImage: {
+    width: "50px",
+    height: "50px",
+    marginRight: "20px",
+    "@media (max-width: 600px)": {
+      marginRight: "5px",
+    },
+  }
 }));

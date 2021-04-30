@@ -1,8 +1,10 @@
 import React from "react"
 import { setAuthKey } from "../../../actions/authentication"
 import { useDispatch } from "react-redux"
+import useStyles from "./styles"
 
 const Clear = () => {
+  const classes = useStyles()
   const dispatch = useDispatch()
   const handleLougout = () => {
     localStorage.setItem("groceryAuthKey", null)
@@ -11,7 +13,7 @@ const Clear = () => {
 
   return (
     <div>
-      <button onClick={handleLougout}>Logout</button>
+      <button className={classes.logoutButton} onClick={handleLougout}>Logout</button>
     </div>
   )
 }

@@ -174,8 +174,8 @@ const Form = () => {
               <option value={"grains"}>Grains</option>
               <option value={"dairy"}>Dairy</option>
               <option value={"breakfast"}>Breakfast</option>
-              <option value={"fruits"}>Fruit</option>
-              <option value={"vegetables"}>Vegetable</option>
+              <option value={"fruits"}>Fruits</option>
+              <option value={"vegetables"}>Vegetables</option>
               <option value={"meat"}>Meat</option>
               <option value={"snacks"}>Snacks</option>
               <option value={"pantry"}>Pantry</option>

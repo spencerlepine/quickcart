@@ -6,11 +6,13 @@ import {
   DELETE,
   CLEAR_ALL,
   SET_KEY,
+  SET_CONNECTION,
 } from "../constants/actionTypes.js"
 
 // action creators
 export const getGroceries = (key) => async (dispatch) => {
   try {
+    dispatch({ type: SET_CONNECTION, payload: "pending" })
     const { data } = await api.fetchGroceries({ key })
     dispatch({ type: SET_KEY, payload: key })
 
@@ -33,8 +35,10 @@ export const getGroceries = (key) => async (dispatch) => {
     }
 
     dispatch({ type: FETCH_ALL, payload: grouped })
+    dispatch({ type: SET_CONNECTION, payload: "connected" })
   } catch (error) {
     dispatch({ type: SET_KEY, payload: null })
+    dispatch({ type: SET_CONNECTION, payload: "disconnected" })
     console.log(error.message)
   }
 }

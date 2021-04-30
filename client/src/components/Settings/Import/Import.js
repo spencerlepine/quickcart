@@ -2,9 +2,11 @@ import React from "react"
 import { clearGroceries, createGrocery } from "../../../actions/groceries"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
+import useStyles from "./styles"
 
 const Import = () => {
   const dispatch = useDispatch()
+  const classes = useStyles()
   const history = useHistory()
   const authKey = useSelector(state => state.authentication)
 
@@ -80,8 +82,9 @@ const Import = () => {
 
   return (
     <div>
-      <label>Import Data</label>
+      <label>Import Data</label><br />
       <input
+        className={classes.fileInput}
         onChange={importData}
         type="file"
         name="inputfile"

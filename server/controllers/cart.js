@@ -3,6 +3,10 @@ import CartItem from "../models/cartItem.js"
 import DemoCartItem from "../models/demoCartItem.js"
 import dotenv from "dotenv"
 
+export const displayError = async (req, res) => {
+  res.status(200).json("Usage: url/cart/<authKey>")
+}
+
 export const fetchCart = async (req, res) => {
   try {
     const { key } = req.params

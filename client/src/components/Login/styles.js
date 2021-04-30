@@ -2,15 +2,30 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
   loginPrompt: {
+    // '&::after': {
+    //   zIndex: "90",
+    //   content: "' '",
+    //   backgroundColor: "rgba(0, 0, 0, 0.6)",
+    //   position: "fixed",
+    //   top: "0",
+    //   left: "0",
+    //   height: "100vh",
+    //   width: "100vw",
+    // },
+    zIndex: "99",
+    backgroundColor: "white",
     margin: "auto",
     marginTop: "20vh",
-    height: "63vh",
-    minHeight: "136px",
+    marginBottom: "40vh",
+    // minHeight: "136px",
+    padding: "30px",
+    borderRadius: "8px",
     width: "fit-content",
     "@media (max-width:900px)": {
-      height: "56vh",
+      marginBottom: "30vh",
     },
     "& input": {
+      zIndex: "99",
       backgroundColor: "rgb(255, 255, 255)",
       border: "1px solid rgb(189, 189, 189)",
       borderRadius: "12px",
@@ -32,6 +47,7 @@ export default makeStyles(() => ({
     },
   },
   loginButton: {
+    zIndex: "99",
     touchAction: "manipulation",
     cursor: "pointer",
     border: "1px solid transparent",
@@ -50,5 +66,11 @@ export default makeStyles(() => ({
     backgroundColor: "rgb(46, 137, 19)",
     color: "rgb(255, 255, 255)",
     width: "100%",
+  },
+  passwordLabel: {
+    zIndex: "99",
+    fontSize: "31px",
+    fontWeight: "700",
+    marginBottom: "0",
   },
 }))

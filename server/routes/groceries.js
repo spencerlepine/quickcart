@@ -1,8 +1,9 @@
 import express from "express"
-import { getGroceries, createGrocery, updateGrocery, deleteGrocery, deleteAllGroceries, getGroceryCategories } from "../controllers/groceries.js"
+import { displayError, getGroceries, createGrocery, updateGrocery, deleteGrocery, deleteAllGroceries, getGroceryCategories } from "../controllers/groceries.js"
 
 const router = express.Router();
 
+router.get('/', displayError)
 router.get('/:key', getGroceries)
 router.get('/categories/:key', getGroceryCategories)
 router.post('/:key/', createGrocery)

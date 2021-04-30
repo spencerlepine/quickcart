@@ -3,6 +3,10 @@ import GroceryItem from "../models/groceryItem.js"
 import DemoGroceryItem from "../models/demoGroceryItem.js"
 import CartItem from "../models/cartItem.js"
 
+export const displayError = async (req, res) => {
+    res.status(200).json("Usage: url/recommended/<authKey>")
+  }
+
 export const getRecommended = async (req, res) => {
     try {
         const { key } = req.params

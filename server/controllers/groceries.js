@@ -3,6 +3,10 @@ import GroceryItem from "../models/groceryItem.js"
 import DemoGroceryItem from "../models/demoGroceryItem.js"
 import dotenv from "dotenv"
 
+export const displayError = async (req, res) => {
+    res.status(200).json("Usage: url/groceries/<authKey>")
+  }
+  
 export const getGroceries = async (req, res) => {
     try {
         const { key } = req.params

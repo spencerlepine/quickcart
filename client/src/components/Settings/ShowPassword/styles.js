@@ -1,10 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
-  settingsContainer: {
+  warning: {
     width: "fit-content",
     margin: "2em auto",
-    padding: "10px 25px",
-    background: "white",
+    padding: "2em",
   },
 }))

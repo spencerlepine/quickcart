@@ -1,8 +1,9 @@
 import express from "express"
-import { fetchCart, addToCart, fetchCartItem, updateCartItem, removeFromCart } from "../controllers/cart.js"
+import { displayError, fetchCart, addToCart, fetchCartItem, updateCartItem, removeFromCart } from "../controllers/cart.js"
 
 const router = express.Router();
 
+router.get('/', displayError)
 router.get('/:key', fetchCart)
 router.get('/:key/:id', fetchCartItem)
 router.post('/:key', addToCart)

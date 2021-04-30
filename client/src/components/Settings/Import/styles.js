@@ -1,9 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
-  warning: {
+  fileInput: {
+    border: "1px dashed black",
     width: "fit-content",
-    margin: "2em auto",
-    padding: "2em",
+    padding: "4px",
+    margin: "4px",
+    height: "100px",
   },
 }))

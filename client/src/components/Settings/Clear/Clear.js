@@ -1,8 +1,10 @@
 import React from "react"
 import { clearGroceries } from "../../../actions/groceries"
 import { useDispatch, useSelector } from "react-redux"
+import useStyles from "./styles"
 
 const Clear = () => {
+  const classes = useStyles()
   const dispatch = useDispatch()
 
   const authKey = useSelector((state) => state.authentication)
@@ -16,7 +18,7 @@ const Clear = () => {
 
   return (
     <div>
-      <button onClick={clearData}>Clear Data</button>
+      <button className={classes.clearButton} onClick={clearData}>Clear Data</button>
     </div>
   )
 }

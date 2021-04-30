@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import useStyles from "./styles.js"
 import { getGroceries } from "../../actions/groceries.js"
 import CircularProgress from "@material-ui/core/CircularProgress"
 
 const Login = () => {
   const [keyFormValue, setKeyFormValue] = useState("")
-  const [pendingLogin, setPendingLogin] = useState(false)
   const dispatch = useDispatch()
   const classes = useStyles()
+
+  const connection = useSelector((state) => state.connection)
 
   useEffect(() => {
     const savedKey = localStorage.getItem("groceryAuthKey")
@@ -32,22 +33,16 @@ const Login = () => {
 
   const handleSubmit = (savedKey = null) => {
     const usableKey = savedKey || keyFormValue
-    if (!savedKey) {
-      setPendingLogin(true)
-    }
     dispatch(getGroceries(usableKey))
-    setTimeout(() => {
-      setPendingLogin(false)
-      setKeyFormValue("")
-    }, 1000)
   }
 
   return (
     <div className={classes.loginPrompt}>
-      {pendingLogin ? (
+      {connection === "pending" ? (
         <CircularProgress />
       ) : (
         <>
+          <p className={classes.passwordLabel}>Password:</p>
           <input
             onChange={handleChange}
             onKeyDown={handleKeyDown}
