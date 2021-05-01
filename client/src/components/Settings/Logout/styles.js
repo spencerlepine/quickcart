@@ -3,11 +3,16 @@ import { makeStyles } from "@material-ui/core/styles"
 export default makeStyles(() => ({
   logoutButton: {
     width: "fit-content",
-    margin: "2em auto",
-    color: "#520b0b",
-    backgroundColor: "#fbb4b7",
-    padding: "0.5em 1em",
-    border: "2px solid #520b0b",
+    backgroundColor: "rgb(67, 176, 42)",
+    borderColor: "rgb(67, 176, 42)",
+    height: "48px",
+    fontSize: "18px",
     borderRadius: "4px",
+    textAlign: "center",
+    fontWeight: "600",
+    position: "relative",
+    padding: "10px 18px",
+    color: "rgb(255, 255, 255)",
+    textDecoration: "none",
   },
 }))

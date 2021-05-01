@@ -9,6 +9,7 @@ import {
 const reducer = (groceries = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
+      localStorage.setItem('groceryItems', JSON.stringify(action.payload))
       return action.payload
     case CREATE:
       return [...groceries, action.payload]

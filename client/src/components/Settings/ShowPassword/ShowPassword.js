@@ -1,7 +1,9 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import useStyles from "./styles"
 
 const ShowPassword = () => {
+  const classes = useStyles()
   const authKey = useSelector((state) => state.authentication)
   
   const handleClick = () => {
@@ -10,7 +12,7 @@ const ShowPassword = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Show Password</button>
+      <button className={classes.passwordButton} onClick={handleClick}>Show Password</button>
     </div>
   )
 }

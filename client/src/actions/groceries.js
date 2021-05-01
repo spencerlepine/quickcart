@@ -13,6 +13,16 @@ import {
 export const getGroceries = (key) => async (dispatch) => {
   try {
     dispatch({ type: SET_CONNECTION, payload: "pending" })
+
+    const savedGroceries = JSON.parse(localStorage.getItem('groceryItems'))
+    if (savedGroceries) {
+      if (typeof savedGroceries === "object") {
+        dispatch({ type: FETCH_ALL, payload: savedGroceries })
+        dispatch({ type: SET_CONNECTION, payload: "local" })
+        dispatch({ type: SET_KEY, payload: key })
+      }
+    }  
+
     const { data } = await api.fetchGroceries({ key })
     dispatch({ type: SET_KEY, payload: key })
 

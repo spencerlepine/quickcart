@@ -24,7 +24,7 @@ const NavBar = () => {
   }
 
   const highlightStatus = (connection) => {
-    return connection === "pending" ? 
+    return connection === "pending" || connection === "local" ? 
       "rgb(106 104 255)" : connection === "connected" ? 
         "#43c143" : "rgb(253 59 59)"
   }
