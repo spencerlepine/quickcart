@@ -1,4 +1,5 @@
 # To do:
+- only reccomended if it is past its lifecycle (not 5 days for garlic)
 -printable list
 
 - recommended error checking (don't generate anything if the groceryItem db is full)
