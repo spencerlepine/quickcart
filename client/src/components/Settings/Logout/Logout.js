@@ -7,7 +7,7 @@ const Clear = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const handleLougout = () => {
-    localStorage.setItem("groceryAuthKey", null)
+    localStorage.setItem("groceryAuthKey", "")
     dispatch(setAuthKey(null))
   }
 

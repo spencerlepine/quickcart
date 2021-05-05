@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import useStyles from "./styles.js"
 import { getGroceries } from "../../actions/groceries.js"
 import { fetchCart } from "../../actions/cart.js"
+import { fetchRecommended } from "../../actions/recommended"
 import CircularProgress from "@material-ui/core/CircularProgress"
 
 const Login = () => {
@@ -34,9 +35,9 @@ const Login = () => {
 
   const handleSubmit = (savedKey = null) => {
     const usableKey = savedKey || keyFormValue
-
     dispatch(getGroceries(usableKey))
     dispatch(fetchCart(usableKey))
+    dispatch(fetchRecommended(usableKey))
   }
 
   return (

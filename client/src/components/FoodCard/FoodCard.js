@@ -22,7 +22,7 @@ const getPriceColor = (priceFloat) => {
     return "#7b2909"
   }
 }
-const FoodCard = ({ groceryItem }) => {
+const FoodCard = ({ groceryItem, showProp=false }) => {
   const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -47,7 +47,7 @@ const FoodCard = ({ groceryItem }) => {
   // show every thing if currentSearch.length < 3
   return (
     <>
-      {(showThisItem) && (
+      {(showThisItem || showProp) && (
         <div className={classes.foodCard} onClick={handleEdit}>
           <img
             alt={groceryItem.name}
@@ -61,7 +61,7 @@ const FoodCard = ({ groceryItem }) => {
             {parseFloat(
               groceryItem.purchase_price
               ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
-            &nbsp;-&nbsp;
+            {" - "}
             <span className={classes.servingCost} style={{color: getPriceColor(groceryItem.serving_cost)}}>
               {parseFloat(
               groceryItem.serving_cost
