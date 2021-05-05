@@ -1,7 +1,6 @@
 # To do:
 - only reccomended if it is past its lifecycle (not 5 days for garlic)
 - automatically scale image with canvas trick
-- fix bandwidth issues, get number of grocerires with offset and limit
 -printable list
 
 - recommended error checking (don't generate anything if the groceryItem db is full)

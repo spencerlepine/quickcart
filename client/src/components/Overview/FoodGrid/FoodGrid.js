@@ -14,26 +14,33 @@ const FoodGrid = ({ authentication }) => {
   const classes = useStyles()
 
   const groceries = useSelector((state) => state.groceries)
+  const totalGroceryCount = useSelector((state) => state.count)
   const foodItems =
     groceries && groceries[0] !== undefined
       ? groceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
       : []
+  
+  const fetchProgress = Math.ceil((groceries.length / totalGroceryCount)*100)
 
   useEffect(() => {
     dispatch(setId(null))
   }, [dispatch])
 
-  const handleShowMore = () => {
-    dispatch(getGroceries(authentication, groceries.length))
-  }
+  useEffect(() => {
+    if (groceries.length <= totalGroceryCount || totalGroceryCount === 0) {
+      dispatch(getGroceries(authentication, groceries.length))
+    } else {
+      return
+    }
+  }, [groceries, totalGroceryCount])
 
   return (
     <>
       {foodItems.length > 0
         ?
         <div className={classes.itemsGrid}>
+          {fetchProgress < 100 && <div className={classes.progressBar} style={{width:`${fetchProgress}%`}}></div>}
           {foodItems}
-          <button className={classes.loadMoreBtn} onClick={handleShowMore}>Show More</button>
         </div>
         :
         <div className={classes.overviewContainer}>

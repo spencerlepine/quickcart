@@ -7,12 +7,14 @@ import {
   CLEAR_ALL,
   SET_KEY,
   SET_CONNECTION,
+  FETCH_COUNT,
 } from "../constants/actionTypes.js"
 
 // action creators
 export const getGroceries = (key, offset=0) => async (dispatch) => {
   try {
     dispatch({ type: SET_CONNECTION, payload: "pending" })
+
     const { data } = await api.fetchGroceries({ key }, { offset })
     
     // Save the key that worked
@@ -39,6 +41,10 @@ export const getGroceries = (key, offset=0) => async (dispatch) => {
 
     dispatch({ type: FETCH_ALL, payload: grouped })
     dispatch({ type: SET_CONNECTION, payload: "connected" })
+
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ key })
+    dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     dispatch({ type: SET_KEY, payload: null })
     dispatch({ type: SET_CONNECTION, payload: "disconnected" })

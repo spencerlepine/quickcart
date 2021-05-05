@@ -9,7 +9,8 @@ import {
 const reducer = (groceries = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
-      let extendedGroceries = [...groceries, ...action.payload]
+      let filteredPayload = action.payload.filter(item => item)
+      let extendedGroceries = [...groceries, ...filteredPayload]
       return extendedGroceries
     case CREATE:
       return [...groceries, action.payload]

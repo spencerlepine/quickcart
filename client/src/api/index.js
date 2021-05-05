@@ -26,3 +26,5 @@ export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/
 export const deleteAllGroceries = (keyObj) => axios.delete(`${url}/${keyObj.key}`) 
 
 export const fetchCategories = (keyObj) => axios.get(`${baseUrl}/categories/${keyObj.key}`)
+
+export const fetchGroceryCount = (keyObj) => axios.get(`${baseUrl}/count/${keyObj.key}`)
