@@ -30,7 +30,7 @@ const schema = {
 }
 
 const Form = () => {
-  const [thisGrocery, setthisGrocery] = useState(schema)
+  const [thisGrocery, setThisGrocery] = useState(schema)
   const dispatch = useDispatch()
   const history = useHistory()
   const classes = useStyles()
@@ -43,7 +43,7 @@ const Form = () => {
 
   const clearForm = () => {
     dispatch(setId(null))
-    setthisGrocery(schema)
+    setThisGrocery(schema)
   }
 
   useEffect(() => {
@@ -61,14 +61,14 @@ const Form = () => {
         image: currentItem.image || schema.image,
       }
 
-      setthisGrocery(validCurrentItem)
+      setThisGrocery(validCurrentItem)
     }
   }, [currentId, currentItem])
 
   const handleChange = (event) => {
     const { name, value } = event.target
 
-    setthisGrocery((prevItems) => ({ ...prevItems, [name]: value }))
+    setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }))
   }
 
   const handleDelete = () => {

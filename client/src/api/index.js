@@ -1,9 +1,9 @@
 import axios from "axios"
-// const baseUrl = 'http://localhost:5000'
-const baseUrl = "https://grocery-server-sl.herokuapp.com"
+const baseUrl = 'http://localhost:5000'
+// const baseUrl = "https://grocery-server-sl.herokuapp.com"
 const url = baseUrl + "/groceries"
 
-export const fetchGroceries = (keyObj) => axios.get(`${url}/${keyObj.key}`)
+export const fetchGroceries = (keyObj, offsetObj) => axios.get(`${url}/${keyObj.key}/${offsetObj.offset}`)
 
 export const fetchCart = (keyObj) => axios.get(`${baseUrl}/cart/${keyObj.key}`)
 
@@ -25,4 +25,4 @@ export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/
 
 export const deleteAllGroceries = (keyObj) => axios.delete(`${url}/${keyObj.key}`) 
 
-export const fetchCategories = (keyObj) => axios.get(`${url}/categories/${keyObj.key}`)
+export const fetchCategories = (keyObj) => axios.get(`${baseUrl}/categories/${keyObj.key}`)

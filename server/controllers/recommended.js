@@ -11,10 +11,12 @@ export const getRecommended = async (req, res) => {
     try {
         const { key } = req.params
         // Fetch all of the grocery items
-        let groceryItems = await GroceryItem.find()
-        if (key === "demo123") {
+        let groceryItems
+        if (key === process.env.USER_KEY) {
+            groceryItems = await GroceryItem.find()
+        } else if (key === "demo123") {
             groceryItems = await DemoGroceryItem.find()
-        } else if (key !== process.env.USER_KEY) {
+        } else {
             res.status(404).json("invalid authentication key")
             return
         }

@@ -10,22 +10,15 @@ import {
 } from "../constants/actionTypes.js"
 
 // action creators
-export const getGroceries = (key) => async (dispatch) => {
+export const getGroceries = (key, offset=0) => async (dispatch) => {
   try {
     dispatch({ type: SET_CONNECTION, payload: "pending" })
-
-    const savedGroceries = JSON.parse(localStorage.getItem('groceryItems'))
-    if (savedGroceries) {
-      if (typeof savedGroceries === "object") {
-        dispatch({ type: FETCH_ALL, payload: savedGroceries })
-        dispatch({ type: SET_CONNECTION, payload: "local" })
-        dispatch({ type: SET_KEY, payload: key })
-      }
-    }  
-
-    const { data } = await api.fetchGroceries({ key })
+    const { data } = await api.fetchGroceries({ key }, { offset })
+    
+    // Save the key that worked
     dispatch({ type: SET_KEY, payload: key })
 
+    // Start grouping the data
     let grouped = [data[0]]
 
     for (let i = 1; i < data.length; i++) {

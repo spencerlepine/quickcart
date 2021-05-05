@@ -7,7 +7,9 @@ import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt"
 import missingImage from "../../../images/empty.jpg"
 import useStyles from "./styles"
 
-const FoodGrid = () => {
+import { getGroceries } from "../../../actions/groceries"
+
+const FoodGrid = ({ authentication }) => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
@@ -21,11 +23,18 @@ const FoodGrid = () => {
     dispatch(setId(null))
   }, [dispatch])
 
+  const handleShowMore = () => {
+    dispatch(getGroceries(authentication, groceries.length))
+  }
+
   return (
     <>
       {foodItems.length > 0
         ?
-        <div className={classes.itemsGrid}>{foodItems}</div>
+        <div className={classes.itemsGrid}>
+          {foodItems}
+          <button className={classes.loadMoreBtn} onClick={handleShowMore}>Show More</button>
+        </div>
         :
         <div className={classes.overviewContainer}>
           <EmptyPrompt

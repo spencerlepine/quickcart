@@ -4,8 +4,7 @@ import { displayError, getGroceries, createGrocery, updateGrocery, deleteGrocery
 const router = express.Router();
 
 router.get('/', displayError)
-router.get('/:key', getGroceries)
-router.get('/categories/:key', getGroceryCategories)
+router.get('/:key/:offset', getGroceries)
 router.post('/:key/', createGrocery)
 router.patch('/:key/:id', updateGrocery)
 router.delete('/:key/:id', deleteGrocery)

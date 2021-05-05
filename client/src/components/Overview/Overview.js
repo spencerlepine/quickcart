@@ -39,7 +39,7 @@ const Overview  = () => {
       authKey && 
       <>
         <Categories />
-        <FoodGrid />
+        <FoodGrid authentication={authKey} />
        </>
     }</>
   )

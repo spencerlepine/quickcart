@@ -9,10 +9,11 @@ export const displayError = async (req, res) => {
   
 export const getGroceries = async (req, res) => {
     try {
-        const { key } = req.params
+        const { key, offset } = req.params
+        const fetchLimit = 10
 
         if (key === "demo123") {
-            const groceryItems = await DemoGroceryItem.find()
+            const groceryItems = await DemoGroceryItem.find({ limit: fetchLimit })
         
             res.status(200).json(groceryItems)
         } else if (key !== process.env.USER_KEY) {
@@ -20,7 +21,7 @@ export const getGroceries = async (req, res) => {
             return
         }
 
-        const groceryItems = await GroceryItem.find()
+        const groceryItems = await GroceryItem.find().limit(fetchLimit).skip(parseInt(offset))
         
         res.status(200).json(groceryItems)
     } catch(error) {
@@ -44,6 +45,7 @@ export const getGroceryCategories = async (req, res) => {
             res.status(200).json(groceryItems)
             return
         } else if (key !== process.env.USER_KEY) {
+            console.log(`${key} !== ${process.env.USER_KEY}`)
             res.status(404).json("invalid authentication key")
             return
         }

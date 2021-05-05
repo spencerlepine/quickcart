@@ -25,5 +25,21 @@ export default makeStyles(() => ({
     marginLeft: "auto",
     marginRight: "auto",
     fontSize: "1.2em",
-  }
+  },
+  loadMoreBtn: {
+    gridColumnStart: "1",
+    gridColumnEnd: "4",
+    backgroundColor: "#ddd",
+    borderRadius: "2px",
+    display: "block",
+    textAlign: "center",
+    fontSize: "0.875rem",
+    fontWeight: "800",
+    letterSpacing: "1px",
+    cursor: "pointer",
+    textTransform: "uppercase",
+    padding: "10px 0",
+    transition:
+      "background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out",
+  },
 }))
