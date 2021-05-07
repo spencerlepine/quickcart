@@ -10,23 +10,33 @@ import { mount, shallow } from "enzyme"
 
 describe("Cart", () => {
   const initialState = {}
-
   const middlewares = [thunk]
   const mockStore = configureStore(middlewares)
   let store = mockStore(initialState)
   let wrapper
 
   it("Displays h4 with cart total", () => {
-    expect(2).toEqual(2)
-    // wrapper = mount(
-    //   <Provider store={store}>
-    //     <Cart />
-    //   </Provider>
-    // )
+    wrapper = mount(
+      <Provider store={store}>
+        <CartHeader cartItems={sampleCart}/>
+      </Provider>
+    )
 
-    // let cartItemDivs = wrapper.find("div")
+    let cartTotalElem = wrapper.find("h4")
 
-    // expect(cartItemDivs.length).toBeGreaterThan(sampleCart.length)
+    expect(cartTotalElem.text()).toEqual("$4.45")
+  })
+
+  it("Displays place order button", () => {
+    wrapper = mount(
+      <Provider store={store}>
+        <CartHeader cartItems={sampleCart}/>
+      </Provider>
+    )
+
+    let placeOrderButton = wrapper.find("button")
+
+    expect(placeOrderButton.text()).toEqual("Place Order")
   })
 
   // it("Displays h4 with cart total", () => {
