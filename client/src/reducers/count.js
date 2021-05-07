@@ -1,9 +1,13 @@
-import { FETCH_COUNT } from "../constants/actionTypes.js"
+import { FETCH_COUNT, RESET_REDUCER } from "../constants/actionTypes.js"
 
-const reducer = (totalGroceryCount = {}, action) => {
+const initialState = {}
+
+const reducer = (totalGroceryCount = initialState, action) => {
   switch (action.type) {
     case FETCH_COUNT:
       return action.payload
+    case RESET_REDUCER:
+      return initialState
     default:
       return totalGroceryCount
   }

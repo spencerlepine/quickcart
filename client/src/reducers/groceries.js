@@ -3,10 +3,12 @@ import {
   CREATE,
   UPDATE,
   DELETE,
-  CLEAR_ALL,
+  RESET_REDUCER,
 } from "../constants/actionTypes.js"
 
-const reducer = (groceries = [], action) => {
+const initialState = []
+
+const reducer = (groceries = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL:
       let filteredPayload = action.payload.filter(item => item)
@@ -20,8 +22,8 @@ const reducer = (groceries = [], action) => {
       )
     case DELETE:
       return groceries.filter((post) => post._id !== action.payload)
-    case CLEAR_ALL:
-      return []
+    case RESET_REDUCER:
+      return initialState  
     default:
       return groceries
   }

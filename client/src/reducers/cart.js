@@ -3,9 +3,12 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_ITEM,
+  RESET_REDUCER
 } from "../constants/actionTypes.js"
 
-const reducer = (cartItems = [], action) => {
+const initialState = []
+
+const reducer = (cartItems = initialState, action) => {
   switch (action.type) {
     case FETCH_CART:
       return action.payload
@@ -22,6 +25,8 @@ const reducer = (cartItems = [], action) => {
       let newCart = cartItems.filter((item) => item._id !== action.payload)
       return newCart
     }
+    case RESET_REDUCER:
+      return initialState
     default:
       return cartItems
   }

@@ -4,16 +4,16 @@ import {
   CREATE,
   UPDATE,
   DELETE,
-  CLEAR_ALL,
   SET_KEY,
-  SET_CONNECTION,
+  SET_GROCERY_CONNECTION,
   FETCH_COUNT,
+  RESET_REDUCER,
 } from "../constants/actionTypes.js"
 
 // action creators
 export const getGroceries = (key, offset=0) => async (dispatch) => {
   try {
-    dispatch({ type: SET_CONNECTION, payload: "pending" })
+    dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
 
     const { data } = await api.fetchGroceries({ key }, { offset })
     
@@ -40,14 +40,15 @@ export const getGroceries = (key, offset=0) => async (dispatch) => {
     }
 
     dispatch({ type: FETCH_ALL, payload: grouped })
-    dispatch({ type: SET_CONNECTION, payload: "connected" })
+    localStorage.setItem("groceryAuthKey", key)
+    dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
 
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ key })
     dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     dispatch({ type: SET_KEY, payload: null })
-    dispatch({ type: SET_CONNECTION, payload: "disconnected" })
+    dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
     console.log(error.message)
   }
 }
@@ -62,9 +63,9 @@ export const createGrocery = (key, newGrocery) => async (dispatch) => {
   }
 }
 
-export const updateGrocery = (key, id, groceryItem) => async (dispatch) => {
+export const updateGrocery = (key, groceryItem) => async (dispatch) => {
   try {
-    const { data } = await api.updateGrocery({ key }, id, groceryItem)
+    const { data } = await api.updateGrocery({ key }, groceryItem)
 
     dispatch({ type: UPDATE, payload: data })
   } catch (error) {
@@ -86,7 +87,7 @@ export const clearGroceries = (key) => async (dispatch) => {
   try {
     await api.deleteAllGroceries({ key })
 
-    dispatch({ type: CLEAR_ALL, payload: [] })
+    dispatch({ type: RESET_REDUCER, payload: [] })
   } catch (error) {
     console.log(error.message)
   }

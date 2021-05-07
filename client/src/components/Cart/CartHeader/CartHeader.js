@@ -16,12 +16,12 @@ const CartHeader = ({ cartItems }) => {
   const handleCartPurchase = () => {
     if (cartItems.length) {
       cartItems.forEach((item) => {
-        const updatedPurchaseDate = {
+        const groceryObjNewDate = {
           ...item,
           last_purchased: todaysDate,
         }
         dispatch(deleteCartItem(authKey, item._id))
-        dispatch(updateGrocery(item["_id"], updatedPurchaseDate))
+        dispatch(updateGrocery(authKey, groceryObjNewDate))
       })
       alert(`Updated ${cartItems.length} item(s)`)
     }

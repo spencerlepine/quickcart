@@ -8,6 +8,7 @@ import useStyles from "./styles.js"
 import FoodCard from "../FoodCard/FoodCard"
 import EmptyPrompt from "../EmptyPrompt/EmptyPrompt"
 import cartImg from "../../images/cart.svg"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -16,9 +17,11 @@ const Cart = () => {
   const authKey = useSelector((state) => state.authentication)
   const cartItems = useSelector((state) => state.cart)
   const recommendedItems = useSelector((state) => state.recommended)
+  const connection = useSelector((state) => state.connection.cart)
 
   const recommendedCards = []
   let keyCount = 0
+
   for (const prop in recommendedItems) {
     recommendedCards.push(...recommendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
     keyCount += recommendedItems[prop].length
@@ -28,9 +31,9 @@ const Cart = () => {
     dispatch(fetchCart(authKey))
   }, [dispatch])
 
-  return (
-    <div className={classes.cartView}>
-      {!cartItems.length ? (
+  const renderEmptyCart = (currentConnection) => {
+    if (currentConnection === "connected") {
+      return (
         <EmptyPrompt
           image={cartImg}
           message="Your cart is empty"
@@ -38,7 +41,18 @@ const Cart = () => {
           buttonText="Browse Items"
           addFilter
         />
-      ) : (
+      )
+    } else {
+      return (<CircularProgress />)
+    }
+  }
+
+  return (
+    <div className={classes.cartView}>
+      {cartItems.length === 0 && renderEmptyCart(connection)}
+
+
+      {cartItems.length > 0 && (
         <>
           <CartHeader cartItems={cartItems} />
           <div className={classes.userCart}>

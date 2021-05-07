@@ -13,7 +13,7 @@ const NavBar = () => {
   const { pathname } = useLocation()
 
   const cartLength = useSelector((state) => state.cart.length)
-  const connection = useSelector((state) => state.connection)
+  const connection = useSelector((state) => state.connection.groceries)
 
 
   const highlightLink = (path) => {

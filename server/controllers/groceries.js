@@ -109,6 +109,15 @@ export const updateGrocery = async (req, res) => {
     const {  key, id: _id } = req.params
     const groceryItem = req.body
     
+    if (key === "demo123") {
+        if (!mongoose.Types.ObjectId.isValid(_id)) {
+            return res.status(404).send("No post with that id")
+        }
+
+        const updateGroceryItem = await DemoGroceryItem.findByIdAndUpdate(_id, { ...groceryItem, _id }, { new: true })
+        res.json(updateGroceryItem)
+    }
+    
     if (key !== process.env.USER_KEY) {
         res.status(404).json("invalid authentication key")
         return

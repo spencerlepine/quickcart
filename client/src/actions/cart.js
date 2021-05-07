@@ -4,15 +4,19 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_ITEM,
+  SET_CART_CONNECTION
 } from "../constants/actionTypes.js"
 
 // action creators
 export const fetchCart = (key) => async (dispatch) => {
   try {
+    dispatch({ type: SET_CART_CONNECTION, payload: "pending" })
     const { data } = await api.fetchCart({ key })
 
     dispatch({ type: FETCH_CART, payload: data })
+    dispatch({ type: SET_CART_CONNECTION, payload: "connected" })
   } catch (error) {
+    dispatch({ type: SET_CART_CONNECTION, payload: "disconnected" })
     console.log(error.message)
   }
 }

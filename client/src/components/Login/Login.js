@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const connection = useSelector((state) => state.connection)
+  const connection = useSelector((state) => state.connection.groceries)
 
   useEffect(() => {
     const savedKey = localStorage.getItem("groceryAuthKey")

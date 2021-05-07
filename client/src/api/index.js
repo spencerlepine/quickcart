@@ -19,7 +19,7 @@ export const createGrocery = (keyObj, newGrocery) => axios.post(url + `/${keyObj
 
 export const addToCart = (keyObj, itemToAdd) => axios.post(`${baseUrl}/cart/${keyObj.key}`, itemToAdd)
 
-export const updateGrocery = (keyObj, id, updatedGrocery) => axios.patch(`${url}/${keyObj.key}/${id}`, updatedGrocery)
+export const updateGrocery = (keyObj, updatedGrocery) => axios.patch(`${url}/${keyObj.key}/${updatedGrocery["_id"]}`, updatedGrocery)
 
 export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/${id}`) 
 
