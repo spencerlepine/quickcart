@@ -1,6 +1,5 @@
 # To do:
 - only reccomended if it is past its lifecycle (not 5 days for garlic)
-- automatically scale image with canvas trick
 -printable list
 
 - recommended error checking (don't generate anything if the groceryItem db is full)
@@ -11,7 +10,6 @@
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
 
 - finish Settings UI
-- cart buttons UI
 
 -- sort groceries by category, display breadList, display vegeatbleList, displayALL of them when you display groceries
 -- display categories with emojis at top (hide when searching)

@@ -1,15 +1,17 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   cartItem: {
     paddingTop: "10px",
     display: "flex",
-    borderBottom: "1px solid lightgray",
+    // borderBottom: "1px solid lightgray",
   },
   itemPrice: {
     marginLeft: "auto",
     marginRight: "5px",
-    color: "#008643",
+    // color: "#008643",
+    fontSize: "14px",
+    color: "rgb(66, 66, 66)",
     "@media (max-width: 900px)": {
       color: "rgb(66, 66, 66)",
       fontSize: "14px",
@@ -28,6 +30,7 @@ export default makeStyles((theme) => ({
     textAlign: "center",
     position: "relative",
     cursor: "pointer",
+    color: "rgb(117, 117, 117)",
     height: "44px",
     width: "56px",
     border: "1px solid rgb(224, 224, 224)",
@@ -41,19 +44,35 @@ export default makeStyles((theme) => ({
     },
   },
   btn: {
-    width: "1em",
-    height: "100%",
-    margin: "auto 5px",
-    lineHeight: "1em",
-    fontSize: "2em",
-    fontWeight: "bold",
+    // width: "1em",
+    // height: "100%",
+    // margin: "auto 5px",
+    // lineHeight: "1em",
+    // fontSize: "2em",
+    // fontWeight: "bold",
+    // textAlign: "center",
+    // color: "#43ace3",
+    // display: "inline-block",
+    // "&:hover": {
+    //   color: "#3b9ac6",
+    //   textShadow: "1px 1px #ececec",
+    // },
     textAlign: "center",
-    color: "#43ace3",
-    display: "inline-block",
-    "&:hover": {
-      color: "#3b9ac6",
-      textShadow: "1px 1px #ececec",
-    },
+    position: "relative",
+    cursor: "pointer",
+    height: "44px",
+    width: "40px",
+    // border: "1px solid rgb(224, 224, 224)",
+    fontFamily: 'Eina, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    margin: "auto 4px",
+    padding: "0px",
+    lineHeight: "40px",
+    borderRadius: "4px",
+    fontSize: "36px",
+    color: "rgb(67, 176, 42)",
+    fontWeight: "600",
+    zIndex: "100",
+    backgroundColor: "transparent",
   },
   delete: {
     width: "1.3em",
@@ -70,5 +89,5 @@ export default makeStyles((theme) => ({
     "@media (max-width: 600px)": {
       marginRight: "5px",
     },
-  }
-}));
+  },
+}))

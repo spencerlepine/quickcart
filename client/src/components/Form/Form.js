@@ -16,6 +16,8 @@ import Select from "@material-ui/core/Select"
 import Rating from "@material-ui/lab/Rating"
 import StarBorderIcon from "@material-ui/icons/StarBorder"
 
+import CropInputImage from "./CropInputImage"
+
 const todaysDate = new Date().toISOString().slice(0, 10)
 
 const schema = {
@@ -76,6 +78,12 @@ const Form = () => {
       dispatch(deleteGrocery(authKey, currentId))
       history.push("/")
     }
+  }
+
+  const handleImageInput = async (base64) => {
+    const croppedImage = await CropInputImage(base64)
+    
+    handleChange({ target: { name: "image", value: croppedImage } })
   }
 
   const handleSubmit = (event) => {
@@ -139,7 +147,7 @@ const Form = () => {
                   type="file"
                   multiple={false}
                   onDone={({ base64 }) => {
-                    handleChange({ target: { name: "image", value: base64 } })
+                    handleImageInput(base64)
                   }}
                 />
               </div>
