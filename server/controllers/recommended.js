@@ -40,13 +40,29 @@ export const getRecommended = async (req, res) => {
 
         // Group groceries by category
         let groupedGroceries = {}
+        let todaysDate = new Date()
         allGroceryCategories.forEach(category => {
-            let matchingCategoryItems = availableGroceries.filter(grocery => grocery.category === category)
+            let matchingCategoryItems = availableGroceries.filter(grocery => {
+                let groceryExpirationDate = new Date(grocery["last_purchased"])
+
+                let groceryLifeSpan = grocery["last_purchased"] / grocery["serving_cost"]
+                console.log("Grocery life span is: ", groceryLifeSpan)
+                console.log(groceryLifeSpan)
+                groceryExpirationDate.setDate(groceryExpirationDate.getDate() + groceryLifeSpan);
+                let groceryNotExpired = todaysDate <= groceryExpirationDate
+                console.log(`Todays date: ${todaysDate}, expiration: ${groceryExpirationDate}`)
+                console.log(groceryNotExpired)
+                return grocery.category === category && groceryNotExpired
+            })
             groupedGroceries[category] = matchingCategoryItems
         })
 
         // Sort groceries
         for (const prop in groupedGroceries) {
+            // dont add this object IF its estimated lifeSpan is shorter than the current date difference
+
+
+
             let thisCategoryList = [...groupedGroceries[prop]]
             // Sort by proirity
             thisCategoryList.sort((groceryA, groceryB) => {
@@ -68,8 +84,9 @@ export const getRecommended = async (req, res) => {
                 return scoreB - scoreA
             })
 
-            // Return top 3 from each category
-            groupedGroceries[prop] = thisCategoryList.slice(0, Math.min(thisCategoryList.length, 6))
+            // Return top 6 from each category
+            let topRange = prop === "bread" ? 2 : 6
+            groupedGroceries[prop] = thisCategoryList.slice(0, Math.min(thisCategoryList.length, topRange))
         }
 
         res.status(200).json(groupedGroceries)

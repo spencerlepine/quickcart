@@ -4,7 +4,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_ITEM,
-  SET_CART_CONNECTION
+  SET_CART_CONNECTION,
+  REMOVE_FROM_RECOMMENDED,
 } from "../constants/actionTypes.js"
 
 // action creators
@@ -24,6 +25,7 @@ export const fetchCart = (key) => async (dispatch) => {
 export const addToCart = (key, itemToAdd) => async (dispatch) => {
   try {
     const result = await api.fetchCartItem({ key }, itemToAdd._id)
+    dispatch({ type: REMOVE_FROM_RECOMMENDED, payload: itemToAdd._id })
 
     if (result.data) {
       // This item is already in the cart, just update the quantity

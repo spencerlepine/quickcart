@@ -10,6 +10,7 @@ const Clear = () => {
     localStorage.setItem("groceryAuthKey", "")
     dispatch(setAuthKey(null))
     dispatch(resetLogin())
+    window.location.reload()
   }
 
   return (

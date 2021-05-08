@@ -11,8 +11,7 @@ import ShowPassword from "./ShowPassword/ShowPassword"
 const Settings = () => {
   const classes = useStyles()
   const authKey = useSelector((state) => state.authentication)
-  console.log(authKey)
-  console.log(localStorage.getItem("groceryAuthKey"))
+
   return (
     <div className={classes.settingsContainer}>
       <Backup />

@@ -6,16 +6,25 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import SettingsIcon from "@material-ui/icons/Settings"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
 import ListAltIcon from "@material-ui/icons/ListAlt"
+import EmojiObjects from "@material-ui/icons/EmojiObjects"
 import useStyles from "./styles.js"
+
+const appConnectionStatus = ({ groceries, recommended, cart }) => {
+  if (groceries === "pending" || cart === "pending" || recommended === "pending") {
+    return "pending"
+  } else if (groceries === "connected" && cart === "connected" && recommended === "connected") {
+    return "connected"
+  }
+}
 
 const NavBar = () => {
   const classes = useStyles()
   const { pathname } = useLocation()
 
   const cartLength = useSelector((state) => state.cart.length)
-  const connection = useSelector((state) => state.connection.groceries)
-
-
+  const connectionObj = useSelector((state) => state.connection)
+  let connection = appConnectionStatus(connectionObj)
+ 
   const highlightLink = (path) => {
     return {
       backgroundColor: pathname === path ? "#171717" : "#333333",
@@ -33,6 +42,7 @@ const NavBar = () => {
     width: "20px", 
     height: "20px",
     position: "fixed",
+    zIndex: "100",
     bottom: "5px",
     border: '2px solid white',
     right: "5px",
@@ -45,6 +55,7 @@ const NavBar = () => {
   return (
     <div className={classes.navBar}>
       <div style={statusStyles}></div>
+
       <div className={classes.navbarContainer}>
         <Link style={highlightLink("/")} className={classes.link} to="/">
           <ListAltIcon fontSize="large" />
@@ -57,11 +68,11 @@ const NavBar = () => {
           to="/form"
         >
           <AddCircleOutlineIcon fontSize="large" />
-          <p>Add Item</p>
+          <p>Create</p>
         </Link>
 
         {pathname === "/" && <SearchBar />}
-
+        
         <Link
           style={{ ...highlightLink("/cart"), marginLeft: "auto" }}
           className={classes.link}
@@ -71,6 +82,14 @@ const NavBar = () => {
             <ShoppingCartIcon fontSize="large" color="action" />
             {cartLength > 0 && <p>{cartLength}</p>}
           </div>
+        </Link>
+
+        <Link
+          style={{ ...highlightLink("/recommended") }}
+          className={`${classes.link} ${classes.recommendedIcon}`}
+          to="/recommended"
+        >
+          <EmojiObjects fontSize="large" />
         </Link>
 
         <Link

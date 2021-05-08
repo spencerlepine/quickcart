@@ -9,6 +9,7 @@ import Settings from "./components/Settings/Settings"
 import Error from "./components/Error/Error"
 import Footer from "./components/Footer/Footer"
 import Login from "./components/Login/Login"
+import Recommended from "./components/Recommended/Reccomended"
 import "./index.css"
 
 const App = () => {
@@ -32,9 +33,12 @@ const App = () => {
           <Route path="/settings">
             <Settings />
           </Route>
+          <Route path="/recommended">
+            <Recommended />
+          </Route>
           <Route path="/">
             <Error />
-          </Route>
+          </Route>          
         </Switch>
         :
         <Login />

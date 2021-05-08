@@ -57,6 +57,10 @@ export const createGrocery = (key, newGrocery) => async (dispatch) => {
   try {
     const { data } = await api.createGrocery({ key }, newGrocery)
 
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ key })
+    dispatch({ type: FETCH_COUNT, payload: count })
+
     dispatch({ type: CREATE, payload: data })
   } catch (error) {
     console.log(error.message)
@@ -77,6 +81,10 @@ export const deleteGrocery = (key, id) => async (dispatch) => {
   try {
     await api.deleteGrocery({ key }, id)
 
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ key })
+    dispatch({ type: FETCH_COUNT, payload: count })
+    
     dispatch({ type: DELETE, payload: id })
   } catch (error) {
     console.log(error.message)
@@ -87,6 +95,10 @@ export const clearGroceries = (key) => async (dispatch) => {
   try {
     await api.deleteAllGroceries({ key })
 
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ key })
+    dispatch({ type: FETCH_COUNT, payload: count })
+    
     dispatch({ type: RESET_REDUCER, payload: [] })
   } catch (error) {
     console.log(error.message)
