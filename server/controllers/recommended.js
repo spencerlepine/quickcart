@@ -43,26 +43,26 @@ export const getRecommended = async (req, res) => {
         let todaysDate = new Date()
         allGroceryCategories.forEach(category => {
             let matchingCategoryItems = availableGroceries.filter(grocery => {
-                let groceryExpirationDate = new Date(grocery["last_purchased"])
+                if (grocery.category === category) {
+                    // Get the date last purchased
+                    let dateString = grocery["last_purchased"]
+                    let groceryExpirationDate = new Date(dateString)
 
-                let groceryLifeSpan = grocery["last_purchased"] / grocery["serving_cost"]
-                console.log("Grocery life span is: ", groceryLifeSpan)
-                console.log(groceryLifeSpan)
-                groceryExpirationDate.setDate(groceryExpirationDate.getDate() + groceryLifeSpan);
-                let groceryNotExpired = todaysDate <= groceryExpirationDate
-                console.log(`Todays date: ${todaysDate}, expiration: ${groceryExpirationDate}`)
-                console.log(groceryNotExpired)
-                return grocery.category === category && groceryNotExpired
+                    // Find out how many days it ussually lasts
+                    let groceryLifeSpan = Math.round(grocery["purchase_price"] / grocery["serving_cost"])
+
+                    groceryExpirationDate.setDate(groceryExpirationDate.getDate() + groceryLifeSpan);
+                    
+                    // If it is past when it expired
+                    let groceryNotExpired = todaysDate >= groceryExpirationDate
+                    return groceryNotExpired
+                }
             })
             groupedGroceries[category] = matchingCategoryItems
         })
 
         // Sort groceries
         for (const prop in groupedGroceries) {
-            // dont add this object IF its estimated lifeSpan is shorter than the current date difference
-
-
-
             let thisCategoryList = [...groupedGroceries[prop]]
             // Sort by proirity
             thisCategoryList.sort((groceryA, groceryB) => {

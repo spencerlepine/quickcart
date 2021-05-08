@@ -90,7 +90,7 @@ const Form = () => {
     event.preventDefault()
 
     if (currentId) {
-      dispatch(updateGrocery(authKey, currentId, thisGrocery))
+      dispatch(updateGrocery(authKey, thisGrocery))
       history.push("/")
       clearForm()
     } else if (
