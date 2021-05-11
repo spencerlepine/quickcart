@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   gridView: {
+    minHeight: "50vh",
     maxWidth: "800px",
     marginTop: "1%",
     marginBottom: "1vh",
@@ -23,5 +24,10 @@ export default makeStyles(() => ({
     "@media (max-width:600px)": {
       gridTemplateColumns: "auto",
     },
+  },
+  loadSpinner: {
+    margin: "auto",
+    position: "fixed",
+    left: "50%",
   },
 }));

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useStyles from "./styles.js"
 import { getGroceries } from "../../actions/groceries.js"
+import { setSearchQuery } from "../../actions/search.js"
+import { setSelectedCategory } from "../../actions/selectedCategory.js"
 import { fetchCart } from "../../actions/cart.js"
 import { fetchRecommended } from "../../actions/recommended"
 import CircularProgress from "@material-ui/core/CircularProgress"
@@ -37,6 +39,8 @@ const Login = () => {
     const usableKey = savedKey || keyFormValue
     dispatch(getGroceries(usableKey))
     dispatch(fetchCart(usableKey))
+    dispatch(setSearchQuery(""))
+    dispatch(setSelectedCategory(null))
     dispatch(fetchRecommended(usableKey))
   }
 

@@ -17,16 +17,7 @@ const Cart = () => {
 
   const authKey = useSelector((state) => state.authentication)
   const cartItems = useSelector((state) => state.cart)
-  const recommendedItems = useSelector((state) => state.recommended)
   const connection = useSelector((state) => state.connection.cart)
-
-  const recommendedCards = []
-  let keyCount = 0
-
-  for (const prop in recommendedItems) {
-    recommendedCards.push(...recommendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
-    keyCount += recommendedItems[prop].length
-  }
 
   useEffect(() => {
     dispatch(fetchCart(authKey))

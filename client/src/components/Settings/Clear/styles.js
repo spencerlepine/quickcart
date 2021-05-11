@@ -4,11 +4,10 @@ export default makeStyles(() => ({
   clearButton: {
     width: "fit-content",
     margin: "1em auto",
-    marginBottom: "0",
-    color: "white",
-    backgroundColor: "#b31219",
+    color: "#000000",
+    backgroundColor: "#ffa0a5",
     padding: "0.5em 1em",
-    border: "2px solid #520b0b",
+    border: "2px solid #a72d2d",
     borderRadius: "4px",
   },
 }))

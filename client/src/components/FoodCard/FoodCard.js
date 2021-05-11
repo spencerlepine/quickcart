@@ -44,6 +44,26 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
   const selectionMatches = (currentSelectedCategory === null && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
   const showThisItem = selectionMatches || searchMatch(currentSearch, groceryItem.name)
 
+
+
+  // Get the date last purchased
+  let dateString = groceryItem["last_purchased"];
+  let groceryExpirationDate = new Date(dateString);
+
+  // Find out how many days it ussually lasts
+  let groceryLifeSpan = Math.round(
+    groceryItem["purchase_price"] / groceryItem["serving_cost"]
+  );
+  
+  groceryExpirationDate.setDate(
+    groceryExpirationDate.getDate() + groceryLifeSpan
+  );
+  const todaysDate = new Date();
+  // If it is past when it expired
+  let groceryExpired = !(todaysDate >= groceryExpirationDate);
+
+
+
   // show every thing if currentSearch.length < 3
   return (
     <>

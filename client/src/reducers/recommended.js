@@ -1,21 +1,34 @@
-import { FETCH_RECOMENDED, RESET_REDUCER, REMOVE_FROM_RECOMMENDED } from "../constants/actionTypes.js"
+import { FETCH_RECOMENDED_IDS, SET_RECOMMENDED, RESET_REDUCER, REMOVE_FROM_RECOMMENDED } from "../constants/actionTypes.js"
 
-const initialState = {}
+const initialState = []
 
-const reducer = (reccomended = initialState, action) => {
+const reducer = (recommended = initialState, action) => {
   switch (action.type) {
-    case FETCH_RECOMENDED:
-      return action.payload
-    case RESET_REDUCER:
-      return initialState
-    case REMOVE_FROM_RECOMMENDED:
-      let newRecommendations = {}
-      for (const prop in reccomended) {
-        newRecommendations[prop] = reccomended[prop].filter(item => item._id !== action.payload)
+    case SET_RECOMMENDED:
+      // Save ALL the groceries to this reducer
+      return [...recommended, ...action.payload]
+    case FETCH_RECOMENDED_IDS: {
+      let recommendedCategories = action.payload 
+
+      let validIds = []
+      
+      for (const categoryKey in recommendedCategories) {
+        validIds.push(...recommendedCategories[categoryKey].map(itemObj => itemObj._id))
       }
+
+      const newRecommendations = recommended.filter(itemObj =>
+        validIds.includes(itemObj["_id"])
+      )
+
+      // What if the last one didn't have wraps, but this one has wraps? (the id won't be here)
       return newRecommendations
-    default:
-      return reccomended
+    } case RESET_REDUCER:
+      return initialState
+    case REMOVE_FROM_RECOMMENDED: {
+      const newRecommednations = recommended.filter(item => item._id !== action.payload)
+      return newRecommednations
+    } default:
+      return recommended
   }
 }
 

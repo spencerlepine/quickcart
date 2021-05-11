@@ -3,7 +3,7 @@ import { getGroceries } from "../../../actions/groceries"
 import { useSelector, useDispatch } from "react-redux"
 import useStyles from "./styles"
 
-const Backup = () => {
+const BackupCSV = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
   const authKey = useSelector((state) => state.authentication)
@@ -15,11 +15,49 @@ const Backup = () => {
 
   const groceries = useSelector((state) => state.groceries)
 
+  function convertToCSV(objArray) {
+        let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray
+        let str = ''
+
+        // Filter out the extra keys - https://stackoverflow.com/questions/38750705/filter-object-properties-by-key-in-es6
+        const allowed = ['name', 'purchase_price', 'purchase_size', 'serving_cost', 'category', 'last_purchase', 'priority', 'image']
+
+        // Get the headers from the first object
+        for (const header in array[0]) {
+            if (allowed.includes(header)) {
+                str+=header + ","
+            }
+        }
+        str = str.slice(0, str.length-1)
+        str += '\r\n'
+        
+        for (var i = 0; i < array.length; i++) {
+            let filteredObj = {}
+            for (const prop in array[i]) {
+                if (allowed.includes(prop)) {
+                  filteredObj[prop] = array[i][prop]
+                    
+                }
+            }
+
+            var line = ''
+            for (var index in filteredObj) {
+                if (line !== '') line += ','
+
+                line += filteredObj[index]
+            }
+
+            str += line + '\r\n'
+        }
+
+        return str
+    }
+
   function save(data, filename) {
     const groceryCount = data.length
-    const jsonGroceries = JSON.stringify(groceries)
+    const csvFilteredGroceries = convertToCSV(data)
 
-    data = jsonGroceries
+    data = csvFilteredGroceries
 
     if (!data) {
       console.error("Console.save: No data")
@@ -72,15 +110,15 @@ const Backup = () => {
 
   const saveCart = () => {
     let todaysDate = new Date()
-    const fileName = `${todaysDate.getMonth()}_${todaysDate.getDate()}_${todaysDate.getFullYear()}_Backup(Groceries).txt`
+    const fileName = `Grocery_CSV_${todaysDate.getMonth()}_${todaysDate.getDate()}_${todaysDate.getFullYear()}.txt`
     save(groceries, [fileName])
   }
 
   return (
     <div>
-      <button className={classes.backupButton} onClick={saveCart}>Export Data</button>
+      <button className={classes.backupButton} onClick={saveCart}>Download CSV</button>
     </div>
   )
 }
 
-export default Backup
+export default BackupCSV

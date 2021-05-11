@@ -8,6 +8,8 @@ import {
   SET_GROCERY_CONNECTION,
   FETCH_COUNT,
   RESET_REDUCER,
+  SET_RECOMMENDED,
+  FETCH_RECOMENDED_IDS
 } from "../constants/actionTypes.js"
 
 // action creators
@@ -38,6 +40,11 @@ export const getGroceries = (key, offset=0) => async (dispatch) => {
         }
       }
     }
+
+    // Save these to reccomended
+    dispatch({ type: SET_RECOMMENDED, payload: data })
+    const { data: recommendedIds } = await api.fetchRecommended({ key })
+    dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
 
     dispatch({ type: FETCH_ALL, payload: grouped })
     localStorage.setItem("groceryAuthKey", key)

@@ -81,8 +81,8 @@ const Import = () => {
   }
 
   return (
-    <div>
-      <label>Import Data</label><br />
+    <div className={classes.importDiv}>
+      <label className={classes.inputLabel}>Choose Backup File</label><br />
       <input
         className={classes.fileInput}
         onChange={importData}

@@ -9,24 +9,17 @@ const Recommended = () => {
   const classes = useStyles()
 
   const recommendedItems = useSelector((state) => state.recommended)
-  console.log(recommendedItems)
-  const recommendedCards = []
-  let keyCount = 0
-  for (const prop in recommendedItems) {
-    recommendedCards.push(...recommendedItems[prop].map((item, i) => <FoodCard key={keyCount + i} groceryItem={item} />))
-    keyCount += recommendedItems[prop].length
-  }
-
+  const recommendedCards = recommendedItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
 
   return (
     <div className={classes.gridView}>
-      {recommendedCards.length > 0 && (
+      {recommendedCards.length > 0 ? (
         <>
           <h3>Cart Recommendations</h3>
           <hr />
           <div className={classes.recommendedGrid}>{recommendedCards}</div>
         </>
-      )}
+      ) : <CircularProgress className={classes.loadSpinner} />}
     </div>
   )
 }

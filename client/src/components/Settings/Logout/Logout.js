@@ -14,7 +14,7 @@ const Clear = () => {
   }
 
   return (
-    <div>
+    <div className={classes.logoutDiv}>
       <button className={classes.logoutButton} onClick={handleLougout}>Logout</button>
     </div>
   )

@@ -58,7 +58,7 @@ export default makeStyles(() => ({
       gridColumnEnd: "3",
     },
     height: "10px",
-    zIndex: "99",
+    zIndex: "109",
     width: "100%",
     position: "fixed",
     bottom: "0",

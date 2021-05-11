@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
+  logoutDiv: {
+    width: "fit-content",
+    margin: "auto",
+    padding: "1em",
+  },
   logoutButton: {
     width: "fit-content",
     backgroundColor: "rgb(67, 176, 42)",

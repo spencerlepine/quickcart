@@ -7,32 +7,19 @@
 
 - fix mobile navbar css
 
-- input images are getting resized properly?
 - groceries are getting duplicated (use set?)
 
-- filter groceries wihout images, too much memory
-- fetch collection documents without image with query
-- time recommended alg with sample data
-- recomended cross references cart, need more vegetables, or breadList
+- group categories on recommended page for easier browsing
+
 - add category function
 -printable list
 
 - cart vegetables pound input?
 -- purchase price is BY POUND
--- serving cost is (fruit: 1 piece) - (vegetable: handful)
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
 
-- finish Settings UI
-
--- display categories with emojis at top (hide when searching)
-
 - Recipes (connected with ids)
 
-- category emojis in seperate file
-
-- clear cart when you CLEAR grocery DB (setings button)
-
 Extra:
-- export to CSV
-- seperate overview food cards into pages (page 2, next) (splice groceries)
+- Load more button? - seperate overview food cards into pages (page 2, next) (splice groceries)

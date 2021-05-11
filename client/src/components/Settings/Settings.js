@@ -6,7 +6,7 @@ import Backup from "./Backup/Backup"
 import Import from "./Import/Import"
 import Clear from "./Clear/Clear"
 import Logout from "./Logout/Logout"
-import ShowPassword from "./ShowPassword/ShowPassword"
+import BackupCSV from "./BackupCSV/BackupCSV"
 
 const Settings = () => {
   const classes = useStyles()
@@ -14,10 +14,11 @@ const Settings = () => {
 
   return (
     <div className={classes.settingsContainer}>
+      
+      <Import />
       <Backup />
-      {authKey !== "demo123" && <Import />}
-      {authKey !== "demo123" && <Clear />}
-      {authKey !== "demo123" && <ShowPassword />}
+      <BackupCSV />
+      <Clear />
       {authKey && <Logout />}
     </div>
   )
