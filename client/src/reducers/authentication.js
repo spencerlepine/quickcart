@@ -5,7 +5,12 @@ const initialState = null
 const reducer = (authenticationKey = initialState, action) => {
   switch (action.type) {
     case SET_KEY:
-      return action.payload
+      let newKey = action.payload
+      if (localStorage.getItem('groceryAuthKey') !== newKey) {
+        localStorage.setItem('groceryAuthKey', newKey)
+      }
+
+      return newKey
     case RESET_REDUCER:
       return initialState
     default:

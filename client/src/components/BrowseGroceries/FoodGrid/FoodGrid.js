@@ -9,11 +9,12 @@ import useStyles from "./styles"
 
 import { getGroceries } from "../../../actions/groceries"
 
-const FoodGrid = ({ authentication }) => {
+const FoodGrid = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
   const groceries = useSelector((state) => state.groceries)
+  const authKey = useSelector((state) => state.authentication)
   const totalGroceryCount = useSelector((state) => state.count)
   const foodItems =
     groceries && groceries[0] !== undefined
@@ -28,7 +29,7 @@ const FoodGrid = ({ authentication }) => {
 
   useEffect(() => {
     if (groceries.length < totalGroceryCount || totalGroceryCount === 0) {
-      dispatch(getGroceries(authentication, groceries.length))
+      dispatch(getGroceries(authKey, groceries.length))
     }
   }, [groceries, totalGroceryCount])
 

@@ -1,6 +1,5 @@
 import {
   FETCH_ALL,
-  CREATE,
   UPDATE,
   DELETE,
   RESET_REDUCER,
@@ -11,11 +10,10 @@ const initialState = []
 const reducer = (groceries = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL:
-      let filteredPayload = action.payload.filter(item => item)
+      let existingIds = groceries.map(item => item["_id"])
+      let filteredPayload = action.payload.filter(item => item && !(existingIds.includes(item["_id"])))
       let extendedGroceries = [...groceries, ...filteredPayload]
       return extendedGroceries
-    case CREATE:
-      return [...groceries, action.payload]
     case UPDATE:
       return groceries.map((post) =>
         post._id === action.payload._id ? action.payload : post

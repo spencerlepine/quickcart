@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   categoriesContainter: {
@@ -11,5 +11,10 @@ export default makeStyles(() => ({
     height: "fit-content",
     maxWidth: "80vw",
     overflowX: "scroll",
+    MsOverflowStyle: "none",
+    scrollbarWidth: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    }
   },
-}))
+}));

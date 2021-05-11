@@ -4,7 +4,7 @@ import { fetchCategories } from "../../../actions/categories"
 import CategorySelector from "./CategorySelector/CategorySelector"
 import useStyles from "./styles"
 
-const Categories = () => {
+const CategoryLabels = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
@@ -27,4 +27,4 @@ const Categories = () => {
   )
 }
 
-export default Categories
+export default CategoryLabels

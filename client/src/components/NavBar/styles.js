@@ -49,7 +49,7 @@ export default makeStyles(() => ({
   },
   cartLink: {
     display: "flex",
-    marginLeft: "auto",
+    marginRight: "0",
     backgroundColor: "ghostwhite",
     padding: "0px 10px 0px 10px",
     borderRadius: "15px",
@@ -61,6 +61,14 @@ export default makeStyles(() => ({
     },
     "& svg": {
       color: "#333333",
+    },
+    "@media (max-width: 900px)": {
+      margin: "auto",
+    },
+  },
+  recommendedIcon: {
+    "@media (max-width: 900px)": {
+      margin: "auto",
     },
   },
 }))

@@ -2,7 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import NavBar from "./components/NavBar/NavBar"
-import Overview from "./components/Overview/Overview"
+import BrowseGroceries from "./components/BrowseGroceries/BrowseGroceries"
 import Form from "./components/Form/Form"
 import Cart from "./components/Cart/Cart"
 import Settings from "./components/Settings/Settings"
@@ -22,7 +22,7 @@ const App = () => {
         ?
         <Switch>
           <Route exact path="/">
-            <Overview />
+            <BrowseGroceries />
           </Route>
           <Route path="/form">
             <Form />

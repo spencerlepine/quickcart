@@ -67,8 +67,6 @@ export const createGrocery = (key, newGrocery) => async (dispatch) => {
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ key })
     dispatch({ type: FETCH_COUNT, payload: count })
-
-    dispatch({ type: CREATE, payload: data })
   } catch (error) {
     console.log(error.message)
   }

@@ -7,6 +7,7 @@ import { setSelectedCategory } from "../../actions/selectedCategory.js"
 import { fetchCart } from "../../actions/cart.js"
 import { fetchRecommended } from "../../actions/recommended"
 import CircularProgress from "@material-ui/core/CircularProgress"
+import { fetchCategories } from "../../actions/categories.js"
 
 const Login = () => {
   const [keyFormValue, setKeyFormValue] = useState("")
@@ -37,8 +38,9 @@ const Login = () => {
 
   const handleSubmit = (savedKey = null) => {
     const usableKey = savedKey || keyFormValue
-    dispatch(getGroceries(usableKey))
     dispatch(fetchCart(usableKey))
+    dispatch(fetchCategories(usableKey))
+    dispatch(getGroceries(usableKey))
     dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
     dispatch(fetchRecommended(usableKey))

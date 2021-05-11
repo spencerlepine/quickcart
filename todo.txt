@@ -5,8 +5,6 @@
 - abstract login status to accountStatus hook
 - fetch cart before any groceries (since groceryies will be loading)
 
-- fix mobile navbar css
-
 - groceries are getting duplicated (use set?)
 
 - group categories on recommended page for easier browsing

@@ -31,8 +31,20 @@ const schema = {
   image: "",
 }
 
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}
+
 const Form = () => {
+  const categories = useSelector((state) => state.categories)
+
   const [thisGrocery, setThisGrocery] = useState(schema)
+  const [dropdownCategories, setDropdownCategories] = useState([])
   const dispatch = useDispatch()
   const history = useHistory()
   const classes = useStyles()
@@ -43,6 +55,13 @@ const Form = () => {
     currentId ? state.groceries.find((item) => item._id === currentId) : null
   )
 
+  useEffect(() => {
+    let categoryOptions = categories.map(category => {
+      return (<option value={category["_id"]}>{toTitleCase(category["_id"])}</option>)
+    })
+    setDropdownCategories(prevCategories => [<option label="None" value="" />, ...categoryOptions])
+  }, [categories])
+  
   const clearForm = () => {
     dispatch(setId(null))
     setThisGrocery(schema)
@@ -161,6 +180,7 @@ const Form = () => {
           {Field("purchase_size", "Dozen", classes.itemSize)}
 
           <div className={classes.dollarSign}>
+            <label className={classes.divLabel}>Purchase Price</label>
             <p className={classes.priceIndicator}>$</p>
             {Field("purchase_price", "2.50", classes.itemPrice)}
           </div>
@@ -177,16 +197,7 @@ const Form = () => {
                 id: "age-native-simple",
               }}
             >
-              <option label="None" value="" />
-              <option value={"bread"}>Bread</option>
-              <option value={"grains"}>Grains</option>
-              <option value={"dairy"}>Dairy</option>
-              <option value={"breakfast"}>Breakfast</option>
-              <option value={"fruits"}>Fruits</option>
-              <option value={"vegetables"}>Vegetables</option>
-              <option value={"meat"}>Meat</option>
-              <option value={"snacks"}>Snacks</option>
-              <option value={"pantry"}>Pantry</option>
+              {dropdownCategories}
             </Select>
           </div>
 

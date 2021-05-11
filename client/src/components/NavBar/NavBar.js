@@ -9,21 +9,11 @@ import ListAltIcon from "@material-ui/icons/ListAlt"
 import EmojiObjects from "@material-ui/icons/EmojiObjects"
 import useStyles from "./styles.js"
 
-const appConnectionStatus = ({ groceries, recommended, cart }) => {
-  if (groceries === "pending" || cart === "pending" || recommended === "pending") {
-    return "pending"
-  } else if (groceries === "connected" && cart === "connected" && recommended === "connected") {
-    return "connected"
-  }
-}
-
 const NavBar = () => {
   const classes = useStyles()
   const { pathname } = useLocation()
 
   const cartLength = useSelector((state) => state.cart.length)
-  const connectionObj = useSelector((state) => state.connection)
-  let connection = appConnectionStatus(connectionObj)
  
   const highlightLink = (path) => {
     return {
@@ -32,30 +22,8 @@ const NavBar = () => {
     }
   }
 
-  const highlightStatus = (connection) => {
-    return connection === "pending" || connection === "local" ? 
-      "rgb(106 104 255)" : connection === "connected" ? 
-        "#43c143" : "rgb(253 59 59)"
-  }
-
-  const statusStyles = {
-    width: "20px", 
-    height: "20px",
-    position: "fixed",
-    zIndex: "100",
-    bottom: "5px",
-    border: '2px solid white',
-    right: "5px",
-    margin: "10px",
-    borderRadius: "50%",
-    boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
-    backgroundColor: highlightStatus(connection)
-  }
-
   return (
     <div className={classes.navBar}>
-      <div style={statusStyles}></div>
-
       <div className={classes.navbarContainer}>
         <Link style={highlightLink("/")} className={classes.link} to="/">
           <ListAltIcon fontSize="large" />
@@ -72,7 +40,7 @@ const NavBar = () => {
         </Link>
 
         {pathname === "/" && <SearchBar />}
-        
+
         <Link
           style={{ ...highlightLink("/cart"), marginLeft: "auto" }}
           className={classes.link}
