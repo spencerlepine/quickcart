@@ -1,15 +1,10 @@
 # To do:
-- make sure each file ONLY does what it describes
-- don't save new grocery to state
-- fetch cart when you add something
-- abstract login status to accountStatus hook
-- fetch cart before any groceries (since groceryies will be loading)
-
-- groceries are getting duplicated (use set?)
-
+- get rid of old auth stuff
+- get rid of demo
 - group categories on recommended page for easier browsing
 
 - add category function
+
 -printable list
 
 - cart vegetables pound input?

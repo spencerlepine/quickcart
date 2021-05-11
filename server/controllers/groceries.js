@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 export const displayError = async (req, res) => {
   res.status(200).json("Usage: url/groceries/<authKey>");
+  
 };
 
 export const getGroceries = async (req, res) => {
