@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import BrowseGroceries from "./components/BrowseGroceries/BrowseGroceries";
@@ -10,15 +11,14 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Recommended from "./components/Recommended/Reccomended";
-import { useAuth } from "./contexts/AuthContext"
 import "./index.css";
 
 const App = () => {
-  const { currentUser } = useAuth()
+  const userId = useSelector(state => state.connectedUser)
 
   return (
     <BrowserRouter>
-      {currentUser ? (<>
+      {userId ? (<>
         <NavBar />
         <Switch>
           <Route exact path="/">

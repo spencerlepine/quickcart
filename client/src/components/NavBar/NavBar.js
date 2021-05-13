@@ -74,7 +74,7 @@ const NavBar = () => {
 
         <Link
           style={{ marginLeft: "auto" }}
-          className={classes.menuToggleBtn}
+          className={classes.link}
           to="/cart"
         >
           <div className={classes.cartLink}>

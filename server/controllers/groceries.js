@@ -6,14 +6,15 @@ import { db } from "../connection/firebase.js"
 
 export const displayError = async (req, res) => {
   res.status(200).json("Usage: url/groceries/<offset>");
-  
 };
 
 export const getGroceries = async (req, res) => {
   try {
-    console.log(req.body)
-    let firebaseResult = await db.collection('users')
-    console.log(Object.keys(firebaseResult))
+    const { id: userId } = req.params
+  
+    let { firestore } = await db.collection(userId)
+    res.status(200).json(firestore);
+    
     // console.log(firebaseResult.firestore)
     /*
 
@@ -28,7 +29,6 @@ export const getGroceries = async (req, res) => {
       // .skip(parseInt(offset));
 
     res.status(200).json(userGroceries);*/
-
   } catch (error) {
     console.log("getGroceries controller error: " + error.message)
     res.status(404).json(error.message);

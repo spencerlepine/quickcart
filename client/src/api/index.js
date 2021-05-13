@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:5000'
 // const baseUrl = "https://grocery-server-sl.herokuapp.com"
 
 // Grocery API calls
-export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${offsetObj.offset}/`, {id: idObj.id, withCredentials: true})
+export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${offsetObj.offset}/`, {withCredentials: true})
 
 export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/count/`, idObj)
 
@@ -29,7 +29,10 @@ export const deleteAllGroceries = (keyObj) => axios.delete(`${baseUrl}/groceries
 
 export const fetchCategories = () => axios.get(`${baseUrl}/categories`)
 
-export const loginUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/login`, { email: loginInfoObj["email"], password: loginInfoObj["password"]}, { withCredentials: true })
+// User account calls
+export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, loginInfoObj, { withCredentials: true })
+
+export const loginUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/login`, loginInfoObj, { withCredentials: true })
 
 export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`, {}, { withCredentials: true })
 

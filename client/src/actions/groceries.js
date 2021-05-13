@@ -13,7 +13,8 @@ import {
 // action creators
 export const getGroceries = (userId, offset=0, ) => async (dispatch) => {
   try {
-    const result = await api.fetchGroceries(userId, { offset })
+    const { data } = await api.fetchGroceries({ userId }, { offset })
+    console.log(data)
     /*
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
 

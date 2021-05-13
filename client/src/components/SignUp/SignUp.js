@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
-import { signupUser } from "../../actions/auth.js"
+import { signupUser } from "../../actions/userAccount.js"
 
 
 import useStyles from "./styles.js";

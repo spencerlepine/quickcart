@@ -1,7 +1,7 @@
 import React from "react"
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logoutUser } from "../../../actions/auth.js"
+import { logoutUser } from "../../../actions/userAccount.js"
 
 import useStyles from "./styles"
 

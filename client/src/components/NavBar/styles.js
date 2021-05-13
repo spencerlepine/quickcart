@@ -18,12 +18,6 @@ export default makeStyles(() => ({
     display: "flex",
     // width: "70%",
     margin: "auto",
-    "@media (max-width: 900px)": {
-      width: "100%",
-      margin: "0",
-      display: "grid",
-      gridTemplateColumns: "auto auto auto auto auto",
-    },
   },
   menuToggleBtn: {
     zIndex: 99,
@@ -47,6 +41,7 @@ export default makeStyles(() => ({
   cartLink: {
     display: "flex",
     margin: "auto",
+    marginLeft: "auto",
     marginRight: "0",
     backgroundColor: "ghostwhite",
     padding: "0px 10px 0px 10px",
@@ -93,9 +88,6 @@ export default makeStyles(() => ({
       padding: "0",
       marginLeft: "5px",
       whiteSpace: "nowrap",
-      "@media (max-width: 900px)": {
-        display: "None",
-      },
     },
     "&:hover": {
       color: "gray",

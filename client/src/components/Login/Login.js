@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useStyles from "./styles.js"
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/auth.js"
+import { loginUser } from "../../actions/userAccount.js"
 
 const Login = () => {
   const [formValues, setFormValue] = useState({
@@ -31,8 +31,9 @@ const Login = () => {
     try {
       await dispatch(loginUser(formValues["email"], formValues["password"]))
       history.push("/");
-    } catch {
-      console.log("login failed");
+    } catch(err) {
+      alert("Log in failed..")
+      console.log(err)
     }
   };
 

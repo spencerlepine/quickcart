@@ -14,7 +14,8 @@ import { getGroceries } from "../../../actions/groceries"
 const FoodGrid = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
-
+  
+  const userId = useSelector(state => state.connectedUser)
   const groceries = useSelector((state) => state.groceries)
   const totalGroceryCount = useSelector((state) => state.count)
   const foodItems =
@@ -30,7 +31,7 @@ const FoodGrid = () => {
 
   useEffect(() => {
     if (groceries.length < 10) {
-      dispatch(getGroceries(0))
+      dispatch(getGroceries(userId, 0))
     }
 
     // if (groceries.length < totalGroceryCount || totalGroceryCount === 0) {

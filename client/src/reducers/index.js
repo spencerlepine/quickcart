@@ -9,6 +9,7 @@ import categories from "./categories"
 import selectedCategory from "./selectedCategory"
 import connection from "./connection"
 import count from "./count"
+import connectedUser from "./connectedUser"
 
 export default combineReducers({
   groceries,
@@ -20,4 +21,5 @@ export default combineReducers({
   selectedCategory,
   connection,
   count,
+  connectedUser,
 })
