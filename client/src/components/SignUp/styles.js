@@ -8,6 +8,7 @@ export default makeStyles(() => ({
     margin: "auto",
     marginTop: "12vh",
     marginBottom: "5vh",
+    // minHeight: "136px",
     padding: "30px",
     borderRadius: "8px",
     width: "fit-content",

@@ -13,8 +13,6 @@ const FoodGrid = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const userId = useSelector((state) => state.authStatus)
-
   const groceries = useSelector((state) => state.groceries)
   const totalGroceryCount = useSelector((state) => state.count)
   const foodItems =
@@ -28,12 +26,12 @@ const FoodGrid = () => {
     dispatch(setId(null))
   }, [dispatch])
 
-  useEffect(() => {
-    if (groceries.length < totalGroceryCount || totalGroceryCount === 0) {
-      let thisOffset = groceries.length === undefined ? 0 : groceries.length
-      dispatch(getGroceries(userId, thisOffset))
-    }
-  }, [groceries, totalGroceryCount])
+  // useEffect(() => {
+  //   if (groceries.length < totalGroceryCount || totalGroceryCount === 0) {
+  //     let thisOffset = groceries.length === undefined ? 0 : groceries.length
+  //     dispatch(getGroceries(thisOffset))
+  //   }
+  // }, [groceries, totalGroceryCount])
 
   return (
     <>

@@ -6,9 +6,9 @@ import {
 // action creators
 export const fetchCategories = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchCategories()
+    // const { data } = await api.fetchCategories()
 
-    dispatch({ type: FETCH_CATEGORIES, payload: data })
+    // dispatch({ type: FETCH_CATEGORIES, payload: data })
   } catch (error) {
     console.log(error.message)
   }

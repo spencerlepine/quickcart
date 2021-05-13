@@ -1,13 +1,22 @@
 import React from "react"
-import { logoutUser } from "../../../actions/userAccount"
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { logoutUser } from "../../../actions/auth.js"
+
 import useStyles from "./styles"
 
-const Clear = () => {
+const Logout = () => {
   const classes = useStyles()
+  const history = useHistory()
   const dispatch = useDispatch()
-  const handleLougout = () => {
-    dispatch(logoutUser())
+
+  const handleLougout = async () => {
+    try { 
+      await dispatch(logoutUser())
+      history.push("/")
+    } catch {
+      console.log("logout failed");
+    }
   }
 
   return (
@@ -17,4 +26,4 @@ const Clear = () => {
   )
 }
 
-export default Clear
+export default Logout

@@ -54,7 +54,7 @@ export const getGroceries = (id, offset=0) => async (dispatch) => {
     // dispatch({ type: FETCH_COUNT, payload: count })*/
   } catch (error) {
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
-    console.log("ACTION ERROR: " + error.message)
+    console.log(error.message)
   }
 }
 

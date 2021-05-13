@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useStyles from "./styles.js"
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/auth.js"
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom"
+import { signupUser } from "../../actions/auth.js"
 
-const Login = () => {
-  const [formValues, setFormValue] = useState({
-    email: "demo123@gmail.com",
-    password: "password123"
-  });
-  
-  const history = useHistory();
+
+import useStyles from "./styles.js";
+
+const SignUp = () => {
+  const [formValues, setFormValue] = useState({ email: "", password: "" });
+  const history = useHistory()
   const dispatch = useDispatch()
   const classes = useStyles();
 
@@ -29,40 +27,40 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(loginUser(formValues["email"], formValues["password"]))
-      history.push("/");
+        await dispatch(signupUser(formValues["email"], formValues["password"]))
+        history.push("/")
     } catch {
-      console.log("login failed");
+        console.log("sign up failed")
     }
   };
 
   return (
     <div className={classes.loginPrompt}>
-      <h2>Log in</h2>
+      <h2>Sign Up</h2>
       <input
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         name="email"
         value={formValues["email"]}
-        placeholder="demo123@gmail.com"
+        placeholder="Email"
       ></input>
       <input
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         name="password"
         value={formValues["password"]}
-        placeholder="password123"
+        placeholder="Password"
       ></input>
       <button onClick={() => handleSubmit()} className={classes.loginButton}>
-        Log in
+        Continue
       </button>
       <hr />
-      <p className={classes.accountMessage}>Don’t have an account?</p>
+      <p className={classes.accountMessage}>Already have an account?</p>
       <div className={classes.accountRedirect}>
-        <Link to="/register">Sign Up</Link>
+        <Link to="/login">Log in</Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
