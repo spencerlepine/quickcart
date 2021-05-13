@@ -18,12 +18,14 @@ const CategoryLabels = () => {
     <CategorySelector categoryName={category["_id"]} key={i} selectionValue={category["_id"]} />
   ))
 
-  return (
-    <div className={classes.categoriesContainter}>
-      <CategorySelector categoryName="all" selectionValue={null} />
-      {categoryComponents}
-    </div>
-  )
+  return (<>
+    {categories.length > 0 &&
+      (<div className={classes.categoriesContainter}>
+        <CategorySelector categoryName="all" selectionValue={null} />
+        {categoryComponents}
+      </div>)
+    }
+  </>)
 }
 
 export default CategoryLabels

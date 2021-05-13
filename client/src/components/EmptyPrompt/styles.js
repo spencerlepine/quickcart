@@ -32,6 +32,7 @@ export default makeStyles(() => ({
     marginTop: "20px",
     textAlign: "center",
     fontSize: "20px",
+    color: "rgb(57, 57, 57)",
     fontWeight: "600",
   },
   emptyContainer: {

@@ -11,8 +11,10 @@ import {
 } from "../constants/actionTypes.js"
 
 // action creators
-export const getGroceries = (id, offset=0) => async (dispatch) => {
+export const getGroceries = (userId, offset=0, ) => async (dispatch) => {
   try {
+    const result = await api.fetchGroceries(userId, { offset })
+    /*
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
 
     const { data } = await api.fetchGroceries({ id }, { offset })
@@ -22,7 +24,7 @@ export const getGroceries = (id, offset=0) => async (dispatch) => {
     dispatch({ type: FETCH_COUNT, payload: count })
 
     dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
-    /*// Start grouping the data
+    // Start grouping the data
     let grouped = [data[0]]
 
     for (let i = 1; i < data.length; i++) {

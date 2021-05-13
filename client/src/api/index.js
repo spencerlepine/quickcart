@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:5000'
 // const baseUrl = "https://grocery-server-sl.herokuapp.com"
 
 // Grocery API calls
-export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${offsetObj.offset}/`, {withCredentials: true})
+export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${offsetObj.offset}/`, {id: idObj.id, withCredentials: true})
 
 export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/count/`, idObj)
 

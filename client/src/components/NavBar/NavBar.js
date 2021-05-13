@@ -1,7 +1,6 @@
-import React from "react"
-import { Link, useLocation } from "react-router-dom"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
-import SearchBar from "./SearchBar/SearchBar"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import SettingsIcon from "@material-ui/icons/Settings"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
@@ -9,29 +8,30 @@ import ListAltIcon from "@material-ui/icons/ListAlt"
 import EmojiObjects from "@material-ui/icons/EmojiObjects"
 import useStyles from "./styles.js"
 
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+
 const NavBar = () => {
   const classes = useStyles()
-  const { pathname } = useLocation()
+
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const cartLength = useSelector((state) => state.cart.length)
  
-  const highlightLink = (path) => {
-    return {
-      backgroundColor: pathname === path ? "#171717" : "#333333",
-      color: pathname === path ? "#6f6f6f" : "#e2e2e6",
-    }
+  const toggleMenu = () => {
+    setMenuOpen((prevState) => !prevState)
   }
 
-  return (
-    <div className={classes.navBar}>
-      <div className={classes.navbarContainer}>
-        <Link style={highlightLink("/")} className={classes.link} to="/">
+  const Sidebar = () => {
+    return (
+      <div onClick={toggleMenu} className={classes.sidebar}>
+        <Link className={classes.link} to="/">
           <ListAltIcon fontSize="large" />
-          <p>Overview</p>
+          <p>Browse</p>
         </Link>
 
         <Link
-          style={{ ...highlightLink("/form"), justifySelf: "center" }}
+          style={{justifySelf: "center" }}
           className={classes.link}
           to="/form"
         >
@@ -39,11 +39,42 @@ const NavBar = () => {
           <p>Create</p>
         </Link>
 
-        {pathname === "/" && <SearchBar />}
+        <Link
+          className={`${classes.link} ${classes.recommendedIcon}`}
+          to="/recommended"
+        >
+          <EmojiObjects fontSize="large" />
+          <p>Suggested</p>
+        </Link>
 
         <Link
-          style={{ ...highlightLink("/cart"), marginLeft: "auto" }}
-          className={classes.link}
+          className={`${classes.link} ${classes.settingIcon}`}
+          to="/settings"
+        >
+          <SettingsIcon fontSize="large" />
+          <p>Settings</p>
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <><div className={classes.navBar}>
+      <div className={classes.navbarContainer}>
+        <div onClick={toggleMenu} className={classes.menuToggleBtn}>
+          {menuOpen
+            ?
+            <CloseIcon fontSize="large" />
+            :
+            <MenuIcon fontSize="large" />
+          }
+        </div>
+
+        {menuOpen && <Sidebar />}
+
+        <Link
+          style={{ marginLeft: "auto" }}
+          className={classes.menuToggleBtn}
           to="/cart"
         >
           <div className={classes.cartLink}>
@@ -51,24 +82,9 @@ const NavBar = () => {
             {cartLength > 0 && <p>{cartLength}</p>}
           </div>
         </Link>
-
-        <Link
-          style={{ ...highlightLink("/recommended") }}
-          className={`${classes.link} ${classes.recommendedIcon}`}
-          to="/recommended"
-        >
-          <EmojiObjects fontSize="large" />
-        </Link>
-
-        <Link
-          style={{ ...highlightLink("/settings") }}
-          className={`${classes.link} ${classes.settingIcon}`}
-          to="/settings"
-        >
-          <SettingsIcon fontSize="large" />
-        </Link>
       </div>
     </div>
+    <div className={classes.navBarSpacing}></div></>
   )
 }
 

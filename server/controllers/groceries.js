@@ -1,14 +1,22 @@
-import mongoose from "mongoose";
-import User from "../models/userModel.js";
-import dotenv from "dotenv";
+// import mongoose from "mongoose";
+// import User from "../models/userModel.js";
+// import dotenv from "dotenv";
+
+import { db } from "../connection/firebase.js"
 
 export const displayError = async (req, res) => {
-  res.status(200).json("Usage: url/groceries/<authKey>");
+  res.status(200).json("Usage: url/groceries/<offset>");
   
 };
 
 export const getGroceries = async (req, res) => {
   try {
+    console.log(req.body)
+    let firebaseResult = await db.collection('users')
+    console.log(Object.keys(firebaseResult))
+    // console.log(firebaseResult.firestore)
+    /*
+
     const { id } = req.body;
     console.log(req.body)
     const { offset } = req.params;
@@ -19,7 +27,8 @@ export const getGroceries = async (req, res) => {
       // .limit(fetchLimit)
       // .skip(parseInt(offset));
 
-    res.status(200).json(userGroceries);
+    res.status(200).json(userGroceries);*/
+
   } catch (error) {
     console.log("getGroceries controller error: " + error.message)
     res.status(404).json(error.message);

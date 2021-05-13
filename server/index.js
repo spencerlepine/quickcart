@@ -1,4 +1,3 @@
-import mongoose from "mongoose"
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
@@ -10,7 +9,7 @@ import categoryRoutes from "./routes/categories.js"
 import countRoutes from "./routes/count.js"
 
 import groceryRouter from "./routes/groceryRouter.js"
-import userRouter from "./routes/userRouter.js"
+// import userRouter from "./routes/userRouter.js"
 
 const app = express()
 dotenv.config()
@@ -29,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/groceries', groceryRouter)
-app.use('/auth', userRouter)
+// app.use('/auth', userRouter)
 
 app.use('/recommended', recommendedRoutes)
 app.use('/cart', cartRoutes)
@@ -44,8 +43,4 @@ app.get('/', (req, res) => {
 // Connect to the MongoDB cluster
 const PORT = process.env.PORT || 5000
 
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-.catch((error) => console.log(error.message))
-
-mongoose.set('useFindAndModify', false)
+app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
