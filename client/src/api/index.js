@@ -1,9 +1,11 @@
 import axios from "axios"
-// const baseUrl = 'http://localhost:5000'
-const baseUrl = "https://grocery-server-sl.herokuapp.com"
-const url = baseUrl + "/groceries"
+const baseUrl = 'http://localhost:5000'
+// const baseUrl = "https://grocery-server-sl.herokuapp.com"
 
-export const fetchGroceries = (keyObj, offsetObj) => axios.get(`${url}/${keyObj.key}/${offsetObj.offset}`)
+// Grocery API calls
+export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${offsetObj.offset}/`, {withCredentials: true})
+
+export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/count/`, idObj)
 
 export const fetchCart = (keyObj) => axios.get(`${baseUrl}/cart/${keyObj.key}`)
 
@@ -15,16 +17,20 @@ export const updateCartItem = (keyObj, updatedCartItem) => axios.patch(`${baseUr
 
 export const fetchRecommended = (keyObj) => axios.get(baseUrl + `/recommended/${keyObj.key}`)
 
-export const createGrocery = (keyObj, newGrocery) => axios.post(url + `/${keyObj.key}`, newGrocery)
+export const createGrocery = (keyObj, newGrocery) => axios.post(baseUrl + `/groceries/${keyObj.key}`, newGrocery)
 
 export const addToCart = (keyObj, itemToAdd) => axios.post(`${baseUrl}/cart/${keyObj.key}`, itemToAdd)
 
-export const updateGrocery = (keyObj, updatedGrocery) => axios.patch(`${url}/${keyObj.key}/${updatedGrocery["_id"]}`, updatedGrocery)
+export const updateGrocery = (keyObj, updatedGrocery) => axios.patch(`${baseUrl}/${keyObj.key}/${updatedGrocery["_id"]}`, updatedGrocery)
 
-export const deleteGrocery = (keyObj, id) => axios.delete(`${url}/${keyObj.key}/${id}`) 
+export const deleteGrocery = (keyObj, id) => axios.delete(`${baseUrl}/${keyObj.key}/${id}`) 
 
-export const deleteAllGroceries = (keyObj) => axios.delete(`${url}/${keyObj.key}`) 
+export const deleteAllGroceries = (keyObj) => axios.delete(`${baseUrl}/groceries/${keyObj.key}`) 
 
-export const fetchCategories = (keyObj) => axios.get(`${baseUrl}/categories/${keyObj.key}`)
+export const fetchCategories = () => axios.get(`${baseUrl}/categories`)
 
-export const fetchGroceryCount = (keyObj) => axios.get(`${baseUrl}/count/${keyObj.key}`)
+export const loginUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/login`, { email: loginInfoObj["email"], password: loginInfoObj["password"]}, { withCredentials: true })
+
+export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`, {}, { withCredentials: true })
+
+export const logoutUser = () => axios.get(`${baseUrl}/auth/logout`, {}, { withCredentials: true })

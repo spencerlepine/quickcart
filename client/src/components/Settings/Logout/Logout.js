@@ -1,5 +1,5 @@
 import React from "react"
-import { setAuthKey, resetLogin } from "../../../actions/authentication"
+import { logoutUser } from "../../../actions/userAccount"
 import { useDispatch } from "react-redux"
 import useStyles from "./styles"
 
@@ -7,10 +7,7 @@ const Clear = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const handleLougout = () => {
-    localStorage.setItem("groceryAuthKey", "")
-    dispatch(setAuthKey(null))
-    dispatch(resetLogin())
-    window.location.reload()
+    dispatch(logoutUser())
   }
 
   return (

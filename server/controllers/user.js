@@ -59,13 +59,12 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    
     // validate
 
-    if (!email || !password)
-      return res
-        .status(400)
-        .json({ errorMessage: "Please enter all required fields." });
+    if (!email || !password) {
+      return res.status(400).json({ errorMessage: "Please enter all required fields." });
+    }
 
     const existingUser = await User.findOne({ email });
     if (!existingUser)
@@ -95,7 +94,7 @@ export const loginUser = async (req, res) => {
         secure: true,
         sameSite: "none",
       })
-      .send();
+      .send(existingUser._id);
   } catch (error) {
     res.status(404).json(error.message);
   }
@@ -115,7 +114,7 @@ export const logoutUser = async (req, res) => {
 export const userLoggedIn = async (req, res) => {
     try {
         const token = req.cookies.token;
-        if (!token) return res.status(400).json(false);
+        if (!token) return res.status(200).json(false);
     
         jwt.verify(token, process.env.JWT_SECRET);
     

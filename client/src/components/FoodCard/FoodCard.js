@@ -27,7 +27,7 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const authKey = useSelector((state) => state.authentication)
+  const authKey = "yeet"//useSelector((state) => state.authSat)
   const currentSearch = useSelector((state) => state.search)
   const currentSelectedCategory = useSelector((state) => state.selectedCategory)
 

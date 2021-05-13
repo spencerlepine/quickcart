@@ -9,10 +9,9 @@ const CategoryLabels = () => {
   const classes = useStyles()
 
   const categories = useSelector(state => state.categories)
-  const authKey = useSelector(state => state.authentication)
 
   useEffect(() => {
-    dispatch(fetchCategories(authKey))
+    dispatch(fetchCategories())
   }, [])
 
   const categoryComponents = categories.map((category, i) => (

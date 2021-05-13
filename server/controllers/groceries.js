@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import GroceryItem from "../models/groceryItem.js";
-import DemoGroceryItem from "../models/demoGroceryItem.js";
+import User from "../models/userModel.js";
 import dotenv from "dotenv";
 
 export const displayError = async (req, res) => {
@@ -10,26 +9,19 @@ export const displayError = async (req, res) => {
 
 export const getGroceries = async (req, res) => {
   try {
-    const { key, offset } = req.params;
+    const { id } = req.body;
+    console.log(req.body)
+    const { offset } = req.params;
     const fetchLimit = 10;
 
-    if (key === "demo123") {
-      const groceryItems = await DemoGroceryItem.find()
-        .limit(fetchLimit)
-        .skip(parseInt(offset));
+    const result = await User.findById(id)
+    const { userGroceries } = result
+      // .limit(fetchLimit)
+      // .skip(parseInt(offset));
 
-      res.status(200).json(groceryItems);
-    } else if (key !== process.env.USER_KEY) {
-      res.status(404).json("invalid authentication key");
-      return;
-    }
-
-    const groceryItems = await GroceryItem.find()
-      .limit(fetchLimit)
-      .skip(parseInt(offset));
-
-    res.status(200).json(groceryItems);
+    res.status(200).json(userGroceries);
   } catch (error) {
+    console.log("getGroceries controller error: " + error.message)
     res.status(404).json(error.message);
   }
 };
@@ -67,20 +59,10 @@ export const getGroceryCategories = async (req, res) => {
 
 export const getGroceriesCount = async (req, res) => {
   try {
-    const { key } = req.params;
+    const { id } = req.body;
 
-    if (key === "demo123") {
-      const groceryItems = await DemoGroceryItem.countDocuments();
-
-      res.status(200).json(groceryItems);
-    } else if (key !== process.env.USER_KEY) {
-      res.status(404).json("invalid authentication key");
-      return;
-    }
-
-    const groceryItems = await GroceryItem.countDocuments();
-
-    res.status(200).json(groceryItems);
+    const { data } = await User.findById(id);
+    res.status(200).json(data.userGroceries.length);
   } catch (error) {
     res.status(404).json(error.message);
   }

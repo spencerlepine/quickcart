@@ -10,8 +10,7 @@ import BackupCSV from "./BackupCSV/BackupCSV"
 
 const Settings = () => {
   const classes = useStyles()
-  const authKey = useSelector((state) => state.authentication)
-
+  
   return (
     <div className={classes.settingsContainer}>
       
@@ -19,7 +18,7 @@ const Settings = () => {
       <Backup />
       <BackupCSV />
       <Clear />
-      {authKey && <Logout />}
+      <Logout />
     </div>
   )
 }

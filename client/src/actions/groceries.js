@@ -1,10 +1,8 @@
 import * as api from "../api/index.js"
 import {
-  FETCH_ALL,
-  CREATE,
+  FETCH_ALL_GROCERIES,
   UPDATE,
   DELETE,
-  SET_KEY,
   SET_GROCERY_CONNECTION,
   FETCH_COUNT,
   RESET_REDUCER,
@@ -13,16 +11,18 @@ import {
 } from "../constants/actionTypes.js"
 
 // action creators
-export const getGroceries = (key, offset=0) => async (dispatch) => {
+export const getGroceries = (id, offset=0) => async (dispatch) => {
   try {
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
 
-    const { data } = await api.fetchGroceries({ key }, { offset })
-    
-    // Save the key that worked
-    dispatch({ type: SET_KEY, payload: key })
+    const { data } = await api.fetchGroceries({ id }, { offset })
 
-    // Start grouping the data
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ id })
+    dispatch({ type: FETCH_COUNT, payload: count })
+
+    dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
+    /*// Start grouping the data
     let grouped = [data[0]]
 
     for (let i = 1; i < data.length; i++) {
@@ -42,21 +42,19 @@ export const getGroceries = (key, offset=0) => async (dispatch) => {
     }
 
     // Save these to reccomended
-    dispatch({ type: SET_RECOMMENDED, payload: data })
-    const { data: recommendedIds } = await api.fetchRecommended({ key })
-    dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
+    // dispatch({ type: SET_RECOMMENDED, payload: data })
+    // const { data: recommendedIds } = await api.fetchRecommended({ key })
+    // dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
 
-    dispatch({ type: FETCH_ALL, payload: grouped })
-    localStorage.setItem("groceryAuthKey", key)
+    dispatch({ type: FETCH_ALL_GROCERIES, payload: grouped })
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
 
     // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ key })
-    dispatch({ type: FETCH_COUNT, payload: count })
+    // const { data: count } = await api.fetchGroceryCount({ key })
+    // dispatch({ type: FETCH_COUNT, payload: count })*/
   } catch (error) {
-    dispatch({ type: SET_KEY, payload: null })
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
-    console.log(error.message)
+    console.log("ACTION ERROR: " + error.message)
   }
 }
 

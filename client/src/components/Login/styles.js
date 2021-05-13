@@ -12,18 +12,16 @@ export default makeStyles(() => ({
     //   height: "100vh",
     //   width: "100vw",
     // },
+    minWidth: "250px",
     zIndex: "99",
     backgroundColor: "white",
     margin: "auto",
-    marginTop: "20vh",
-    marginBottom: "40vh",
+    marginTop: "12vh",
+    marginBottom: "5vh",
     // minHeight: "136px",
     padding: "30px",
     borderRadius: "8px",
     width: "fit-content",
-    "@media (max-width:900px)": {
-      marginBottom: "30vh",
-    },
     "& input": {
       zIndex: "99",
       backgroundColor: "rgb(255, 255, 255)",
@@ -67,7 +65,7 @@ export default makeStyles(() => ({
     color: "rgb(255, 255, 255)",
     width: "100%",
   },
-  passwordLabel: {
+  inputLabel: {
     zIndex: "99",
     fontSize: "31px",
     fontWeight: "700",

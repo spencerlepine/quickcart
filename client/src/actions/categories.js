@@ -4,9 +4,9 @@ import {
 } from "../constants/actionTypes.js"
 
 // action creators
-export const fetchCategories = (key) => async (dispatch) => {
+export const fetchCategories = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchCategories({ key })
+    const { data } = await api.fetchCategories()
 
     dispatch({ type: FETCH_CATEGORIES, payload: data })
   } catch (error) {

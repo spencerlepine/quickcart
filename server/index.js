@@ -1,14 +1,11 @@
 import mongoose from "mongoose"
 import express from "express"
-import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
-import groceryRoutes from "./routes/groceries.js"
 import recommendedRoutes from "./routes/recommended.js"
 import cartRoutes from "./routes/cart.js"
-import authRoutes from "./routes/auth.js"
 import categoryRoutes from "./routes/categories.js"
 import countRoutes from "./routes/count.js"
 
@@ -18,9 +15,17 @@ import userRouter from "./routes/userRouter.js"
 const app = express()
 dotenv.config()
 
-app.use(bodyParser.json({ limit:  "30mb", extended: true }))
-app.use(bodyParser.urlencoded({ limit:  "30mb", extended: true }))
-app.use(cors())
+app.use(
+    cors({
+      origin: [
+        "http://localhost:3000",
+        "https://grocery-server-sl.herokuapp.com",
+      ],
+      credentials: true,
+    })
+  );
+app.use(express.json());
+
 app.use(cookieParser());
 
 app.use('/groceries', groceryRouter)
@@ -28,7 +33,6 @@ app.use('/auth', userRouter)
 
 app.use('/recommended', recommendedRoutes)
 app.use('/cart', cartRoutes)
-app.use('/auth', authRoutes)
 app.use('/categories', categoryRoutes)
 app.use('/count', countRoutes)
 

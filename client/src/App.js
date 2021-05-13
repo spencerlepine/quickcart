@@ -9,16 +9,17 @@ import Settings from "./components/Settings/Settings"
 import Error from "./components/Error/Error"
 import Footer from "./components/Footer/Footer"
 import Login from "./components/Login/Login"
+import Register from "./components/Register/Register"
 import Recommended from "./components/Recommended/Reccomended"
 import "./index.css"
 
 const App = () => {
-  const authKey = useSelector((state) => state.authentication)
+  const authStatus = useSelector((state) => state.authStatus)
 
   return (
     <BrowserRouter>
       <NavBar />
-      {authKey
+      {authStatus
         ?
         <Switch>
           <Route exact path="/">
@@ -41,7 +42,15 @@ const App = () => {
           </Route>          
         </Switch>
         :
-        <Login />
+        <Switch>  
+          <Route exact path="/register">
+            <Register />
+          </Route>       
+          <Route path="/">
+            <Login />
+          </Route> 
+        </Switch>
+        
       }
       <Footer />
     </BrowserRouter>

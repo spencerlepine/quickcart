@@ -1,4 +1,17 @@
 # To do:
+- Fetch the recommended each time the cart is updated
+- fetch the something whenever the grocery is added from the form
+
+- lock the navbar when you are not logged in?
+
+
+- I can pass credentials to cookieParser and auth the fetch, but I have not found a way to pass ID of current user through body
+- get groceries by accessing user -> userGroceries in user collection based on userID
+
+- clean up old server controllers
+- clean up client auth and dispatch stuff
+- get rid of all localstorage
+
 - get rid of old auth stuff
 - get rid of demo
 - group categories on recommended page for easier browsing
@@ -7,8 +20,6 @@
 
 -printable list
 
-- cart vegetables pound input?
--- purchase price is BY POUND
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
 
