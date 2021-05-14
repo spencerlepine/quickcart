@@ -1,23 +1,37 @@
 # To do:
-- update grocery controller
-- groceryCategories controller
+- go through each file and format, then make sure the code is sensible
 
+- update grocery ->  /controller
+- groceryCategories -> /controller
 
+- duplicates in recommended
+- keep track of the loading for Groceries, Cart, and recommended
+- USE PARAMETERS WHERE THINGS DON"T TAKE BODY
+- change quantity for cart
+- update/add/delete groceries
+- finish reccomended in backend?
 
 - once you log in, get the cart AND groceries ( not just when you load browse)
 
 - make a fire base folder with connection file and models?
 
-- currentid to NAME
+- cart sidebar link
+
+- remnant SEARCH id is limiting foodcards, even when I am not searching anymore
+
+- duplication into cart (updating quantity feature)
 
 - Fetch the recommended each time the cart is updated
 - fetch the something whenever the grocery is added from the form
 
-- lock the navbar when you are not logged in?
+- add a new item, and make the sure app fetches the new stuff
 
+- STYLES:
+- hide navbar when you click away from it
+- search bar to muc space above
+- nav bar is fixed? X button goes off screen
+- side bar is under buttons
 
-- I can pass credentials to cookieParser and auth the fetch, but I have not found a way to pass ID of current user through body
-- get groceries by accessing user -> userGroceries in user collection based on userID
 
 - clean up old server controllers
 - clean up client auth and dispatch stuff

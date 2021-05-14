@@ -10,6 +10,7 @@ import SearchBar from "../SearchBar/SearchBar"
 import useStyles from "./styles"
 
 import { getGroceries } from "../../../actions/groceries"
+import { fetchRecommended } from "../../../actions/recommended"
 
 const FoodGrid = () => {
   const dispatch = useDispatch()

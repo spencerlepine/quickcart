@@ -85,45 +85,30 @@ export const createGrocery = async (req, res) => {
 };
 
 export const updateGrocery = async (req, res) => {
-  // const { key, id: _id } = req.params;
-  // const groceryItem = req.body;
+  try {
+    const { userId } = req.params
+    const updatedGrocery = req.body
 
-  // if (key === "demo123") {
-  //   if (!mongoose.Types.ObjectId.isValid(_id)) {
-  //     return res.status(404).send("No post with that id");
-  //   }
+    await db.collection('users')
+      .doc(userId)
+      .collection('userGroceries')
+      .doc(updatedGrocery.name)
+      .set({
+        ...updatedGrocery
+      })
 
-  //   const updateGroceryItem = await DemoGroceryItem.findByIdAndUpdate(
-  //     _id,
-  //     { ...groceryItem, _id },
-  //     { new: true }
-  //   );
-  //   res.json(updateGroceryItem);
-  // }
-
-  // if (key !== process.env.USER_KEY) {
-  //   res.status(404).json("invalid authentication key");
-  //   return;
-  // }
-
-  // if (!mongoose.Types.ObjectId.isValid(_id)) {
-  //   return res.status(404).send("No post with that id");
-  // }
-
-  // const updateGroceryItem = await GroceryItem.findByIdAndUpdate(
-  //   _id,
-  //   { ...groceryItem, _id },
-  //   { new: true }
-  // );
-  res.json("under construction");
+    res.status(200).json(updatedGrocery);
+  } catch (error) {
+    res.status(409).json(error.message);
+  }
 };
 
 export const deleteGrocery = async (req, res) => {
   try {
-    const { userId } = req.params
-    const groceryName = req.body
+    const { userId, groceryName } = req.params
 
-    await db.collection('users').doc(userId)
+    await db.collection('users')
+      .doc(userId)
       .collection('userGroceries')
       .doc(groceryName)
       .delete()

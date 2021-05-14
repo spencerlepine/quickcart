@@ -25,6 +25,8 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
 
+    dispatch({ type: SET_RECOMMENDED, payload: data })
+    dispatch({ type: FETCH_RECOMENDED_IDS, payload: data })
     /*
     
 
@@ -55,9 +57,9 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
     }
 
     // Save these to reccomended
-    // dispatch({ type: SET_RECOMMENDED, payload: data })
-    // const { data: recommendedIds } = await api.fetchRecommended({ key })
-    // dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
+    dispatch({ type: SET_RECOMMENDED, payload: data })
+    const { data: recommendedIds } = await api.fetchRecommended({ key })
+    dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
 
     dispatch({ type: FETCH_ALL_GROCERIES, payload: grouped })
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
@@ -83,21 +85,21 @@ export const createGrocery = (userId, newGrocery) => async (dispatch) => {
   }
 }
 
-export const updateGrocery = (key, groceryItem) => async (dispatch) => {
+export const updateGrocery = (userId, groceryItem) => async (dispatch) => {
   try {
-    const { data } = await api.updateGrocery({ key }, groceryItem)
+    await api.updateGrocery({ userId }, groceryItem)
 
-    dispatch({ type: UPDATE, payload: data })
+    dispatch({ type: UPDATE, payload: groceryItem })
   } catch (error) {
     console.log(error.message)
   }
 }
 
-export const deleteGrocery = (userId, groceryId) => async (dispatch) => {
+export const deleteGrocery = (userId, groceryName) => async (dispatch) => {
   try {
-    await api.deleteGrocery({ userId }, groceryId)
+    await api.deleteGrocery({ userId }, { name: groceryName })
 
-    dispatch({ type: DELETE, payload: groceryId })
+    dispatch({ type: DELETE, payload: groceryName })
 
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
@@ -106,17 +108,3 @@ export const deleteGrocery = (userId, groceryId) => async (dispatch) => {
     console.log(error.message)
   }
 }
-
-// export const clearGroceries = (key) => async (dispatch) => {
-//   try {
-//     await api.deleteAllGroceries({ key })
-
-//     // Save the total count
-//     const { data: count } = await api.fetchGroceryCount({ key })
-//     dispatch({ type: FETCH_COUNT, payload: count })
-    
-//     dispatch({ type: RESET_REDUCER, payload: [] })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }

@@ -94,7 +94,7 @@ const Form = () => {
 
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
-      dispatch(deleteGrocery(userId, currentItem))
+      dispatch(deleteGrocery(userId, currentItem.name))
       history.push("/")
     }
   }

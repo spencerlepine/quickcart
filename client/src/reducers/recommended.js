@@ -15,7 +15,7 @@ const reducer = (recommended = initialState, action) => {
       for (const categoryKey in recommendedCategories) {
         validNames.push(...recommendedCategories[categoryKey].map(itemObj => itemObj.name))
       }
-
+     
       const newRecommendations = recommended.filter(itemObj =>
         validNames.includes(itemObj.name)
       )

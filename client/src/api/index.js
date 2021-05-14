@@ -7,22 +7,15 @@ const baseUrl = 'http://localhost:5000'
 // Grocery API calls
 export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}/`)
 
-export const createGrocery = (idObj, newGrocery) => axios.request({
-    method: 'POST',
-    url: baseUrl + `/groceries/${idObj.userId}`,
-    data: {
-      newGrocery
-    },
-  })
-//axios.post(baseUrl + `/groceries/${idObj.userId}`, newGrocery)
+export const createGrocery = (idObj, newGrocery) => axios.post(`${baseUrl}/groceries/${idObj.userId}`, newGrocery)
 
 export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/grocery-count/${idObj.userId}`)
 
-export const deleteGrocery = (idObj, groceryNameObj) => axios.delete(`${baseUrl}/${idObj.userId}`, groceryNameObj.name) 
+export const deleteGrocery = (idObj, groceryNameObj) => axios.delete(`${baseUrl}/groceries/${idObj.userId}/${groceryNameObj.name}`) 
 
 export const fetchCategories = (idObj) => axios.get(`${baseUrl}/categories/${idObj.userId}`)
 
-export const updateGrocery = (idObj, updatedGrocery) => axios.patch(`${baseUrl}/${idObj.userId}/${updatedGrocery.name}`, updatedGrocery)
+export const updateGrocery = (idObj, updatedGrocery) => axios.patch(`${baseUrl}/groceries/${idObj.userId}`, updatedGrocery)
 
 
 // Cart API calls
@@ -36,14 +29,8 @@ export const updateCartItem = (idObj, updatedCartItem) => axios.patch(`${baseUrl
 
 export const addToCart = (idObj, itemToAdd) => axios.post(`${baseUrl}/cart/${idObj.userId}`, itemToAdd)
 
-
 // Recommended API calls
 export const fetchRecommended = (idObj) => axios.get(baseUrl + `/recommended/${idObj.userId}`)
-
-
-
-
-// export const deleteAllGroceries = (keyObj) => axios.delete(`${baseUrl}/groceries/${keyObj.key}`) 
 
 // User account calls
 export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, loginInfoObj, { withCredentials: true })

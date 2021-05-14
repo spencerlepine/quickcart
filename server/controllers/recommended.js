@@ -1,3 +1,5 @@
+import { db } from "../connection/firebase.js"
+
 export const getRecommended = async (req, res) => {
   try {
     const startTime = new Date().getTime();
@@ -5,9 +7,11 @@ export const getRecommended = async (req, res) => {
     const { userId } = req.params;
 
     // Fetch all of the grocery items
-    let { docs: groceryItems } = await db.collection('users')
+    let { docs } = await db.collection('users')
       .doc(userId)
       .collection("userGroceries")
+      .get()
+    const groceryItems = docs.map(doc => doc.data())
 
     // Extract available categories
     const allGroceryCategories = {};
@@ -18,6 +22,12 @@ export const getRecommended = async (req, res) => {
       }
     });
 
+    let { docs: cartItems } = await db.collection('users')
+      .doc(userId)
+      .collection("userCart")
+      .get()
+    const cartIds = cartItems.map(doc => doc.data().name)
+
     let todaysDate = new Date();
 
     // Group groceries by category
@@ -25,7 +35,7 @@ export const getRecommended = async (req, res) => {
 
     groceryItems.filter(grocery => {
       // Cross-reference stored cart data
-      let thisId = grocery["_id"];
+      let thisId = grocery["name"];
 
       const itemInCart = cartIds.includes(thisId)
 
@@ -77,14 +87,14 @@ export const getRecommended = async (req, res) => {
         return scoreB - scoreA;
       });
 
-      // Only return the _id of reccomendations to save bandwidth
+      // Only return the name of reccomendations to save bandwidth
 
       // Return top 6 from each category
       let topRange = prop === "bread" ? 2 : 6;
       groupedGroceries[prop] = thisCategoryList.slice(
         0,
         Math.min(thisCategoryList.length, topRange)
-      ).map(itemObj => ({"_id": itemObj._id }));
+      ).map(itemObj => ({"name": itemObj.name }));
     }
 
     const endTime = new Date().getTime();

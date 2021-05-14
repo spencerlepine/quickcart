@@ -7,7 +7,7 @@ import {
 export const fetchCategories = (userId) => async (dispatch) => {
   try {
     const { data } = await api.fetchCategories({ userId })
-    console.log(data)
+
     dispatch({ type: FETCH_CATEGORIES, payload: data })
   } catch (error) {
     console.log(error.message)

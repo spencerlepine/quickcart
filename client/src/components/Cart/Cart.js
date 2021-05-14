@@ -9,6 +9,7 @@ import cartImg from "../../images/cart.svg"
 import ReccomendedWidget from "../Recommended/RecommendedWidget/RecommendedWidget"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { fetchCart } from "../../actions/cart"
+import { fetchRecommended } from "../../actions/recommended"
 
 const Cart = () => {
   const classes = useStyles()

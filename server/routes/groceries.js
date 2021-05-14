@@ -7,10 +7,8 @@ const router = express.Router();
 
 router.get('/:userId/:lastGrocery', auth, getGroceries)
 router.post('/:userId', auth, createGrocery)
-router.delete('/:userId', auth, deleteGrocery)
+router.delete('/:userId/:groceryName', auth, deleteGrocery)
+router.patch('/:userId', updateGrocery)
 
-// router.patch('/:key/:id', updateGrocery)
-
-// router.delete('/:key', deleteAllGroceries)
 
 export default router
