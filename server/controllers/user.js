@@ -19,7 +19,8 @@ export const registerUser = async (req, res) => {
 
     await db.collection('users').doc(newUserId).set({
       userGroceries: [],
-      userCart: []
+      userCart: [],
+      groceryCount: 0
     })
     
     // sign the token
@@ -93,7 +94,7 @@ export const userLoggedIn = async (req, res) => {
     try {
         const token = req.cookies.token;
         if (!token) return res.status(200).json(false);
-    
+        
         jwt.verify(token, process.env.JWT_SECRET);
     
         res.status(200).send(true);

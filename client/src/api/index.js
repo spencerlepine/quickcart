@@ -5,7 +5,11 @@ const baseUrl = 'http://localhost:5000'
 // Grocery API calls
 export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${offsetObj.offset}/`, {withCredentials: true})
 
-export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/count/`, idObj)
+export const createGrocery = (idObj, newGrocery) => axios.post(baseUrl + `/groceries/${idObj.userId}`, newGrocery)
+
+export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/grocery-count/${idObj.userId}`)
+
+
 
 export const fetchCart = (keyObj) => axios.get(`${baseUrl}/cart/${keyObj.key}`)
 
@@ -16,8 +20,6 @@ export const removeCartItem = (keyObj, id) => axios.delete(`${baseUrl}/cart/${ke
 export const updateCartItem = (keyObj, updatedCartItem) => axios.patch(`${baseUrl}/cart/${keyObj.key}/${updatedCartItem._id}`, updatedCartItem)
 
 export const fetchRecommended = (keyObj) => axios.get(baseUrl + `/recommended/${keyObj.key}`)
-
-export const createGrocery = (keyObj, newGrocery) => axios.post(baseUrl + `/groceries/${keyObj.key}`, newGrocery)
 
 export const addToCart = (keyObj, itemToAdd) => axios.post(`${baseUrl}/cart/${keyObj.key}`, itemToAdd)
 
@@ -34,6 +36,6 @@ export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, log
 
 export const loginUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/login`, loginInfoObj, { withCredentials: true })
 
-export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`, {}, { withCredentials: true })
+export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`, { withCredentials: true })
 
-export const logoutUser = () => axios.get(`${baseUrl}/auth/logout`, {}, { withCredentials: true })
+export const logoutUser = () => axios.get(`${baseUrl}/auth/logout`, { withCredentials: true })

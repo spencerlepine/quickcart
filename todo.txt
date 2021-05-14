@@ -1,4 +1,8 @@
 # To do:
+- make a fire base folder with connection file and models?
+
+
+
 - Fetch the recommended each time the cart is updated
 - fetch the something whenever the grocery is added from the form
 

@@ -6,9 +6,8 @@ import auth from "../middleware/auth.js"
 const router = express.Router();
 
 router.get('/:id/:offset', auth, getGroceries)
+router.post('/:id', createGrocery)
 
-// router.get('/:key/:offset', getGroceries)
-// router.post('/:key/', createGrocery)
 // router.patch('/:key/:id', updateGrocery)
 // router.delete('/:key/:id', deleteGrocery)
 // router.delete('/:key', deleteAllGroceries)

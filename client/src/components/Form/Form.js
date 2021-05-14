@@ -49,7 +49,7 @@ const Form = () => {
   const history = useHistory()
   const classes = useStyles()
 
-  const authKey = useSelector((state) => state.authentication)
+  const userId = useSelector(state => state.connectedUser)
   const currentId = useSelector((state) => state.selectedItem)
   const currentItem = useSelector((state) =>
     currentId ? state.groceries.find((item) => item._id === currentId) : null
@@ -59,7 +59,7 @@ const Form = () => {
     let categoryOptions = categories.map(category => {
       return (<option value={category["_id"]}>{toTitleCase(category["_id"])}</option>)
     })
-    setDropdownCategories(prevCategories => [<option label="None" value="" />, ...categoryOptions])
+    setDropdownCategories(prevCategories => [<option label="None" value="" />, <option label="Unknown" value="Unknown" />, ...categoryOptions])
   }, [categories])
   
   const clearForm = () => {
@@ -94,7 +94,7 @@ const Form = () => {
 
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
-      dispatch(deleteGrocery(authKey, currentId))
+      dispatch(deleteGrocery(userId, currentId))
       history.push("/")
     }
   }
@@ -109,7 +109,7 @@ const Form = () => {
     event.preventDefault()
 
     if (currentId) {
-      dispatch(updateGrocery(authKey, thisGrocery))
+      dispatch(updateGrocery(userId, thisGrocery))
       history.push("/")
       clearForm()
     } else if (
@@ -122,7 +122,7 @@ const Form = () => {
       thisGrocery.priority &&
       thisGrocery.image
     ) {
-      dispatch(createGrocery(authKey, thisGrocery))
+      dispatch(createGrocery(userId, thisGrocery))
       history.push("/")
       clearForm()
     } else {

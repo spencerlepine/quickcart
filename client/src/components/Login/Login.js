@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useStyles from "./styles.js"
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/userAccount.js"
+import { loginUser, isLoggedIn } from "../../actions/userAccount.js"
 
 const Login = () => {
   const [formValues, setFormValue] = useState({
@@ -14,6 +14,12 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch()
   const classes = useStyles();
+
+  // Sign in user if cookies are valid
+  useEffect(() => {
+    console.log("trying to login automaially")
+    dispatch(isLoggedIn())
+  }, [])
 
   const handleChange = (e) => {
     const { name: key, value } = e.target;
@@ -31,9 +37,8 @@ const Login = () => {
     try {
       await dispatch(loginUser(formValues["email"], formValues["password"]))
       history.push("/");
-    } catch(err) {
-      alert("Log in failed..")
-      console.log(err)
+    } catch {
+      console.log("login failed");
     }
   };
 

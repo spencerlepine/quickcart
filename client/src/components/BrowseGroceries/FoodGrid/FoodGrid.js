@@ -30,14 +30,9 @@ const FoodGrid = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (groceries.length < 10) {
-      dispatch(getGroceries(userId, 0))
+    if (groceries.length < totalGroceryCount) {
+      dispatch(getGroceries(userId, groceries.length))
     }
-
-    // if (groceries.length < totalGroceryCount || totalGroceryCount === 0) {
-    //   let thisOffset = groceries.length === undefined ? 0 : groceries.length
-    //   dispatch(getGroceries(thisOffset))
-    // }
   }, [groceries, totalGroceryCount])
 
   return (

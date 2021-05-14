@@ -13,10 +13,20 @@ import {
 // action creators
 export const getGroceries = (userId, offset=0, ) => async (dispatch) => {
   try {
-    const { data } = await api.fetchGroceries({ userId }, { offset })
-    console.log(data)
-    /*
+    alert("fetching 10 more groceries")
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
+
+    const { data } = await api.fetchGroceries({ userId }, { offset })
+    dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
+
+    dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
+
+    // Save the total count
+    const { data: count } = await api.fetchGroceryCount({ userId })
+    dispatch({ type: FETCH_COUNT, payload: count })
+
+    /*
+    
 
     const { data } = await api.fetchGroceries({ id }, { offset })
 
@@ -61,13 +71,13 @@ export const getGroceries = (userId, offset=0, ) => async (dispatch) => {
   }
 }
 
-export const createGrocery = (key, newGrocery) => async (dispatch) => {
+export const createGrocery = (userId, newGrocery) => async (dispatch) => {
   try {
-    const { data } = await api.createGrocery({ key }, newGrocery)
+    await api.createGrocery({ userId }, newGrocery)
 
     // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ key })
-    dispatch({ type: FETCH_COUNT, payload: count })
+    // const { data: count } = await api.fetchGroceryCount({ key })
+    // dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     console.log(error.message)
   }

@@ -1,5 +1,5 @@
 import * as api from "../api/index.js";
-import { SET_AUTHENTICATION_ID } from "../constants/actionTypes.js"
+import { RESET_REDUCER, SET_AUTHENTICATION_ID } from "../constants/actionTypes.js"
 
 // action creators
 export const signupUser = (email, password) => async (dispatch) => {
@@ -24,9 +24,8 @@ export const loginUser = (email, password) => async (dispatch) => {
 
 export const logoutUser = () => async (dispatch) => {
   try {
-    const { status } = await api.logoutUser();
-    const logoutSuccess = !(status === 200)
-    
+    await api.logoutUser();
+    dispatch({ type: RESET_REDUCER, payload: null })
   } catch (error) {
     console.log(error.message);
   }
@@ -36,6 +35,11 @@ export const isLoggedIn = () => async (dispatch) => {
   try {
     const { data: userLoggedIn } = await api.isUserLoggedIn();
 
+    const storedId = localStorage.getItem("groceryAppUserId")
+
+    if (userLoggedIn) {
+      dispatch({ type: SET_AUTHENTICATION_ID, payload: storedId })
+    }
   } catch (error) {
     console.log(error.message);
   }

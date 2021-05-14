@@ -1,7 +1,3 @@
-// import mongoose from "mongoose";
-// import User from "../models/userModel.js";
-// import dotenv from "dotenv";
-
 import { db } from "../connection/firebase.js"
 
 export const displayError = async (req, res) => {
@@ -10,57 +6,40 @@ export const displayError = async (req, res) => {
 
 export const getGroceries = async (req, res) => {
   try {
-    const { id: userId } = req.params
-  
-    let { firestore } = await db.collection(userId)
-    res.status(200).json(firestore);
-    
-    // console.log(firebaseResult.firestore)
-    /*
-
-    const { id } = req.body;
-    console.log(req.body)
-    const { offset } = req.params;
+    const { id: userId, offset } = req.params
     const fetchLimit = 10;
 
-    const result = await User.findById(id)
-    const { userGroceries } = result
-      // .limit(fetchLimit)
-      // .skip(parseInt(offset));
+    let { docs: groceryBatch } = await db.collection('users')
+      .doc(userId)
+      .collection("userGroceries")
+      .orderBy("name")
+      .startAt(offset)
+      .limit(fetchLimit)
+      .get()
 
-    res.status(200).json(userGroceries);*/
+    let docsData = groceryBatch.map( firebaseDoc => firebaseDoc.data() )
+
+    res.status(200).json(docsData );
   } catch (error) {
-    console.log("getGroceries controller error: " + error.message)
+    console.log(error.message)
     res.status(404).json(error.message);
   }
 };
 
 export const getGroceryCategories = async (req, res) => {
   try {
-    const { key } = req.params;
+    // const { id: userId, offset } = req.params
 
-    if (key === "demo123") {
-      const groceryItems = await DemoGroceryItem.aggregate([
-        {
-          $group: { _id: "$category" },
-        },
-      ]);
+    // let { docs: groceryCategories } = await db.collection('users')
+    //   .doc(userId)
+    //   .collection("userGroceries")
+    //   .orderBy("purchase_price")
+    //   .startAt(offset)
+    //   .limit(fetchLimit)
+    //   .get()
 
-      res.status(200).json(groceryItems);
-      return;
-    } else if (key !== process.env.USER_KEY) {
-      console.log(`${key} !== ${process.env.USER_KEY}`);
-      res.status(404).json("invalid authentication key");
-      return;
-    }
-
-    const groceryItems = await GroceryItem.aggregate([
-      {
-        $group: { _id: "$category" },
-      },
-    ]);
-
-    res.status(200).json(groceryItems);
+    let groceryCategories = ['ham', 'cheese', 'crackers', 'under', 'construction']
+    res.status(200).json(groceryCategories);
   } catch (error) {
     res.status(404).json(error.message);
   }
@@ -68,10 +47,16 @@ export const getGroceryCategories = async (req, res) => {
 
 export const getGroceriesCount = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id: userId } = req.params
 
-    const { data } = await User.findById(id);
-    res.status(200).json(data.userGroceries.length);
+    const { docs } = await db.collection('users')
+      .doc(userId)
+      .collection("userGroceries")
+      .get()
+
+    const groceryCount = docs.length
+
+    res.status(200).json(groceryCount);
   } catch (error) {
     res.status(404).json(error.message);
   }
@@ -79,26 +64,24 @@ export const getGroceriesCount = async (req, res) => {
 
 export const createGrocery = async (req, res) => {
   try {
-    const { key } = req.params;
-    const groceryItem = req.body;
+    const { id: userId } = req.params
+    const groceryObj = req.body
 
-    if (key === "demo123") {
-      const newGrocery = new DemoGroceryItem(groceryItem);
+    await db.collection('users').doc(userId)
+      .collection('userGroceries')
+      .doc(groceryObj.name)
+        .set({
+          name: groceryObj.name,
+          purchase_price: groceryObj.purchase_price,
+          purchase_size: groceryObj.purchase_size,
+          serving_cost: groceryObj.serving_cost,
+          category: groceryObj.category,
+          last_purchased: groceryObj.last_purchased,
+          priority: groceryObj.priority,
+          // image: groceryObj.image,
+        })
 
-      await newGrocery.save();
-      return;
-    }
-
-    if (key !== process.env.USER_KEY) {
-      res.status(404).json("invalid authentication key");
-      return;
-    }
-
-    const newGrocery = new GroceryItem(groceryItem);
-
-    await newGrocery.save();
-
-    res.status(201).json(newGrocery);
+    res.status(200).json(groceryObj);
   } catch (error) {
     res.status(409).json(error.message);
   }

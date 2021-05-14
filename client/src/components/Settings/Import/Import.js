@@ -8,7 +8,9 @@ const Import = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
   const history = useHistory()
-  const authKey = useSelector(state => state.authentication)
+
+  const userId = useSelector(state => state.connectedUser)
+
 
   // https://stackoverflow.com/questions/27979002/convert-csv-data-into-json-format-using-javascript
   /*function csvJSON(csv) {
@@ -41,7 +43,7 @@ const Import = () => {
 
   const importData = ({ target }) => {
     if (window.confirm("Overwrite existing data?")) {
-      dispatch(clearGroceries(authKey))
+      dispatch(clearGroceries())
     }
 
     var fr = new FileReader()
@@ -72,7 +74,8 @@ const Import = () => {
           }
         }
 
-        dispatch(createGrocery(authKey, filteredObj))
+        dispatch(createGrocery(userId, filteredObj))
+        setTimeout(1000)
       })
 
       window.alert("Successfully imported your data :)")
