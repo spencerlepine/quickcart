@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
-import {
-  createGrocery,
-  deleteGrocery,
-  updateGrocery,
-} from "../../actions/groceries"
-import { setId } from "../../actions/selectedItem"
-import useStyles from "./styles.js"
-import FileBase from "react-file-base64"
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { createGrocery,deleteGrocery, updateGrocery } from "../../actions/groceries";
+import { setId } from "../../actions/selectedItem";
+import { setSearchQuery } from "../../actions/search";
+import { setSelectedCategory } from "../../actions/selectedCategory";
+import FileBase from "react-file-base64";
 
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
-import Select from "@material-ui/core/Select"
-import Rating from "@material-ui/lab/Rating"
-import StarBorderIcon from "@material-ui/icons/StarBorder"
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import Rating from "@material-ui/lab/Rating";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import CropInputImage from "./CropInputImage";
+import useStyles from "./styles.js";
 
-import CropInputImage from "./CropInputImage"
-
-const todaysDate = new Date().toISOString().slice(0, 10)
+const todaysDate = new Date().toISOString().slice(0, 10);
 
 const schema = {
   name: "",
@@ -29,43 +26,51 @@ const schema = {
   last_purchased: todaysDate,
   priority: "0",
   image: "",
-}
+};
 
 function toTitleCase(str) {
-  return str.replace(
-    /\w\S*/g,
-    function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    }
-  );
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 const Form = () => {
-  const categories = useSelector((state) => state.categories)
+  const categories = useSelector((state) => state.categories);
 
-  const [thisGrocery, setThisGrocery] = useState(schema)
-  const [dropdownCategories, setDropdownCategories] = useState([])
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const classes = useStyles()
+  const [thisGrocery, setThisGrocery] = useState(schema);
+  const [dropdownCategories, setDropdownCategories] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const classes = useStyles();
 
-  const userId = useSelector(state => state.connectedUser)
-  const currentName = useSelector((state) => state.selectedItem)
+  const userId = useSelector((state) => state.connectedUser);
+  const currentName = useSelector((state) => state.selectedItem);
   const currentItem = useSelector((state) =>
-  currentName ? state.groceries.find((item) => item.name === currentName) : null
-  )
+    currentName
+      ? state.groceries.find((item) => item.name === currentName)
+      : null
+  );
 
   useEffect(() => {
-    let categoryOptions = categories.map(category => {
-      return (<option value={category}>{toTitleCase(category)}</option>)
-    })
-    setDropdownCategories(prevCategories => [<option label="None" value="" />, ...categoryOptions])
-  }, [categories])
-  
+    dispatch(setId(null));
+    dispatch(setSearchQuery(""));
+    dispatch(setSelectedCategory(null));
+  }, []);
+
+  useEffect(() => {
+    let categoryOptions = categories.map((category) => {
+      return <option value={category}>{toTitleCase(category)}</option>;
+    });
+    setDropdownCategories((prevCategories) => [
+      <option label="None" value="" />,
+      ...categoryOptions,
+    ]);
+  }, [categories]);
+
   const clearForm = () => {
-    dispatch(setId(null))
-    setThisGrocery(schema)
-  }
+    dispatch(setId(null));
+    setThisGrocery(schema);
+  };
 
   useEffect(() => {
     // Populate the form if the user selected an item
@@ -73,45 +78,43 @@ const Form = () => {
       // Translate the purchase price decimal data for the form to read
       let validCurrentItem = {
         ...currentItem,
-        purchase_price: parseFloat(
-          currentItem["purchase_price"]
-        ).toFixed(2),
+        purchase_price: parseFloat(currentItem["purchase_price"]).toFixed(2),
         serving_cost: currentItem["serving_cost"]
           ? parseFloat(currentItem["serving_cost"]).toFixed(2)
           : 0,
         image: currentItem.image || schema.image,
-      }
+      };
 
-      setThisGrocery(validCurrentItem)
+      setThisGrocery(validCurrentItem);
     }
-  }, [currentName, currentItem])
+  }, [currentName, currentItem]);
 
   const handleChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
-    setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }))
-  }
+    setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
+  };
 
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
-      dispatch(deleteGrocery(userId, currentItem.name))
-      history.push("/")
+      dispatch(deleteGrocery(userId, currentItem.name));
+      history.push("/");
     }
-  }
+  };
 
   const handleImageInput = async (base64) => {
-    const croppedImage = await CropInputImage(base64)
-    
-    handleChange({ target: { name: "image", value: croppedImage } })
-  }
+    const croppedImage = await CropInputImage(base64);
+
+    handleChange({ target: { name: "image", value: croppedImage } });
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (currentName) {
-      dispatch(updateGrocery(userId, thisGrocery))
-      history.push("/")
-      clearForm()
+      dispatch(updateGrocery(userId, thisGrocery));
+      history.push("/");
+      clearForm();
     } else if (
       thisGrocery.name &&
       thisGrocery.purchase_price &&
@@ -122,13 +125,13 @@ const Form = () => {
       thisGrocery.priority &&
       thisGrocery.image
     ) {
-      dispatch(createGrocery(userId, thisGrocery))
-      history.push("/")
-      clearForm()
+      dispatch(createGrocery(userId, thisGrocery));
+      history.push("/");
+      clearForm();
     } else {
-      alert("Please enter valid data")
+      alert("Please enter valid data");
     }
-  }
+  };
 
   const Field = (name, placeholder, thisClass = "") => (
     <TextField
@@ -142,7 +145,7 @@ const Form = () => {
       placeholder={placeholder || name}
       value={thisGrocery[name]}
     />
-  )
+  );
 
   return (
     <div className={classes.formContainer}>
@@ -166,7 +169,7 @@ const Form = () => {
                   type="file"
                   multiple={false}
                   onDone={({ base64 }) => {
-                    handleImageInput(base64)
+                    handleImageInput(base64);
                   }}
                 />
               </div>
@@ -257,7 +260,7 @@ const Form = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

@@ -8,8 +8,11 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 const RecommendedWidget = () => {
   const classes = useStyles()
 
-  const recommendedItems = useSelector((state) => state.recommended)
-  const recommendedCards = recommendedItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+  const groceryItems = useSelector(state => state.groceries)
+
+  const recommendedNames = useSelector((state) => state.recommended)
+  const validGroceryItems = groceryItems.filter(itemObj => recommendedNames.includes(itemObj.name))
+  const recommendedCards = validGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
 
   return (
     <div className={classes.widgetView}>

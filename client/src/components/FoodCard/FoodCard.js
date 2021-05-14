@@ -41,7 +41,7 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
     dispatch(addToCart(userId, groceryItem))
   }
 
-  const selectionMatches = (currentSelectedCategory === null && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
+  const selectionMatches = (!currentSelectedCategory && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
   const showThisItem = selectionMatches || searchMatch(currentSearch, groceryItem.name)
 
   // Get the date last purchased

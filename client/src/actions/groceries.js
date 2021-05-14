@@ -5,9 +5,6 @@ import {
   DELETE,
   SET_GROCERY_CONNECTION,
   FETCH_COUNT,
-  RESET_REDUCER,
-  SET_RECOMMENDED,
-  FETCH_RECOMENDED_IDS
 } from "../constants/actionTypes.js"
 
 // action creators
@@ -24,9 +21,6 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
-
-    dispatch({ type: SET_RECOMMENDED, payload: data })
-    dispatch({ type: FETCH_RECOMENDED_IDS, payload: data })
   } catch (error) {
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
     console.log(error.message)

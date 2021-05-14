@@ -1,17 +1,9 @@
-import React, { useEffect } from "react"
-import { getGroceries } from "../../../actions/groceries"
-import { useSelector, useDispatch } from "react-redux"
+import React from "react"
+import { useSelector } from "react-redux"
 import useStyles from "./styles"
 
 const Backup = () => {
-  const dispatch = useDispatch()
   const classes = useStyles()
-  const authKey = useSelector((state) => state.authentication)
-
-  useEffect(() => {
-    dispatch(getGroceries(authKey))
-    // eslint-disable-next-line
-  }, [dispatch])
 
   const groceries = useSelector((state) => state.groceries)
 

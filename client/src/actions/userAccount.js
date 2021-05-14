@@ -25,6 +25,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   try {
     await api.logoutUser();
+
     dispatch({ type: RESET_REDUCER, payload: null })
   } catch (error) {
     console.log(error.message);

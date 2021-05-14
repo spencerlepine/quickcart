@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setId } from "../../../actions/selectedItem"
 
 import FoodCard from "../../FoodCard/FoodCard"
 import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt"
@@ -10,7 +9,9 @@ import SearchBar from "../SearchBar/SearchBar"
 import useStyles from "./styles"
 
 import { getGroceries } from "../../../actions/groceries"
-import { fetchRecommended } from "../../../actions/recommended"
+import { setSearchQuery } from "../../../actions/search"
+import { setSelectedCategory } from "../../../actions/selectedCategory"
+import { setId } from "../../../actions/selectedItem"
 
 const FoodGrid = () => {
   const dispatch = useDispatch()
@@ -28,6 +29,8 @@ const FoodGrid = () => {
 
   useEffect(() => {
     dispatch(setId(null))
+    dispatch(setSearchQuery(""))
+    dispatch(setSelectedCategory(null))
   }, [dispatch])
 
   // Try to load groceries JUST GET THE COUNT

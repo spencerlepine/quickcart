@@ -19,9 +19,9 @@ const NavBar = () => {
   const cartLength = useSelector((state) => state.cart.length);
 
   const toggleMenu = (inputToggle = null) => {
-    setMenuOpen((prevState) =>
+    setMenuOpen((prevState) => (
       inputToggle === null ? !prevState : inputToggle
-    );
+    ));
   };
 
   const Sidebar = () => {
@@ -78,11 +78,11 @@ const NavBar = () => {
     <>
       <div className={classes.navBar}>
         <div className={classes.navbarContainer}>
-          <div onClick={toggleMenu} className={classes.menuToggleBtn}>
+          <div className={classes.menuToggleBtn}>
             {menuOpen ? (
-              <CloseIcon fontSize="large" />
+              <CloseIcon fontSize="large"  onClick={() => toggleMenu(false)} />
             ) : (
-              <MenuIcon fontSize="large" />
+              <MenuIcon fontSize="large" onClick={() => toggleMenu(true)} />
             )}
           </div>
 

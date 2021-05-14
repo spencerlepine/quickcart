@@ -16,13 +16,13 @@ const CategoryLabels = () => {
   }, [])
 
   const categoryComponents = categories.map((category, i) => (
-    <CategorySelector categoryName={category} key={i} />
+    <CategorySelector categoryName={category} key={i} selectorValue={category} />
   ))
 
   return (<>
     {categories.length > 0 &&
       (<div className={classes.categoriesContainter}>
-        <CategorySelector categoryName="all" selectionValue={null} />
+        <CategorySelector categoryName="all" selectorValue={null} />
         {categoryComponents}
       </div>)
     }

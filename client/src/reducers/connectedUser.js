@@ -5,10 +5,16 @@ const initialState = null
 const reducer = (connectedUser = initialState, action) => {
   switch (action.type) {
     case SET_AUTHENTICATION_ID:
-      localStorage.setItem("groceryAppUserId", action.payload)
+      const storedId = action.payload
+      if (!storedId) {
+        localStorage.clear()
+      } else {
+        localStorage.setItem("groceryAppUserId", action.payload)
+      }
+      
       return action.payload;
     case RESET_REDUCER:
-      localStorage.setItem("groceryAppUserId", initialState)
+      localStorage.clear()
       return initialState
     default:
       return connectedUser;

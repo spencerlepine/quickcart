@@ -6,16 +6,27 @@ import FoodCard from "../FoodCard/FoodCard"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { fetchRecommended } from "../../actions/recommended"
 
+import { setSearchQuery } from "../../actions/search"
+import { setSelectedCategory } from "../../actions/selectedCategory"
+import { setId } from "../../actions/selectedItem"
+
 const Recommended = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
   const userId = useSelector(state => state.connectedUser)
-  const recommendedItems = useSelector((state) => state.recommended)
-  const recommendedCards = recommendedItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+
+  const groceryItems = useSelector(state => state.groceries)
+
+  const recommendedNames = useSelector((state) => state.recommended)
+  const validGroceryItems = groceryItems.filter(itemObj => recommendedNames.includes(itemObj.name))
+  const recommendedCards = validGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
 
   useEffect(() => {
     dispatch(fetchRecommended(userId))
+    dispatch(setId(null))
+    dispatch(setSearchQuery(""))
+    dispatch(setSelectedCategory(null))
   }, [])
 
   return (

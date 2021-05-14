@@ -1,15 +1,14 @@
 # To do:
+- ERRORS
+ - importing, the LAST TWO keep trying to push
+
 - go through each file and format, then make sure the code is sensible
 
-- price stored as string, make sure app parses it to float
+- read warnings (prop types, un-unused variables)
 
 - user groceryCount variable
 
-- duplicates in recommended
-
 - change quantity for cart
-
-- remnant SEARCH id is limiting foodcards, even when I am not searching anymore
 
 - duplication into cart (updating quantity feature)
 
@@ -17,6 +16,7 @@
 
 
 Upcoming features:
+- Logout button in sidebar menu
 - Recipes (connected with ids)
 - Dynamically set categories
   - fetch grocieres on backend and return list of categories
@@ -24,5 +24,6 @@ Upcoming features:
   - give error feedback (login fail, couldn't save item...)
 - Longer passwords
   - deny weak invalid sign-ups, check email and password
+- temporary loading boxes
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
