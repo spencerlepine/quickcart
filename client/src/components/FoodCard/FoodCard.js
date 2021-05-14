@@ -44,8 +44,6 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
   const selectionMatches = (currentSelectedCategory === null && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
   const showThisItem = selectionMatches || searchMatch(currentSearch, groceryItem.name)
 
-
-
   // Get the date last purchased
   let dateString = groceryItem["last_purchased"];
   let groceryExpirationDate = new Date(dateString);

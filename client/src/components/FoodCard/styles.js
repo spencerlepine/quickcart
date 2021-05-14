@@ -64,7 +64,7 @@ export default makeStyles(() => ({
     backgroundImage: "none",
     display: "inline-flex",
     alignItems: "center",
-    zIndex: "99",
+    zIndex: "2",
     padding: "0px",
     justifyContent: "center",
     "&:hover": {

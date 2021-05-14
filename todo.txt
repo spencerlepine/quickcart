@@ -1,54 +1,28 @@
 # To do:
 - go through each file and format, then make sure the code is sensible
 
-- update grocery ->  /controller
-- groceryCategories -> /controller
+- price stored as string, make sure app parses it to float
+
+- user groceryCount variable
 
 - duplicates in recommended
-- keep track of the loading for Groceries, Cart, and recommended
-- USE PARAMETERS WHERE THINGS DON"T TAKE BODY
+
 - change quantity for cart
-- update/add/delete groceries
-- finish reccomended in backend?
-
-- once you log in, get the cart AND groceries ( not just when you load browse)
-
-- make a fire base folder with connection file and models?
-
-- cart sidebar link
 
 - remnant SEARCH id is limiting foodcards, even when I am not searching anymore
 
 - duplication into cart (updating quantity feature)
 
-- Fetch the recommended each time the cart is updated
-- fetch the something whenever the grocery is added from the form
-
-- add a new item, and make the sure app fetches the new stuff
-
-- STYLES:
-- hide navbar when you click away from it
-- search bar to muc space above
-- nav bar is fixed? X button goes off screen
-- side bar is under buttons
-
-
-- clean up old server controllers
-- clean up client auth and dispatch stuff
-- get rid of all localstorage
-
-- get rid of old auth stuff
-- get rid of demo
 - group categories on recommended page for easier browsing
 
-- add category function
 
--printable list
-
+Upcoming features:
+- Recipes (connected with ids)
+- Dynamically set categories
+  - fetch grocieres on backend and return list of categories
+- Error system
+  - give error feedback (login fail, couldn't save item...)
+- Longer passwords
+  - deny weak invalid sign-ups, check email and password
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
-
-- Recipes (connected with ids)
-
-Extra:
-- Load more button? - seperate overview food cards into pages (page 2, next) (splice groceries)

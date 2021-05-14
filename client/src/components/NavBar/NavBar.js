@@ -1,39 +1,53 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import SettingsIcon from "@material-ui/icons/Settings"
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
-import ListAltIcon from "@material-ui/icons/ListAlt"
-import EmojiObjects from "@material-ui/icons/EmojiObjects"
-import useStyles from "./styles.js"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import SettingsIcon from "@material-ui/icons/Settings";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import EmojiObjects from "@material-ui/icons/EmojiObjects";
+import useStyles from "./styles.js";
 
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
 
 const NavBar = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const cartLength = useSelector((state) => state.cart.length)
- 
-  const toggleMenu = () => {
-    setMenuOpen((prevState) => !prevState)
-  }
+  const cartLength = useSelector((state) => state.cart.length);
+
+  const toggleMenu = (inputToggle = null) => {
+    setMenuOpen((prevState) =>
+      inputToggle === null ? !prevState : inputToggle
+    );
+  };
 
   const Sidebar = () => {
     return (
-      <div onClick={toggleMenu} className={classes.sidebar}>
-        <Link className={classes.link} to="/">
-          <ListAltIcon fontSize="large" />
+      <div className={classes.sidebar}>
+        <Link className={classes.link}
+          to="/"
+          onClick={() => toggleMenu(false)}
+        >
+          <ListAltIcon fontSize="large"/>
           <p>Browse</p>
         </Link>
 
+        <Link className={classes.link}
+        to="/cart"
+        onClick={() => toggleMenu(false)}
+        >
+          <ShoppingCartIcon fontSize="large" />
+          <p>Cart</p>
+        </Link>
+
         <Link
-          style={{justifySelf: "center" }}
+          style={{ justifySelf: "center" }}
           className={classes.link}
           to="/form"
+          onClick={() => toggleMenu(false)}
         >
           <AddCircleOutlineIcon fontSize="large" />
           <p>Create</p>
@@ -42,6 +56,7 @@ const NavBar = () => {
         <Link
           className={`${classes.link} ${classes.recommendedIcon}`}
           to="/recommended"
+          onClick={() => toggleMenu(false)}
         >
           <EmojiObjects fontSize="large" />
           <p>Suggested</p>
@@ -50,42 +65,44 @@ const NavBar = () => {
         <Link
           className={`${classes.link} ${classes.settingIcon}`}
           to="/settings"
+          onClick={() => toggleMenu(false)}
         >
           <SettingsIcon fontSize="large" />
           <p>Settings</p>
         </Link>
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <><div className={classes.navBar}>
-      <div className={classes.navbarContainer}>
-        <div onClick={toggleMenu} className={classes.menuToggleBtn}>
-          {menuOpen
-            ?
-            <CloseIcon fontSize="large" />
-            :
-            <MenuIcon fontSize="large" />
-          }
-        </div>
-
-        {menuOpen && <Sidebar />}
-
-        <Link
-          style={{ marginLeft: "auto" }}
-          className={classes.link}
-          to="/cart"
-        >
-          <div className={classes.cartLink}>
-            <ShoppingCartIcon fontSize="large" color="action" />
-            {cartLength > 0 && <p>{cartLength}</p>}
+    <>
+      <div className={classes.navBar}>
+        <div className={classes.navbarContainer}>
+          <div onClick={toggleMenu} className={classes.menuToggleBtn}>
+            {menuOpen ? (
+              <CloseIcon fontSize="large" />
+            ) : (
+              <MenuIcon fontSize="large" />
+            )}
           </div>
-        </Link>
-      </div>
-    </div>
-    <div className={classes.navBarSpacing}></div></>
-  )
-}
 
-export default NavBar
+          {menuOpen && <Sidebar />}
+
+          <Link
+            style={{ marginLeft: "auto" }}
+            className={classes.link}
+            to="/cart"
+          >
+            <div className={classes.cartLink}>
+              <ShoppingCartIcon fontSize="large" color="action" />
+              {cartLength > 0 && <p>{cartLength}</p>}
+            </div>
+          </Link>
+        </div>
+      </div>
+      <div className={classes.navBarSpacing}></div>
+    </>
+  );
+};
+
+export default NavBar;

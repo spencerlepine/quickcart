@@ -5,7 +5,7 @@ import {
   REMOVE_FROM_CART,
   UPDATE_ITEM,
   SET_CART_CONNECTION,
-  REMOVE_FROM_RECOMMENDED,
+  FETCH_RECOMENDED_IDS,
 } from "../constants/actionTypes.js"
 
 // action creators
@@ -27,6 +27,7 @@ export const addToCart = (userId, itemToAdd) => async (dispatch) => {
     const { data } = await api.addToCart({ userId }, itemToAdd)
 
     dispatch({ type: ADD_TO_CART, payload: data })
+    dispatch({ type: FETCH_RECOMENDED_IDS, payload: data })
     } catch (error) {
     console.log(error.message)
   }

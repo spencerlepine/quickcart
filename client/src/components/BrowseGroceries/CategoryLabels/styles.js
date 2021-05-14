@@ -4,10 +4,10 @@ export default makeStyles(() => ({
   categoriesContainter: {
     paddingTop: "20px",
     margin: "auto",
-    marginTop: "15px",
+    marginTop: "5px",
     width: "fit-content",
     minWidth: "400px",
-    minHeight: "60px",
+    minHeight: "40px",
     height: "fit-content",
     maxWidth: "80vw",
     overflowX: "scroll",

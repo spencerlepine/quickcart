@@ -7,8 +7,8 @@ export default makeStyles(() => ({
     width: "10px",
   },
   navBar: {
-    zIndex: 2,  
-    position: "absolute",
+    zIndex: 6,  
+    position: "fixed",
     top: "0",
     backgroundColor: "#333333",
     width: "100%",

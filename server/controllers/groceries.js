@@ -25,15 +25,6 @@ export const getGroceries = async (req, res) => {
 export const getGroceryCategories = async (req, res) => {
   try {
     const { userId } = req.params
-    // const { id: userId, offset } = req.params
-
-    // let { docs: groceryCategories } = await db.collection('users')
-    //   .doc(userId)
-    //   .collection("userGroceries")
-    //   .orderBy("purchase_price")
-    //   .startAt(offset)
-    //   .limit(fetchLimit)
-    //   .get()
 
     let groceryCategories = ['grains', 'bread', 'breakfast', 'dairy', 'fruits', 'vegetables', 'bread', 'pantry', 'snacks', 'meat']
     res.status(200).json(groceryCategories);

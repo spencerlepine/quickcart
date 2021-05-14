@@ -27,46 +27,6 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
 
     dispatch({ type: SET_RECOMMENDED, payload: data })
     dispatch({ type: FETCH_RECOMENDED_IDS, payload: data })
-    /*
-    
-
-    const { data } = await api.fetchGroceries({ id }, { offset })
-
-    // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ id })
-    dispatch({ type: FETCH_COUNT, payload: count })
-
-    dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
-    // Start grouping the data
-    let grouped = [data[0]]
-
-    for (let i = 1; i < data.length; i++) {
-      // Go through grouped and find the alphabetic place for this
-      for (let a = 0; a < grouped.length; a++) {
-        if (a === grouped.length - 1) {
-          grouped.push(data[i])
-          break
-        } else if (data[i].category === grouped[a].category) {
-          grouped.splice(a, 0, data[i])
-          break
-        } else if (data[i].category < grouped[a].category) {
-          grouped.splice(a, 0, data[i])
-          break
-        }
-      }
-    }
-
-    // Save these to reccomended
-    dispatch({ type: SET_RECOMMENDED, payload: data })
-    const { data: recommendedIds } = await api.fetchRecommended({ key })
-    dispatch({ type: FETCH_RECOMENDED_IDS, payload: recommendedIds })
-
-    dispatch({ type: FETCH_ALL_GROCERIES, payload: grouped })
-    dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
-
-    // Save the total count
-    // const { data: count } = await api.fetchGroceryCount({ key })
-    // dispatch({ type: FETCH_COUNT, payload: count })*/
   } catch (error) {
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
     console.log(error.message)
