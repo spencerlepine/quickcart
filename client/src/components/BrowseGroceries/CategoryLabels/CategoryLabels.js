@@ -9,13 +9,14 @@ const CategoryLabels = () => {
   const classes = useStyles()
 
   const categories = useSelector(state => state.categories)
+  const userId = useSelector(state => state.connectedUser)
 
   useEffect(() => {
-    dispatch(fetchCategories())
+    dispatch(fetchCategories(userId))
   }, [])
 
   const categoryComponents = categories.map((category, i) => (
-    <CategorySelector categoryName={category["_id"]} key={i} selectionValue={category["_id"]} />
+    <CategorySelector categoryName={category} key={i} />
   ))
 
   return (<>

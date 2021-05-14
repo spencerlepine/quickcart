@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { setSelectedCategory } from "../../../../actions/selectedCategory"
 import useStyles from "./styles"
 
-const CategorySelector = ({ categoryName, selectionValue }) => {
+const CategorySelector = ({ categoryName }) => {
     const dispatch = useDispatch()
   const classes = useStyles()
 
@@ -11,7 +11,7 @@ const CategorySelector = ({ categoryName, selectionValue }) => {
 
   const handleSelection = () => {
     // Set the global selected category to this name
-    dispatch(setSelectedCategory(selectionValue))
+    dispatch(setSelectedCategory(categoryName))
   }
   
   const currentlySelected = selectedCategory === categoryName ? { backgroundColor: "rgb(211 224 255)" } : {}

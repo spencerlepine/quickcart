@@ -1,35 +1,49 @@
 import axios from "axios"
+axios.defaults.withCredentials = true
+
 const baseUrl = 'http://localhost:5000'
 // const baseUrl = "https://grocery-server-sl.herokuapp.com"
 
 // Grocery API calls
-export const fetchGroceries = (idObj, offsetObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${offsetObj.offset}/`, {withCredentials: true})
+export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}/`)
 
-export const createGrocery = (idObj, newGrocery) => axios.post(baseUrl + `/groceries/${idObj.userId}`, newGrocery)
+export const createGrocery = (idObj, newGrocery) => axios.request({
+    method: 'POST',
+    url: baseUrl + `/groceries/${idObj.userId}`,
+    data: {
+      newGrocery
+    },
+  })
+//axios.post(baseUrl + `/groceries/${idObj.userId}`, newGrocery)
 
 export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/grocery-count/${idObj.userId}`)
 
+export const deleteGrocery = (idObj, groceryNameObj) => axios.delete(`${baseUrl}/${idObj.userId}`, groceryNameObj.name) 
+
+export const fetchCategories = (idObj) => axios.get(`${baseUrl}/categories/${idObj.userId}`)
+
+export const updateGrocery = (idObj, updatedGrocery) => axios.patch(`${baseUrl}/${idObj.userId}/${updatedGrocery.name}`, updatedGrocery)
 
 
-export const fetchCart = (keyObj) => axios.get(`${baseUrl}/cart/${keyObj.key}`)
+// Cart API calls
+export const fetchCart = (idObj) => axios.get(`${baseUrl}/cart/${idObj.userId}`)
 
-export const fetchCartItem = (keyObj, id) => axios.get(`${baseUrl}/cart/${keyObj.key}/${id}`)
+export const fetchCartItem = (idObj, itemNameObj) => axios.get(`${baseUrl}/cart/${idObj.userId}`, itemNameObj)
 
-export const removeCartItem = (keyObj, id) => axios.delete(`${baseUrl}/cart/${keyObj.key}/${id}`)
+export const removeCartItem = (idObj, itemToRemove) => axios.delete(`${baseUrl}/cart/${idObj.userId}/${itemToRemove.name}`)
 
-export const updateCartItem = (keyObj, updatedCartItem) => axios.patch(`${baseUrl}/cart/${keyObj.key}/${updatedCartItem._id}`, updatedCartItem)
+export const updateCartItem = (idObj, updatedCartItem) => axios.patch(`${baseUrl}/cart/${idObj.userId}`, updatedCartItem)
 
-export const fetchRecommended = (keyObj) => axios.get(baseUrl + `/recommended/${keyObj.key}`)
+export const addToCart = (idObj, itemToAdd) => axios.post(`${baseUrl}/cart/${idObj.userId}`, itemToAdd)
 
-export const addToCart = (keyObj, itemToAdd) => axios.post(`${baseUrl}/cart/${keyObj.key}`, itemToAdd)
 
-export const updateGrocery = (keyObj, updatedGrocery) => axios.patch(`${baseUrl}/${keyObj.key}/${updatedGrocery["_id"]}`, updatedGrocery)
+// Recommended API calls
+export const fetchRecommended = (idObj) => axios.get(baseUrl + `/recommended/${idObj.userId}`)
 
-export const deleteGrocery = (keyObj, id) => axios.delete(`${baseUrl}/${keyObj.key}/${id}`) 
 
-export const deleteAllGroceries = (keyObj) => axios.delete(`${baseUrl}/groceries/${keyObj.key}`) 
 
-export const fetchCategories = () => axios.get(`${baseUrl}/categories`)
+
+// export const deleteAllGroceries = (keyObj) => axios.delete(`${baseUrl}/groceries/${keyObj.key}`) 
 
 // User account calls
 export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, loginInfoObj, { withCredentials: true })

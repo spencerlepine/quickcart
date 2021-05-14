@@ -1,7 +1,14 @@
 # To do:
+- update grocery controller
+- groceryCategories controller
+
+
+
+- once you log in, get the cart AND groceries ( not just when you load browse)
+
 - make a fire base folder with connection file and models?
 
-
+- currentid to NAME
 
 - Fetch the recommended each time the cart is updated
 - fetch the something whenever the grocery is added from the form

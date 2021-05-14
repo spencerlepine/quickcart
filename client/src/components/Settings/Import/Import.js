@@ -1,5 +1,5 @@
 import React from "react"
-import { clearGroceries, createGrocery } from "../../../actions/groceries"
+import { createGrocery } from "../../../actions/groceries"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import useStyles from "./styles"
@@ -42,9 +42,9 @@ const Import = () => {
   }*/
 
   const importData = ({ target }) => {
-    if (window.confirm("Overwrite existing data?")) {
-      dispatch(clearGroceries())
-    }
+    // if (window.confirm("Overwrite existing data?")) {
+    //   dispatch(clearGroceries())
+    // }
 
     var fr = new FileReader()
 
@@ -56,7 +56,6 @@ const Import = () => {
       storageAccessed.forEach((grocery) => {
         // Save me in Mongo Cluster
         const allowedKeys = [
-          "_id",
           "name",
           "purchase_price",
           "purchase_size",

@@ -1,19 +1,15 @@
 import { db } from "../connection/firebase.js"
 
-export const displayError = async (req, res) => {
-  res.status(200).json("Usage: url/groceries/<offset>");
-};
-
 export const getGroceries = async (req, res) => {
   try {
-    const { id: userId, offset } = req.params
+    const { userId, lastGrocery } = req.params
     const fetchLimit = 10;
 
     let { docs: groceryBatch } = await db.collection('users')
       .doc(userId)
       .collection("userGroceries")
       .orderBy("name")
-      .startAt(offset)
+      .startAt(lastGrocery)
       .limit(fetchLimit)
       .get()
 
@@ -28,6 +24,7 @@ export const getGroceries = async (req, res) => {
 
 export const getGroceryCategories = async (req, res) => {
   try {
+    const { userId } = req.params
     // const { id: userId, offset } = req.params
 
     // let { docs: groceryCategories } = await db.collection('users')
@@ -38,7 +35,7 @@ export const getGroceryCategories = async (req, res) => {
     //   .limit(fetchLimit)
     //   .get()
 
-    let groceryCategories = ['ham', 'cheese', 'crackers', 'under', 'construction']
+    let groceryCategories = ['grains', 'bread', 'breakfast', 'dairy', 'fruits', 'vegetables', 'bread', 'pantry', 'snacks', 'meat']
     res.status(200).json(groceryCategories);
   } catch (error) {
     res.status(404).json(error.message);
@@ -47,7 +44,7 @@ export const getGroceryCategories = async (req, res) => {
 
 export const getGroceriesCount = async (req, res) => {
   try {
-    const { id: userId } = req.params
+    const { userId } = req.params
 
     const { docs } = await db.collection('users')
       .doc(userId)
@@ -64,22 +61,22 @@ export const getGroceriesCount = async (req, res) => {
 
 export const createGrocery = async (req, res) => {
   try {
-    const { id: userId } = req.params
-    const groceryObj = req.body
+    const { userId } = req.params
+    const groceryObj  = req.body
 
     await db.collection('users').doc(userId)
       .collection('userGroceries')
       .doc(groceryObj.name)
-        .set({
-          name: groceryObj.name,
-          purchase_price: groceryObj.purchase_price,
-          purchase_size: groceryObj.purchase_size,
-          serving_cost: groceryObj.serving_cost,
-          category: groceryObj.category,
-          last_purchased: groceryObj.last_purchased,
-          priority: groceryObj.priority,
-          // image: groceryObj.image,
-        })
+      .set({
+        name: groceryObj.name,
+        purchase_price: groceryObj.purchase_price,
+        purchase_size: groceryObj.purchase_size,
+        serving_cost: groceryObj.serving_cost,
+        category: groceryObj.category,
+        last_purchased: groceryObj.last_purchased,
+        priority: groceryObj.priority,
+        image: groceryObj.image,
+      })
 
     res.status(200).json(groceryObj);
   } catch (error) {
@@ -88,71 +85,64 @@ export const createGrocery = async (req, res) => {
 };
 
 export const updateGrocery = async (req, res) => {
-  const { key, id: _id } = req.params;
-  const groceryItem = req.body;
+  // const { key, id: _id } = req.params;
+  // const groceryItem = req.body;
 
-  if (key === "demo123") {
-    if (!mongoose.Types.ObjectId.isValid(_id)) {
-      return res.status(404).send("No post with that id");
-    }
+  // if (key === "demo123") {
+  //   if (!mongoose.Types.ObjectId.isValid(_id)) {
+  //     return res.status(404).send("No post with that id");
+  //   }
 
-    const updateGroceryItem = await DemoGroceryItem.findByIdAndUpdate(
-      _id,
-      { ...groceryItem, _id },
-      { new: true }
-    );
-    res.json(updateGroceryItem);
-  }
+  //   const updateGroceryItem = await DemoGroceryItem.findByIdAndUpdate(
+  //     _id,
+  //     { ...groceryItem, _id },
+  //     { new: true }
+  //   );
+  //   res.json(updateGroceryItem);
+  // }
 
-  if (key !== process.env.USER_KEY) {
-    res.status(404).json("invalid authentication key");
-    return;
-  }
+  // if (key !== process.env.USER_KEY) {
+  //   res.status(404).json("invalid authentication key");
+  //   return;
+  // }
 
-  if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).send("No post with that id");
-  }
+  // if (!mongoose.Types.ObjectId.isValid(_id)) {
+  //   return res.status(404).send("No post with that id");
+  // }
 
-  const updateGroceryItem = await GroceryItem.findByIdAndUpdate(
-    _id,
-    { ...groceryItem, _id },
-    { new: true }
-  );
-  res.json(updateGroceryItem);
+  // const updateGroceryItem = await GroceryItem.findByIdAndUpdate(
+  //   _id,
+  //   { ...groceryItem, _id },
+  //   { new: true }
+  // );
+  res.json("under construction");
 };
 
 export const deleteGrocery = async (req, res) => {
-  const { key, id: _id } = req.params;
+  try {
+    const { userId } = req.params
+    const groceryName = req.body
 
-  if (key === "demo123") {
-    await DemoGroceryItem.findByIdAndDelete(_id);
+    await db.collection('users').doc(userId)
+      .collection('userGroceries')
+      .doc(groceryName)
+      .delete()
 
-    res.json("Item deleted successfully");
+    res.status(200).json(groceryName);
+  } catch (error) {
+    res.status(409).json(error.message);
   }
-
-  if (key !== process.env.USER_KEY) {
-    res.status(404).json("invalid authentication key");
-    return;
-  }
-
-  if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).send("No post with that id");
-  }
-
-  await GroceryItem.findByIdAndDelete(_id);
-
-  res.json("Item deleted successfully");
 };
 
-export const deleteAllGroceries = async (req, res) => {
-  const { key } = req.params;
+// export const deleteAllGroceries = async (req, res) => {
+//   const { key } = req.params;
 
-  if (key !== process.env.USER_KEY) {
-    res.status(404).json("invalid authentication key");
-    return;
-  }
+//   if (key !== process.env.USER_KEY) {
+//     res.status(404).json("invalid authentication key");
+//     return;
+//   }
 
-  await GroceryItem.deleteMany();
+//   await GroceryItem.deleteMany();
 
-  res.json("Database cleared successfully");
-};
+//   res.json("Database cleared successfully");
+// };

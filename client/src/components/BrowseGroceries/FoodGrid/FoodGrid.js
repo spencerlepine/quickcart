@@ -29,9 +29,20 @@ const FoodGrid = () => {
     dispatch(setId(null))
   }, [dispatch])
 
+  // Try to load groceries JUST GET THE COUNT
+  useEffect(() => {
+    if (groceries.length === 0) {
+      dispatch(getGroceries(userId))
+      return
+    }
+  }, [])
+
   useEffect(() => {
     if (groceries.length < totalGroceryCount) {
-      dispatch(getGroceries(userId, groceries.length))
+       const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
+       dispatch(getGroceries(userId, lastGrocery))
+    } else {
+      return
     }
   }, [groceries, totalGroceryCount])
 

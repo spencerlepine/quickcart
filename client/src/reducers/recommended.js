@@ -10,14 +10,14 @@ const reducer = (recommended = initialState, action) => {
     case FETCH_RECOMENDED_IDS: {
       let recommendedCategories = action.payload 
 
-      let validIds = []
+      let validNames = []
       
       for (const categoryKey in recommendedCategories) {
-        validIds.push(...recommendedCategories[categoryKey].map(itemObj => itemObj._id))
+        validNames.push(...recommendedCategories[categoryKey].map(itemObj => itemObj.name))
       }
 
       const newRecommendations = recommended.filter(itemObj =>
-        validIds.includes(itemObj["_id"])
+        validNames.includes(itemObj.name)
       )
 
       // What if the last one didn't have wraps, but this one has wraps? (the id won't be here)
@@ -25,7 +25,7 @@ const reducer = (recommended = initialState, action) => {
     } case RESET_REDUCER:
       return initialState
     case REMOVE_FROM_RECOMMENDED: {
-      const newRecommednations = recommended.filter(item => item._id !== action.payload)
+      const newRecommednations = recommended.filter(item => item.name !== action.payload)
       return newRecommednations
     } default:
       return recommended

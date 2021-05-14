@@ -11,15 +11,15 @@ import {
 } from "../constants/actionTypes.js"
 
 // action creators
-export const getGroceries = (userId, offset=0, ) => async (dispatch) => {
+export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
   try {
-    alert("fetching 10 more groceries")
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "pending" })
 
-    const { data } = await api.fetchGroceries({ userId }, { offset })
-    dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
+    const { data } = await api.fetchGroceries({ userId }, { lastGrocery })
+ 
+    await dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
 
-    dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
+    await dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
 
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
@@ -76,8 +76,8 @@ export const createGrocery = (userId, newGrocery) => async (dispatch) => {
     await api.createGrocery({ userId }, newGrocery)
 
     // Save the total count
-    // const { data: count } = await api.fetchGroceryCount({ key })
-    // dispatch({ type: FETCH_COUNT, payload: count })
+    const { data: count } = await api.fetchGroceryCount({ userId })
+    dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     console.log(error.message)
   }
@@ -93,30 +93,30 @@ export const updateGrocery = (key, groceryItem) => async (dispatch) => {
   }
 }
 
-export const deleteGrocery = (key, id) => async (dispatch) => {
+export const deleteGrocery = (userId, groceryId) => async (dispatch) => {
   try {
-    await api.deleteGrocery({ key }, id)
+    await api.deleteGrocery({ userId }, groceryId)
+
+    dispatch({ type: DELETE, payload: groceryId })
 
     // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ key })
+    const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
-    
-    dispatch({ type: DELETE, payload: id })
   } catch (error) {
     console.log(error.message)
   }
 }
 
-export const clearGroceries = (key) => async (dispatch) => {
-  try {
-    await api.deleteAllGroceries({ key })
+// export const clearGroceries = (key) => async (dispatch) => {
+//   try {
+//     await api.deleteAllGroceries({ key })
 
-    // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ key })
-    dispatch({ type: FETCH_COUNT, payload: count })
+//     // Save the total count
+//     const { data: count } = await api.fetchGroceryCount({ key })
+//     dispatch({ type: FETCH_COUNT, payload: count })
     
-    dispatch({ type: RESET_REDUCER, payload: [] })
-  } catch (error) {
-    console.log(error.message)
-  }
-}
+//     dispatch({ type: RESET_REDUCER, payload: [] })
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+// }

@@ -17,7 +17,6 @@ const Login = () => {
 
   // Sign in user if cookies are valid
   useEffect(() => {
-    console.log("trying to login automaially")
     dispatch(isLoggedIn())
   }, [])
 

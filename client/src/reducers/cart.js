@@ -17,12 +17,12 @@ const reducer = (cartItems = initialState, action) => {
     }
     case UPDATE_ITEM: {
       let newCart = cartItems.map((item) =>
-        item._id === action.payload._id ? action.payload : item
+        item.name === action.payload.name ? action.payload : item
       )
       return newCart
     }
     case REMOVE_FROM_CART: {
-      let newCart = cartItems.filter((item) => item._id !== action.payload)
+      let newCart = cartItems.filter((item) => item.name !== action.payload)
       return newCart
     }
     case RESET_REDUCER:

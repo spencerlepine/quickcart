@@ -1,5 +1,5 @@
 import React from "react"
-import { clearGroceries } from "../../../actions/groceries"
+// import { clearGroceries } from "../../../actions/groceries"
 import { useDispatch, useSelector } from "react-redux"
 import useStyles from "./styles"
 
@@ -7,12 +7,12 @@ const Clear = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const authKey = useSelector((state) => state.authentication)
+  const userId = useSelector((state) => state.connectedUser)
 
   const clearData = () => {
     if (window.confirm("Delete EVERYTHING?")) {
-      dispatch(clearGroceries(authKey))
-      window.alert("Database now empty")
+      // dispatch(clearGroceries(userId))
+      window.alert("Database NOT now empty")
     }
   }
 

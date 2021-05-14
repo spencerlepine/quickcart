@@ -18,8 +18,6 @@ export const registerUser = async (req, res) => {
     const newUserId = savedUser["uid"]
 
     await db.collection('users').doc(newUserId).set({
-      userGroceries: [],
-      userCart: [],
       groceryCount: 0
     })
     

@@ -50,16 +50,16 @@ const Form = () => {
   const classes = useStyles()
 
   const userId = useSelector(state => state.connectedUser)
-  const currentId = useSelector((state) => state.selectedItem)
+  const currentName = useSelector((state) => state.selectedItem)
   const currentItem = useSelector((state) =>
-    currentId ? state.groceries.find((item) => item._id === currentId) : null
+  currentName ? state.groceries.find((item) => item.name === currentName) : null
   )
 
   useEffect(() => {
     let categoryOptions = categories.map(category => {
-      return (<option value={category["_id"]}>{toTitleCase(category["_id"])}</option>)
+      return (<option value={category}>{toTitleCase(category)}</option>)
     })
-    setDropdownCategories(prevCategories => [<option label="None" value="" />, <option label="Unknown" value="Unknown" />, ...categoryOptions])
+    setDropdownCategories(prevCategories => [<option label="None" value="" />, ...categoryOptions])
   }, [categories])
   
   const clearForm = () => {
@@ -69,7 +69,7 @@ const Form = () => {
 
   useEffect(() => {
     // Populate the form if the user selected an item
-    if (currentId && currentItem) {
+    if (currentName && currentItem) {
       // Translate the purchase price decimal data for the form to read
       let validCurrentItem = {
         ...currentItem,
@@ -84,7 +84,7 @@ const Form = () => {
 
       setThisGrocery(validCurrentItem)
     }
-  }, [currentId, currentItem])
+  }, [currentName, currentItem])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -94,7 +94,7 @@ const Form = () => {
 
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
-      dispatch(deleteGrocery(userId, currentId))
+      dispatch(deleteGrocery(userId, currentItem))
       history.push("/")
     }
   }
@@ -108,7 +108,7 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if (currentId) {
+    if (currentName) {
       dispatch(updateGrocery(userId, thisGrocery))
       history.push("/")
       clearForm()
@@ -240,10 +240,10 @@ const Form = () => {
             color="primary"
             className={classes.button}
           >
-            {currentId ? "Update" : "Submit"}
+            {currentName ? "Update" : "Submit"}
           </Button>
 
-          {currentId && (
+          {currentName && (
             <Button
               onClick={handleDelete}
               color="secondary"

@@ -1,52 +1,13 @@
-import mongoose from "mongoose";
-import GroceryItem from "../models/groceryItem.js";
-import DemoGroceryItem from "../models/demoGroceryItem.js";
-import CartItem from "../models/cartItem.js";
-import DemoCartItem from "../models/demoCartItem.js"
-
-export const displayError = async (req, res) => {
-  res.status(200).json("Usage: url/recommended/<authKey>");
-};
-
 export const getRecommended = async (req, res) => {
   try {
     const startTime = new Date().getTime();
 
-    const { key } = req.params;
-
-    const customQueryFields = {
-      $project : {
-        _id : 1,
-        name: 1,
-        category: 1,
-        serving_cost: 1,
-        last_purchased: 1,
-        purchase_price: 1,
-        priority: 1,
-      } 
-    }
+    const { userId } = req.params;
 
     // Fetch all of the grocery items
-    let groceryItems;
-    let cartIds;
-    if (key === process.env.USER_KEY) {
-      groceryItems = await GroceryItem.aggregate([customQueryFields]);
-      cartIds = await CartItem.aggregate([
-        {
-          $group: { _id: "$_id" },
-        },
-      ]);
-    } else if (key === "demo123") {
-      groceryItems = await DemoGroceryItem.aggregate([customQueryFields]);
-      cartIds = await DemoCartItem.aggregate([
-        {
-          $group: { _id: "_$id" },
-        },
-      ]);
-    } else {
-      res.status(404).json("invalid authentication key");
-      return;
-    }
+    let { docs: groceryItems } = await db.collection('users')
+      .doc(userId)
+      .collection("userGroceries")
 
     // Extract available categories
     const allGroceryCategories = {};

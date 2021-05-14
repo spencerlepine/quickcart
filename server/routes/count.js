@@ -4,6 +4,6 @@ import auth from "../middleware/auth.js"
 
 const router = express.Router();
 
-router.get('/:id', getGroceriesCount)
+router.get('/:userId', auth, getGroceriesCount)
 
 export default router

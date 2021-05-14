@@ -11,17 +11,17 @@ const CartItem = ({ cartItem }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const authKey = useSelector((state) => state.authentication)
+  const userId = useSelector(state => state.connectedUser)
 
   const handleDecrement = (item) => {
     if (item.quantity <= 1) {
-      dispatch(deleteCartItem(authKey, item._id))
+      dispatch(deleteCartItem(userId, item.name))
     } else {
       const updatedQuantity = {
         ...item,
         quantity: item.quantity - 1,
       }
-      dispatch(updateCartItem(authKey, updatedQuantity))
+      dispatch(updateCartItem(userId, updatedQuantity))
     }
   }
 
@@ -30,8 +30,8 @@ const CartItem = ({ cartItem }) => {
       ...item,
       quantity: item.quantity + 1,
     }
-    dispatch(updateCartItem(authKey, updatedQuantity))
-    dispatch(fetchCart(authKey))
+    dispatch(updateCartItem(userId, updatedQuantity))
+    dispatch(fetchCart(userId))
   }
 
   return (

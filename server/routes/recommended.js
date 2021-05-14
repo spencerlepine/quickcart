@@ -1,9 +1,9 @@
 import express from "express"
-import { displayError, getRecommended } from "../controllers/recommended.js"
+import { getRecommended } from "../controllers/recommended.js"
+import auth from "../middleware/auth.js"
 
 const router = express.Router();
 
-router.get('/', displayError)
-router.get('/:key', getRecommended)
+router.get('/:userId', auth, getRecommended)
 
 export default router

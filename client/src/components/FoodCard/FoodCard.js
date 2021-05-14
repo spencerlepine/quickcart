@@ -27,18 +27,18 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const authKey = "yeet"//useSelector((state) => state.authSat)
+  const userId = useSelector(state => state.connectedUser)
   const currentSearch = useSelector((state) => state.search)
   const currentSelectedCategory = useSelector((state) => state.selectedCategory)
 
   const handleEdit = (e) => {
-    dispatch(setId(groceryItem._id))
+    dispatch(setId(groceryItem.name))
     history.push("/form")
   }
 
   const handleAdd = (e) => {
     e.stopPropagation()
-    dispatch(addToCart(authKey, groceryItem))
+    dispatch(addToCart(userId, groceryItem))
   }
 
   const selectionMatches = (currentSelectedCategory === null && currentSearch.length < 3) || (currentSelectedCategory === groceryItem.category)
@@ -58,11 +58,10 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
   groceryExpirationDate.setDate(
     groceryExpirationDate.getDate() + groceryLifeSpan
   );
-  const todaysDate = new Date();
+
+  // const todaysDate = new Date();
   // If it is past when it expired
-  let groceryExpired = !(todaysDate >= groceryExpirationDate);
-
-
+  // let groceryExpired = !(todaysDate >= groceryExpirationDate);
 
   // show every thing if currentSearch.length < 3
   return (
