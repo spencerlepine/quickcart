@@ -22,7 +22,6 @@ export const fetchCartItem = async (req, res) => {
     const { userId } = req.params
     const cartItemName = req.body
 
-    console.log(cartItemName)
     let cartItemData = await db.collection('users')
       .doc(userId)
       .collection("userCart")

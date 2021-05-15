@@ -4,10 +4,13 @@ dotenv.config()
 
 axios.defaults.withCredentials = true
 
-const baseUrl = process.env.BACKEND_URL || "http://localhost:5000"
+const baseUrl = "https://grocery-server-sl.herokuapp.com"
+// "http://192.168.1.15:5000"
+// process.env.BACKEND_URL
+// "http://localhost:5000"
 
 // Grocery API calls
-export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}/`)
+export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}`)
 
 export const createGrocery = (idObj, newGrocery) => axios.post(`${baseUrl}/groceries/${idObj.userId}`, newGrocery)
 
@@ -35,10 +38,10 @@ export const addToCart = (idObj, itemToAdd) => axios.post(`${baseUrl}/cart/${idO
 export const fetchRecommended = (idObj) => axios.get(baseUrl + `/recommended/${idObj.userId}`)
 
 // User account calls
-export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, loginInfoObj, { withCredentials: true })
+export const registerUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/`, loginInfoObj)
 
 export const loginUser = (loginInfoObj) => axios.post(`${baseUrl}/auth/login`, loginInfoObj, { withCredentials: true })
 
-export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`, { withCredentials: true })
+export const isUserLoggedIn = () => axios.get(`${baseUrl}/auth/loggedIn`)
 
-export const logoutUser = () => axios.get(`${baseUrl}/auth/logout`, { withCredentials: true })
+export const logoutUser = () => axios.get(`${baseUrl}/auth/logout`)

@@ -1,5 +1,5 @@
 import * as api from "../api/index.js"
-import { FETCH_RECOMENDED_IDS, SET_RECOMMENDED_CONNECTION } from "../constants/actionTypes.js"
+import { FETCH_RECOMENDED_IDS, SET_RECOMMENDED_CONNECTION, SET_CURRENT_ERROR } from "../constants/actionTypes.js"
 
 // action creators
 export const fetchRecommended = (userId) => async (dispatch) => {
@@ -12,6 +12,7 @@ export const fetchRecommended = (userId) => async (dispatch) => {
     dispatch({ type: SET_RECOMMENDED_CONNECTION, payload: "connected" })
   } catch (error) {
     dispatch({ type: SET_RECOMMENDED_CONNECTION, payload: "disconnected" })
+    dispatch({ type: SET_CURRENT_ERROR, payload: error.message })
     console.log(error.message)
   }
 }

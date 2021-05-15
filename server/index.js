@@ -17,6 +17,7 @@ app.use(
     cors({
       origin: [
         "http://localhost:3000",
+        "http://192.168.1.15:3000",
         "https://grocery-client-sl.herokuapp.com",
       ],
       credentials: true,

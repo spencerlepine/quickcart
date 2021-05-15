@@ -10,6 +10,7 @@ import selectedCategory from "./selectedCategory"
 import connection from "./connection"
 import count from "./count"
 import connectedUser from "./connectedUser"
+import error from "./error"
 
 export default combineReducers({
   groceries,
@@ -22,4 +23,5 @@ export default combineReducers({
   connection,
   count,
   connectedUser,
+  error,
 })

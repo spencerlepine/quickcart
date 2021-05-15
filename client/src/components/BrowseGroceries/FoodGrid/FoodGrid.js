@@ -41,10 +41,11 @@ const FoodGrid = () => {
     }
   }, [])
 
-  useEffect(() => {
+  useEffect(()=> {
     if (groceries.length < totalGroceryCount) {
        const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
        dispatch(getGroceries(userId, lastGrocery))
+       return
     } else {
       return
     }

@@ -11,7 +11,7 @@ const CartHeader = ({ cartItems }) => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
- const authKey = useSelector(state => state.authentication)
+ const userId = useSelector(state => state.connectedUser)
  
   const handleCartPurchase = () => {
     if (cartItems.length) {
@@ -20,8 +20,8 @@ const CartHeader = ({ cartItems }) => {
           ...item,
           last_purchased: todaysDate,
         }
-        dispatch(deleteCartItem(authKey, item._id))
-        dispatch(updateGrocery(authKey, groceryObjNewDate))
+        dispatch(deleteCartItem(userId, groceryObjNewDate.name))
+        dispatch(updateGrocery(userId, groceryObjNewDate))
       })
       alert(`Updated ${cartItems.length} item(s)`)
     }

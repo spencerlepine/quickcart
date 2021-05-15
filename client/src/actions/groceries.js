@@ -5,6 +5,7 @@ import {
   DELETE,
   SET_GROCERY_CONNECTION,
   FETCH_COUNT,
+  SET_CURRENT_ERROR,
 } from "../constants/actionTypes.js"
 
 // action creators
@@ -23,6 +24,7 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
     dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     dispatch({ type: SET_GROCERY_CONNECTION, payload: "disconnected" })
+    dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
   }
 }
@@ -35,6 +37,7 @@ export const createGrocery = (userId, newGrocery) => async (dispatch) => {
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
+    dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
   }
 }
@@ -45,6 +48,7 @@ export const updateGrocery = (userId, groceryItem) => async (dispatch) => {
 
     dispatch({ type: UPDATE, payload: groceryItem })
   } catch (error) {
+    dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
   }
 }
@@ -59,6 +63,7 @@ export const deleteGrocery = (userId, groceryName) => async (dispatch) => {
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
+    dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
   }
 }

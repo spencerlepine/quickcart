@@ -47,7 +47,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    
+
     // validate
     if (!email || !password) {
       return res.status(400).json({ errorMessage: "Please enter all required fields." });
@@ -62,7 +62,7 @@ export const loginUser = async (req, res) => {
       },
       process.env.JWT_SECRET
     );
-
+      
     //send the token in a HTTP-only cookie
     res
       .cookie("token", token, {
@@ -70,8 +70,6 @@ export const loginUser = async (req, res) => {
         secure: true,
         sameSite: "none",
       }).send(connectedUser.uid);
-
-    // res.status(200).json(connectedUser.uid)
   } catch (error) {
     res.status(404).json(error.message);
   }
