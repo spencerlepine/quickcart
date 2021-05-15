@@ -26,11 +26,8 @@ export const fetchCartItem = async (req, res) => {
       .doc(userId)
       .collection("userCart")
       .doc(cartItemName)
-      // .get()
-    
-    // console.log(cartItemData.data())
 
-    res.status(200).json(cartItemData);
+    res.status(200).json(cartItemData.data());
   } catch (error) {
     res.status(404).json(error.message)
   }

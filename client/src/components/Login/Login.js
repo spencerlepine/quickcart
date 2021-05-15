@@ -37,7 +37,7 @@ const Login = () => {
       await dispatch(loginUser(formValues["email"], formValues["password"]))
       history.push("/");
     } catch {
-      console.log("login failed");
+      console.log("Login failed");
     }
   };
 

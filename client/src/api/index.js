@@ -4,10 +4,7 @@ dotenv.config()
 
 axios.defaults.withCredentials = true
 
-const baseUrl = "https://grocery-server-sl.herokuapp.com"
-// "http://192.168.1.15:5000"
-// process.env.BACKEND_URL
-// "http://localhost:5000"
+const baseUrl = process.env.BACKEND_URL || "http://localhost:5000"
 
 // Grocery API calls
 export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}`)

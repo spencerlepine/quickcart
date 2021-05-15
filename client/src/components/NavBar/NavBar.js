@@ -6,10 +6,10 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import EmojiObjects from "@material-ui/icons/EmojiObjects";
-import useStyles from "./styles.js";
-
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
+import useStyles from "./styles.js";
+import Logout from "../Logout/Logout"
 
 const NavBar = () => {
   const classes = useStyles();
@@ -35,14 +35,6 @@ const NavBar = () => {
           <p>Browse</p>
         </Link>
 
-        <Link className={classes.link}
-        to="/cart"
-        onClick={() => toggleMenu(false)}
-        >
-          <ShoppingCartIcon fontSize="large" />
-          <p>Cart</p>
-        </Link>
-
         <Link
           style={{ justifySelf: "center" }}
           className={classes.link}
@@ -52,6 +44,15 @@ const NavBar = () => {
           <AddCircleOutlineIcon fontSize="large" />
           <p>Create</p>
         </Link>
+
+        <Link className={classes.link}
+        to="/cart"
+        onClick={() => toggleMenu(false)}
+        >
+          <ShoppingCartIcon fontSize="large" />
+          <p>Cart</p>
+        </Link>
+
 
         <Link
           className={`${classes.link} ${classes.recommendedIcon}`}
@@ -70,6 +71,8 @@ const NavBar = () => {
           <SettingsIcon fontSize="large" />
           <p>Settings</p>
         </Link>
+
+        <Logout />
       </div>
     );
   };

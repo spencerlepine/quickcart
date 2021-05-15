@@ -17,9 +17,12 @@ export const registerUser = async (req, res) => {
     const { user: savedUser } = await auth.createUserWithEmailAndPassword(email, password)
     const newUserId = savedUser["uid"]
 
-    await db.collection('users').doc(newUserId).set({
-      groceryCount: 0
-    })
+    await db.collection('users').doc(newUserId)
+      .collection("groceryCount")
+      .doc("totalCount")
+      .set({
+        totalCount: 0
+      })
     
     // sign the token
     const token = jwt.sign(

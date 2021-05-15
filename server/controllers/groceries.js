@@ -1,4 +1,4 @@
-import { db } from "../connection/firebase.js"
+import { db, useFirebase } from "../connection/firebase.js"
 
 export const getGroceries = async (req, res) => {
   try {
@@ -26,7 +26,7 @@ export const getGroceryCategories = async (req, res) => {
   try {
     const { userId } = req.params
 
-    let groceryCategories = ['grains', 'bread', 'breakfast', 'dairy', 'fruits', 'vegetables', 'bread', 'pantry', 'snacks', 'meat']
+    let groceryCategories = ['grains', 'bread', 'breakfast', 'dairy', 'fruits', 'vegetables', 'pantry', 'snacks', 'meat', 'beverages', 'condements']
     res.status(200).json(groceryCategories);
   } catch (error) {
     res.status(404).json(error.message);
@@ -39,12 +39,12 @@ export const getGroceriesCount = async (req, res) => {
 
     const { docs } = await db.collection('users')
       .doc(userId)
-      .collection("userGroceries")
+      .collection("groceryCount")
       .get()
+    
+      console.log(docs)
 
-    const groceryCount = docs.length
-
-    res.status(200).json(groceryCount);
+    res.status(200).json("yeet");
   } catch (error) {
     res.status(404).json(error.message);
   }
@@ -55,7 +55,9 @@ export const createGrocery = async (req, res) => {
     const { userId } = req.params
     const groceryObj  = req.body
 
-    await db.collection('users').doc(userId)
+    const userDocRef = await await db.collection('users').doc(userId)
+    
+    await userDocRef
       .collection('userGroceries')
       .doc(groceryObj.name)
       .set({
@@ -68,6 +70,12 @@ export const createGrocery = async (req, res) => {
         priority: groceryObj.priority,
         image: groceryObj.image,
       })
+
+    const increment = useFirebase.FieldValue.increment(1);
+    await userDocRef
+      .collection("groceryCount")
+      .doc("totalCount")
+      .update({ totalCount: increment })
 
     res.status(200).json(groceryObj);
   } catch (error) {
@@ -104,21 +112,15 @@ export const deleteGrocery = async (req, res) => {
       .doc(groceryName)
       .delete()
 
+    const decrement = useFirebase.FieldValue.increment(-1);
+    await db.collection('users')
+      .doc(userId)
+      .collection("groceryCount")
+      .doc("totalCount")
+      .update({ totalCount: decrement })
+
     res.status(200).json(groceryName);
   } catch (error) {
     res.status(409).json(error.message);
   }
 };
-
-// export const deleteAllGroceries = async (req, res) => {
-//   const { key } = req.params;
-
-//   if (key !== process.env.USER_KEY) {
-//     res.status(404).json("invalid authentication key");
-//     return;
-//   }
-
-//   await GroceryItem.deleteMany();
-
-//   res.json("Database cleared successfully");
-// };

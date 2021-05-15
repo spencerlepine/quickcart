@@ -1,12 +1,13 @@
 # To do:
-- ERRORS
- - importing, the LAST TWO keep trying to push
+- ERROR:
+ - (groceryCount may fix) importing, the LAST TWO keep trying to push
+ - (groceryCount may fix) CREATE grocery during loadup, there are a BUNCH of requets stuck
 
 - go through each file and format, then make sure the code is sensible
 
 - read warnings (prop types, un-unused variables)
 
-- user groceryCount variable
+- user groceryCount variable 
 
 - change quantity for cart
 
@@ -14,10 +15,12 @@
 
 - group categories on recommended page for easier browsing
 
+- Password form is acting like username field (hide chars?)
 
 Upcoming features:
 - Logout button in sidebar menu
 - Recipes (connected with ids)
+- Pantry (see current items)
 - Dynamically set categories
   - fetch grocieres on backend and return list of categories
 - Error system
@@ -25,5 +28,6 @@ Upcoming features:
 - Longer passwords
   - deny weak invalid sign-ups, check email and password
 - temporary loading boxes
+- loading spinners (not just Empty Cart)
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061

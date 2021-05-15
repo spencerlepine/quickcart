@@ -19,5 +19,8 @@ export default makeStyles(() => ({
     padding: "10px 18px",
     color: "rgb(255, 255, 255)",
     textDecoration: "none",
+    '&:hover': {
+      backgroundColor: "rgb(59 148 38)",
+    },
   },
 }))

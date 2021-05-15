@@ -13,12 +13,13 @@ import cartRoutes from "./routes/cart.js"
 const app = express()
 dotenv.config()
 
+const clientUrl = process.env.CLIENT_URL || ""
+
 app.use(
     cors({
       origin: [
         "http://localhost:3000",
-        "http://192.168.1.15:3000",
-        "https://grocery-client-sl.herokuapp.com",
+        clientUrl,
       ],
       credentials: true,
     })

@@ -12,10 +12,6 @@ const Import = () => {
   const userId = useSelector(state => state.connectedUser)
 
   const importData = ({ target }) => {
-    // if (window.confirm("Overwrite existing data?")) {
-    //   dispatch(clearGroceries())
-    // }
-
     var fr = new FileReader()
 
     fr.readAsText(target.files[0])
@@ -44,7 +40,6 @@ const Import = () => {
         }
 
         dispatch(createGrocery(userId, filteredObj))
-        setTimeout(1000)
       })
 
       window.alert("Successfully imported your data :)")
