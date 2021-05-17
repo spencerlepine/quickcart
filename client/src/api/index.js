@@ -4,10 +4,12 @@ dotenv.config()
 
 axios.defaults.withCredentials = true
 
-const baseUrl = process.env.BACKEND_URL || "http://localhost:5000"
+const baseUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"
 
 // Grocery API calls
 export const fetchGroceries = (idObj, lastGroceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${lastGroceryObj.lastGrocery}`)
+
+export const fetchGroceryItem = (idObj, groceryObj) => axios.get(`${baseUrl}/groceries/${idObj.userId}/${groceryObj.lasgroceryNametGrocery}`)
 
 export const createGrocery = (idObj, newGrocery) => axios.post(`${baseUrl}/groceries/${idObj.userId}`, newGrocery)
 

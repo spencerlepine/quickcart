@@ -1,5 +1,5 @@
 import React from "react"
-import { createGrocery } from "../../../actions/groceries"
+import { createGrocery, saveLocalGrocery } from "../../../actions/groceries"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import useStyles from "./styles"
@@ -20,7 +20,7 @@ const Import = () => {
       var storageAccessed = JSON.parse(fr.result)
 
       storageAccessed.forEach((grocery) => {
-        // Save me in Mongo Cluster
+        
         const allowedKeys = [
           "name",
           "purchase_price",

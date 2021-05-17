@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createGrocery, deleteGrocery, updateGrocery } from "../../actions/groceries";
+import { createGrocery, deleteGrocery, updateGrocery, saveLocalGrocery } from "../../actions/groceries";
 import { setId } from "../../actions/selectedItem";
 import { setSearchQuery } from "../../actions/search";
 import { setSelectedCategory } from "../../actions/selectedCategory";
@@ -125,6 +125,7 @@ const Form = () => {
       thisGrocery.image
     ) {
       dispatch(createGrocery(userId, thisGrocery));
+      dispatch(saveLocalGrocery(userId, thisGrocery))
       history.push("/");
       clearForm();
     } else {

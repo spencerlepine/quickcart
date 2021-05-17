@@ -33,18 +33,38 @@ export const getGroceryCategories = async (req, res) => {
   }
 };
 
+export const getGroceryItem = async (req, res) => {
+  try {
+    const { userId, groceryName } = req.params
+
+    const thisGrocery = await db.collection('users')
+      .doc(userId)
+      .collection('userGroceries')
+      .doc(groceryName)
+      .get()
+
+    const groceryData = thisGrocery.data()
+    res.status(200).json(groceryData);
+  } catch (error) {
+    res.status(409).json(error.message);
+  }
+};
+
 export const getGroceriesCount = async (req, res) => {
   try {
     const { userId } = req.params
 
-    const { docs } = await db.collection('users')
+    const countResult = await db.collection('users')
       .doc(userId)
       .collection("groceryCount")
+      .doc("totalCount")
       .get()
-    
-      console.log(docs)
 
-    res.status(200).json("yeet");
+    const data = countResult.data()
+    const totalCount = data ? data.totalCount : 0
+    console.log("totalCount: " + totalCount)
+
+    res.status(200).json(totalCount);
   } catch (error) {
     res.status(404).json(error.message);
   }
@@ -55,12 +75,22 @@ export const createGrocery = async (req, res) => {
     const { userId } = req.params
     const groceryObj  = req.body
 
-    const userDocRef = await await db.collection('users').doc(userId)
+    const userDocRef = await db.collection('users').doc(userId)
     
-    await userDocRef
+    const itemDocRef = await userDocRef
       .collection('userGroceries')
       .doc(groceryObj.name)
-      .set({
+
+    const getAttempt = itemDocRef.get()
+    if (getAttempt.length === 0) {
+      const increment = useFirebase.FieldValue.increment(1);
+      await userDocRef
+        .collection("groceryCount")
+        .doc("totalCount")
+        .update({ totalCount: increment })
+    }
+
+    await itemDocRef.set({
         name: groceryObj.name,
         purchase_price: groceryObj.purchase_price,
         purchase_size: groceryObj.purchase_size,
@@ -70,12 +100,6 @@ export const createGrocery = async (req, res) => {
         priority: groceryObj.priority,
         image: groceryObj.image,
       })
-
-    const increment = useFirebase.FieldValue.increment(1);
-    await userDocRef
-      .collection("groceryCount")
-      .doc("totalCount")
-      .update({ totalCount: increment })
 
     res.status(200).json(groceryObj);
   } catch (error) {

@@ -10,6 +10,7 @@ const initialState = []
 const reducer = (groceries = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL_GROCERIES:
+      // Only add a NEW item
       let existingNames = groceries.map(item => item.name)
       let filteredPayload = action.payload.filter(item => item && !(existingNames.includes(item.name)))
       let extendedGroceries = [...groceries, ...filteredPayload]
