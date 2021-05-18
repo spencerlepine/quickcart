@@ -5,10 +5,16 @@ export default makeStyles(() => ({
     width: "fit-content",
     margin: "1em auto",
     marginBottom: "0",
-    color: "#4f2098",
-    backgroundColor: "#d3e1ff",
+    color: "white",
+    backgroundColor: "#5f91fb",
     padding: "0.5em 1em",
     border: "2px solid #3647bf",
     borderRadius: "4px",
+    '&:hover': {
+      backgroundColor: "#5d86de",
+    },
   },
+  backupDiv: {
+    paddingLeft: "2em",
+  }
 }))

@@ -13,6 +13,10 @@ export const registerUser = async (req, res) => {
       res.status(400).json("Please enter all required feilds");
     }
 
+    if (password.length < 6) {
+      res.status(400).json("Password too short");
+    }
+
     // const savedUser = await newUser.save();
     const { user: savedUser } = await auth.createUserWithEmailAndPassword(email, password)
     const newUserId = savedUser["uid"]

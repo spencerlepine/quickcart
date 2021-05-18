@@ -8,6 +8,7 @@ const reducer = (connectedUser = initialState, action) => {
       const storedId = action.payload
       if (!storedId) {
         localStorage.clear()
+        return connectedUser
       } else {
         localStorage.setItem("groceryAppUserId", action.payload)
       }

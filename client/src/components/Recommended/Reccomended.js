@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch, connect } from "react-redux"
 
 import useStyles from "./styles.js"
 import FoodCard from "../FoodCard/FoodCard"
@@ -18,12 +18,15 @@ const Recommended = () => {
 
   const groceryItems = useSelector(state => state.groceries)
 
-  const recommendedNames = useSelector((state) => state.recommended)
+  const recommendedNames = useSelector(state => state.recommended)
   const validGroceryItems = groceryItems.filter(itemObj => recommendedNames.includes(itemObj.name))
   const recommendedCards = validGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
 
+  const connectionState = useSelector(state => state.connection)
+  const { groceries: groceryConnection } = connectionState
+  const { recommended: recommendedConnection } = connectionState
+
   useEffect(() => {
-    dispatch(fetchRecommended(userId))
     dispatch(setId(null))
     dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
@@ -31,13 +34,16 @@ const Recommended = () => {
 
   return (
     <div className={classes.gridView}>
-      {recommendedCards.length > 0 ? (
-        <>
+      {recommendedConnection === "connected" && groceryConnection === "connected"
+       ?
+       <>
           <h3>Cart Recommendations</h3>
           <hr />
           <div className={classes.recommendedGrid}>{recommendedCards}</div>
-        </>
-      ) : <CircularProgress className={classes.loadSpinner} />}
+       </>
+       :
+       <CircularProgress className={classes.loadSpinner} />
+      }
     </div>
   )
 }

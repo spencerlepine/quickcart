@@ -13,6 +13,7 @@ const Settings = () => {
   return (
     <div className={classes.settingsContainer}>
       <Import />
+      <hr />
       <Backup />
       <BackupCSV />
       <Clear />

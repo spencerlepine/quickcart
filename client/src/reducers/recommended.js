@@ -5,15 +5,17 @@ const initialState = []
 const reducer = (recommended = initialState, action) => {
   switch (action.type) {
     case FETCH_RECOMENDED_IDS:
+      // Object 'category': [{ name: "Mango"}, { name: "Banana"}]
       const recommendedResult = action.payload
       const suggestedGroceryNames = []
 
       if (typeof recommendedResult === "object" && !Array.isArray(recommendedResult)) {
         for (const categoryKey in recommendedResult) {
-          suggestedGroceryNames.push(...recommendedResult[categoryKey].map(itemObj => itemObj.name))
+          let categoryItemsArr = recommendedResult[categoryKey]
+          categoryItemsArr.forEach(item => {
+            suggestedGroceryNames.push(item.name)
+          })
         }
-      } else {
-        return recommendedResult
       }
 
       return suggestedGroceryNames

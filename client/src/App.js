@@ -11,6 +11,8 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Recommended from "./components/Recommended/Reccomended";
+import Pantry from "./components/Pantry/Pantry"
+import NotificationPopup from "./components/NotificationPopup/NotificationPopup"
 import "./index.css";
 
 const App = () => {
@@ -18,11 +20,15 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <NotificationPopup />
       {userId ? (<>
         <NavBar />
         <Switch>
           <Route exact path="/">
             <BrowseGroceries />
+          </Route>
+          <Route path="/pantry">
+            <Pantry />
           </Route>
           <Route path="/form">
             <Form />

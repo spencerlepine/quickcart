@@ -81,8 +81,13 @@ export const createGrocery = async (req, res) => {
       .collection('userGroceries')
       .doc(groceryObj.name)
 
-    const getAttempt = itemDocRef.get()
-    if (getAttempt.length === 0) {
+    let exisitingCountDoc = false
+    await itemDocRef.get().then(doc => {
+      if (doc.exists) {
+        exisitingCountDoc = true
+      }
+    })
+    if (!exisitingCountDoc) {
       const increment = useFirebase.FieldValue.increment(1);
       await userDocRef
         .collection("groceryCount")

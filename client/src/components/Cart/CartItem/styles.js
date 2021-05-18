@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
     padding: "0px",
     lineHeight: "40px",
     borderRadius: "4px",
-    zIndex: "100",
+    zIndex: "4",
     backgroundColor: "transparent",
     "&:hover": {
       backgroundColor: "rgb(247, 247, 247)",
@@ -71,7 +71,7 @@ export default makeStyles((theme) => ({
     fontSize: "36px",
     color: "rgb(67, 176, 42)",
     fontWeight: "600",
-    zIndex: "100",
+    zIndex: "4",
     backgroundColor: "transparent",
   },
   delete: {

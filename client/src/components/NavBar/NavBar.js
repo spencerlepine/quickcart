@@ -8,6 +8,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import EmojiObjects from "@material-ui/icons/EmojiObjects";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
+import KitchenIcon from '@material-ui/icons/Kitchen';
 import useStyles from "./styles.js";
 import Logout from "../Logout/Logout"
 
@@ -53,7 +54,6 @@ const NavBar = () => {
           <p>Cart</p>
         </Link>
 
-
         <Link
           className={`${classes.link} ${classes.recommendedIcon}`}
           to="/recommended"
@@ -61,6 +61,15 @@ const NavBar = () => {
         >
           <EmojiObjects fontSize="large" />
           <p>Suggested</p>
+        </Link>
+
+        <Link
+          className={`${classes.link} ${classes.pantryIcon}`}
+          to="/pantry"
+          onClick={() => toggleMenu(false)}
+        >
+          <KitchenIcon fontSize="large" />
+          <p>Pantry</p>
         </Link>
 
         <Link

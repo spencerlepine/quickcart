@@ -1,8 +1,4 @@
-# To do:
-- ERROR:
- - (groceryCount may fix) importing, the LAST TWO keep trying to push
- - (groceryCount may fix) CREATE grocery during loadup, there are a BUNCH of requets stuck
-
+# To do:  
 - go through each file and format, then make sure the code is sensible
 
 - read warnings (prop types, un-unused variables)
@@ -18,13 +14,10 @@
 - Password form is acting like username field (hide chars?)
 
 Upcoming features:
-- Logout button in sidebar menu
 - Recipes (connected with ids)
 - Pantry (see current items)
 - Dynamically set categories
   - fetch grocieres on backend and return list of categories
-- Error system
-  - give error feedback (login fail, couldn't save item...)
 - Longer passwords
   - deny weak invalid sign-ups, check email and password
 - temporary loading boxes

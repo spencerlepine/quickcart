@@ -48,6 +48,7 @@ const Login = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         name="email"
+        type="email"
         value={formValues["email"]}
         placeholder="demo123@gmail.com"
       ></input>
@@ -55,6 +56,7 @@ const Login = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         name="password"
+        type="password"
         value={formValues["password"]}
         placeholder="password123"
       ></input>

@@ -32,10 +32,6 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
 export const saveLocalGrocery = (userId, groceryItem)  => async (dispatch) => {
   try {
     await dispatch({ type: FETCH_ALL_GROCERIES, payload: [groceryItem] })
-
-    // Save the total count
-    const { data: count } = await api.fetchGroceryCount({ userId })
-    dispatch({ type: FETCH_COUNT, payload: count })
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)

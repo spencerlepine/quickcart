@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import GetAppIcon from '@material-ui/icons/GetApp';
 import useStyles from "./styles"
 
 const Backup = () => {
@@ -69,8 +70,11 @@ const Backup = () => {
   }
 
   return (
-    <div>
-      <button className={classes.backupButton} onClick={saveCart}>Export Data</button>
+    <div className={classes.backupDiv}>
+      <button className={classes.backupButton} onClick={saveCart}>
+        <GetAppIcon />
+        Export Data
+      </button>
     </div>
   )
 }

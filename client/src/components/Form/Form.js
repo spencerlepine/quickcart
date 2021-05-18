@@ -6,6 +6,7 @@ import { setId } from "../../actions/selectedItem";
 import { setSearchQuery } from "../../actions/search";
 import { setSelectedCategory } from "../../actions/selectedCategory";
 import FileBase from "react-file-base64";
+import useExitPrompt from '../../hooks/useExitPrompt/useExitPrompt.js'
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -36,6 +37,7 @@ function toTitleCase(str) {
 
 const Form = () => {
   const categories = useSelector((state) => state.categories);
+  const [showExitPrompt, setShowExitPrompt] = useExitPrompt(false);
 
   const [thisGrocery, setThisGrocery] = useState(schema);
   const [dropdownCategories, setDropdownCategories] = useState([]);
@@ -55,6 +57,12 @@ const Form = () => {
     dispatch(setSearchQuery(""));
     dispatch(setSelectedCategory(null));
   }, []);
+
+  useEffect(() => {
+    return () => {
+      setShowExitPrompt(false)
+    }
+  }, [])
 
   useEffect(() => {
     let categoryOptions = categories.map((category) => {
@@ -89,6 +97,7 @@ const Form = () => {
   }, [currentName, currentItem]);
 
   const handleChange = (event) => {
+    setShowExitPrompt(true)
     const { name, value } = event.target;
 
     setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
@@ -96,6 +105,7 @@ const Form = () => {
 
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
+      setShowExitPrompt(false)
       dispatch(deleteGrocery(userId, currentItem.name));
       history.push("/");
     }
@@ -108,6 +118,7 @@ const Form = () => {
   };
 
   const handleSubmit = (event) => {
+    setShowExitPrompt(false)
     event.preventDefault();
 
     if (currentName) {

@@ -5,18 +5,25 @@ export default makeStyles(() => ({
     padding: "2em",
   },
   inputLabel: {
-    color: "#385f9a",
+    color: "#4f7ee6",
+    position: "relative",
+    top: "-8px",
+    paddingLeft: "10px",
+  },
+  importIcon: {
+    color: "#4f7ee6",
   },
   fileInput: {
     backgroundColor: "#f5f5f5",
     border: "2px dashed #b7b7b7",
     borderRadius: "10px",
     width: "fit-content",
-    padding: "4px",
     margin: "4px",
     height: "100px",
     '& p': {
       padding: "1em",
     },
+    padding: "15px",
+    color: "#9c7b3e",
   },
 }))

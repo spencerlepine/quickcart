@@ -4,6 +4,7 @@ import {
   updateCartItem,
   deleteCartItem,
 } from "../../../actions/cart"
+import { fetchRecommended } from "../../../actions/recommended"
 import { useSelector, useDispatch } from "react-redux"
 import useStyles from "./styles.js"
 
@@ -21,6 +22,7 @@ const CartItem = ({ cartItem }) => {
         ...item,
         quantity: item.quantity - 1,
       }
+      dispatch(fetchRecommended(userId))
       dispatch(updateCartItem(userId, updatedQuantity))
     }
   }
@@ -31,6 +33,7 @@ const CartItem = ({ cartItem }) => {
       quantity: item.quantity + 1,
     }
     dispatch(updateCartItem(userId, updatedQuantity))
+    dispatch(fetchRecommended(userId))
     dispatch(fetchCart(userId))
   }
 
