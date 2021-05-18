@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -10,10 +10,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import useStyles from "./styles.js";
+import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import Logout from "../Logout/Logout"
 
 const NavBar = () => {
   const classes = useStyles();
+  const params = useParams()
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -25,10 +27,14 @@ const NavBar = () => {
     ));
   };
 
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [params])
+
   const Sidebar = () => {
     return (
       <div className={classes.sidebar}>
-        <Link className={classes.link}
+        <Link className={classes.sidebarLink}
           to="/"
           onClick={() => toggleMenu(false)}
         >
@@ -38,7 +44,7 @@ const NavBar = () => {
 
         <Link
           style={{ justifySelf: "center" }}
-          className={classes.link}
+          className={classes.sidebarLink}
           to="/form"
           onClick={() => toggleMenu(false)}
         >
@@ -46,7 +52,7 @@ const NavBar = () => {
           <p>Create</p>
         </Link>
 
-        <Link className={classes.link}
+        <Link className={classes.sidebarLink}
         to="/cart"
         onClick={() => toggleMenu(false)}
         >
@@ -55,7 +61,7 @@ const NavBar = () => {
         </Link>
 
         <Link
-          className={`${classes.link} ${classes.recommendedIcon}`}
+          className={`${classes.sidebarLink} ${classes.recommendedIcon}`}
           to="/recommended"
           onClick={() => toggleMenu(false)}
         >
@@ -64,7 +70,7 @@ const NavBar = () => {
         </Link>
 
         <Link
-          className={`${classes.link} ${classes.pantryIcon}`}
+          className={`${classes.sidebarLink} ${classes.pantryIcon}`}
           to="/pantry"
           onClick={() => toggleMenu(false)}
         >
@@ -73,7 +79,7 @@ const NavBar = () => {
         </Link>
 
         <Link
-          className={`${classes.link} ${classes.settingIcon}`}
+          className={`${classes.sidebarLink} ${classes.settingIcon}`}
           to="/settings"
           onClick={() => toggleMenu(false)}
         >
@@ -89,7 +95,7 @@ const NavBar = () => {
   return (
     <>
       <div className={classes.navBar}>
-        <div className={classes.navbarContainer}>
+        <div className={classes.navbarContainer} >
           <div className={classes.menuToggleBtn}>
             {menuOpen ? (
               <CloseIcon fontSize="large"  onClick={() => toggleMenu(false)} />
@@ -99,11 +105,19 @@ const NavBar = () => {
           </div>
 
           {menuOpen && <Sidebar />}
+          
+          <Link
+            className={classes.logoLink}
+            to="/"
+            onClick={() => toggleMenu(false)}
+          >
+              <img  src={QuickCartLogo} alt="QuickCart Logo"></img>
+          </Link>
 
           <Link
-            style={{ marginLeft: "auto" }}
             className={classes.link}
             to="/cart"
+            onClick={() => toggleMenu(false)}
           >
             <div className={classes.cartLink}>
               <ShoppingCartIcon fontSize="large" color="action" />
