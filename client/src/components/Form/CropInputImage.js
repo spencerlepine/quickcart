@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+dotenv.config()
 
 const CropInputImage = async (base64) => {
     return new Promise((res, rej) => {
@@ -7,7 +8,7 @@ const CropInputImage = async (base64) => {
 
         image.onload = async () => {
             let canvas = document.createElement('canvas');
-            let maxSize = process.env.MAX_THUMBNAIL_SIZE || 200;
+            let maxSize = process.env.REACT_APP_MAX_THUMBNAIL_SIZE || 200;
             let width = image.width;
             let height = image.height;
            

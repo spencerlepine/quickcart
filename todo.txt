@@ -3,8 +3,6 @@
 
 - read warnings (prop types, un-unused variables)
 
-- user groceryCount variable 
-
 - change quantity for cart
 
 - duplication into cart (updating quantity feature)
@@ -12,6 +10,8 @@
 - group categories on recommended page for easier browsing
 
 - Password form is acting like username field (hide chars?)
+
+- bug: reset the reloading boolean (any route change after form is used)
 
 Upcoming features:
 - Recipes (connected with ids)
