@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import PantryItem from "./PantryItem/PantryItem"
 import EmptyPrompt from "../EmptyPrompt/EmptyPrompt"
 import groceryBag from "../../images/groceries.png"
+import CardGrid from "../CardGrid/CardGrid"
 import useStyles from "./styles"
 
 const Pantry = () => {
@@ -14,7 +15,12 @@ const Pantry = () => {
     <div className={classes.overviewContainer}>
       {pantryItems.length > 0
         ?
-        <div className={classes.itemsGrid}>{pantryItems}</div>
+        <>
+          <h3>Recent Purchases</h3>
+          <hr />
+          <CardGrid cardItems={pantryItems} />
+        </>
+        
         : 
         <EmptyPrompt
             image={groceryBag}

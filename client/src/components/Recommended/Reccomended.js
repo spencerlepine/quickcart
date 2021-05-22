@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
-import { useSelector, useDispatch, connect } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import useStyles from "./styles.js"
 import FoodCard from "../FoodCard/FoodCard"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import { fetchRecommended } from "../../actions/recommended"
+import CardGrid from "../CardGrid/CardGrid"
 
 import { setSearchQuery } from "../../actions/search"
 import { setSelectedCategory } from "../../actions/selectedCategory"
@@ -13,8 +13,6 @@ import { setId } from "../../actions/selectedItem"
 const Recommended = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-
-  const userId = useSelector(state => state.connectedUser)
 
   const groceryItems = useSelector(state => state.groceries)
 
@@ -39,7 +37,7 @@ const Recommended = () => {
        <>
           <h3>Cart Recommendations</h3>
           <hr />
-          <div className={classes.recommendedGrid}>{recommendedCards}</div>
+          <CardGrid cardItems={recommendedCards} />
        </>
        :
        <CircularProgress className={classes.loadSpinner} />

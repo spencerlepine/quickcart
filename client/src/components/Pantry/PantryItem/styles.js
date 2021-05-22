@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
   foodCard: {
     maxWidth: "200px",
-    cursor: "pointer",
     position: "relative",
     minHeight: "100px",
     margin: "1em",
@@ -70,13 +69,5 @@ export default makeStyles(() => ({
     "&:hover": {
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
     },
-  },
-  editButton: {
-    color: "black",
-    backgroundColor: "#fff3d0",
-  },
-  servingCost: {
-    // position: "abosulte",
-    // color: "red",
   },
 }));
