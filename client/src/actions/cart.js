@@ -28,6 +28,13 @@ export const addToCart = (userId, itemToAdd) => async (dispatch) => {
     const { data } = await api.addToCart({ userId }, itemToAdd);
 
     dispatch({ type: ADD_TO_CART, payload: data });
+    const successMessage = {
+      name: "Success!",
+      message: `added ${itemToAdd.name} to cart`,
+      type: "success"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
+
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error });
     console.log(error.message);

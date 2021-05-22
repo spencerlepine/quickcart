@@ -24,6 +24,6 @@ export default makeStyles(() => ({
       padding: "1em",
     },
     padding: "15px",
-    color: "#9c7b3e",
+    color: "#ce002e",
   },
 }))

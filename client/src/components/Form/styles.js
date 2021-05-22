@@ -12,13 +12,18 @@ export default makeStyles((theme) => ({
     marginBottom: "1vh",
     backgroundColor: "white",
     borderRadius: "1vh",
+    "@media (max-width:1000px)": {
+      padding: "0",
+      marginTop: "20px",
+    },
   },
   itemDetails: {
     display: "grid",
-    gridTemplateColumns: "auto auto",
+    gridTemplateColumns: "50% 50%",
     paddingLeft: ".9375rem",
     paddingRight: ".9375rem",
     gridRowGap: "15px",
+    padding: "15px",
   },
   itemName: {
     gridColumnStart: "1",
@@ -56,18 +61,20 @@ export default makeStyles((theme) => ({
       content: '"X"',
       position: "absolute",
       display: "block",
-      top: "-10px",
+      top: "0px",
       right: "-10px",
       borderRadius: "50%",
       height: "35px",
       width: "35px",
       color: "#e23535",
-      backgroundColor: "#fff1f1",
-      border: "2px solid #cc3131",
+      backgroundColor: "white",
+      border: "3px solid #cc3131",
       fontSize: "1.3em",
       fontWeight: "900",
       "&:hover": {
-        backgroundColor: "#dc3434",
+        backgroundColor: "#f3f3f3",
+        color: "#ab1515",
+        border: "3px solid #ab1515",
         boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
       },
     },
@@ -90,12 +97,6 @@ export default makeStyles((theme) => ({
   },
   itemPriority: {
     margin: "inherit",
-    ["@media (max-width:600px)"]: {
-      // eslint-disable-line no-useless-computed-key
-      gridColumnStart: "1",
-      gridColumnEnd: "3",
-      margin: "auto",
-    },
   },
   dollarSign: {
     position: "relative",
@@ -111,24 +112,42 @@ export default makeStyles((theme) => ({
     color: "#403e3e",
   },
   itemServing: {
-    color: "#6261a0",
+    color: "#3c78a5",
     "& input": {
-      color: "#6261a0",
+      color: "#3c78a5",
     },
   },
   itemDate: {
     width: "fit-content",
     marginLeft: "auto",
-    ["@media (max-width:600px)"]: {
-      // eslint-disable-line no-useless-computed-key
-      gridColumnStart: "1",
-      gridColumnEnd: "3",
-      margin: "20px auto 20px auto",
+  },
+  updateButton: {
+    marginTop: "15px",
+    width: "fit-content",
+    padding: "1em 5em",
+    margin: "auto",
+    fontWeight: "800",
+    backgroundColor: "#32b31a",
+    '&:hover': {
+      backgroundColor: "#2d9819",
+    },
+    "@media (max-width:450px)": {
+      padding: "1em 3em",
     },
   },
-  button: {
-    gridColumnStart: "1",
-    gridColumnEnd: "3",
+  deleteButton: {
+    marginTop: "15px",
+    width: "fit-content",
+    padding: "1em 5em",
+    margin: "auto",
+    fontWeight: "800",
+    backgroundColor: "#f50057",
+    '&:hover': {
+      backgroundColor: "#cd044b",
+    },
+    "@media (max-width:450px)": {
+      padding: "1em 3em",
+    },
   },
   fileInput: {
     outlineOffset: "-10px",

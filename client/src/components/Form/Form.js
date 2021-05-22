@@ -85,10 +85,6 @@ const Form = () => {
       // Translate the purchase price decimal data for the form to read
       let validCurrentItem = {
         ...currentItem,
-        purchase_price: parseFloat(currentItem["purchase_price"]).toFixed(2),
-        serving_cost: currentItem["serving_cost"]
-          ? parseFloat(currentItem["serving_cost"]).toFixed(2)
-          : 0,
         image: currentItem.image || schema.image,
       };
 
@@ -122,7 +118,11 @@ const Form = () => {
     event.preventDefault();
 
     if (currentName) {
-      dispatch(updateGrocery(userId, thisGrocery));
+      const formItemStr = JSON.stringify(thisGrocery) 
+      const currentItemStr = JSON.stringify(currentItem) 
+      if (formItemStr !== currentItemStr) {
+        dispatch(updateGrocery(userId, thisGrocery));
+      }
       history.push("/");
       clearForm();
     } else if (
@@ -247,27 +247,27 @@ const Form = () => {
             />
           </div>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {currentName ? "Update" : "Submit"}
-          </Button>
-
           {currentName && (
             <Button
               onClick={handleDelete}
               color="secondary"
               fullWidth
               variant="contained"
-              className={classes.button}
+              className={classes.deleteButton}
             >
               Delete
             </Button>
           )}
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.updateButton}
+          >
+            {currentName ? "Update" : "Submit"}
+          </Button>
         </div>
       </form>
     </div>

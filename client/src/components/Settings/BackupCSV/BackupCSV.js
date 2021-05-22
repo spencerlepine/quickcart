@@ -1,5 +1,7 @@
 import React from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import GetAppIcon from '@material-ui/icons/GetApp';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import useStyles from "./styles"
 
 const BackupCSV = () => {
@@ -107,8 +109,15 @@ const BackupCSV = () => {
   }
 
   return (
-    <div>
-      <button className={classes.backupButton} onClick={saveCart}>Download CSV</button>
+    <div className={classes.backupDiv}>
+      <GetAppIcon className={classes.importIcon} />
+      <label className={classes.inputLabel}>
+        Export CSV File
+      </label>
+
+      <button className={classes.backupButton} onClick={saveCart}>
+        Download CSV <span className={classes.downloadArrow}><ArrowDownwardIcon /></span>
+      </button>
     </div>
   )
 }

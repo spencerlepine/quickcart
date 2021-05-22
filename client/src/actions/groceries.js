@@ -29,7 +29,7 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
   }
 }
 
-export const saveLocalGrocery = (userId, groceryItem)  => async (dispatch) => {
+export const saveLocalGrocery = (groceryItem)  => async (dispatch) => {
   try {
     await dispatch({ type: FETCH_ALL_GROCERIES, payload: [groceryItem] })
   } catch (error) {
@@ -57,6 +57,14 @@ export const createGrocery = (userId, newGrocery) => async (dispatch) => {
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
+
+    // Let the user know the grocery creation was successful
+    const successMessage = {
+      name: "Added!",
+      message: `saved '${newGrocery.name}' to list`,
+      type: "success"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
@@ -68,6 +76,13 @@ export const updateGrocery = (userId, groceryItem) => async (dispatch) => {
     await api.updateGrocery({ userId }, groceryItem)
 
     dispatch({ type: UPDATE, payload: groceryItem })
+
+    const successMessage = {
+      name: "Updated!",
+      message: `saved data for ${groceryItem.name}`,
+      type: "success"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)
@@ -83,6 +98,13 @@ export const deleteGrocery = (userId, groceryName) => async (dispatch) => {
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })
+
+    const successMessage = {
+      name: "Removed",
+      message: `deleted ${groceryName} from list`,
+      type: "warning"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error })
     console.log(error.message)

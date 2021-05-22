@@ -11,11 +11,11 @@ function NofiticationPopup() {
   
   useEffect(() => {
     if (typeof currentError === "object") {
-      const { message, name } = currentError  
+      const { message, name } = currentError
       store.addNotification({
         title: name,
         message: message.slice(0, 35),
-        type: "danger",
+        type: currentError.type || "danger",
         insert: "top-right",
         container: "top-right",
         animationIn: ["animate__animated", "animate__fadeIn"],

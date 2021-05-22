@@ -3,7 +3,6 @@ import useStyles from "./styles"
 
 import Backup from "./Backup/Backup"
 import Import from "./Import/Import"
-import Clear from "./Clear/Clear"
 import Logout from "../Logout/Logout"
 import BackupCSV from "./BackupCSV/BackupCSV"
 
@@ -16,7 +15,6 @@ const Settings = () => {
       <hr />
       <Backup />
       <BackupCSV />
-      <Clear />
       <Logout />
     </div>
   )
