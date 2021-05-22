@@ -47,12 +47,12 @@ const CartItem = ({ cartItem }) => {
           cartItem.quantity
         ).toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </p>
-      <div className={classes.btn} onClick={() => handleIncrement(cartItem)}>
-        +
-      </div>
-      <p className={classes.itemCount}>{cartItem.quantity}</p>
       <div className={classes.btn} onClick={() => handleDecrement(cartItem)}>
         -
+      </div>
+      <p className={classes.itemCount}>{cartItem.quantity}</p>
+      <div className={classes.btn} onClick={() => handleIncrement(cartItem)}>
+        +
       </div>
     </div>
   )
