@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import useExitPrompt from '../../../hooks/useExitPrompt/useExitPrompt.js'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import { SET_CURRENT_ERROR } from "../../../constants/actionTypes.js"
 import useStyles from "./styles"
 
 const Import = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
   const history = useHistory()
-  const [showExitPrompt, setShowExitPrompt] = useExitPrompt(false);
+  const [, setShowExitPrompt] = useExitPrompt(false);
 
   const userId = useSelector(state => state.connectedUser)
 
@@ -18,7 +19,7 @@ const Import = () => {
     return () => {
       setShowExitPrompt(false)
     }
-  }, [])
+  }, [setShowExitPrompt])
 
   const importData = async ({ target }) => {
     setShowExitPrompt(true)
@@ -27,10 +28,20 @@ const Import = () => {
     fr.readAsText(target.files[0])
 
     fr.onload = await function() {
-      var storageAccessed = JSON.parse(fr.result)
-
+      let storageAccessed
+      try {
+        storageAccessed = JSON.parse(fr.result)
+      } catch {
+        const importMessage = {
+          name: "Invalid File!",
+          message: `please select a valid .txt file`,
+        }
+        dispatch({ type: SET_CURRENT_ERROR, payload: importMessage })
+        setShowExitPrompt(false)
+        return
+      }
+      
       storageAccessed.forEach((grocery) => {
-        
         const allowedKeys = [
           "name",
           "purchase_price",

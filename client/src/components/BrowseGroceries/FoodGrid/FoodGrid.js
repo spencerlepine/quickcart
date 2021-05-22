@@ -13,6 +13,7 @@ import { setSearchQuery } from "../../../actions/search"
 import { setSelectedCategory } from "../../../actions/selectedCategory"
 import { setId } from "../../../actions/selectedItem"
 
+import useExitPrompt from '../../../hooks/useExitPrompt/useExitPrompt.js'
 
 const FoodGrid = () => {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const FoodGrid = () => {
       : []
   
   const fetchProgress = Math.ceil((groceries.length / totalGroceryCount)*100)
+  const [, setShowExitPrompt] = useExitPrompt(false);
 
   useEffect(() => {
     dispatch(setId(null))
@@ -36,11 +38,12 @@ const FoodGrid = () => {
 
   // Try to load groceries JUST GET THE COUNT
   useEffect(() => {
+    setShowExitPrompt(false)
     if (groceries.length === 0) {
       dispatch(getGroceries(userId))
       return
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(()=> {
     if (groceries.length < totalGroceryCount) {
@@ -50,7 +53,7 @@ const FoodGrid = () => {
     } else {
       return
     }
-  }, [groceries, totalGroceryCount])
+  }, [dispatch, groceries, totalGroceryCount])
 
   return (
     <>

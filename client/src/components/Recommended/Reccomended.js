@@ -28,7 +28,7 @@ const Recommended = () => {
     dispatch(setId(null))
     dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={classes.gridView}>

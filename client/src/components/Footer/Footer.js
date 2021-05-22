@@ -2,8 +2,6 @@ import React from "react"
 import useStyles from "./styles.js"
 import gitHubLogo from "../../images/github.svg"
 import twitterLogo from "../../images/twitter.svg"
-import { Link } from "react-router-dom"
-
 
 const Footer = () => {
   const classes = useStyles()

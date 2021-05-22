@@ -13,7 +13,7 @@ const CategoryLabels = () => {
 
   useEffect(() => {
     dispatch(fetchCategories(userId))
-  }, [])
+  }, [dispatch])
 
   const categoryComponents = categories.map((category, i) => (
     <CategorySelector categoryName={category} key={i} selectorValue={category} />

@@ -26,7 +26,7 @@ export const fetchCartItem = async (req, res) => {
       .doc(userId)
       .collection("userCart")
       .doc(cartItemName)
-
+      
     res.status(200).json(cartItemData.data());
   } catch (error) {
     res.status(404).json(error.message)
@@ -42,7 +42,6 @@ export const addToCart = async (req, res) => {
       .doc(userId)
       .collection('userCart')
       .doc(cartItem.name)
-
 
     if (cartItemRef) {
        await cartItemRef.set({
@@ -67,8 +66,8 @@ export const updateCartItem = async (req, res) => {
       .collection('userCart')
       .doc(updatedCartItem.name)
 
-    await cartItemRef.update({
-      quantity: updatedCartItem.quantity
+    await cartItemRef.set({
+      updatedCartItem
     })
   
     res.status(200).json(updatedCartItem);

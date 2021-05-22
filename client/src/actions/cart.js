@@ -25,16 +25,28 @@ export const fetchCart = (userId) => async (dispatch) => {
 
 export const addToCart = (userId, itemToAdd) => async (dispatch) => {
   try {
-    const { data } = await api.addToCart({ userId }, itemToAdd);
+    const { data: cartItem } = await api.fetchCartItem({ userId }, { name: itemToAdd.name });
 
-    dispatch({ type: ADD_TO_CART, payload: data });
+    let existingCartItem = cartItem[0]
+  
+    if (existingCartItem) {
+      const updatedQuantity = {
+        ...existingCartItem,
+        quantity: parseInt(existingCartItem["quantity"]) + 1
+      }
+      const { data } = await api.updateCartItem({ userId }, updatedQuantity);
+      dispatch({ type: UPDATE_ITEM, payload: data });
+    } else {
+      const { data } = await api.addToCart({ userId }, itemToAdd);
+      dispatch({ type: ADD_TO_CART, payload: data });
+    }
+
     const successMessage = {
       name: "Success!",
       message: `added ${itemToAdd.name} to cart`,
       type: "success"
     }
     dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
-
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error });
     console.log(error.message);

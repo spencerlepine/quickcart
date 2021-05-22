@@ -1,26 +1,19 @@
 # To do:  
 - go through each file and format, then make sure the code is sensible
-
-- read warnings (prop types, un-unused variables)
+- get rid of old console.logs
 
 - change quantity for cart
-
 - duplication into cart (updating quantity feature)
 
 - group categories on recommended page for easier browsing
 
-- Password form is acting like username field (hide chars?)
-
-- bug: reset the reloading boolean (any route change after form is used)
-
 Upcoming features:
 - Recipes (connected with ids)
 - Pantry (see current items)
-- Dynamically set categories
-  - fetch grocieres on backend and return list of categories
+- Add Category functionality
 - Longer passwords
   - deny weak invalid sign-ups, check email and password
-- temporary loading boxes
-- loading spinners (not just Empty Cart)
+- Temporary loading boxes
+- Loading spinners (not just Empty Cart)
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061

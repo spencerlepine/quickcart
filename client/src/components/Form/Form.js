@@ -37,7 +37,7 @@ function toTitleCase(str) {
 
 const Form = () => {
   const categories = useSelector((state) => state.categories);
-  const [showExitPrompt, setShowExitPrompt] = useExitPrompt(false);
+  const [, setShowExitPrompt] = useExitPrompt(false);
 
   const [thisGrocery, setThisGrocery] = useState(schema);
   const [dropdownCategories, setDropdownCategories] = useState([]);
@@ -56,13 +56,13 @@ const Form = () => {
   useEffect(() => {
     dispatch(setSearchQuery(""));
     dispatch(setSelectedCategory(null));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     return () => {
       setShowExitPrompt(false)
     }
-  }, [])
+  }, [setShowExitPrompt])
 
   useEffect(() => {
     let categoryOptions = categories.map((category) => {

@@ -1,9 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useSelector } from "react-redux"
 
 import useStyles from "./styles.js"
 import FoodCard from "../../FoodCard/FoodCard"
-import CircularProgress from "@material-ui/core/CircularProgress"
 
 const RecommendedWidget = () => {
   const classes = useStyles()

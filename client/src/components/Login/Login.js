@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useStyles from "./styles.js"
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser, isLoggedIn } from "../../actions/userAccount.js"
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 
@@ -19,7 +19,7 @@ const Login = () => {
   // Sign in user if cookies are valid
   useEffect(() => {
     dispatch(isLoggedIn())
-  }, [])
+  }, [dispatch])
 
   const handleChange = (e) => {
     const { name: key, value } = e.target;
