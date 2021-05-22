@@ -1,13 +1,15 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import GetAppIcon from '@material-ui/icons/GetApp';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { SET_CURRENT_ERROR } from "../../../constants/actionTypes.js"
 import useStyles from "./styles"
 
 const Backup = () => {
   const classes = useStyles()
 
   const groceries = useSelector((state) => state.groceries)
+  const dispatch = useDispatch()
 
   function save(data, filename) {
     const groceryCount = data.length
@@ -34,12 +36,13 @@ const Backup = () => {
       alert("No items found!")
       return
     }
-
-    alert(
-      `Saving data for ${groceryCount} groceries items (${Math.round(
-        blob.size / 1000
-      )}kb)`
-    )
+    
+    const downloadMessage = {
+      name: "Groceries Exported!",
+      message: `Saved ${groceryCount} groceries (${(blob.size / 1000000).toFixed(1)}mb)`,
+      type: "success"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: downloadMessage })
 
     a.download = filename
     a.href = window.URL.createObjectURL(blob)

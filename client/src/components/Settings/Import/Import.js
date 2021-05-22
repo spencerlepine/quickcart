@@ -55,7 +55,6 @@ const Import = () => {
         }, 100)
       })
 
-      window.alert("Successfully imported your data :)")
       setShowExitPrompt(false)
       history.push("/")
     }

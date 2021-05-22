@@ -1,12 +1,14 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import GetAppIcon from '@material-ui/icons/GetApp';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { SET_CURRENT_ERROR } from "../../../constants/actionTypes.js"
 import useStyles from "./styles"
 
 const BackupCSV = () => {
   const classes = useStyles()
- 
+  const dispatch = useDispatch()
+
   const groceries = useSelector((state) => state.groceries)
 
   function convertToCSV(objArray) {
@@ -73,11 +75,12 @@ const BackupCSV = () => {
       return
     }
 
-    alert(
-      `Saving data for ${groceryCount} groceries items (${Math.round(
-        blob.size / 1000
-      )}kb)`
-    )
+    const downloadMessage = {
+      name: "CSV Exported!",
+      message: `Saved ${groceryCount} groceries (${(blob.size / 1000000).toFixed(1)}mb)`,
+      type: "success"
+    }
+    dispatch({ type: SET_CURRENT_ERROR, payload: downloadMessage })
 
     a.download = filename
     a.href = window.URL.createObjectURL(blob)
