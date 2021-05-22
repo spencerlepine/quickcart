@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useStyles from "./styles.js"
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser, isLoggedIn } from "../../actions/userAccount.js"
+import QuickCartLogo from "../../images/QuickCart-Logo.png"
 
 const Login = () => {
   const [formValues, setFormValue] = useState({
@@ -43,6 +44,7 @@ const Login = () => {
 
   return (
     <div className={classes.loginPrompt}>
+      <img src={QuickCartLogo} alt="QuickCart Logo" className={classes.logoImg}></img>
       <h2>Log in</h2>
       <input
         onChange={handleChange}

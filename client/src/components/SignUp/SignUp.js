@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
-import { signupUser } from "../../actions/userAccount.js"
-
-
+import { signupUser, loginUser } from "../../actions/userAccount.js"
+import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles.js";
 
 const SignUp = () => {
@@ -28,6 +27,7 @@ const SignUp = () => {
   const handleSubmit = async () => {
     try {
         await dispatch(signupUser(formValues["email"], formValues["password"]))
+        await dispatch(loginUser(formValues["email"], formValues["password"]))
         history.push("/")
     } catch {
         console.log("sign up failed")
@@ -36,17 +36,20 @@ const SignUp = () => {
 
   return (
     <div className={classes.loginPrompt}>
+      <img src={QuickCartLogo} alt="QuickCart Logo" className={classes.logoImg}></img>
       <h2>Sign Up</h2>
       <input
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         name="email"
+        type="email"
         value={formValues["email"]}
         placeholder="Email"
       ></input>
       <input
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        type="password"
         name="password"
         value={formValues["password"]}
         placeholder="Password"

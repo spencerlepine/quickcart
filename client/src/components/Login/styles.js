@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   loginPrompt: {
+    textAlign: "center",
     minWidth: "250px",
     zIndex: "99",
     backgroundColor: "white",
@@ -85,5 +86,8 @@ export default makeStyles(() => ({
       color: "rgb(67, 176, 42)",
       textDecoration: "none",
     },
+  },
+  logoImg: {
+    height: "8vh",
   },
 }));
