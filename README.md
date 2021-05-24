@@ -1,25 +1,37 @@
-# Spencer's Grocery App
+# QuickCart
 Make a shopping list with personal grocery data to help budget.
 
 ## Demo:
-Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123```.
+Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123@gmail.com```.
 
 ![Grocery App Screenshot](/client/src/images/screenshot.png)
 
+## Setup:
+- ```git clone https://github.com/spencerlepine/quickcart.git```
+- Update ```.env``` files
+- ```cd quickcart```
+- ```cd server```
+- ```npm install```
+- ```npm start```
+- ```cd client```
+- ```npm run dev```
+
 ## Features:
-- Browse stored grocery items
-- Submit/Update Grocery items via **/form**
+- Browse grocery item database
+- Create an account
 - Add items to cart
-- Access reccomended items based on preference and time since last purchase
+- Submit/Update Grocery items via **/form**
+- View recommended items to buy
 - Export data to file
 - Import from file
-- Access cart/grocery data from any device
 
 ## Technologies:
-- [MongoDB](https://www.mongodb.com/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
 - [Expressjs](https://expressjs.com/)
-- [React](https://reactjs.org/)/[Redux](https://redux.js.org/)
 - [Nodejs](https://nodejs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Material-UI](https://material-ui.com/)
 
 ---
 
