@@ -22,17 +22,6 @@ export const getGroceries = async (req, res) => {
   }
 };
 
-export const getGroceryCategories = async (req, res) => {
-  try {
-    const { userId } = req.params
-
-    let groceryCategories = ['grains', 'bread', 'breakfast', 'dairy', 'fruits', 'vegetables', 'pantry', 'snacks', 'meat', 'beverages', 'condements']
-    res.status(200).json(groceryCategories);
-  } catch (error) {
-    res.status(404).json(error.message);
-  }
-};
-
 export const getGroceryItem = async (req, res) => {
   try {
     const { userId, groceryName } = req.params

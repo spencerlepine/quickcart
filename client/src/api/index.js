@@ -17,10 +17,12 @@ export const fetchGroceryCount = (idObj) => axios.get(`${baseUrl}/grocery-count/
 
 export const deleteGrocery = (idObj, groceryNameObj) => axios.delete(`${baseUrl}/groceries/${idObj.userId}/${groceryNameObj.name}`) 
 
-export const fetchCategories = (idObj) => axios.get(`${baseUrl}/categories/${idObj.userId}`)
-
 export const updateGrocery = (idObj, updatedGrocery) => axios.patch(`${baseUrl}/groceries/${idObj.userId}`, updatedGrocery)
 
+// Categories API calls
+export const fetchCategories = (idObj) => axios.get(`${baseUrl}/categories/${idObj.userId}`)
+
+export const createCategory = (idObj, newCategoryObj) => axios.post(`${baseUrl}/categories/${idObj.userId}`, newCategoryObj)
 
 // Cart API calls
 export const fetchCart = (idObj) => axios.get(`${baseUrl}/cart/${idObj.userId}`)

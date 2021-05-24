@@ -1,6 +1,7 @@
 # To do:  
-- update readme
 - make youtube video
+
+- per ounce cost ratio
 
 - audit npm packages and update everything
 - go through each file and format, then make sure the code is sensible
@@ -8,14 +9,12 @@
 
 - exact search goes to top (GRIDCOL1, GRIDROW1)?
 
-
 Upcoming features:
 - Explaination page with screenshots
 - Feedback page with reviews and message submission form
 - Group categories on recommended page for easier browsing
 - Mark done in cart as you shop
 - Recipes (connected with ids)
-- Add Category functionality
 - Cart logs
   - Admin can view cart data
     - admin can create charts + graphs

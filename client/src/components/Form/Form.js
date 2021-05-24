@@ -7,6 +7,8 @@ import { setSearchQuery } from "../../actions/search";
 import { setSelectedCategory } from "../../actions/selectedCategory";
 import FileBase from "react-file-base64";
 import useExitPrompt from '../../hooks/useExitPrompt/useExitPrompt.js'
+import { SET_CURRENT_ERROR } from "../../constants/actionTypes.js"
+import { createNewCategory } from "../../actions/categories"
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -174,6 +176,21 @@ const Form = () => {
     </Button>
   )
 
+  const handleAddCategory = (e) => {
+    e.preventDefault()
+    const newCategory = prompt("Name the new category: ")
+
+    if (typeof newCategory === "string") {
+      dispatch(createNewCategory(userId, newCategory))
+    } else {
+      const importMessage = {
+        name: "Invalid Name!",
+        message: `please try again`,
+      }
+      dispatch({ type: SET_CURRENT_ERROR, payload: importMessage })
+    }
+  }
+
   return (
     <div className={classes.formContainer}>
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -229,6 +246,7 @@ const Form = () => {
             >
               {dropdownCategories}
             </Select>
+            <button onClick={handleAddCategory}>+</button>
           </div>
 
           <div className={`${classes.dollarSign} ${classes.itemServing}`}>

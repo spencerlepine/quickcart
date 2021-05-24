@@ -8,6 +8,7 @@ export default makeStyles(() => ({
     lineHeight: "22px",
     padding: "15px 30px",
     width: "fit-content",
+    whiteSpace: "nowrap",
     textTransform: "capitalize",
     fontWeight: "600",
     backgroundColor: "rgb(245 248 255)",
