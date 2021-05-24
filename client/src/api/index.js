@@ -25,8 +25,6 @@ export const updateGrocery = (idObj, updatedGrocery) => axios.patch(`${baseUrl}/
 // Cart API calls
 export const fetchCart = (idObj) => axios.get(`${baseUrl}/cart/${idObj.userId}`)
 
-export const fetchCartItem = (idObj, itemNameObj) => axios.get(`${baseUrl}/cart/${idObj.userId}`, itemNameObj)
-
 export const removeCartItem = (idObj, itemToRemove) => axios.delete(`${baseUrl}/cart/${idObj.userId}/${itemToRemove.name}`)
 
 export const updateCartItem = (idObj, updatedCartItem) => axios.patch(`${baseUrl}/cart/${idObj.userId}`, updatedCartItem)

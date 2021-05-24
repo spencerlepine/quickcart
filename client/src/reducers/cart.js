@@ -13,7 +13,16 @@ const reducer = (cartItems = initialState, action) => {
     case FETCH_CART:
       return action.payload
     case ADD_TO_CART: {
-      return [...cartItems, action.payload]
+      let alreadyInCart = false
+      let updatedCart = cartItems.map(item => {
+        if (item.name === action.payload.name) {
+          alreadyInCart = true
+          return action.payload
+        } else {
+          return item
+        }
+      })
+      return alreadyInCart ? updatedCart : [...updatedCart, action.payload]
     }
     case UPDATE_ITEM: {
       let newCart = cartItems.map((item) =>

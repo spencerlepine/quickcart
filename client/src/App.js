@@ -13,6 +13,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Recommended from "./components/Recommended/Reccomended";
 import Pantry from "./components/Pantry/Pantry"
 import NotificationPopup from "./components/NotificationPopup/NotificationPopup"
+import FetchLogic from "./components/FetchLogic/FetchLogic"
 import "./index.css";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <NotificationPopup />
+      <FetchLogic />
       {userId ? (<>
         <NavBar />
         <Switch>

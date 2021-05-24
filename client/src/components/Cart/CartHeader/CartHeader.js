@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteCartItem } from "../../../actions/cart"
 import { updateGrocery } from "../../../actions/groceries"
+import { SET_CURRENT_ERROR } from "../../../constants/actionTypes.js"
 import useStyles from "./styles.js"
 
 const todaysDate = new Date().toISOString().slice(0, 10)
@@ -23,7 +24,12 @@ const CartHeader = ({ cartItems }) => {
         dispatch(deleteCartItem(userId, groceryObjNewDate.name))
         dispatch(updateGrocery(userId, groceryObjNewDate))
       })
-      alert(`Updated ${cartItems.length} item(s)`)
+      const purchaseMessage = {
+        name: "Update complete!",
+        message: `Saved new grocery dates`,
+        type: "success"
+      }
+      dispatch({ type: SET_CURRENT_ERROR, payload: purchaseMessage }) 
     }
   }
 
@@ -37,7 +43,7 @@ const CartHeader = ({ cartItems }) => {
   return (
     <div className={classes.cartHeader}>
       <button className={classes.orderButton} onClick={handleCartPurchase}>
-        Place Order
+        Checkout Cart
       </button>
       <h4 className={classes.total}>
         {totalCost.toLocaleString("en-US", {

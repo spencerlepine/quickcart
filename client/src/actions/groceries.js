@@ -17,8 +17,6 @@ export const getGroceries = (userId, lastGrocery=0) => async (dispatch) => {
  
     await dispatch({ type: FETCH_ALL_GROCERIES, payload: data })
 
-    await dispatch({ type: SET_GROCERY_CONNECTION, payload: "connected" })
-
     // Save the total count
     const { data: count } = await api.fetchGroceryCount({ userId })
     dispatch({ type: FETCH_COUNT, payload: count })

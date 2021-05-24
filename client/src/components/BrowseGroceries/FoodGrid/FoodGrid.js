@@ -8,18 +8,15 @@ import SearchBar from "../SearchBar/SearchBar"
 import CardGrid from "../../CardGrid/CardGrid"
 import useStyles from "./styles"
 
-import { getGroceries } from "../../../actions/groceries"
 import { setSearchQuery } from "../../../actions/search"
 import { setSelectedCategory } from "../../../actions/selectedCategory"
 import { setId } from "../../../actions/selectedItem"
-
 import useExitPrompt from '../../../hooks/useExitPrompt/useExitPrompt.js'
 
 const FoodGrid = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
   
-  const userId = useSelector(state => state.connectedUser)
   const groceries = useSelector((state) => state.groceries)
   const totalGroceryCount = useSelector((state) => state.count)
   const foodItems =
@@ -31,29 +28,11 @@ const FoodGrid = () => {
   const [, setShowExitPrompt] = useExitPrompt(false);
 
   useEffect(() => {
+    setShowExitPrompt(false)
     dispatch(setId(null))
     dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
   }, [dispatch])
-
-  // Try to load groceries JUST GET THE COUNT
-  useEffect(() => {
-    setShowExitPrompt(false)
-    if (groceries.length === 0) {
-      dispatch(getGroceries(userId))
-      return
-    }
-  }, [dispatch])
-
-  useEffect(()=> {
-    if (groceries.length < totalGroceryCount) {
-       const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
-       dispatch(getGroceries(userId, lastGrocery))
-       return
-    } else {
-      return
-    }
-  }, [dispatch, groceries, totalGroceryCount])
 
   return (
     <>
@@ -62,7 +41,7 @@ const FoodGrid = () => {
         <>
           <SearchBar />
           {fetchProgress < 100 && <div className={classes.progressBar} style={{width:`${fetchProgress}%`}}></div>}
-          <CardGrid cardItems={foodItems} />
+          <CardGrid cardItems={foodItems} connectionName="groceries" />
         </>
         :
         <div className={classes.overviewContainer}>

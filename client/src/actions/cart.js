@@ -5,7 +5,7 @@ import {
   REMOVE_FROM_CART,
   UPDATE_ITEM,
   SET_CART_CONNECTION,
-  SET_CURRENT_ERROR
+  SET_CURRENT_ERROR,
 } from "../constants/actionTypes.js";
 
 // action creators
@@ -25,27 +25,14 @@ export const fetchCart = (userId) => async (dispatch) => {
 
 export const addToCart = (userId, itemToAdd) => async (dispatch) => {
   try {
-    const { data: cartItem } = await api.fetchCartItem({ userId }, { name: itemToAdd.name });
-
-    let existingCartItem = cartItem[0]
-  
-    if (existingCartItem) {
-      const updatedQuantity = {
-        ...existingCartItem,
-        quantity: parseInt(existingCartItem["quantity"]) + 1
-      }
-      const { data } = await api.updateCartItem({ userId }, updatedQuantity);
-      dispatch({ type: UPDATE_ITEM, payload: data });
-    } else {
-      const { data } = await api.addToCart({ userId }, itemToAdd);
-      dispatch({ type: ADD_TO_CART, payload: data });
-    }
+    const { data } = await api.addToCart({ userId }, itemToAdd);
+    dispatch({ type: ADD_TO_CART, payload: data });
 
     const successMessage = {
       name: "Success!",
       message: `added ${itemToAdd.name} to cart`,
-      type: "success"
-    }
+      type: "success",
+    };
     dispatch({ type: SET_CURRENT_ERROR, payload: successMessage });
   } catch (error) {
     dispatch({ type: SET_CURRENT_ERROR, payload: error });

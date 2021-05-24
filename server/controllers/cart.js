@@ -17,22 +17,6 @@ export const fetchCart = async (req, res) => {
   }
 }
 
-export const fetchCartItem = async (req, res) => {
-  try {
-    const { userId } = req.params
-    const cartItemName = req.body
-
-    let cartItemData = await db.collection('users')
-      .doc(userId)
-      .collection("userCart")
-      .doc(cartItemName)
-      
-    res.status(200).json(cartItemData.data());
-  } catch (error) {
-    res.status(404).json(error.message)
-  }
-}
-
 export const addToCart = async (req, res) => {
   try {
     const { userId } = req.params
@@ -43,15 +27,24 @@ export const addToCart = async (req, res) => {
       .collection('userCart')
       .doc(cartItem.name)
 
-    if (cartItemRef) {
-       await cartItemRef.set({
-        ...cartItem,
-        quantity: 1
-      })
-      res.status(200).json({ ...cartItem, quantity: 1 });
-    }
-  
-    res.status(409).json();
+    await cartItemRef.get()
+      .then(async (docSnapshot) => {
+        if (docSnapshot.exists) {
+          const itemData = await docSnapshot.data()
+          const existingItem = { 
+            ...itemData,
+            quantity: itemData.quantity + 1
+          }
+          await cartItemRef.set(existingItem)
+          res.status(200).json(existingItem);
+          return
+        } else {
+          const newCartItem = {...cartItem, quantity: 1 }
+          await cartItemRef.set(newCartItem)
+          res.status(200).json({ ...cartItem, quantity: 1 });
+          return
+        }
+    });
   } catch (error) {
     res.status(404).json(error.message)
   }
@@ -62,13 +55,12 @@ export const updateCartItem = async (req, res) => {
     const { userId } = req.params
     const updatedCartItem = req.body
 
-    let cartItemRef = await db.collection('users').doc(userId)
+    let cartItemRef = await db.collection('users')
+      .doc(userId)
       .collection('userCart')
       .doc(updatedCartItem.name)
 
-    await cartItemRef.set({
-      updatedCartItem
-    })
+    await cartItemRef.set(updatedCartItem)
   
     res.status(200).json(updatedCartItem);
   } catch (error) {

@@ -1,14 +1,21 @@
-import { SET_GROCERY_CONNECTION, SET_CART_CONNECTION, SET_RECOMMENDED_CONNECTION, RESET_REDUCER } from "../constants/actionTypes.js"
+import { SET_GROCERY_CONNECTION, SET_CART_CONNECTION, SET_RECOMMENDED_CONNECTION, RESET_REDUCER, SET_AUTH_CONNECTION } from "../constants/actionTypes.js"
 
 let startConnection = {
   groceries: "disconnected",
   cart: "disconnected",
   recommended: "disconnected",
+  auth: "disconnected",
 }
 
 const reducer = (connection = startConnection, action) => {
   switch (action.type) {
-    case SET_GROCERY_CONNECTION: {
+    case SET_AUTH_CONNECTION: {
+      let newConnection = {
+        ...connection,
+        auth: action.payload
+      }
+      return newConnection
+    } case SET_GROCERY_CONNECTION: {
       let newConnection = {
         ...connection,
         groceries: action.payload

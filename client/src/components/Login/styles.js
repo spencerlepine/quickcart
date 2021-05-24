@@ -88,6 +88,8 @@ export default makeStyles(() => ({
     },
   },
   logoImg: {
+    minWidth: "245px",
+    minHeight: "56px",
     height: "8vh",
   },
 }));

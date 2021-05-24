@@ -32,12 +32,12 @@ const Recommended = () => {
 
   return (
     <div className={classes.gridView}>
-      {recommendedConnection === "connected" && groceryConnection === "connected"
+      {recommendedConnection !== "disconnected"
        ?
        <>
           <h3>Cart Recommendations</h3>
           <hr />
-          <CardGrid cardItems={recommendedCards} />
+          <CardGrid cardItems={recommendedCards} connectionName="recommended" />
        </>
        :
        <CircularProgress className={classes.loadSpinner} />

@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "quickcart-client",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -20,6 +20,7 @@
     "material-ui-search-bar": "^1.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
+    "react-content-loader": "^6.0.3",
     "react-dom": "^17.0.1",
     "react-file-base64": "^1.0.3",
     "react-notifications-component": "^3.1.0",

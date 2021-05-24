@@ -1,11 +1,38 @@
 # To do:  
+- build server again, probably not up-to-date
+  - groceries adding null quantity to cart, not working anymore
+  
+- update readme
+- make youtube video
+
+- audit npm packages and update everything
+
+- exact search goes to top (GRIDCOL1, GRIDROW1)?
+
+- not saving cart locally!
+
 - go through each file and format, then make sure the code is sensible
 - get rid of old console.logs
 
-- change quantity for cart
-- duplication into cart (updating quantity feature)
-
 - group categories on recommended page for easier browsing
+
+- remove localhost link from fb
+
+- change icon, create profile logo
+
+- store cart locally (overwrite it on fetch, otherwise save it)
+
+- fix spencer cart? Bunch of Nans? Get rid of the entire cart doc
+
+- loading spinner (custom image?) after login attempt
+
+- more loading spinners when app is loading updating
+
+- explaination page with screenshots
+
+- feedback page with reviews and message submission form
+
+- mark done in cart as you shop
 
 Upcoming features:
 - Recipes (connected with ids)
@@ -15,5 +42,26 @@ Upcoming features:
   - deny weak invalid sign-ups, check email and password
 - Temporary loading boxes
 - Loading spinners (not just Empty Cart)
+- Cart logs
+  - Admin can view cart data
+    - admin can create charts + graphs
+    - see most categories
+    - see average spending per week
+    - see money spent per Category
+    - most popular items
+    - count purchase per item with a countObj
+  - Saving a cart:
+   - go under "userCartLogs" collection
+   - get the closest saturday date
+   - add a doc with current weeks DATE as the reference
+     - create a doc if one doesn't exist? Does "set" create it?
+   - append to a list of groceries
+     - FORMAT: Price, Category, Name
+   - Add a new line for quantities over 1
+     - is item over 1 quantity in cart? Append a copy
+  - Display cart logs for the user?
+    - list with DATE, TOTAL_PRICE, GROCERY_COUNT
+      - dropdown button showing list of name, price, category
+      - don't track quantity
 
 -https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
