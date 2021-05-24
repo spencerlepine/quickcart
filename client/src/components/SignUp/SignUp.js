@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
 import { signupUser, loginUser } from "../../actions/userAccount.js"
+import { SET_CURRENT_ERROR } from "../../constants/actionTypes.js"
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles.js";
 
@@ -25,9 +26,19 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
+    const newPassword = formValues["password"]
+    const newEmail = formValues["email"]
     try {
-        await dispatch(signupUser(formValues["email"], formValues["password"]))
-        await dispatch(loginUser(formValues["email"], formValues["password"]))
+        if (newPassword.length < 7) {
+          const signupMessage = {
+            name: "Weak Password",
+            message: `must be at least 8 characters`,
+          }
+          dispatch({ type: SET_CURRENT_ERROR, payload: signupMessage })
+          return
+        }
+        await dispatch(signupUser(newEmail, newPassword))
+        await dispatch(loginUser(newEmail, newPassword))
         history.push("/")
     } catch {
         console.log("sign up failed")

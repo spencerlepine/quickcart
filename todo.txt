@@ -1,47 +1,21 @@
 # To do:  
-- build server again, probably not up-to-date
-  - groceries adding null quantity to cart, not working anymore
-  
 - update readme
 - make youtube video
 
 - audit npm packages and update everything
+- go through each file and format, then make sure the code is sensible
+- remove localhost link from fb
 
 - exact search goes to top (GRIDCOL1, GRIDROW1)?
 
-- not saving cart locally!
-
-- go through each file and format, then make sure the code is sensible
-- get rid of old console.logs
-
-- group categories on recommended page for easier browsing
-
-- remove localhost link from fb
-
-- change icon, create profile logo
-
-- store cart locally (overwrite it on fetch, otherwise save it)
-
-- fix spencer cart? Bunch of Nans? Get rid of the entire cart doc
-
-- loading spinner (custom image?) after login attempt
-
-- more loading spinners when app is loading updating
-
-- explaination page with screenshots
-
-- feedback page with reviews and message submission form
-
-- mark done in cart as you shop
 
 Upcoming features:
+- Explaination page with screenshots
+- Feedback page with reviews and message submission form
+- Group categories on recommended page for easier browsing
+- Mark done in cart as you shop
 - Recipes (connected with ids)
-- Pantry (see current items)
 - Add Category functionality
-- Longer passwords
-  - deny weak invalid sign-ups, check email and password
-- Temporary loading boxes
-- Loading spinners (not just Empty Cart)
 - Cart logs
   - Admin can view cart data
     - admin can create charts + graphs
