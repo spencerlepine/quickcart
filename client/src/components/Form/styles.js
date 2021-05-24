@@ -38,6 +38,7 @@ export default makeStyles((theme) => ({
   },
   itemSize: {
     width: "30vw",
+    maxWidth: "175px",
     "& input": {
       margin: "0px",
       fontWeight: "400",

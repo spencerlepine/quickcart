@@ -158,6 +158,22 @@ const Form = () => {
     />
   );
 
+  const handleClear = () => {
+    setThisGrocery(schema)
+  }
+
+  const ClearButton = () => (
+    <Button
+      onClick={handleClear}
+      color="secondary"
+      fullWidth
+      variant="contained"
+      className={classes.deleteButton}
+    >
+      Clear
+    </Button>
+  )
+
   return (
     <div className={classes.formContainer}>
       <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -247,7 +263,7 @@ const Form = () => {
             />
           </div>
 
-          {currentName && (
+          {currentName ? (
             <Button
               onClick={handleDelete}
               color="secondary"
@@ -257,7 +273,9 @@ const Form = () => {
             >
               Delete
             </Button>
-          )}
+          )
+          :
+          (<ClearButton />)}
 
           <Button
             type="submit"
