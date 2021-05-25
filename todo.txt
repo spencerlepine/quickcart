@@ -1,4 +1,9 @@
 # To do:  
+- don't create groceries while importing (messes up grocery count)
+- style the new category button
+ - set new catergory in dropdown on add
+ - categories aren't capatalized, not registering in form?
+ 
 - make youtube video
 
 - per ounce cost ratio
