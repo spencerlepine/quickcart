@@ -28,7 +28,7 @@ const CardGrid = ({ cardItems, connectionName }) => {
   const classes = useStyles()
   const connectionObj = useSelector((state) => state.connection);
   const connection = connectionObj[connectionName]
-  const placeHolderTiles = ['','','','','','','',''].map(elem => <MyLoader />)
+  const placeHolderTiles = ['','','','','','','',''].map((elem, i) => <MyLoader key={i} />)
 
   return (
     <div className={classes.cardGrid}>

@@ -12,7 +12,7 @@ const FetchLogic = () => {
 
   const userId = useSelector(state => state.connectedUser)
   const groceries = useSelector((state) => state.groceries)
-  const { auth: authConnection } = useSelector(state => state.connection)
+  const { auth: authConnection, groceries: groceryConnection } = useSelector(state => state.connection)
   const totalGroceryCount = useSelector((state) => state.count)
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const FetchLogic = () => {
 
 
   useEffect(() => {
-    if (groceries.length < totalGroceryCount) {
+    if (groceries.length < totalGroceryCount && groceryConnection === "pending") {
        const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
        dispatch(getGroceries(userId, lastGrocery))
        return

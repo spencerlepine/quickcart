@@ -81,9 +81,9 @@ const FoodCard = ({ groceryItem, showProp=false }) => {
 FoodCard.propTypes = {
   groceryItem: PropTypes.shape({
     name: PropTypes.string,
-    purchase_price: PropTypes.number,
+    purchase_price: PropTypes.string,
     purchase_size: PropTypes.string,
-    serving_cost: PropTypes.number,
+    serving_cost: PropTypes.string,
     category: PropTypes.string,
     last_purchased: PropTypes.string,
     priority: PropTypes.string,

@@ -138,7 +138,7 @@ const Form = () => {
       thisGrocery.image
     ) {
       dispatch(createGrocery(userId, thisGrocery));
-      dispatch(saveLocalGrocery(userId, thisGrocery))
+      dispatch(saveLocalGrocery(thisGrocery))
       history.push("/");
       clearForm();
     } else {
@@ -180,9 +180,9 @@ const Form = () => {
     e.preventDefault()
     const newCategory = prompt("Name the new category: ")
 
-    if (typeof newCategory === "string") {
+    if (typeof newCategory === "string" && newCategory.length) {
       dispatch(createNewCategory(userId, newCategory))
-    } else {
+    } else if (newCategory) {
       const importMessage = {
         name: "Invalid Name!",
         message: `please try again`,

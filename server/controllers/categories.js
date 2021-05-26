@@ -39,11 +39,10 @@ export const getGroceryCategories = async (req, res) => {
       if (categoryCollection.docs) {
         // // Save this category
         const categories = await categoryCollection.docs.map(doc => doc.data()["id"])
-        console.log(categories)
         res.status(200).json(categories);
       } else {
         const sampleCategories = ['Grains', 'Bread', 'Breakfast', 'Dairy', 'Fruits', 'Vegetables', 'Pantry', 'Snacks', 'Meat', 'Beverages', 'Condements']
-        res.status(201).json([]);
+        res.status(201).json(sampleCategories);
       }
   } catch (error) {
       res.status(404).json(error.message);

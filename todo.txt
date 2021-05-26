@@ -3,9 +3,15 @@
 - style the new category button
  - set new catergory in dropdown on add
  - categories aren't capatalized, not registering in form?
- 
+- dont require an image to be uploaded
+- crop input images, don't smooch em
+- stopping fetching 1000 times after adding an item
 - make youtube video
 
+- fix csv? Remove images?
+- userMatch slice error
+- changing grocery name in form doesn't overwrite state
+- name with dash regex error
 - per ounce cost ratio
 
 - audit npm packages and update everything
