@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import CircularProgress from "@material-ui/core/CircularProgress"
 import { getGroceries } from "../../actions/groceries"
 import { setGroceryConnection } from "../../actions/connection"
 import LoadingGif from "../../images/loading.gif"
@@ -24,15 +23,17 @@ const FetchLogic = () => {
 
 
   useEffect(() => {
-    if (groceries.length < totalGroceryCount && groceryConnection === "pending") {
-       const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
-       dispatch(getGroceries(userId, lastGrocery))
+    if (groceryConnection !== "connected") {
+      if (groceries.length < totalGroceryCount) {  
+        const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
+        dispatch(getGroceries(userId, lastGrocery))
+        return
+     } else {
+       dispatch(setGroceryConnection("connected"))
        return
-    } else {
-      dispatch(setGroceryConnection("connected"))
-      return
+     }
     }
-  }, [dispatch, groceries, totalGroceryCount])
+  }, [dispatch, groceries, totalGroceryCount, groceryConnection])
 
   return (
     <>

@@ -15,7 +15,7 @@ export default makeStyles(() => ({
   },
   itemsGrid: {
     display: "flex",
-    overflow: "scroll",
+    overflow: "overlay",
     margin: "0 auto 5% auto",
     backgroundColor: "#fff",
   },

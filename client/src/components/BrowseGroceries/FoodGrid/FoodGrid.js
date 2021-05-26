@@ -30,7 +30,7 @@ const FoodGrid = () => {
   useEffect(() => {
     setShowExitPrompt(false)
     dispatch(setId(null))
-    dispatch(setSearchQuery(""))
+    // dispatch(setSearchQuery(""))
     dispatch(setSelectedCategory(null))
   }, [dispatch])
 
