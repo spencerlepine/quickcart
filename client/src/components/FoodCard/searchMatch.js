@@ -1,5 +1,5 @@
 export default function searchMatch(userSearch, database) {
-  if (!userSearch || userSearch === undefined || userSearch.length < 3) {
+  if (!userSearch || userSearch === undefined || userSearch.length < 3 || !userSearch.hasOwnProperty("slice")) {
     return false
   }
 

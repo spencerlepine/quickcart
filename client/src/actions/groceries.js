@@ -69,11 +69,11 @@ export const createGrocery = (userId, newGrocery) => async (dispatch) => {
   }
 }
 
-export const updateGrocery = (userId, groceryItem) => async (dispatch) => {
+export const updateGrocery = (userId, groceryItem, previousName) => async (dispatch) => {
   try {
     await api.updateGrocery({ userId }, groceryItem)
 
-    dispatch({ type: UPDATE, payload: groceryItem })
+    dispatch({ type: UPDATE, payload: {...groceryItem, previousName }})
 
     const successMessage = {
       name: "Updated!",

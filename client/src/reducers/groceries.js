@@ -16,8 +16,10 @@ const reducer = (groceries = initialState, action) => {
       let extendedGroceries = [...groceries, ...filteredPayload]
       return extendedGroceries
     case UPDATE:
+      const { previousName } = action.payload
+      let newGrocery = { ...action.payload, name: previousName }
       return groceries.map((item) =>
-      item.name === action.payload.name ? action.payload : item
+      item.name === action.payload.previousName ? newGrocery : item
       )
     case DELETE:
       return groceries.filter((item) => item.name !== action.payload)

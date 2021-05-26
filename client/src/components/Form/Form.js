@@ -70,10 +70,15 @@ const Form = () => {
     let categoryOptions = categories.map((category) => {
       return <option value={category}>{toTitleCase(category)}</option>;
     });
-    setDropdownCategories((prevCategories) => [
-      <option label="None" value="" />,
-      ...categoryOptions,
-    ]);
+    if (currentItem) {
+      setDropdownCategories(categoryOptions);
+    } else {
+      setDropdownCategories((prevCategories) => [
+        <option label="None" value="" />,
+        ...categoryOptions,
+      ]);
+    }
+    return
   }, [categories]);
 
   const clearForm = () => {
@@ -122,8 +127,10 @@ const Form = () => {
     if (currentName) {
       const formItemStr = JSON.stringify(thisGrocery) 
       const currentItemStr = JSON.stringify(currentItem) 
-      if (formItemStr !== currentItemStr) {
-        dispatch(updateGrocery(userId, thisGrocery));
+      if (formItemStr !== currentItemStr && thisGrocery.name === currentItem.name) {
+        dispatch(updateGrocery(userId, thisGrocery, currentItem.name));
+      } else {
+
       }
       history.push("/");
       clearForm();
@@ -137,12 +144,18 @@ const Form = () => {
       thisGrocery.priority &&
       thisGrocery.image
     ) {
+      // Get rid of dashes in the name
+      thisGrocery.name = thisGrocery.name.replace(/-/gi, " ")
       dispatch(createGrocery(userId, thisGrocery));
       dispatch(saveLocalGrocery(thisGrocery))
       history.push("/");
       clearForm();
     } else {
-      alert("Please enter valid data");
+      const submitMessage = {
+        name: "Empty Fields",
+        message: `please complete the form`,
+      }
+      dispatch({ type: SET_CURRENT_ERROR, payload: submitMessage })
     }
   };
 
@@ -181,7 +194,7 @@ const Form = () => {
     const newCategory = prompt("Name the new category: ")
 
     if (typeof newCategory === "string" && newCategory.length) {
-      dispatch(createNewCategory(userId, newCategory))
+      dispatch(createNewCategory(userId, newCategory.toLowerCase()))
     } else if (newCategory) {
       const importMessage = {
         name: "Invalid Name!",
@@ -246,7 +259,7 @@ const Form = () => {
             >
               {dropdownCategories}
             </Select>
-            <button onClick={handleAddCategory}>+</button>
+            <button onClick={handleAddCategory} className={classes.newCategoryBtn}>+</button>
           </div>
 
           <div className={`${classes.dollarSign} ${classes.itemServing}`}>

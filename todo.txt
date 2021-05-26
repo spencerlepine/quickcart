@@ -1,17 +1,10 @@
 # To do:  
-- don't create groceries while importing (messes up grocery count)
 - style the new category button
- - set new catergory in dropdown on add
- - categories aren't capatalized, not registering in form?
-- dont require an image to be uploaded
-- crop input images, don't smooch em
-- stopping fetching 1000 times after adding an item
+- crop input images, don't smoosh em
 - make youtube video
 
 - fix csv? Remove images?
-- userMatch slice error
 - changing grocery name in form doesn't overwrite state
-- name with dash regex error
 - per ounce cost ratio
 
 - audit npm packages and update everything
@@ -19,6 +12,8 @@
 - remove localhost link from fb
 
 - exact search goes to top (GRIDCOL1, GRIDROW1)?
+
+- updates a grocery name, creates a new doc under new name 
 
 Upcoming features:
 - Explaination page with screenshots

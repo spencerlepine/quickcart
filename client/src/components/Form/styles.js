@@ -171,4 +171,22 @@ export default makeStyles((theme) => ({
       minHeight: "200px",
     },
   },
+  newCategoryBtn: {
+    "padding": "0px 6px",
+    "margin": "auto",
+    "color": "white",
+    "background": "#ff9749",
+    "fontWeight": "500",
+    "fontSize": "24px",
+    "border": "none",
+    "borderRadius": "5px",
+    "top": "22px",
+    "position": "absolute",
+    '&:hover': {
+      backgroundColor: "#d47b39",
+    },
+  },
+  itemCategory: {
+    position: "relative",
+  },
 }))

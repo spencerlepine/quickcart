@@ -35,14 +35,15 @@ export const getGroceryCategories = async (req, res) => {
         .doc(userId)
         .collection('userCategories')
         .get()
-      
-      if (categoryCollection.docs) {
-        // // Save this category
-        const categories = await categoryCollection.docs.map(doc => doc.data()["id"])
-        res.status(200).json(categories);
+
+      let sampleCategories = new Set(['bread', 'beverages', 'breakfast', 'canned goods', 'condements', 'dairy', 'desserts', 'fruit', 'grains', 'pantry', 'pasta', 'vegetables'])
+
+      if (categoryCollection.docs.length > 0) {
+        categoryCollection.docs.forEach(doc => sampleCategories.add(doc.data()["id"]))
+        res.status(200).json(Array.from(sampleCategories));
       } else {
-        const sampleCategories = ['Grains', 'Bread', 'Breakfast', 'Dairy', 'Fruits', 'Vegetables', 'Pantry', 'Snacks', 'Meat', 'Beverages', 'Condements']
-        res.status(201).json(sampleCategories);
+        console.log("passing down sampleCategories to res:" + sampleCategories)
+        res.status(200).json(Array.from(sampleCategories));
       }
   } catch (error) {
       res.status(404).json(error.message);
