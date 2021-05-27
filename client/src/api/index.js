@@ -33,6 +33,8 @@ export const updateCartItem = (idObj, updatedCartItem) => axios.patch(`${baseUrl
 
 export const addToCart = (idObj, itemToAdd) => axios.post(`${baseUrl}/cart/${idObj.userId}`, itemToAdd)
 
+export const logCartItem = (idObj, cartItem) => axios.post(`${baseUrl}/logCartItem/${idObj.userId}`, cartItem)
+
 // Recommended API calls
 export const fetchRecommended = (idObj) => axios.get(baseUrl + `/recommended/${idObj.userId}`)
 

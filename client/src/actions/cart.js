@@ -61,3 +61,12 @@ export const updateCartItem = (userId, updatedItem) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const logCartItem = (userId, itemToLog) => async (dispatch) => {
+  try {
+    await api.logCartItem({ userId }, itemToLog);
+  } catch (error) {
+    dispatch({ type: SET_CURRENT_ERROR, payload: error });
+    console.log(error.message);
+  }
+};

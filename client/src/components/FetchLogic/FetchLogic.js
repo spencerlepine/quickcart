@@ -24,11 +24,12 @@ const FetchLogic = () => {
 
   useEffect(() => {
     if (groceryConnection !== "connected") {
+
       if (groceries.length < totalGroceryCount) {  
         const lastGrocery = groceries.length > 0 ? groceries.pop().name : 0
         dispatch(getGroceries(userId, lastGrocery))
         return
-     } else {
+     } else if (totalGroceryCount !== 0) {
        dispatch(setGroceryConnection("connected"))
        return
      }

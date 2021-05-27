@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteCartItem } from "../../../actions/cart"
 import { updateGrocery } from "../../../actions/groceries"
+import { logCartItem } from "../../../actions/cart"
+
 import { SET_CURRENT_ERROR } from "../../../constants/actionTypes.js"
 import useStyles from "./styles.js"
 
@@ -21,6 +23,7 @@ const CartHeader = ({ cartItems }) => {
           ...item,
           last_purchased: todaysDate,
         }
+        dispatch(logCartItem(userId, groceryObjNewDate))
         dispatch(deleteCartItem(userId, groceryObjNewDate.name))
         dispatch(updateGrocery(userId, groceryObjNewDate))
       })

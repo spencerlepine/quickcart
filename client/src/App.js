@@ -22,9 +22,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <NotificationPopup />
-      <FetchLogic />
       {userId ? (<>
         <NavBar />
+        <FetchLogic />
         <Switch>
           <Route exact path="/">
             <BrowseGroceries />

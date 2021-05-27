@@ -1,10 +1,10 @@
 # To do:  
-- style the new category button
+- add button going off right side of screen on mobile
+
 - crop input images, don't smoosh em
 - make youtube video
 
 - fix csv? Remove images?
-- changing grocery name in form doesn't overwrite state
 - per ounce cost ratio
 
 - audit npm packages and update everything
@@ -12,8 +12,6 @@
 - remove localhost link from fb
 
 - exact search goes to top (GRIDCOL1, GRIDROW1)?
-
-- updates a grocery name, creates a new doc under new name 
 
 Upcoming features:
 - Explaination page with screenshots

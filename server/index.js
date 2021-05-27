@@ -9,6 +9,7 @@ import recommendedRoutes from "./routes/recommended.js"
 import categoryRoutes from "./routes/categories.js"
 import countRoutes from "./routes/grocery-count.js"
 import cartRoutes from "./routes/cart.js"
+import logRoutes from "./routes/logCartItem.js"
 
 const app = express()
 dotenv.config()
@@ -34,6 +35,7 @@ app.use('/grocery-count', countRoutes)
 app.use('/categories', categoryRoutes)
 app.use('/recommended', recommendedRoutes)
 app.use('/cart', cartRoutes)
+app.use('/logCartItem', logRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to Spencer\'s Grocery API')
