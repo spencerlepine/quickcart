@@ -3,11 +3,11 @@ import React, { useState, useContext } from "react"
 export const NotificationContext = React.createContext()
 
 export function NotificationProvider({ children }) {
-  const [currentMessage, setCurrentMessage] = useState("")
+  const [currentNotification, setCurrentNotification] = useState("")
 
   const value = {
-    currentMessage,
-    setCurrentMessage,
+    currentNotification,
+    setCurrentNotification,
   }
 
   return (
@@ -18,11 +18,11 @@ export function NotificationProvider({ children }) {
 }
 
 const useNotification= () => {
-  const { currentMessage, setCurrentMessage } = useContext(NotificationContext);
+  const { currentNotification, setCurrentNotification } = useContext(NotificationContext);
   
   return {
-    currentMessage,
-    setCurrentMessage
+    currentNotification,
+    setCurrentNotification
   };
 };
 

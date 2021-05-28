@@ -3,10 +3,10 @@ import React, { useState, useContext } from "react"
 export const RecommendedContext = React.createContext()
 
 export function RecommendedProvider({ children }) {
-  const [allRecommended, setAllRecommended] = useState([])
+  const [allRecommendedItems, setAllRecommendedItems] = useState([])
 
   const value = {
-    allRecommended,
+    allRecommendedItems,
   }
 
   return (
@@ -17,10 +17,10 @@ export function RecommendedProvider({ children }) {
 }
 
 const useRecommended= () => {
-  const { allRecommended } = useContext(RecommendedContext);
+  const { allRecommendedItems } = useContext(RecommendedContext);
   
   return {
-    allRecommended,
+    allRecommendedItems,
   };
 };
 

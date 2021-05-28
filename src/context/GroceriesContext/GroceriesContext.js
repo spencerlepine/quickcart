@@ -5,8 +5,13 @@ export const GroceriesContext = React.createContext()
 export function GroceriesProvider({ children }) {
   const [allGroceries, setAllGroceries] = useState([])
 
+  function updateGroceryItem() {
+    console.log("updateing grocewry item in GroceryContext")
+  }
+
   const value = {
     allGroceries,
+    updateGroceryItem,
   }
 
   return (
@@ -17,10 +22,11 @@ export function GroceriesProvider({ children }) {
 }
 
 const useGroceries= () => {
-  const { allGroceries } = useContext(GroceriesContext);
+  const { allGroceries, updateGroceryItem } = useContext(GroceriesContext);
   
   return {
     allGroceries,
+    updateGroceryItem,
   };
 };
 

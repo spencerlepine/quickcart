@@ -9,9 +9,14 @@ export function CartProvider({ children }) {
     console.log("Adding item to cart in /CartContext.js")
   }
 
+  function getAllCartItems() {
+    console.log("getting all cart items in /CartContext.js")
+  }
+
   const value = {
     allCartItems,
     addItemToCart,
+    getAllCartItems,
   }
 
   return (
@@ -22,11 +27,12 @@ export function CartProvider({ children }) {
 }
 
 const useCart= () => {
-  const { allCartItems, addItemToCart } = useContext(CartContext);
+  const { allCartItems, addItemToCart, getAllCartItems } = useContext(CartContext);
   
   return {
     allCartItems,
     addItemToCart,
+    getAllCartItems,
   };
 };
 

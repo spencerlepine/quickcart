@@ -4,6 +4,7 @@ import UserWelcome from "../UserWelcome/UserWelcome"
 import MissingPage from "../MissingPage/MissingPage"
 import SignUp from "../SignUp/SignUp"
 import LogIn from "../LogIn/LogIn"
+import Cart from "../Cart/Cart"
 import BrowseGroceries from "../BrowseGroceries/BrowseGroceries"
 
 const Routes = () => (
@@ -12,6 +13,7 @@ const Routes = () => (
     <Route exact path={WELCOME} component={UserWelcome} />
     <Route path={LOGIN} component={LogIn} />
     <Route path={SIGNUP} component={SignUp} />
+    <Route exact path={CART} component={Cart} />
     <Route path="/empty" component={MissingPage} />
     <Route path="/" component={MissingPage} />
   </Switch>
