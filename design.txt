@@ -1,0 +1,48 @@
+- Navbar
+  o Menu Hamburger
+  o Logo/Home Link
+  o Cart Icon/Link
+
+- Home page
+  > browse personal grocery database
+  > add items to cart
+  > look through different categories
+  > view details about item
+    - (edit button to visit/open form)
+ 
+- Cart
+  > veiw current cart
+  > update item quantity
+  > view recommended items
+  > view cart total
+  > purchase cart and update purchase dates
+  
+- Settings
+  > import grocery backup file
+  > export grocery backup file
+  > log out
+
+- Suggested
+  > view recommended items to buy
+    o haven't purchased in a while
+    o ordered based on price
+    o scroll through FoodCards
+    O add to cart from this page
+    
+- Pantry
+  > view recently purchased cards
+ 
+- Create
+  > Form to onboard new grocery item
+  > add details of the product
+  > upload an image
+
+- Search
+  > Search products from open source databases
+  > Save them to personal list
+  > Scan a barcode to use
+  
+- Sign up
+- Log in
+
+  
