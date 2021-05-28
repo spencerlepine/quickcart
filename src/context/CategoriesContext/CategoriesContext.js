@@ -1,16 +1,31 @@
 import React, { useState, useContext } from "react"
+import * as api from "../../api/index.js"
 
 export const CategoriesContext = React.createContext()
 
 export function CategoriesProvider({ children }) {
   const [allCategories, setAllCategories] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  function getAllCategories() {
-    console.log("Fetch All Categories in /CategoryContext.js")
+  async function getAllCategories() {
+    setLoading(true)
+    try {
+      const data = await api.getGroceryCategories()
+      setAllCategories(prevList => data)
+    } catch (error) {
+      console.log(error.message)
+    }
+    setLoading(false)
   }
 
-  function createNewCategory() {
-    console.log("creating a new category in /CategoryContext")
+  async function createNewCategory(newCategoryName) {
+    try {
+      await api.addCategory(newCategoryName)
+
+      setAllCategories(prevList => [...prevList, newCategoryName])
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   const value = {

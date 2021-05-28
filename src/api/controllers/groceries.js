@@ -83,7 +83,6 @@ export const createGrocery = async (newGroceryItem) => {
     return newGroceryItem
   } catch (error) {
     console.log(error.message)
-    console.log(error)
     return {}
   }
 };

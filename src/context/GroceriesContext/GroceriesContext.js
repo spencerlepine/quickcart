@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react"
-import { useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import * as api from "../../api/index.js"
 
 export const GroceriesContext = React.createContext()

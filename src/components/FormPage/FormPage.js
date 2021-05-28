@@ -67,7 +67,6 @@ const FormPage = () => {
     } else {
       setDropdownCategories((prevCategories) => [
         <option label="None" value="" />,
-        <option label="TEst" value="test" />,
         ...categoryOptions,
       ]);
     }
@@ -180,10 +179,17 @@ const FormPage = () => {
 
   const handleAddCategory = (e) => {
     e.preventDefault()
+
     const newCategory = prompt("Name the new category: ")
+
 
     if (typeof newCategory === "string" && newCategory.length) {
       createNewCategory(newCategory.toLowerCase())
+      // Save this category to state
+      setThisGrocery(prevObj => ({
+        ...prevObj,
+        category: newCategory
+      }))
     } else if (newCategory) {
       const importMessage = {
         name: "Invalid Name!",
