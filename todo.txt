@@ -1,15 +1,26 @@
-# To do:  
-- add button going off right side of screen on mobile
+# To do: 
+ - OpenSourceFood for searching and adding groceries
+   - add grocery by scanning barcode
+   - Basically fetch grocery data, then save a copy to user account
+     - user can modify the data further based on their own use
+   - https://www.npmjs.com/package/scandit-sdk-react
+   
+- Get UI idea from Yuka onboarding item form (price, name, category, price, serving price)
+
+- Adding/Creating/Updating a grocery while app is loading up messes up the FetchLogic(it starts spamming groceries)
+
+- add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
 
 - crop input images, don't smoosh em
+
 - make youtube video
 
-- fix csv? Remove images?
+- fix csv? (Column headers are all messed up, images don't need to be saved)
+
 - per ounce cost ratio
 
 - audit npm packages and update everything
 - go through each file and format, then make sure the code is sensible
-- remove localhost link from fb
 
 - exact search goes to top (GRIDCOL1, GRIDROW1)?
 
@@ -27,15 +38,6 @@ Upcoming features:
     - see money spent per Category
     - most popular items
     - count purchase per item with a countObj
-  - Saving a cart:
-   - go under "userCartLogs" collection
-   - get the closest saturday date
-   - add a doc with current weeks DATE as the reference
-     - create a doc if one doesn't exist? Does "set" create it?
-   - append to a list of groceries
-     - FORMAT: Price, Category, Name
-   - Add a new line for quantities over 1
-     - is item over 1 quantity in cart? Append a copy
   - Display cart logs for the user?
     - list with DATE, TOTAL_PRICE, GROCERY_COUNT
       - dropdown button showing list of name, price, category
