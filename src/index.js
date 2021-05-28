@@ -12,22 +12,22 @@ import { RecommendedProvider } from "./context/RecommendedContext/RecommendedCon
 import { NotificationProvider } from "./context/NotificationContext/NotificationContext"
 
 ReactDOM.render(
-  <NotificationProvider>
-    <RecommendedProvider>
-      <GroceriesProvider>
-        <CartProvider>
-          <SearchProvider>
-            <FormProvider>
-              <AuthProvider>
+  <AuthProvider>
+    <NotificationProvider>
+      <RecommendedProvider>
+        <GroceriesProvider>
+          <CartProvider>
+            <SearchProvider>
+              <FormProvider>
                 <CategoriesProvider>
                   <App />
                 </CategoriesProvider>
-              </AuthProvider>
-            </FormProvider>
-          </SearchProvider>
-        </CartProvider>
-      </GroceriesProvider>
-    </RecommendedProvider>
-  </NotificationProvider>,
+              </FormProvider>
+            </SearchProvider>
+          </CartProvider>
+        </GroceriesProvider>
+      </RecommendedProvider>
+    </NotificationProvider>
+  </AuthProvider>,
   document.getElementById('root')
 );

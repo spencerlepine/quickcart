@@ -11,7 +11,7 @@ import useStyles from "./styles"
 function SignUp() {
   const classes = useStyles()
   const { signupUser } = useAuth()
-  const { setNotification } = useNotification()  
+  const { setCurrentNotification } = useNotification()  
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +28,7 @@ function SignUp() {
       try {
         await signupUser(displayName, email, password)
       } catch {
-        setNotification("Invalid email or password", "Please try again", "danger")
+        setCurrentNotification("Invalid email or password", "Please try again", "danger")
       }
     }
   }

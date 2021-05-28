@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react"
-import { auth, storage } from "../../api/firebase.js"
+import { auth, storage, db } from "../../api/firebase.js"
+import LoadingGif from "../../images/loading.gif"
+import useStyles from "./styles.js"
 
 export const AuthContext = React.createContext()
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
+
+  const classes = useStyles()
 
   function loginUser(email, password) {
     return auth.signInWithEmailAndPassword(email, password)
@@ -15,6 +19,13 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password)
       .then(async (res) => {
         const user = auth.currentUser;
+
+        const { uid: userId } = user
+        const userDocRef = await db.collection('users').doc(userId)
+        await userDocRef
+          .collection("groceryCount")
+          .doc("totalCount")
+          .set({ totalCount: 0 })
 
         return user.updateProfile({
           displayName: displayName,
@@ -68,6 +79,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const value = {
+    loading,
     currentUser,
     loginUser,
     logoutUser,
@@ -77,15 +89,22 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {loading ?
+        <div className={classes.fullscreenDiv}>
+          <img src={LoadingGif} className={classes.center} alt="Loading animation"></img>
+        </div> :
+        <>{children}</>
+      }
+      
     </AuthContext.Provider>
   )
 }
 
 const useAuth = () => {
-  const { currentUser, loginUser, signupUser, logoutUser, updateProfilePic } = useContext(AuthContext);
+  const { loading, currentUser, loginUser, signupUser, logoutUser, updateProfilePic } = useContext(AuthContext);
   
   return {
+    loading,
     currentUser,
     loginUser,
     logoutUser,

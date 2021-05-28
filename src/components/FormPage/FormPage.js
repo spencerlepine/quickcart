@@ -57,8 +57,8 @@ const FormPage = () => {
 
   useEffect(() => {
     // Map the categories to option elements
-    let categoryOptions = allCategories.map((category) => {
-      return <option value={category}>{toTitleCase(category)}</option>;
+    let categoryOptions = allCategories.map((category, i) => {
+      return <option key={i} value={category}>{toTitleCase(category)}</option>;
     });
 
     // Save the list to state
@@ -67,6 +67,7 @@ const FormPage = () => {
     } else {
       setDropdownCategories((prevCategories) => [
         <option label="None" value="" />,
+        <option label="TEst" value="test" />,
         ...categoryOptions,
       ]);
     }
@@ -115,14 +116,11 @@ const FormPage = () => {
   const handleSubmit = (event) => {
     setShowExitPrompt(false)
     event.preventDefault();
-
     if (currentId) {
       const formItemStr = JSON.stringify(thisGrocery) 
       const currentItemStr = JSON.stringify(currentItem) 
       if (formItemStr !== currentItemStr && thisGrocery.name === currentItem.name) {
         updateGroceryItem(thisGrocery, currentItem.name)
-      } else {
-
       }
       history.push("/");
       clearForm();

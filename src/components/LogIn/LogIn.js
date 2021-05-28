@@ -10,7 +10,7 @@ import useStyles from "./styles"
 
 function LogIn() {
   const classes = useStyles()
-  const { setNotification } = useNotification()
+  const { setCurrentNotification } = useNotification()
   const { loginUser } = useAuth()
 
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ function LogIn() {
       try {
         await loginUser(email, password)
       } catch {
-        setNotification("Invalid credentials", "Please try again", "danger")
+        setCurrentNotification("Invalid credentials", "Please try again", "danger")
       }
     }
   }

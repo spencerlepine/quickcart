@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react"
 export const FormContext = React.createContext()
 
 export function FormProvider({ children }) {
-  const [currentId, setCurrentId] = useState([])
+  const [currentId, setCurrentId] = useState(null)
 
   const value = {
     currentId,

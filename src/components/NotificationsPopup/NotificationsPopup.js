@@ -6,16 +6,16 @@ import { store } from 'react-notifications-component';
 import useStyles from "./styles"
 
 function NofiticationPopup() {
-   const { currentMessage } = useNotification()
+  const { currentNotification } = useNotification()
   const classes = useStyles()
   
   useEffect(() => {
-    if (typeof currentMessage === "object") {
-      const { title, message, type } = currentMessage  
+    if (typeof currentNotification === "object") {
+      const { title, message, type } = currentNotification  
       store.addNotification({
         title: title,
         message: message.slice(0, 35),
-        type: type,
+        type: type || "warning",
         insert: "top-right",
         container: "top-right",
         animationIn: ["animate__animated", "animate__fadeIn"],
@@ -26,7 +26,7 @@ function NofiticationPopup() {
         }
       });
     }
-  }, [currentMessage]);
+  }, [currentNotification]);
 
   return (
     <ReactNotification isMobile breakpoint className={classes.popupStyles} />
