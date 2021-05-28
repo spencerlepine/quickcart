@@ -5,9 +5,10 @@ import EmptyPrompt from "../EmptyPrompt/EmptyPrompt";
 import cartImg from "../../images/cart.svg";
 import ReccomendedWidget from "../RecommendedWidget/RecommendedWidget";
 import useCart from "../../context/CartContext/CartContext"
+import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import useStyles from "./styles.js";
 
-const Cart = () => {
+const CartPage = () => {
   const classes = useStyles();
 
   const { getAllCartItems, allCartItems } = useCart()
@@ -50,4 +51,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withAuthRedirect(CartPage);

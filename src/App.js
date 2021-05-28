@@ -6,7 +6,7 @@ import Layout from "./components/Layout/Layout"
 import Footer from "./components/Footer/Footer"
 import Routes from "./components/Routes/Routes";
 import NotificationsPopup from "./components/NotificationsPopup/NotificationsPopup"
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const history = createBrowserHistory();

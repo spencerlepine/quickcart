@@ -9,9 +9,14 @@ export function CategoriesProvider({ children }) {
     console.log("Fetch All Categories in /CategoryContext.js")
   }
 
+  function createNewCategory() {
+    console.log("creating a new category in /CategoryContext")
+  }
+
   const value = {
     allCategories,
     getAllCategories,
+    createNewCategory,
   }
 
   return (
@@ -22,11 +27,12 @@ export function CategoriesProvider({ children }) {
 }
 
 const useCategories= () => {
-  const { allCategories, getAllCategories } = useContext(CategoriesContext);
+  const { allCategories, getAllCategories, createNewCategory } = useContext(CategoriesContext);
   
   return {
     allCategories,
     getAllCategories,
+    createNewCategory,
   };
 };
 

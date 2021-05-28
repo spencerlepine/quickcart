@@ -11,10 +11,10 @@ import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
 const FoodGrid = () => {
   const classes = useStyles()
   
-  const { allGroceries, totalGroceryCount } = useGroceries()
+  const { allGroceryItems, totalGroceryCount } = useGroceries()
   
-  const foodCards = allGroceries.map((item, i) => <FoodCard key={i} groceryItem={item} />)
-  const fetchProgress = Math.ceil((allGroceries.length / totalGroceryCount)*100)
+  const foodCards = allGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+  const fetchProgress = Math.ceil((allGroceryItems.length / totalGroceryCount)*100)
   const progressStyle = { width: `${fetchProgress}%` }
 
   return (

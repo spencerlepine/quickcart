@@ -9,6 +9,7 @@ import Logout from "../../Logout/Logout"
 import { Link  } from "react-router-dom";
 
 import useStyles from "./styles.js";
+import { PANTRY, RECOMMENDED, SETTINGS, HOME, FORM } from "../../../constants/routeConstants";
 
 const Sidebar = ({ toggleMenu }) => {
     const classes = useStyles();
@@ -16,7 +17,7 @@ const Sidebar = ({ toggleMenu }) => {
     return (
       <div className={classes.sidebar}>
         <Link className={classes.sidebarLink}
-          to="/"
+          to={HOME}
           onClick={() => toggleMenu(false)}
         >
           <ListAltIcon fontSize="large"/>
@@ -26,24 +27,16 @@ const Sidebar = ({ toggleMenu }) => {
         <Link
           style={{ justifySelf: "center" }}
           className={classes.sidebarLink}
-          to="/form"
+          to={FORM}
           onClick={() => toggleMenu(false)}
         >
           <AddCircleOutlineIcon fontSize="large" />
           <p>Create</p>
         </Link>
 
-        <Link className={classes.sidebarLink}
-        to="/cart"
-        onClick={() => toggleMenu(false)}
-        >
-          <ShoppingCartIcon fontSize="large" />
-          <p>Cart</p>
-        </Link>
-
         <Link
           className={`${classes.sidebarLink} ${classes.recommendedIcon}`}
-          to="/recommended"
+          to={RECOMMENDED}
           onClick={() => toggleMenu(false)}
         >
           <EmojiObjects fontSize="large" />
@@ -52,7 +45,7 @@ const Sidebar = ({ toggleMenu }) => {
 
         <Link
           className={`${classes.sidebarLink} ${classes.pantryIcon}`}
-          to="/pantry"
+          to={PANTRY}
           onClick={() => toggleMenu(false)}
         >
           <KitchenIcon fontSize="large" />
@@ -61,7 +54,7 @@ const Sidebar = ({ toggleMenu }) => {
 
         <Link
           className={`${classes.sidebarLink} ${classes.settingIcon}`}
-          to="/settings"
+          to={SETTINGS}
           onClick={() => toggleMenu(false)}
         >
           <SettingsIcon fontSize="large" />
