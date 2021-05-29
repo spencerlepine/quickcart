@@ -8,7 +8,7 @@ import useStyles from "./styles.js";
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import Sidebar from "./Sidebar/Sidebar"
 
-const NavBar = () => {
+const Navbar = () => {
   const classes = useStyles();
   const params = useParams()
 
@@ -66,4 +66,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

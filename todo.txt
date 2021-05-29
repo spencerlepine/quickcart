@@ -1,0 +1,38 @@
+# To do: 
+ - OpenSourceFood for searching and adding groceries
+   - add grocery by scanning barcode
+   - Basically fetch grocery data, then save a copy to user account
+     - user can modify the data further based on their own use
+   - https://www.npmjs.com/package/scandit-sdk-react
+   
+- Get UI idea from Yuka onboarding item form (price, name, category, price, serving price)
+
+- Merge login form
+- Merge sign-up form
+
+- Implement Loading for every Context
+- Make sure currentId is reset
+- Make sure showExitPrompt is reset (no leave-page prompts everywhere)
+
+Upcoming features:
+- Searchbar
+- Screenshots and Explanation on WelcomePage
+- Feedback page with reviews and message submission form?
+- Mark done in cart as you shop
+- Recipes (connected with ids)
+- Cart logs
+  - Admin can view cart data
+    - admin can create charts + graphs
+    - see most categories
+    - see average spending per week
+    - see money spent per Category
+    - most popular items
+    - count purchase per item with a countObj
+  - Display cart logs for the user?
+    - list with DATE, TOTAL_PRICE, GROCERY_COUNT
+      - dropdown button showing list of name, price, category
+      - don't track quantity
+
+Bugs:
+    - add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
+    - crop input images, don't smoosh em

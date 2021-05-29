@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import useAuth from "../../context/AuthContext/AuthContext"
 import useNotification from "../../context/NotificationContext/NotificationContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles"
 
 function SignUp() {
@@ -22,6 +23,13 @@ function SignUp() {
     return email.length > 0 && password.length > 7 && password === passwordValidate;
   }
 
+  // Pass the key to submit
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
     if (validateForm()) {
@@ -34,49 +42,49 @@ function SignUp() {
   }
 
   return (
-    <div className={`SignUp ${classes.auth_wrapper}`}>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            autoFocus
-            type="name"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg">
-          <Form.Label>Validate Password</Form.Label>
-          <Form.Control
-            id="validate-password"
-            type="password"
-            value={passwordValidate}
-            onChange={(e) => setPasswordValidate(e.target.value)}
-          />
-        </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Sign Up
-        </Button>
-      </Form>
-      <Link to={LOGIN}>Log In</Link>
+    <div className={classes.loginPrompt}>
+      <img src={QuickCartLogo} alt="QuickCart Logo" className={classes.logoImg}></img>
+      <h2>Sign Up</h2>
+      <input
+        onChange={(e) => setDisplayName(e.target.value)}
+        onKeyDown={handleKeyDown}
+        type="name"
+        name="displayName"
+        value={displayName}
+        placeholder="Name"
+      ></input>
+      <input
+        onChange={(e) => setEmail(e.target.value)}
+        onKeyDown={handleKeyDown}
+        name="email"
+        type="email"
+        value={email}
+        placeholder="Email"
+      ></input>
+      <input
+        onChange={(e) => setPassword(e.target.value)}
+        onKeyDown={handleKeyDown}
+        type="password"
+        name="password"
+        value={password}
+        placeholder="Password"
+      ></input>
+      <input
+        onChange={(e) => setPasswordValidate(e.target.value)}
+        onKeyDown={handleKeyDown}
+        type="password"
+        name="verifyPassword"
+        value={passwordValidate}
+        placeholder="Re-enter Password"
+      ></input>
+      <button onClick={() => handleSubmit()} className={classes.loginButton}>
+        Continue
+      </button>
+      <hr />
+      <p className={classes.accountMessage}>Already have an account?</p>
+      <div className={classes.accountRedirect}>
+        <Link to="/login">Log in</Link>
+      </div>
     </div>
   );
 }
