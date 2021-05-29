@@ -30,8 +30,7 @@ function SignUp() {
     }
   };
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit() {
     if (validateForm()) {
       try {
         await signupUser(displayName, email, password)

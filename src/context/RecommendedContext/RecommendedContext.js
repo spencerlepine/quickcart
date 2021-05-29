@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
-import * as api from "../../api/index.js"
+import * as api from "../../api/index"
 
 export const RecommendedContext = React.createContext()
 

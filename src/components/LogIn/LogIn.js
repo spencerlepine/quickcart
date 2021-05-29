@@ -19,12 +19,11 @@ function LogIn() {
   });
 
   function validateForm() {
-    const [email, password] = formValues;
+    const { email, password } = formValues;
     return email.length > 1 && password.length > 7;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (validateForm()) {
       try {
         loginUser(formValues["email"], formValues["password"])

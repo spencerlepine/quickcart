@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
-import * as api from "../../api/index.js"
-
+import * as api from "../../api/index"
+console.log(api)
 export const CategoriesContext = React.createContext()
 
 export function CategoriesProvider({ children }) {

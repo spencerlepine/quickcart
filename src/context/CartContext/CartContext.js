@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import * as api from "../../api/index.js"
+import * as api from "../../api/index"
 
 export const CartContext = React.createContext()
 
