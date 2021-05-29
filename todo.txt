@@ -36,3 +36,4 @@ Upcoming features:
 Bugs:
     - add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
     - crop input images, don't smoosh em
+    - import is broken

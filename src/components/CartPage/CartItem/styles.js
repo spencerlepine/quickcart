@@ -19,6 +19,8 @@ export default makeStyles((theme) => ({
   },
   itemName: {
     fontSize: "14px",
+    marginRight: "auto",
+    minWidth: "82px",
     color: "rgb(50, 50, 50)",
     "@media (max-width: 900px)": {
       color: "rgb(50, 50, 50)",

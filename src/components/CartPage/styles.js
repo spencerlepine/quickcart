@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     marginTop: "1%",
     marginBottom: "1vh",
     backgroundColor: "white",
-    padding: "4vh",
+    padding: "2vh",
     borderRadius: "1vh",
     alignItems: "center",
     marginLeft: "auto",
