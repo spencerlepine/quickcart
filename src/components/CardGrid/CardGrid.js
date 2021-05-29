@@ -25,7 +25,7 @@ const PlaceholderBox = (props) => (
 const CardGrid = ({ cardItems, connection }) => {
   const classes = useStyles()
   const placeHolderTiles = ['','','','','','','',''].map((elem, i) => <PlaceholderBox key={i} />)
-
+  
   return (
     <div className={classes.cardGrid}>
         {cardItems} 

@@ -4,15 +4,15 @@ import useStyles from "./styles"
 
 const CategorySelector = ({ categoryName, selectorValue }) => {
   const classes = useStyles()
-  const { setSelectedCategory, selectedCategory } = useSearch()
+  const { setCategorySelection, categorySelection } = useSearch()
 
   const handleSelection = () => {
     // Set the global selected category to this name
-    setSelectedCategory(selectorValue)
+    setCategorySelection(selectorValue)
   }
   
-  const currentlySelected = selectedCategory === categoryName ? { backgroundColor: "rgb(211 224 255)" } : {}
-
+  const currentlySelected = categorySelection === categoryName ? { backgroundColor: "rgb(211 224 255)" } : {}
+  
   const formatedName = categoryName[0].toUpperCase() + categoryName.slice(1, categoryName.length)
   
   return (

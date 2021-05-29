@@ -1,13 +1,11 @@
 import React from "react"
 import useCart from "../../../context/CartContext/CartContext.js"
-import useRecommended from "../../../context/RecommendedContext/RecommendedContext"
 import useStyles from "./styles.js"
 
 const CartItem = ({ cartItem }) => {
   const classes = useStyles()
 
   const { getAllCartItems, updateCartItem, deleteCartItem } = useCart()
-  const { getAllRecommendedItems } = useRecommended()
   
   const handleDecrement = (item) => {
     if (item.quantity <= 1) {
@@ -17,7 +15,6 @@ const CartItem = ({ cartItem }) => {
         ...item,
         quantity: item.quantity - 1,
       }
-      getAllRecommendedItems()
       updateCartItem(updatedQuantity)
     }
   }

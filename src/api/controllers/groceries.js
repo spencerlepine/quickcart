@@ -9,7 +9,7 @@ export const fetchGroceries = async (lastGroceryName) => {
       .doc(userId)
       .collection("userGroceries")
       .orderBy("name")
-      .startAt(lastGroceryName)
+      .startAfter(lastGroceryName)
       .limit(fetchLimit)
       .get()
 

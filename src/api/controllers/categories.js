@@ -15,7 +15,7 @@ export const addCategory = async (newCategoryName) => {
     await categoryDocRef.get()
       .then(async (docSnapshot) => {
         if (!docSnapshot.exists) {
-          const newCategories = { CATEGORY_KEY: newCategoryName }
+          const newCategories = { [CATEGORY_KEY]: newCategoryName }
           categoryDocRef.set(newCategories)
           return
         }
@@ -36,7 +36,7 @@ export const getGroceryCategories = async () => {
       .get()
 
     let sampleCategories = new Set(['bread', 'beverages', 'breakfast', 'canned goods', 'condements', 'dairy', 'desserts', 'fruit', 'grains', 'pantry', 'pasta', 'vegetables', 'snacks', 'dinner'])
-
+    
     if (categoryCollection.docs.length > 0) {
       categoryCollection.docs.forEach(doc => sampleCategories.add(doc.data()[CATEGORY_KEY]))
     }

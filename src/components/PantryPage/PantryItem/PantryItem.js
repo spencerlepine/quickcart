@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { FORM } from "../../../constants/routeConstants";
 import useSearch from "../../../context/SearchContext/SearchContext";
 
 import useStyles from "./styles";
@@ -13,7 +14,7 @@ const PantryItem = ({ groceryItem }) => {
   const handleEdit = (e) => {
     const selectedGrocery = groceryItem.name
     setCurrentId(selectedGrocery)
-    history.push("/form");
+    history.push(FORM);
   };
 
   // Get the date last purchased
@@ -34,6 +35,7 @@ const PantryItem = ({ groceryItem }) => {
   const groceryNotExpired =
     groceryExpirationDate.getTime() >= todaysDate.getTime();
 
+  console.log(groceryExpirationDate.getDay() - todaysDate.getDay())
   return (
     <>
       {groceryNotExpired && (

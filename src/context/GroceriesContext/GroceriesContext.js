@@ -15,10 +15,10 @@ export function GroceriesProvider({ children }) {
   }, [])
 
   useEffect(() => {
-    if (totalGroceryCount > 0 && allGroceryItems < totalGroceryCount) {
-      const lastItem = allGroceryItems.pop()
-      const lastId = lastItem ? lastItem["name"] : ""
-      setTimeout(() => getAllGroceries(lastId), 100)
+    if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
+      const lastItem = allGroceryItems.slice(-1)
+      const lastId = lastItem.length ? lastItem[0]["name"] : ""
+      getAllGroceries(lastId)
     }
   }, [totalGroceryCount, allGroceryItems])
 
@@ -31,6 +31,7 @@ export function GroceriesProvider({ children }) {
     setLoading(true)
     try {
       const data = await api.fetchGroceries(lastGroceryId)
+      console.log(data)
       setAllGroceryItems(prevList => [...prevList, ...data])
     } catch (error) {
       console.log(error.message)
@@ -56,7 +57,15 @@ export function GroceriesProvider({ children }) {
     try {
       const newGrocery = await api.createGrocery(newGroceryItem)
 
-      setAllGroceryItems(prevList => [...prevList, newGrocery])
+      // Add only new groceries
+      setAllGroceryItems(prevList => {
+        const itemExists = prevList.indexOf(newGrocery)
+        if (itemExists) {
+          return prevList.filter(item => item["name"] === newGrocery["name"] ? newGrocery : item)
+        } else {
+          return [...prevList, newGrocery]
+        }
+      })
 
       // Save the total count
       await fetchTotalGroceryCount()

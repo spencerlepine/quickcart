@@ -12,7 +12,7 @@ const PantryPage = () => {
   const { allGroceryItems } = useGroceries()
 
   const pantryItems = allGroceryItems.length > 0 ? allGroceryItems.map((grocery, i) => <PantryItem groceryItem={grocery} key={i} />) : []
-  
+
   return (
     <div className={classes.overviewContainer}>
       {pantryItems.length > 0
@@ -22,7 +22,6 @@ const PantryPage = () => {
           <hr />
           <CardGrid cardItems={pantryItems} />
         </>
-        
         : 
         <EmptyPrompt
             image={groceryBag}

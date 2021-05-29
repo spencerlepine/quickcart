@@ -9,7 +9,13 @@ const RecommendedWidget = () => {
 
   const { allRecommendedItems } = useRecommended()
 
-  const recommendedCards = allRecommendedItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
+  const recommendedCards = []
+  for (const category in allRecommendedItems) {
+    let [ firstCategoryElem ] = allRecommendedItems[category]
+    if (firstCategoryElem) {
+      recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} />)
+    }
+  }
 
   return (
     <div className={classes.widgetView}>

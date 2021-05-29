@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import CategoryCards from "./CategoryCards/CategoryCards.js"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import useStyles from "./styles.js"
@@ -7,21 +7,15 @@ import useRecommended from "../../context/RecommendedContext/RecommendedContext.
 const RecommendedPage = () => {
   const classes = useStyles()
 
-  const { allRecommendedItems } = useRecommended()
+  const { allRecommendedItems, getAllRecommendedItems } = useRecommended()
 
-  const groupedItems = {}
-  allRecommendedItems.forEach(itemObj => {
-    let thisCategoryList = groupedItems[itemObj.category]
-    if (thisCategoryList) {
-      thisCategoryList.push(itemObj)
-    } else {
-      thisCategoryList = [itemObj]
-    }
-  })
+  useEffect(() => {
+    getAllRecommendedItems()
+  }, [])
 
   const categorySliders = []
-  for (const category in groupedItems) {
-    let thisItemArray = groupedItems[category]
+  for (const category in allRecommendedItems) {
+    let thisItemArray = allRecommendedItems[category]
     categorySliders.push(<CategoryCards categoryItems={thisItemArray} />)
   }
 
