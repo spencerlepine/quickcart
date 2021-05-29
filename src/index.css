@@ -1,0 +1,10 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: rgb(249, 249, 249);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}

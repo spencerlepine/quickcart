@@ -7,27 +7,17 @@
    
 - Get UI idea from Yuka onboarding item form (price, name, category, price, serving price)
 
-- Adding/Creating/Updating a grocery while app is loading up messes up the FetchLogic(it starts spamming groceries)
+- Merge login form
+- Merge sign-up form
 
-- add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
-
-- crop input images, don't smoosh em
-
-- make youtube video
-
-- fix csv? (Column headers are all messed up, images don't need to be saved)
-
-- per ounce cost ratio
-
-- audit npm packages and update everything
-- go through each file and format, then make sure the code is sensible
-
-- exact search goes to top (GRIDCOL1, GRIDROW1)?
+- Implement Loading for every Context
+- Make sure currentId is reset
+- Make sure showExitPrompt is reset (no leave-page prompts everywhere)
 
 Upcoming features:
-- Explaination page with screenshots
-- Feedback page with reviews and message submission form
-- Group categories on recommended page for easier browsing
+- Searchbar
+- Screenshots and Explanation on WelcomePage
+- Feedback page with reviews and message submission form?
 - Mark done in cart as you shop
 - Recipes (connected with ids)
 - Cart logs
@@ -43,4 +33,7 @@ Upcoming features:
       - dropdown button showing list of name, price, category
       - don't track quantity
 
--https://www.ers.usda.gov/webdocs/publications/42549/15151_aib790d_1_.pdf?v=42061
+Bugs:
+    - add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
+    - crop input images, don't smoosh em
+    - import is broken

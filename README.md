@@ -4,7 +4,7 @@ Make a shopping list with personal grocery data to help budget.
 ## Demo:
 Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123@gmail.com```.
 
-![Grocery App Screenshot](/client/src/images/screenshot.png)
+![Grocery App Screenshot](/src/images/screenshot.png)
 
 ## Setup:
 - ```git clone https://github.com/spencerlepine/quickcart.git```
