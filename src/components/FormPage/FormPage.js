@@ -12,6 +12,7 @@ import useNotification from "../../context/NotificationContext/NotificationConte
 import useGroceries from "../../context/GroceriesContext/GroceriesContext.js";
 import useCategories from "../../context/CategoriesContext/CategoriesContext"
 import useStyles from "./styles.js";
+import missingImage from "../../images/missing.jpeg"
 import useForm from "../../context/FormContext/FormContext.js";
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 
@@ -40,11 +41,11 @@ const FormPage = () => {
   const [thisGrocery, setThisGrocery] = useState(schema);
   const [, setShowExitPrompt] = useExitPrompt(false);
   const [dropdownCategories, setDropdownCategories] = useState([]);
-  
+
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem, allGroceryItems } = useGroceries()
   const { setCurrentNotification } = useNotification()
   const { allCategories, createNewCategory } = useCategories()
-  const { currentId, setCurrentId } = useForm()
+  const { currentId, setCurrentId, searchSelection } = useForm()
   
   // FIX: Hard-coded search for 'name' key
   const currentItem = allGroceryItems.find((item) => item.name === currentId)
@@ -66,7 +67,7 @@ const FormPage = () => {
       setDropdownCategories(categoryOptions);
     } else {
       setDropdownCategories((prevCategories) => [
-        <option label="None" value="" />,
+        <option label="None" value="" key={999} />,
         ...categoryOptions,
       ]);
     }
@@ -79,17 +80,25 @@ const FormPage = () => {
   };
 
   useEffect(() => {
+    let validCurrentItem;
     // Populate the form if the user selected an item
     if (currentId && currentItem) {
       // Translate the purchase price decimal data for the form to read
-      let validCurrentItem = {
+      validCurrentItem = {
         ...currentItem,
         image: currentItem.image || schema.image,
       };
 
       setThisGrocery(validCurrentItem);
+    } else if (searchSelection) {
+      validCurrentItem = {
+        ...searchSelection,
+        image: searchSelection.image || schema.image,
+      };
+
+      setThisGrocery(validCurrentItem);
     }
-  }, [currentId, currentItem]);
+  }, [currentId, currentItem, searchSelection]);
 
   const handleChange = (event) => {
     setShowExitPrompt(true)
@@ -130,10 +139,10 @@ const FormPage = () => {
       thisGrocery.serving_cost &&
       thisGrocery.category &&
       thisGrocery.last_purchased &&
-      thisGrocery.priority &&
-      thisGrocery.image
+      thisGrocery.priority
     ) {
       // Get rid of dashes in the name
+      thisGrocery.image = thisGrocery.image || missingImage
       thisGrocery.name = thisGrocery.name.replace(/-/gi, " ")
       createGroceryItem(thisGrocery)
       history.push("/");

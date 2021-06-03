@@ -31,7 +31,6 @@ export function GroceriesProvider({ children }) {
     setLoading(true)
     try {
       const data = await api.fetchGroceries(lastGroceryId)
-      console.log(data)
       setAllGroceryItems(prevList => [...prevList, ...data])
     } catch (error) {
       console.log(error.message)
@@ -68,7 +67,7 @@ export function GroceriesProvider({ children }) {
       })
 
       // Save the total count
-      await fetchTotalGroceryCount()
+      await setTotalGroceryCount(prevCount => prevCount + 1)
     } catch (error) {
       console.log(error.message)
     }
@@ -82,6 +81,8 @@ export function GroceriesProvider({ children }) {
       setAllGroceryItems(prevList => {
         return prevList.filter(item => item["name"] !== groceryId)
       })
+
+      await setTotalGroceryCount(prevCount => prevCount - 1)
     } catch (error) {
       console.log(error.message)
     }

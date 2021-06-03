@@ -4,12 +4,12 @@ import EmojiObjects from "@material-ui/icons/EmojiObjects";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import SearchIcon from '@material-ui/icons/Search';
 import Logout from "../../Logout/Logout"
 import { Link  } from "react-router-dom";
 
 import useStyles from "./styles.js";
-import { PANTRY, RECOMMENDED, SETTINGS, HOME, FORM } from "../../../constants/routeConstants";
+import { PANTRY, RECOMMENDED, SETTINGS, HOME, FORM, SEARCH } from "../../../constants/routeConstants";
 
 const Sidebar = ({ toggleMenu }) => {
     const classes = useStyles();
@@ -33,6 +33,17 @@ const Sidebar = ({ toggleMenu }) => {
           <AddCircleOutlineIcon fontSize="large" />
           <p>Create</p>
         </Link>
+        
+        <Link
+          style={{ justifySelf: "center" }}
+          className={classes.sidebarLink}
+          to={SEARCH}
+          onClick={() => toggleMenu(false)}
+        >
+          <SearchIcon fontSize="large" />
+          <p>Find</p>
+        </Link>
+
 
         <Link
           className={`${classes.sidebarLink} ${classes.recommendedIcon}`}

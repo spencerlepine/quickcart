@@ -67,6 +67,8 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
+    "@iconify-icons/bi": "^1.1.5",
+    "@iconify/react": "^1.1.4",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "babel-jest": "^26.6.3",
     "enzyme": "^3.11.0",

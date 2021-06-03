@@ -10,24 +10,27 @@ import { CartProvider } from "./context/CartContext/CartContext"
 import { CategoriesProvider } from "./context/CategoriesContext/CategoriesContext"
 import { RecommendedProvider } from "./context/RecommendedContext/RecommendedContext"
 import { NotificationProvider } from "./context/NotificationContext/NotificationContext"
+import { FoodFactsProvider } from "./context/FoodFactsContext/FoodFactsContext"
 
 ReactDOM.render(
   <AuthProvider>
-    <NotificationProvider>
-      <RecommendedProvider>
-        <GroceriesProvider>
-          <CartProvider>
-            <SearchProvider>
-              <FormProvider>
-                <CategoriesProvider>
-                  <App />
-                </CategoriesProvider>
-              </FormProvider>
-            </SearchProvider>
-          </CartProvider>
-        </GroceriesProvider>
-      </RecommendedProvider>
-    </NotificationProvider>
+    <FoodFactsProvider>
+      <NotificationProvider>
+        <RecommendedProvider>
+          <GroceriesProvider>
+            <CartProvider>
+              <SearchProvider>
+                <FormProvider>
+                  <CategoriesProvider>
+                    <App />
+                  </CategoriesProvider>
+                </FormProvider>
+              </SearchProvider>
+            </CartProvider>
+          </GroceriesProvider>
+        </RecommendedProvider>
+      </NotificationProvider>
+    </FoodFactsProvider>
   </AuthProvider>,
   document.getElementById('root')
 );

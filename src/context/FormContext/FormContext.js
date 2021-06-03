@@ -4,10 +4,13 @@ export const FormContext = React.createContext()
 
 export function FormProvider({ children }) {
   const [currentId, setCurrentId] = useState(null)
+  const [searchSelection, setSearchSelection] = useState(null)
 
   const value = {
     currentId,
     setCurrentId,
+    setSearchSelection,
+    searchSelection,
   }
 
   return (
@@ -18,11 +21,13 @@ export function FormProvider({ children }) {
 }
 
 const useForm= () => {
-  const { currentId, setCurrentId } = useContext(FormContext);
+  const { currentId, setCurrentId, searchSelection, setSearchSelection } = useContext(FormContext);
   
   return {
     currentId,
     setCurrentId,
+    setSearchSelection,
+    searchSelection,
   };
 };
 

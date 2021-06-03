@@ -1,9 +1,19 @@
 # To do: 
+- add search bar to browse page
+- Refactor gorcery items to follow OFF conventions (key constants)
+- ONLY REFERENCE ITEMS BY ID (Not full name with spaces)
+  - save names to cart logs for consistency
+- Left off:
+ - clean up FormContext, FormPage, DatabaseForm, SearchResults
+ - food grade
+ - styling the search cards
+ 
  - OpenSourceFood for searching and adding groceries
    - add grocery by scanning barcode
    - Basically fetch grocery data, then save a copy to user account
      - user can modify the data further based on their own use
    - https://www.npmjs.com/package/scandit-sdk-react
+   - https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#get-search-scenario
    
 - Get UI idea from Yuka onboarding item form (price, name, category, price, serving price)
 
