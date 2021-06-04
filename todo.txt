@@ -1,4 +1,5 @@
-# To do: 
+# To do:
+- more indications 
 - add search bar to browse page
 - Refactor gorcery items to follow OFF conventions (key constants)
 - ONLY REFERENCE ITEMS BY ID (Not full name with spaces)
