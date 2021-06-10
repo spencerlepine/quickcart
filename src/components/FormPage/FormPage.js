@@ -29,6 +29,22 @@ const schema = {
   image: "",
 };
 
+function fillPlaceholders(formObj) {
+  const { name } = formObj
+  const formattedName = name ? name.replace(/-/gi, " ") : ""
+  let placeholderVals = { 
+    ...formObj,
+    name: formattedName || "unknown",
+    purchase_price: formObj["purchase_price"] || "0",
+    purchase_size: formObj["purchase_size"] || "n/a",
+    serving_cost: formObj["serving_cost"] || formObj["purchase_price"] || "0",
+    category: formObj["category"] || "unknown",
+    last_purchased: todaysDate,
+    image: missingImage,
+  }
+  return placeholderVals
+}
+
 function toTitleCase(str) {
   return str.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -39,7 +55,7 @@ const FormPage = () => {
   const history = useHistory();
   const classes = useStyles();
   const [thisGrocery, setThisGrocery] = useState(schema);
-  const [, setShowExitPrompt] = useExitPrompt(false);
+  const [showExitPrompt, setShowExitPrompt] = useExitPrompt(false);
   const [dropdownCategories, setDropdownCategories] = useState([]);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem, allGroceryItems } = useGroceries()
@@ -121,38 +137,32 @@ const FormPage = () => {
     handleChange({ target: { name: "image", value: croppedImage } });
   };
 
+  // Don't prompt reload warnings after leaving page
+  useEffect(() => {
+    return () => {
+      console.log()
+      setShowExitPrompt(false)
+    }
+  }, [])
+
   const handleSubmit = (event) => {
     setShowExitPrompt(false)
     event.preventDefault();
     if (currentId) {
+      // Check if the user changed any fields
       const formItemStr = JSON.stringify(thisGrocery) 
       const currentItemStr = JSON.stringify(currentItem) 
       if (formItemStr !== currentItemStr && thisGrocery.name === currentItem.name) {
-        updateGroceryItem(thisGrocery, currentItem.name)
+        const groceryId = currentItem.name
+        updateGroceryItem(thisGrocery, groceryId)
       }
-      history.push("/");
-      clearForm();
-    } else if (
-      thisGrocery.name &&
-      thisGrocery.purchase_price &&
-      thisGrocery.purchase_size &&
-      thisGrocery.serving_cost &&
-      thisGrocery.category &&
-      thisGrocery.last_purchased &&
-      thisGrocery.priority
-    ) {
-      // Get rid of dashes in the name
-      thisGrocery.image = thisGrocery.image || missingImage
-      thisGrocery.name = thisGrocery.name.replace(/-/gi, " ")
-      createGroceryItem(thisGrocery)
       history.push("/");
       clearForm();
     } else {
-      const submitMessage = {
-        name: "Empty Fields",
-        message: `please complete the form`,
-      }
-      setCurrentNotification(submitMessage)
+      const filledObj = fillPlaceholders(thisGrocery)
+      createGroceryItem(filledObj)
+      history.push("/");
+      clearForm();
     }
   };
 

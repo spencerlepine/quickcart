@@ -59,7 +59,7 @@ export function GroceriesProvider({ children }) {
       // Add only new groceries
       setAllGroceryItems(prevList => {
         const itemExists = prevList.indexOf(newGrocery)
-        if (itemExists) {
+        if (itemExists >= 0) {
           return prevList.filter(item => item["name"] === newGrocery["name"] ? newGrocery : item)
         } else {
           return [...prevList, newGrocery]

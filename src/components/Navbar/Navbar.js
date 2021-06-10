@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import useCart from "../../context/CartContext/CartContext"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -7,10 +7,17 @@ import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "./styles.js";
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import Sidebar from "./Sidebar/Sidebar"
+import useExitPrompt from '../../hooks/useExitPrompt/useExitPrompt.js'
 
 const Navbar = () => {
   const classes = useStyles();
   const params = useParams()
+  const { pathname } = useLocation()
+  const [, setShowExitPrompt] = useExitPrompt(false);
+
+  useEffect(() => {
+    setShowExitPrompt(false)
+  }, [pathname])
 
   const [menuOpen, setMenuOpen] = useState(false);
 
