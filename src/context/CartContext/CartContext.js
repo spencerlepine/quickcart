@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import * as api from "../../api/index"
 
 export const CartContext = React.createContext()
@@ -32,12 +32,12 @@ export function CartProvider({ children }) {
 
   async function deleteCartItem(groceryName) {
     try {
-      await api.deleteGrocery(groceryName)
+      await api.removeFromCart(groceryName)
 
       // go through and replace the old grocery
-      setAllCartItems(prevList => {
-        return prevList.filter(item => item["name"] !== groceryName)
-      })
+      setAllCartItems(prevList =>
+        prevList.filter(item => item["name"] !== groceryName)
+      )
     } catch (error) {
       console.log(error.message)
     }
@@ -50,6 +50,10 @@ export function CartProvider({ children }) {
       console.log(error.message)
     }
   }
+
+  useEffect(() => {
+    getAllCartItems()
+  }, [])
 
   const value = {
     allCartItems,

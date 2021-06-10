@@ -13,7 +13,7 @@ const RecommendedWidget = () => {
   for (const category in allRecommendedItems) {
     let [ firstCategoryElem ] = allRecommendedItems[category]
     if (firstCategoryElem) {
-      recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} />)
+      recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} key={category} />)
     }
   }
 
