@@ -30,7 +30,7 @@ const FoodCard = ({ groceryItem, hideCard=false }) => {
     return null
   }
 
-  if (!searchMatches(currentSearch, groceryItem) || categorySelection !== groceryItem.category) {
+  if (!searchMatches(currentSearch, groceryItem) || (categorySelection && categorySelection !== groceryItem.category)) {
     return null;
   }
 
