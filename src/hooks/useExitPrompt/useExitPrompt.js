@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
+import useForm from "../../context/FormContext/FormContext.js";
 
 const initBeforeUnLoad = (showExitPrompt) => {
   window.onbeforeunload = (event) => {
@@ -18,10 +19,12 @@ const initBeforeUnLoad = (showExitPrompt) => {
 export default function useExitPrompt(bool) {
   const [showExitPrompt, setShowExitPrompt] = useState(bool);
   const { pathname } = useLocation()
+  const { setCurrentId } = useForm()
 
   // Track page changes
   useEffect(() => {
       setShowExitPrompt(false)
+      setCurrentId(null)
   }, [pathname])
 
   // Track page unmounts

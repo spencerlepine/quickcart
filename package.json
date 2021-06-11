@@ -34,6 +34,8 @@
     "redux": "^4.0.5",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0",
+    "scandit-react-native": "^5.19.3",
+    "scandit-sdk": "^5.6.0",
     "web-vitals": "^1.1.1",
     "webpack": "^4.44.2",
     "webpack-dev-server": "^3.11.1"

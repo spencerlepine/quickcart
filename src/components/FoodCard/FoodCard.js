@@ -3,11 +3,14 @@ import useCart from "../../context/CartContext/CartContext"
 import useForm from "../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
 import getPriceColor from "./getPriceColor"
+import useSearch from "../../context/SearchContext/SearchContext"
+import searchMatches from "./searchMatches"
 import useStyles from "./styles"
 
 const FoodCard = ({ groceryItem, hideCard=false }) => {
   const classes = useStyles()
   const history = useHistory()
+  const { currentSearch } = useSearch()
 
   const { setCurrentId } = useForm()
   const { addItemToCart } = useCart()
@@ -25,6 +28,10 @@ const FoodCard = ({ groceryItem, hideCard=false }) => {
 
   if (hideCard) {
     return null
+  }
+  
+  if (!searchMatches(currentSearch, groceryItem)) {
+    return null;
   }
 
   return (

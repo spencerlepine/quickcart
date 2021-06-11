@@ -7,7 +7,7 @@ export function GroceriesProvider({ children }) {
   const [allGroceryItems, setAllGroceryItems] = useState([])
   const [totalGroceryCount, setTotalGroceryCount] = useState(-1)
   const [loading, setLoading] = useState()
-
+  console.log(totalGroceryCount)
   useEffect(() => {
     if (totalGroceryCount < 0) {
       fetchTotalGroceryCount()

@@ -13,7 +13,7 @@ export function CartProvider({ children }) {
 
   async function getAllCartItems() {
     const data = await api.fetchCartItems()
-    setAllCartItems(data)
+    setAllCartItems(data || [])
   }
 
   async function updateCartItem(updatedCartItem) {

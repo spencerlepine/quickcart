@@ -5,7 +5,7 @@ export const SearchContext = React.createContext()
 export function SearchProvider({ children }) {
   const [currentSearch, setCurrentSearch] = useState("")
   const [categorySelection, setCategorySelection] = useState("")
-
+ 
   const value = {
     categorySelection,
     currentSearch,

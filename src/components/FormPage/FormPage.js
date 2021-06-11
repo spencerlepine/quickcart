@@ -15,19 +15,8 @@ import useStyles from "./styles.js";
 import missingImage from "../../images/missing.jpeg"
 import useForm from "../../context/FormContext/FormContext.js";
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-
-const todaysDate = new Date().toISOString().slice(0, 10);
-
-const schema = {
-  name: "",
-  purchase_price: "",
-  purchase_size: "",
-  serving_cost: "",
-  category: "",
-  last_purchased: todaysDate,
-  priority: "0",
-  image: "",
-};
+import schema from "../../schema/groceryItem"
+import ClearButton from "./ClearButton"
 
 function fillPlaceholders(formObj) {
   const { name } = formObj
@@ -39,7 +28,6 @@ function fillPlaceholders(formObj) {
     purchase_size: formObj["purchase_size"] || "n/a",
     serving_cost: formObj["serving_cost"] || formObj["purchase_price"] || "0",
     category: formObj["category"] || "unknown",
-    last_purchased: todaysDate,
     image: missingImage,
   }
   return placeholderVals
@@ -55,7 +43,7 @@ const FormPage = () => {
   const history = useHistory();
   const classes = useStyles();
   const [thisGrocery, setThisGrocery] = useState(schema);
-  const [showExitPrompt, setShowExitPrompt] = useExitPrompt(false);
+  const [, setShowExitPrompt] = useExitPrompt(false);
   const [dropdownCategories, setDropdownCategories] = useState([]);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem, allGroceryItems } = useGroceries()
@@ -67,12 +55,6 @@ const FormPage = () => {
   const currentItem = allGroceryItems.find((item) => item.name === currentId)
 
   useEffect(() => {
-    return () => {
-      setShowExitPrompt(false)
-    }
-  }, [setShowExitPrompt])
-
-  useEffect(() => {
     // Map the categories to option elements
     let categoryOptions = allCategories.map((category, i) => {
       return <option key={i} value={category}>{toTitleCase(category)}</option>;
@@ -82,7 +64,7 @@ const FormPage = () => {
     if (currentItem) {
       setDropdownCategories(categoryOptions);
     } else {
-      setDropdownCategories((prevCategories) => [
+      setDropdownCategories(() => [
         <option label="None" value="" key={999} />,
         ...categoryOptions,
       ]);
@@ -95,10 +77,12 @@ const FormPage = () => {
     setThisGrocery(schema);
   };
 
+  // Load up a selected grocery item
   useEffect(() => {
     let validCurrentItem;
     // Populate the form if the user selected an item
     if (currentId && currentItem) {
+      setCurrentId(currentId)
       // Translate the purchase price decimal data for the form to read
       validCurrentItem = {
         ...currentItem,
@@ -137,14 +121,6 @@ const FormPage = () => {
     handleChange({ target: { name: "image", value: croppedImage } });
   };
 
-  // Don't prompt reload warnings after leaving page
-  useEffect(() => {
-    return () => {
-      console.log()
-      setShowExitPrompt(false)
-    }
-  }, [])
-
   const handleSubmit = (event) => {
     setShowExitPrompt(false)
     event.preventDefault();
@@ -182,19 +158,7 @@ const FormPage = () => {
 
   const handleClear = () => {
     setThisGrocery(schema)
-  }
-
-  const ClearButton = () => (
-    <Button
-      onClick={handleClear}
-      color="secondary"
-      fullWidth
-      variant="contained"
-      className={classes.deleteButton}
-    >
-      Clear
-    </Button>
-  )
+  }  
 
   const handleAddCategory = (e) => {
     e.preventDefault()
@@ -309,18 +273,16 @@ const FormPage = () => {
           </div>
 
           {currentId ? (
-            <Button
-              onClick={handleDelete}
-              color="secondary"
-              fullWidth
-              variant="contained"
+            <ClearButton
               className={classes.deleteButton}
-            >
-              Delete
-            </Button>
-          )
-          :
-          (<ClearButton />)}
+              handleClick={handleDelete} 
+              label="Delete" />
+          ) : (
+            <ClearButton
+              className={classes.deleteButton}
+              handleClick={handleClear} 
+              label="Clear" />
+          )}
 
           <Button
             type="submit"
