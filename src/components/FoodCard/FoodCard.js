@@ -10,7 +10,7 @@ import useStyles from "./styles"
 const FoodCard = ({ groceryItem, hideCard=false }) => {
   const classes = useStyles()
   const history = useHistory()
-  const { currentSearch } = useSearch()
+  const { currentSearch, categorySelection } = useSearch()
 
   const { setCurrentId } = useForm()
   const { addItemToCart } = useCart()
@@ -29,8 +29,8 @@ const FoodCard = ({ groceryItem, hideCard=false }) => {
   if (hideCard) {
     return null
   }
-  
-  if (!searchMatches(currentSearch, groceryItem)) {
+
+  if (!searchMatches(currentSearch, groceryItem) || categorySelection !== groceryItem.category) {
     return null;
   }
 

@@ -11,26 +11,32 @@ import { CategoriesProvider } from "./context/CategoriesContext/CategoriesContex
 import { RecommendedProvider } from "./context/RecommendedContext/RecommendedContext"
 import { NotificationProvider } from "./context/NotificationContext/NotificationContext"
 import { FoodFactsProvider } from "./context/FoodFactsContext/FoodFactsContext"
+import { Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 ReactDOM.render(
-  <AuthProvider>
-    <FoodFactsProvider>
-      <NotificationProvider>
-        <RecommendedProvider>
-          <GroceriesProvider>
-            <CartProvider>
-              <SearchProvider>
-                <FormProvider>
-                  <CategoriesProvider>
-                    <App />
-                  </CategoriesProvider>
-                </FormProvider>
-              </SearchProvider>
-            </CartProvider>
-          </GroceriesProvider>
-        </RecommendedProvider>
-      </NotificationProvider>
-    </FoodFactsProvider>
-  </AuthProvider>,
+  <Router history={history}>
+    <AuthProvider>
+      <FoodFactsProvider>
+        <NotificationProvider>
+          <RecommendedProvider>
+            <GroceriesProvider>
+              <CartProvider>
+                <SearchProvider>
+                  <FormProvider>
+                    <CategoriesProvider>
+                      <App />
+                    </CategoriesProvider>
+                  </FormProvider>
+                </SearchProvider>
+              </CartProvider>
+            </GroceriesProvider>
+          </RecommendedProvider>
+        </NotificationProvider>
+      </FoodFactsProvider>
+    </AuthProvider>
+  </Router>,
   document.getElementById('root')
 );

@@ -9,7 +9,6 @@ const searchMatches = (search, groceryItem) => {
     if (search.length > 2) {
         const namesMatch = containsWord(search, groceryItem.name)
         const categoriesMatch = containsWord(search, groceryItem.category)
-        console.log(namesMatch, search, groceryItem.name)
         return namesMatch || categoriesMatch
     } else { return true }
 }
