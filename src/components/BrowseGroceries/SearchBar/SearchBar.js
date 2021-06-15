@@ -8,7 +8,7 @@ const SearchBar  = () => {
   const { setCurrentSearch, currentSearch } = useSearch()
 
   return (
-    <div className={classes.itemDetails}>
+    <div className={classes.searchbar}>
       <SearchBarComponent
       value={currentSearch}
       onChange={(newValue) => setCurrentSearch(newValue)}

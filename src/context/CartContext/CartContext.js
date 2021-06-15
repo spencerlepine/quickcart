@@ -8,6 +8,7 @@ export function CartProvider({ children }) {
 
   async function addItemToCart(groceryItem) {
     const data = await api.addToCart(groceryItem)
+
     setAllCartItems(prevList => [...prevList, data])
   }
 

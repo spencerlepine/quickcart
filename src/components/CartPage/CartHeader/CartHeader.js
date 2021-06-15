@@ -12,7 +12,7 @@ const CartHeader = ({ cartItems }) => {
 
   const { logCartItem, deleteCartItem } = useCart()
   const { updateGroceryItem } = useGroceries()
-  const { setCurrentNotification } = useNotification
+  const { setCurrentNotification } = useNotification()
  
   const handleCartPurchase = () => {
     if (cartItems.length) {

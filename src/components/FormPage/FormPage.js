@@ -28,7 +28,7 @@ function fillPlaceholders(formObj) {
     purchase_size: formObj["purchase_size"] || "n/a",
     serving_cost: formObj["serving_cost"] || formObj["purchase_price"] || "0",
     category: formObj["category"] || "unknown",
-    image: missingImage,
+    image: formObj["image"] || missingImage,
   }
   return placeholderVals
 }
@@ -135,6 +135,11 @@ const FormPage = () => {
       history.push("/");
       clearForm();
     } else {
+      const groceryMessage = {
+        message: `Saved ${thisGrocery.name || "item"}`,
+        type: "success"
+      }
+      setCurrentNotification(groceryMessage)
       const filledObj = fillPlaceholders(thisGrocery)
       createGroceryItem(filledObj)
       history.push("/");

@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles(() => ({
   cardGrid: {
-    paddingLeft: "5px",
-    paddingRight: "5px",
+    minHeight: "200px",
+    minWidth: "200px",
     width: "fit-content !important",
     display: "grid",
     gridTemplateColumns: "auto auto auto auto",
@@ -14,7 +14,6 @@ export default makeStyles(() => ({
       gridTemplateColumns: "auto auto",
     },
     margin: "0 auto 5% auto",
-    backgroundColor: "#fff",
   },
 }))
   

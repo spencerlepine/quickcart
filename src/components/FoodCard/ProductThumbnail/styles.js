@@ -2,11 +2,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   foodCard: {
+    backgroundColor: "#fff",
+    padding: "0.5em",
     maxWidth: "200px",
     cursor: "pointer",
     position: "relative",
     minHeight: "100px",
-    margin: "1em",
+    margin: "0.4em",
     fontFamily:
       "Eina, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     "& img": {
@@ -34,7 +36,8 @@ export default makeStyles(() => ({
     },
   },
   foodPrice: {
-    color: "rgb(90, 90, 90)",
+    display: "inline",
+    "textShadow": "0.2px 0.2px #0000000e",
     lineHeight: "1.5em",
   },
   foodSize: {
@@ -76,8 +79,13 @@ export default makeStyles(() => ({
     color: "black",
     backgroundColor: "#fff3d0",
   },
-  servingCost: {
-    // position: "abosulte",
-    // color: "red",
+  purchaseSize: {
+    paddingLeft: "5px !important",
+    color: "rgb(90, 90, 90)",
+    display: "inline",
+  },
+  foodName: {
+    margin: "0",
+    marginBottom: "5px !important",
   },
 }));

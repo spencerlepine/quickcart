@@ -9,7 +9,7 @@ export default makeStyles(() => ({
     minWidth: "400px",
     minHeight: "40px",
     height: "fit-content",
-    maxWidth: "80vw",
+    maxWidth: "800px",
     overflowX: "scroll",
     MsOverflowStyle: "none",
     scrollbarWidth: "none",

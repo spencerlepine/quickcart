@@ -28,7 +28,7 @@ export const addToCart = async (itemToAdd) => {
       .collection('userCart')
       .doc(itemToAddId)
 
-    await cartItemRef.get()
+    const result = await cartItemRef.get()
       .then(async (docSnapshot) => {
         if (docSnapshot.exists) {
           const itemData = await docSnapshot.data()
@@ -44,6 +44,7 @@ export const addToCart = async (itemToAdd) => {
           return { ...newCartItem, quantity: 1 }
         }
     });
+    return result
   } catch (error) {
     console.log(error.message)
   }
