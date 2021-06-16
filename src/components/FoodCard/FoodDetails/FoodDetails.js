@@ -13,21 +13,16 @@ import useStyles from "./styles"
 const FoodDetails = ({ groceryItem, handleAdd }) => {
   const classes = useStyles()
   const history = useHistory()
-   
-  const { setCurrentNotification } = useNotification()
-
-  const { setCurrentId } = useForm()
-  const { addItemToCart } = useCart()
+  const { setSearchSelection } = useForm()
 
   const handleEdit = (e) => {
-    const groceryToEdit = groceryItem.name
-    setCurrentId(groceryToEdit)
+    setSearchSelection(groceryItem)
     history.push("/form")
   }
 
   const productPrice = parseFloat(
     groceryItem.purchase_price
-      ).toLocaleString("en-US", { style: "currency", currency: "USD" })
+  ).toLocaleString("en-US", { style: "currency", currency: "USD" })
 
   const servingPrice = parseFloat(groceryItem.serving_cost)
 
@@ -36,12 +31,12 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
       <div className={classes.popupElement}>
         <div className={classes.productGrid}>
           <img alt={groceryItem.name} src={groceryItem.image} className={classes.productImage}></img>
-          
+
           <div className={classes.productDetails}>
             <h4 className={classes.foodName}>{groceryItem.name}</h4>
-            
+
             <p className={classes.foodPrice}>
-                {productPrice}
+              {productPrice}
             </p>
 
             <PriceIndicator
@@ -52,24 +47,24 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
               {groceryItem.brand}
             </p>
 
-             <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
-                {groceryItem.purchase_size}
+            <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
+              {groceryItem.purchase_size}
             </p>
-              
+
             <p className={`${classes.servingSize} ${classes.productSpecification}`}>
               {groceryItem.serving_size}</p>
 
           </div>
-          
+
           <Rating
             name="priority"
             value={parseInt(groceryItem.priority)}
             precision={1}
             readOnly
-            emptyIcon={<StarBorderIcon fontSize="inherit"/>}
+            emptyIcon={<StarBorderIcon fontSize="inherit" />}
             className={classes.productRating}
-          /> 
-          
+          />
+
           <button className={classes.addButton}
             onClick={handleAdd}>
             <span className={classes.cartIcon}><AddShoppingCartIcon /></span>
@@ -78,7 +73,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
 
           <button className={classes.editButton}
             onClick={handleEdit}>
-              Edit Item
+            Edit Item
           </button>
 
           <p className={classes.groceryUPC}>

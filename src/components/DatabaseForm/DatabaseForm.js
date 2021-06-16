@@ -3,8 +3,8 @@ import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext.js";
 import SearchBar from "material-ui-search-bar";
 import useStyles from "./styles.js";
-import SearchResult from "./SearchResult/SearchResult";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SearchResult from "./SearchResult/SearchResult";
 
 const DatabaseForm = () => {
   const classes = useStyles();
@@ -14,18 +14,19 @@ const DatabaseForm = () => {
   const handleSubmit = async (e) => {
     await searchProducts(itemSearch)
   }
+
   return (
     <div className={classes.formContainer}>
       <div className={classes.form} noValidate>
         <div className={classes.itemDetails}>
-          {loading ? 
+          {loading ?
             <CircularProgress />
-            : 
-          <SearchBar
-            value={itemSearch}
-            onChange={(newValue) => setItemSearch(newValue)}
-            onRequestSearch={handleSubmit}
-          />}
+            :
+            <SearchBar
+              value={itemSearch}
+              onChange={(newValue) => setItemSearch(newValue)}
+              onRequestSearch={handleSubmit}
+            />}
         </div>
         <SearchResult />
       </div>

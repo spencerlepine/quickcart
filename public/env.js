@@ -1,0 +1,4 @@
+window.env = {
+  "CSE_ID": "5d4a6223d07790903",
+  "CSE_API_KEY": "AIzaSyBH9YPVlpicvJ3r8YHP2RTDPNUjfzUF8ZI"
+};

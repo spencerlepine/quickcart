@@ -1,6 +1,7 @@
 import { auth, db, useFirebase } from "../firebase.js"
+import formatGroceryObj from "../../modules/formatGroceryObj"
 
-export const fetchGroceries = async (lastGroceryName) => {
+export const fetchGroceries = async (lastGroceryId) => {
   try {
     const { uid: userId } = auth.currentUser
     const fetchLimit = 10;
@@ -8,12 +9,12 @@ export const fetchGroceries = async (lastGroceryName) => {
     let { docs: groceryBatch } = await db.collection('users')
       .doc(userId)
       .collection("userGroceries")
-      .orderBy("name")
-      .startAfter(lastGroceryName)
+      .orderBy("_id")
+      .startAfter(lastGroceryId)
       .limit(fetchLimit)
       .get()
 
-    let docsData = groceryBatch.map( firebaseDoc => firebaseDoc.data() )
+    let docsData = groceryBatch.map(firebaseDoc => firebaseDoc.data())
 
     return docsData
   } catch (error) {
@@ -42,45 +43,48 @@ export const fetchGroceryCount = async () => {
   }
 }
 
+async function docExists(collectionRef, docId) {
+  const id = docId.toString()
+  const itemDocRef = await collectionRef.doc(id)
+
+  let exisitingItemDoc = false
+  await itemDocRef.get().then(doc => {
+    if (doc.exists) {
+      exisitingItemDoc = true
+    }
+  })
+  return exisitingItemDoc
+}
+
 export const createGrocery = async (newGroceryItem) => {
   try {
     const { uid: userId } = auth.currentUser
 
     const userDocRef = await db.collection('users').doc(userId)
-
-    const newGroceryId = newGroceryItem["name"]
-
-    const itemDocRef = await userDocRef
+    let newGroceryId = newGroceryItem["_id"] || newGroceryItem["name"]
+    const groceryCollectionRef = await userDocRef
       .collection('userGroceries')
-      .doc(newGroceryId)
 
-    let exisitingItemDoc = false
-    await itemDocRef.get().then(doc => {
-      if (doc.exists) {
-        exisitingItemDoc = true
-      }
-    })
+    let exisitingItemDoc = docExists(groceryCollectionRef, newGroceryId)
 
-    if (!exisitingItemDoc) {
-      const increment = useFirebase.FieldValue.increment(1);
-      await userDocRef
-        .collection("groceryCount")
-        .doc("totalCount")
-        .update({ totalCount: increment })
+    while (exisitingItemDoc) {
+      const currentId = parseInt(newGroceryId)
+      const randomId = Math.floor(Math.random() * 10000000000000000) - currentId;
+      newGroceryId = randomId.toString()
+      exisitingItemDoc = await docExists(groceryCollectionRef, randomId)
     }
 
-    await itemDocRef.set({
-        name: newGroceryItem.name,
-        purchase_price: newGroceryItem.purchase_price,
-        purchase_size: newGroceryItem.purchase_size,
-        serving_cost: newGroceryItem.serving_cost,
-        category: newGroceryItem.category,
-        last_purchased: newGroceryItem.last_purchased,
-        priority: newGroceryItem.priority,
-        image: newGroceryItem.image,
-      })
+    let itemDocRef = groceryCollectionRef.doc(newGroceryId)
 
-    return newGroceryItem
+    const increment = useFirebase.FieldValue.increment(1);
+    await userDocRef
+      .collection("groceryCount")
+      .doc("totalCount")
+      .update({ totalCount: increment })
+
+    const withId = formatGroceryObj({ ...newGroceryItem, _id: newGroceryId })
+    await itemDocRef.set(withId)
+    return withId
   } catch (error) {
     console.log(error.message)
     return {}
@@ -90,7 +94,7 @@ export const createGrocery = async (newGroceryItem) => {
 export const updateGrocery = async (updatedGroceryItem) => {
   try {
     const { uid: userId } = auth.currentUser
-    const updatedGroceryId = updatedGroceryItem["name"]
+    const updatedGroceryId = updatedGroceryItem["_id"]
 
     await db.collection('users')
       .doc(userId)

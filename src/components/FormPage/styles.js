@@ -6,12 +6,12 @@ export default makeStyles((theme) => ({
     minHeight: "80vh",
   },
   form: {
+    borderRadius: "25px 25px 0px 0px",
     maxWidth: "600px",
     margin: "auto",
     padding: "24px",
     marginBottom: "1vh",
     backgroundColor: "white",
-    borderRadius: "1vh",
     "@media (max-width:1000px)": {
       padding: "0",
       marginTop: "20px",
@@ -38,6 +38,7 @@ export default makeStyles((theme) => ({
   },
   itemSize: {
     width: "30vw",
+    display: "inline",
     maxWidth: "175px",
     "& input": {
       margin: "0px",

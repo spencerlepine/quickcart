@@ -4,19 +4,19 @@ import axios from "axios"
 const baseOFFURL = "https://us.openfoodfacts.org"
 
 export const fetchUPCItem = async (UPC) => {
-    try {
-      const result = await axios({
-        method: 'get',
-        url: baseOFFURL + "/api/v0/product/" + UPC,
-      }).then(result => {
-        if (result.data) {
-          return result.data.product
-        } else return null
-      });
-      return result
-    } catch (error) {
-      console.log(error.message)
-    }
+  try {
+    const result = await axios({
+      method: 'get',
+      url: baseOFFURL + "/api/v0/product/" + UPC,
+    }).then(result => {
+      if (result.data) {
+        return result.data.product
+      } else return null
+    });
+    return result
+  } catch (error) {
+    console.log(error.message)
+  }
 }
 
 export const searchProducts = async (searchString) => {
@@ -37,10 +37,15 @@ export const searchProducts = async (searchString) => {
 }
 
 function formatSearchString(string) {
-  let urlString = "action=process"
-  urlString += "&tagtype_0=categories&tag_contains_0=contains&tag_0="
-    + string.replace(/[ ]/gi, "_")
-    + "&json=true"
+  const keywords = string.split(" ")
+  const splitWords = keywords.join("%20")
+
+  let urlString = ""
+  urlString += "search_terms="
+    + splitWords
+    + "&search_simple=1&action=process&json=1"
+
+  //action_process "&tagtype_0=categories&tag_contains_0=contains&tag_0="
   return urlString
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
-import missingImage from "../../../../images/missing.jpeg"
-import useForm from "../../../../context/FormContext/FormContext"
-import { FORM } from "../../../../constants/routeConstants"
+import missingImage from "../../../images/missing.jpeg"
+import useForm from "../../../context/FormContext/FormContext"
+import formatGroceryObj from "../../../modules/formatGroceryObj"
+import { FORM } from "../../../constants/routeConstants"
 import useStyles from "./styles.js";
 import { useHistory } from "react-router";
 
@@ -24,22 +25,18 @@ const formatBrand = (brand) => {
 const SearchCard = ({ product }) => {
   const classes = useStyles();
   const history = useHistory()
-  const { setSearchSelection } = useForm()
+  const { setSearchSelection, setCurrentId } = useForm()
 
   const handleClick = () => {
-    const formattedProduct = {
-      ...product,
-      image: product["image_url"] || product["image_small_url"] || missingImage,
-      name: product["product_nameen"] || product["product_name"] || product["generic_name"],
-      purchase_size: product["net_weight_value"] || product["net_weight_unit"] || product["volume_unit"] || undefined
-    }
+    const formattedProduct = formatGroceryObj(product)
+    setCurrentId(formattedProduct.name)
     setSearchSelection(formattedProduct)
     history.push(FORM)
   }
 
-  const itemName = product["product_nameen"] || product["product_name"] || product["generic_name"]
+  const itemName = product["name"] || product["product_nameen"] || product["product_name"] || product["generic_name"]
   const itemBrand = product["brands"] || "unknown"
-  const itemImageURL = product["image_url"] || product["image_small_url"] || missingImage
+  const itemImageURL = product["image"] || product["image_url"] || product["image_small_url"] || missingImage
   const itemGrade = product["nutrition_grade_en"] || product["nutrition_grade_fr"]
 
   return (<div className={classes.itemCard}>

@@ -13,6 +13,7 @@ import { NotificationProvider } from "./context/NotificationContext/Notification
 import { FoodFactsProvider } from "./context/FoodFactsContext/FoodFactsContext"
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { ProductOnboardProvider } from './context/ProductOnboardContext/ProductOnboardContext';
 
 const history = createBrowserHistory();
 
@@ -26,9 +27,11 @@ ReactDOM.render(
               <CartProvider>
                 <SearchProvider>
                   <FormProvider>
-                    <CategoriesProvider>
-                      <App />
-                    </CategoriesProvider>
+                    <ProductOnboardProvider>
+                      <CategoriesProvider>
+                        <App />
+                      </CategoriesProvider>
+                    </ProductOnboardProvider>
                   </FormProvider>
                 </SearchProvider>
               </CartProvider>

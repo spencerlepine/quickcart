@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
+import formatGroceryObj from "../../modules/formatGroceryObj"
 import * as api from "../../api/index"
 
 export const GroceriesContext = React.createContext()
@@ -7,7 +8,7 @@ export function GroceriesProvider({ children }) {
   const [allGroceryItems, setAllGroceryItems] = useState([])
   const [totalGroceryCount, setTotalGroceryCount] = useState(-1)
   const [loading, setLoading] = useState()
-  console.log(totalGroceryCount)
+
   useEffect(() => {
     if (totalGroceryCount < 0) {
       fetchTotalGroceryCount()
@@ -17,7 +18,7 @@ export function GroceriesProvider({ children }) {
   useEffect(() => {
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
       const lastItem = allGroceryItems.slice(-1)
-      const lastId = lastItem.length ? lastItem[0]["name"] : ""
+      const lastId = lastItem.length ? lastItem[0]["_id"] : ""
       getAllGroceries(lastId)
     }
   }, [totalGroceryCount, allGroceryItems])
@@ -26,8 +27,8 @@ export function GroceriesProvider({ children }) {
     const count = await api.fetchGroceryCount()
     setTotalGroceryCount(count)
   }
-
-  async function getAllGroceries(lastGroceryId="") {
+  console.log(allGroceryItems.length)
+  async function getAllGroceries(lastGroceryId = "") {
     setLoading(true)
     try {
       const data = await api.fetchGroceries(lastGroceryId)
@@ -41,11 +42,11 @@ export function GroceriesProvider({ children }) {
   async function updateGroceryItem(updatedGroceryItem) {
     try {
       const newGrocery = await api.updateGrocery(updatedGroceryItem)
-      const newGroceryId = newGrocery["name"]
+      const newGroceryId = newGrocery["_id"]
 
       // go through and replace the old grocery
       setAllGroceryItems(prevList => {
-        return prevList.map(item => item["name"] === newGroceryId ? newGrocery : item)
+        return prevList.map(item => item["_id"] === newGroceryId ? newGrocery : item)
       })
     } catch (error) {
       console.log(error.message)
@@ -54,13 +55,14 @@ export function GroceriesProvider({ children }) {
 
   async function createGroceryItem(newGroceryItem) {
     try {
-      const newGrocery = await api.createGrocery(newGroceryItem)
+      const filledGroceryObj = formatGroceryObj(newGroceryItem)
+      const newGrocery = await api.createGrocery(filledGroceryObj)
 
       // Add only new groceries
       setAllGroceryItems(prevList => {
         const itemExists = prevList.indexOf(newGrocery)
         if (itemExists >= 0) {
-          return prevList.filter(item => item["name"] === newGrocery["name"] ? newGrocery : item)
+          return prevList.filter(item => item["_id"] === newGrocery["_id"] ? newGrocery : item)
         } else {
           return [...prevList, newGrocery]
         }
@@ -79,7 +81,7 @@ export function GroceriesProvider({ children }) {
 
       // go through and replace the old grocery
       setAllGroceryItems(prevList => {
-        return prevList.filter(item => item["name"] !== groceryId)
+        return prevList.filter(item => item["_id"] !== groceryId)
       })
 
       await setTotalGroceryCount(prevCount => prevCount - 1)
@@ -104,9 +106,9 @@ export function GroceriesProvider({ children }) {
   )
 }
 
-const useGroceries= () => {
+const useGroceries = () => {
   const { loading, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
-  
+
   return {
     loading,
     totalGroceryCount,

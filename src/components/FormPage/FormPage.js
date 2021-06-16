@@ -1,43 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import FileBase from "react-file-base64";
 import useExitPrompt from '../../hooks/useExitPrompt/useExitPrompt.js'
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import CropInputImage from "./CropInputImage";
+import ThumbnailInput from "./ThumbnailInput/ThumbnailInput";
 import useNotification from "../../context/NotificationContext/NotificationContext.js";
 import useGroceries from "../../context/GroceriesContext/GroceriesContext.js";
 import useCategories from "../../context/CategoriesContext/CategoriesContext"
 import useStyles from "./styles.js";
-import missingImage from "../../images/missing.jpeg"
 import useForm from "../../context/FormContext/FormContext.js";
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import schema from "../../schema/groceryItem"
 import ClearButton from "./ClearButton"
-
-function fillPlaceholders(formObj) {
-  const { name } = formObj
-  const formattedName = name ? name.replace(/-/gi, " ") : ""
-  let placeholderVals = { 
-    ...formObj,
-    name: formattedName || "unknown",
-    purchase_price: formObj["purchase_price"] || "0",
-    purchase_size: formObj["purchase_size"] || "n/a",
-    serving_cost: formObj["serving_cost"] || formObj["purchase_price"] || "0",
-    category: formObj["category"] || "unknown",
-    image: formObj["image"] || missingImage,
-  }
-  return placeholderVals
-}
-
-function toTitleCase(str) {
-  return str.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-}
+import toTitleCase from "../../modules/toTitleCase"
+import formatGroceryObj from "../../modules/formatGroceryObj"
 
 const FormPage = () => {
   const history = useHistory();
@@ -46,13 +25,10 @@ const FormPage = () => {
   const [, setShowExitPrompt] = useExitPrompt(false);
   const [dropdownCategories, setDropdownCategories] = useState([]);
 
-  const { createGroceryItem, deleteGroceryItem, updateGroceryItem, allGroceryItems } = useGroceries()
+  const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
   const { allCategories, createNewCategory } = useCategories()
-  const { currentId, setCurrentId, searchSelection } = useForm()
-  
-  // FIX: Hard-coded search for 'name' key
-  const currentItem = allGroceryItems.find((item) => item.name === currentId)
+  const { setCurrentId, searchSelection, setCurrentImageSelection, currentImageSelection } = useForm()
 
   useEffect(() => {
     // Map the categories to option elements
@@ -61,7 +37,7 @@ const FormPage = () => {
     });
 
     // Save the list to state
-    if (currentItem) {
+    if (searchSelection) {
       setDropdownCategories(categoryOptions);
     } else {
       setDropdownCategories(() => [
@@ -74,31 +50,18 @@ const FormPage = () => {
 
   const clearForm = () => {
     setCurrentId(null)
+    setCurrentImageSelection(null)
     setThisGrocery(schema);
   };
 
   // Load up a selected grocery item
   useEffect(() => {
-    let validCurrentItem;
-    // Populate the form if the user selected an item
-    if (currentId && currentItem) {
-      setCurrentId(currentId)
-      // Translate the purchase price decimal data for the form to read
-      validCurrentItem = {
-        ...currentItem,
-        image: currentItem.image || schema.image,
-      };
-
-      setThisGrocery(validCurrentItem);
-    } else if (searchSelection) {
-      validCurrentItem = {
-        ...searchSelection,
-        image: searchSelection.image || schema.image,
-      };
-
-      setThisGrocery(validCurrentItem);
+    // populate the form if the user has selected to edit an item
+    if (searchSelection) {
+      setCurrentImageSelection(searchSelection.image)
+      setThisGrocery(searchSelection);
     }
-  }, [currentId, currentItem, searchSelection]);
+  }, []);
 
   const handleChange = (event) => {
     setShowExitPrompt(true)
@@ -110,26 +73,20 @@ const FormPage = () => {
   const handleDelete = () => {
     if (window.confirm("Delete permanently?")) {
       setShowExitPrompt(false)
-      deleteGroceryItem(currentItem.name);
+      deleteGroceryItem(searchSelection._id);
       history.push("/");
     }
-  };
-
-  const handleImageInput = async (base64) => {
-    const croppedImage = await CropInputImage(base64);
-
-    handleChange({ target: { name: "image", value: croppedImage } });
   };
 
   const handleSubmit = (event) => {
     setShowExitPrompt(false)
     event.preventDefault();
-    if (currentId) {
+    if (searchSelection) {
       // Check if the user changed any fields
-      const formItemStr = JSON.stringify(thisGrocery) 
-      const currentItemStr = JSON.stringify(currentItem) 
-      if (formItemStr !== currentItemStr && thisGrocery.name === currentItem.name) {
-        const groceryId = currentItem.name
+      const formItemStr = JSON.stringify(thisGrocery)
+      const currentItemStr = JSON.stringify(searchSelection)
+      if (formItemStr !== currentItemStr && thisGrocery.name === searchSelection.name) {
+        const groceryId = searchSelection.name
         updateGroceryItem(thisGrocery, groceryId)
       }
       history.push("/");
@@ -140,7 +97,7 @@ const FormPage = () => {
         type: "success"
       }
       setCurrentNotification(groceryMessage)
-      const filledObj = fillPlaceholders(thisGrocery)
+      const filledObj = formatGroceryObj(thisGrocery)
       createGroceryItem(filledObj)
       history.push("/");
       clearForm();
@@ -163,7 +120,7 @@ const FormPage = () => {
 
   const handleClear = () => {
     setThisGrocery(schema)
-  }  
+  }
 
   const handleAddCategory = (e) => {
     e.preventDefault()
@@ -189,38 +146,18 @@ const FormPage = () => {
 
   return (
     <div className={classes.formContainer}>
-      <form className={classes.form} noValidate onSubmit={handleSubmit}>
-        <div className={classes.imageContainer}>
-          {thisGrocery.image ? (
-            <>
-              <img src={thisGrocery.image} alt={thisGrocery.name}></img>
-              <button
-                onClick={() =>
-                  handleChange({ target: { name: "image", value: "" } })
-                }
-              >
-                X
-              </button>
-            </>
-          ) : (
-            <div className={`${classes.fileInput}`}>
-              <div>
-                <FileBase
-                  type="file"
-                  multiple={false}
-                  onDone={({ base64 }) => {
-                    handleImageInput(base64);
-                  }}
-                />
-              </div>
-            </div>
-          )}
-        </div>
+      <ThumbnailInput
+        handleChange={handleChange}
+        currentImage={currentImageSelection}
+        setCurrentImageSelection={setCurrentImageSelection} />
 
+      <form className={classes.form} noValidate>
         <div className={classes.itemDetails}>
           {Field("name", "Eggs", classes.itemName)}
 
-          {Field("purchase_size", "Dozen", classes.itemSize)}
+
+          <div><label className={classes.divLabel}>Unit Size</label>
+            {Field("purchase_size", "Dozen", classes.itemSize)}</div>
 
           <div className={classes.dollarSign}>
             <label className={classes.divLabel}>Purchase Price</label>
@@ -277,15 +214,15 @@ const FormPage = () => {
             />
           </div>
 
-          {currentId ? (
+          {searchSelection ? (
             <ClearButton
               className={classes.deleteButton}
-              handleClick={handleDelete} 
+              handleClick={handleDelete}
               label="Delete" />
           ) : (
             <ClearButton
               className={classes.deleteButton}
-              handleClick={handleClear} 
+              handleClick={handleClear}
               label="Clear" />
           )}
 
@@ -295,9 +232,12 @@ const FormPage = () => {
             variant="contained"
             color="primary"
             className={classes.updateButton}
+            onClick={handleSubmit}
           >
-            {currentId ? "Update" : "Submit"}
+            {searchSelection ? "Update" : "Submit"}
           </Button>
+
+          {Object.keys(schema).map(key => Field(key, thisGrocery[key], classes.itemSize))}
         </div>
       </form>
     </div>

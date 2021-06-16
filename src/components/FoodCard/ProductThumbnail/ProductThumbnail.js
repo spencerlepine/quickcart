@@ -20,16 +20,16 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
         }
       ></img>
       <h4 className={classes.foodName}>{groceryItem.name}</h4>
-      
-      <p className={classes.foodPrice} style={{color: getPriceColor(groceryItem.serving_cost)}}>
+
+      <p className={classes.foodPrice} style={{ color: getPriceColor(groceryItem.serving_cost) }}>
         {productPrice}
       </p>
 
       <p className={classes.purchaseSize}>
-          {groceryItem.purchase_size}
+        {groceryItem.purchase_size}
       </p>
 
-      <p className={classes.foodSize}>{}</p>
+      <p className={classes.foodSize}>{ }</p>
       <button onClick={handleAdd} className={classes.addButton}>
         +
       </button>
@@ -50,7 +50,7 @@ ProductThumbnail.defaultProps = {
     priority: "0",
     ingredients: "",
   },
-  handleAdd: () => {},
+  handleAdd: () => { },
 };
 
 export default ProductThumbnail

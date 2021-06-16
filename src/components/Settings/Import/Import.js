@@ -4,6 +4,7 @@ import useExitPrompt from '../../../hooks/useExitPrompt/useExitPrompt.js'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import useGroceries from "../../../context/GroceriesContext/GroceriesContext";
 import useNotification from "../../../context/NotificationContext/NotificationContext.js";
+import formatGroceryObj from "../../../modules/formatGroceryObj"
 import useStyles from "./styles"
 
 const Import = () => {
@@ -13,7 +14,7 @@ const Import = () => {
 
   const { createGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
-  
+
   useEffect(() => {
     return () => {
       setShowExitPrompt(false)
@@ -26,7 +27,7 @@ const Import = () => {
 
     fr.readAsText(target.files[0])
 
-    fr.onload = await function() {
+    fr.onload = await function () {
       let storageAccessed
       try {
         storageAccessed = JSON.parse(fr.result)
@@ -39,29 +40,13 @@ const Import = () => {
         setShowExitPrompt(false)
         return
       }
-      
-      storageAccessed.forEach((grocery) => {
-        const allowedKeys = [
-          "name",
-          "purchase_price",
-          "purchase_size",
-          "serving_cost",
-          "category",
-          "last_purchased",
-          "priority",
-          "image",
-        ]
 
-        let filteredObj = {}
-        for (const prop in grocery) {
-          if (allowedKeys.includes(prop)) {
-            filteredObj[prop] = grocery[prop]
-          }
-        }
+      storageAccessed.forEach((grocery) => {
+        const filteredObj = formatGroceryObj(grocery)
 
         setTimeout(() => {
           createGroceryItem(filteredObj)
-        }, 100)
+        }, 130)
       })
 
       setShowExitPrompt(false)
