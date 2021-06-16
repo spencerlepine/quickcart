@@ -27,7 +27,7 @@ export function GroceriesProvider({ children }) {
     const count = await api.fetchGroceryCount()
     setTotalGroceryCount(count)
   }
-  console.log(allGroceryItems.length)
+
   async function getAllGroceries(lastGroceryId = "") {
     setLoading(true)
     try {

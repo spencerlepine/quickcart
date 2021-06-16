@@ -10,26 +10,22 @@ Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123
 - ```git clone https://github.com/spencerlepine/quickcart.git```
 - Update ```.env``` files
 - ```cd quickcart```
-- ```cd server```
 - ```npm install```
 - ```npm start```
-- ```cd client```
-- ```npm run dev```
 
 ## Features:
-- Browse grocery item database
 - Create an account
+- Browse grocery item database
 - Add items to cart
 - Submit/Update Grocery items via **/form**
 - View recommended items to buy
+- Search for existing products
+- Search product images
 - Export data to file
 - Import from file
 
 ## Technologies:
 - [React](https://reactjs.org/)
-- [Redux](https://redux.js.org/)
-- [Expressjs](https://expressjs.com/)
-- [Nodejs](https://nodejs.org/)
 - [Firebase](https://firebase.google.com/)
 - [Material-UI](https://material-ui.com/)
 
