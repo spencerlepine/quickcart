@@ -85,15 +85,15 @@ const FormPage = () => {
       // Check if the user changed any fields
       const formItemStr = JSON.stringify(thisGrocery)
       const currentItemStr = JSON.stringify(searchSelection)
-      if (formItemStr !== currentItemStr && thisGrocery.name === searchSelection.name) {
-        const groceryId = searchSelection.name
+      if (formItemStr !== currentItemStr && thisGrocery._id === searchSelection._id) {
+        const groceryId = searchSelection._id
         updateGroceryItem(thisGrocery, groceryId)
       }
       history.push("/");
       clearForm();
     } else {
       const groceryMessage = {
-        message: `Saved ${thisGrocery.name || "item"}`,
+        message: `Saved ${thisGrocery._id || "item"}`,
         type: "success"
       }
       setCurrentNotification(groceryMessage)
