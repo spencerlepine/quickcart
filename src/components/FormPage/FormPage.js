@@ -139,7 +139,6 @@ const FormPage = () => {
         <div className={classes.itemDetails}>
           {Field(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
 
-
           <div><label className={classes.divLabel}>Unit Size</label>
             {Field(thisGrocery, handleChange, "purchase_size", "Dozen", classes.itemSize)}</div>
 

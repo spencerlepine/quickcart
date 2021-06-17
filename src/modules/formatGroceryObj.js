@@ -57,14 +57,13 @@ const formatGroceryObj = (resultObj = {}) => {
 }
 
 function valueFromPossibleKeys(obj) {
-  const possibleKeys = [...arguments].slice(1,)
-  let foundVal = null
-  possibleKeys.forEach(key => {
+  const possibleKeys = [...arguments]
+  for (let i = 0; i < possibleKeys.length; i++) {
+    var key = possibleKeys[i]
     if (obj[key]) {
-      foundVal = obj[key]
+      return obj[key]
     }
-  })
-  return foundVal
+  }
 }
 
 export default formatGroceryObj
