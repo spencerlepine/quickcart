@@ -87,7 +87,7 @@ const FormPage = () => {
       const currentItemStr = JSON.stringify(searchSelection)
       if (formItemStr !== currentItemStr && thisGrocery._id === searchSelection._id) {
         const groceryId = searchSelection._id
-        updateGroceryItem(thisGrocery, groceryId)
+        updateGroceryItem(searchSelection, groceryId)
       }
       history.push("/");
       clearForm();
