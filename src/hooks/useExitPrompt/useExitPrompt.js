@@ -19,16 +19,16 @@ const initBeforeUnLoad = (showExitPrompt) => {
 export default function useExitPrompt(bool) {
   const [showExitPrompt, setShowExitPrompt] = useState(bool);
   const { pathname } = useLocation()
-  const { setCurrentId } = useForm()
+  const { setEditSelection, setSearchSelection } = useForm()
 
   // Track page changes
   useEffect(() => {
-      setShowExitPrompt(false)
-      setCurrentId(null)
+    setShowExitPrompt(false)
+    setSearchSelection(null)
   }, [pathname])
 
   // Track page unmounts
-  window.onload = function() {
+  window.onload = function () {
     initBeforeUnLoad(showExitPrompt);
   };
 

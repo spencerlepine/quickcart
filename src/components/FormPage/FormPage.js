@@ -15,50 +15,47 @@ import useForm from "../../context/FormContext/FormContext.js";
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import schema from "../../schema/groceryItem"
 import ClearButton from "./ClearButton"
-import toTitleCase from "../../modules/toTitleCase"
+import categoryDropdown from "./categoryDropdown"
 import formatGroceryObj from "../../modules/formatGroceryObj"
+
+const Field = (thisGrocery, handleChange, name, placeholder, thisClass = "") => (
+  <TextField
+    className={thisClass}
+    onChange={handleChange}
+    variant="outlined"
+    margin="normal"
+    required
+    fullWidth
+    name={name}
+    placeholder={placeholder || name}
+    value={thisGrocery[name]}
+  />
+);
 
 const FormPage = () => {
   const history = useHistory();
   const classes = useStyles();
   const [thisGrocery, setThisGrocery] = useState(schema);
+
   const [, setShowExitPrompt] = useExitPrompt(false);
-  const [dropdownCategories, setDropdownCategories] = useState([]);
+  const [disableAdd, setDisableAdd] = useState(false);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
   const { allCategories, createNewCategory } = useCategories()
-  const { setCurrentId, searchSelection, setCurrentImageSelection, currentImageSelection } = useForm()
-
-  useEffect(() => {
-    // Map the categories to option elements
-    let categoryOptions = allCategories.map((category, i) => {
-      return <option key={i} value={category}>{toTitleCase(category)}</option>;
-    });
-
-    // Save the list to state
-    if (searchSelection) {
-      setDropdownCategories(categoryOptions);
-    } else {
-      setDropdownCategories(() => [
-        <option label="None" value="" key={999} />,
-        ...categoryOptions,
-      ]);
-    }
-    return
-  }, [allCategories]);
+  const { setEditSelection, editSelection, searchSelection, setSearchSelection } = useForm()
 
   const clearForm = () => {
-    setCurrentId(null)
-    setCurrentImageSelection(null)
+    setEditSelection(null)
     setThisGrocery(schema);
   };
 
   // Load up a selected grocery item
   useEffect(() => {
     // populate the form if the user has selected to edit an item
-    if (searchSelection) {
-      setCurrentImageSelection(searchSelection.image)
+    if (editSelection) {
+      setThisGrocery(editSelection);
+    } else if (searchSelection) {
       setThisGrocery(searchSelection);
     }
   }, []);
@@ -81,52 +78,38 @@ const FormPage = () => {
   const handleSubmit = (event) => {
     setShowExitPrompt(false)
     event.preventDefault();
-    if (searchSelection) {
-      // Check if the user changed any fields
-      const formItemStr = JSON.stringify(thisGrocery)
-      const currentItemStr = JSON.stringify(searchSelection)
-      if (formItemStr !== currentItemStr && thisGrocery._id === searchSelection._id) {
-        const groceryId = searchSelection._id
-        updateGroceryItem(searchSelection, groceryId)
+
+    const filledObj = formatGroceryObj(thisGrocery)
+
+    if (editSelection) {
+      const currentId = editSelection._id
+      const groceryId = thisGrocery._id
+
+      // Make sure we are updating the existing item
+      if (currentId === groceryId) {
+        updateGroceryItem(filledObj, groceryId)
+        // prevent double clicks
+        setDisableAdd(true)
       }
-      history.push("/");
-      clearForm();
     } else {
+      createGroceryItem(filledObj)
       const groceryMessage = {
         message: `Saved ${thisGrocery._id || "item"}`,
         type: "success"
       }
       setCurrentNotification(groceryMessage)
-      const filledObj = formatGroceryObj(thisGrocery)
-      createGroceryItem(filledObj)
-      history.push("/");
-      clearForm();
     }
+
+    history.push("/");
+    setEditSelection(null)
+    setSearchSelection(null)
+    clearForm();
   };
-
-  const Field = (name, placeholder, thisClass = "") => (
-    <TextField
-      className={thisClass}
-      onChange={handleChange}
-      variant="outlined"
-      margin="normal"
-      required
-      fullWidth
-      name={name}
-      placeholder={placeholder || name}
-      value={thisGrocery[name]}
-    />
-  );
-
-  const handleClear = () => {
-    setThisGrocery(schema)
-  }
 
   const handleAddCategory = (e) => {
     e.preventDefault()
 
     const newCategory = prompt("Name the new category: ")
-
 
     if (typeof newCategory === "string" && newCategory.length) {
       createNewCategory(newCategory.toLowerCase())
@@ -147,22 +130,21 @@ const FormPage = () => {
   return (
     <div className={classes.formContainer}>
       <ThumbnailInput
-        handleChange={handleChange}
-        currentImage={currentImageSelection}
-        setCurrentImageSelection={setCurrentImageSelection} />
+        updateImageState={(newImg) => handleChange({ target: { name: "image", value: newImg } })}
+        currentImage={thisGrocery.image} />
 
       <form className={classes.form} noValidate>
         <div className={classes.itemDetails}>
-          {Field("name", "Eggs", classes.itemName)}
+          {Field(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
 
 
           <div><label className={classes.divLabel}>Unit Size</label>
-            {Field("purchase_size", "Dozen", classes.itemSize)}</div>
+            {Field(thisGrocery, handleChange, "purchase_size", "Dozen", classes.itemSize)}</div>
 
           <div className={classes.dollarSign}>
             <label className={classes.divLabel}>Purchase Price</label>
             <p className={classes.priceIndicator}>$</p>
-            {Field("purchase_price", "2.50", classes.itemPrice)}
+            {Field(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
           </div>
 
           <div className={classes.itemCategory}>
@@ -177,7 +159,7 @@ const FormPage = () => {
                 id: "age-native-simple",
               }}
             >
-              {dropdownCategories}
+              {categoryDropdown(allCategories)}
             </Select>
             <button onClick={handleAddCategory} className={classes.newCategoryBtn}>+</button>
           </div>
@@ -185,7 +167,7 @@ const FormPage = () => {
           <div className={`${classes.dollarSign} ${classes.itemServing}`}>
             <label className={classes.divLabel}>Serving Cost:</label>
             <p className={classes.priceIndicator}>$</p>
-            {Field("serving_cost", "1.49", classes.itemPrice)}
+            {Field(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
           </div>
 
           <div className={classes.itemPriority}>
@@ -222,7 +204,7 @@ const FormPage = () => {
           ) : (
             <ClearButton
               className={classes.deleteButton}
-              handleClick={handleClear}
+              handleClick={clearForm}
               label="Clear" />
           )}
 
@@ -233,11 +215,29 @@ const FormPage = () => {
             color="primary"
             className={classes.updateButton}
             onClick={handleSubmit}
+            disabled={disableAdd}
           >
             {searchSelection ? "Update" : "Submit"}
           </Button>
 
-          {Object.keys(schema).map(key => Field(key, thisGrocery[key], classes.itemSize))}
+          <hr /><hr />
+          {/*----------------------------------*/}
+          {Object.keys(schema).map(key =>
+          (<><label className={classes.divLabel}>{key}</label>
+            <TextField
+              className={classes.itemSize}
+              onChange={handleChange}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name={key}
+              placeholder={key}
+              disabled={!(typeof thisGrocery[key] === "string" || typeof thisGrocery[key] === "number")}
+              value={thisGrocery[key]}
+            /></>)
+          )}
+          {/*----------------------------------*/}
         </div>
       </form>
     </div>

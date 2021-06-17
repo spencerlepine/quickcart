@@ -6,16 +6,14 @@ import ImageSearch from "../../ImageSearch/ImageSearch"
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from "./styles.js";
 
-const ThumbnailInput = ({ handleChange, currentImage, setCurrentImageSelection }) => {
+const ThumbnailInput = ({ updateImageState, currentImage }) => {
   const classes = useStyles();
 
   const handleImageInput = async (base64) => {
     const croppedImage = await CropInputImage(base64);
 
     // save the new image to the state
-    handleChange({ target: { name: "image", value: croppedImage } });
-    // save the selected image to context
-    setCurrentImageSelection(croppedImage)
+    updateImageState(croppedImage);
   };
 
   return (
@@ -24,7 +22,7 @@ const ThumbnailInput = ({ handleChange, currentImage, setCurrentImageSelection }
         <>
           <img src={currentImage} alt='product'></img>
           <button className={classes.removeImageBtn}
-            onClick={() => setCurrentImageSelection("")}
+            onClick={() => updateImageState("")}
           >
             X
           </button>
@@ -44,7 +42,7 @@ const ThumbnailInput = ({ handleChange, currentImage, setCurrentImageSelection }
           </div>
           <DetailsPopup
             CardComponent={<ImageSearchIcon className={classes.searchPopup}></ImageSearchIcon>}
-            DetailsComponent={<ImageSearch />}
+            DetailsComponent={<ImageSearch updateImageState={updateImageState} />}
           />
         </div>
       )}

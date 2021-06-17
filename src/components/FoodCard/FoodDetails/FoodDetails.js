@@ -1,8 +1,8 @@
 import React from "react"
-import useCart from "../../../context/CartContext/CartContext"
+// import useCart from "../../../context/CartContext/CartContext"
 import useForm from "../../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
-import useNotification from "../../../context/NotificationContext/NotificationContext.js"
+// import useNotification from "../../../context/NotificationContext/NotificationContext.js"
 import missingImage from "../../../images/missing.jpeg"
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
@@ -13,10 +13,10 @@ import useStyles from "./styles"
 const FoodDetails = ({ groceryItem, handleAdd }) => {
   const classes = useStyles()
   const history = useHistory()
-  const { setSearchSelection } = useForm()
+  const { setEditSelection } = useForm()
 
   const handleEdit = (e) => {
-    setSearchSelection(groceryItem)
+    setEditSelection(groceryItem)
     history.push("/form")
   }
 
