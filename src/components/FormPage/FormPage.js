@@ -38,7 +38,7 @@ const FormPage = () => {
   const [thisGrocery, setThisGrocery] = useState(schema);
 
   const [, setShowExitPrompt] = useExitPrompt(false);
-  const [disableAdd, setDisableAdd] = useState(false);
+  const [disableAdd, setDisableAdd] = useState(true);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
@@ -62,15 +62,17 @@ const FormPage = () => {
 
   const handleChange = (event) => {
     setShowExitPrompt(true)
+    setDisableAdd(false)
     const { name, value } = event.target;
 
     setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
   };
 
-  const handleDelete = () => {
+  const handleDelete = (idToDelete) => {
     if (window.confirm("Delete permanently?")) {
       setShowExitPrompt(false)
-      deleteGroceryItem(searchSelection._id);
+      deleteGroceryItem(idToDelete);
+      setEditSelection(null);
       history.push("/");
     }
   };
@@ -170,6 +172,32 @@ const FormPage = () => {
             {Field(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
           </div>
 
+          {editSelection ? (
+            <ClearButton
+              className={classes.deleteButton}
+              handleClick={() => handleDelete(editSelection._id)}
+              label="Delete" />
+          ) : (
+            <ClearButton
+              className={classes.deleteButton}
+              handleClick={clearForm}
+              label="Clear" />
+          )}
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.updateButton}
+            onClick={handleSubmit}
+            disabled={disableAdd}
+          >
+            {searchSelection ? "Update" : "Submit"}
+          </Button>
+
+          <hr /><hr />
+
           <div className={classes.itemPriority}>
             <label>Priority</label>
             <br />
@@ -195,30 +223,6 @@ const FormPage = () => {
               onChange={handleChange}
             />
           </div>
-
-          {searchSelection ? (
-            <ClearButton
-              className={classes.deleteButton}
-              handleClick={handleDelete}
-              label="Delete" />
-          ) : (
-            <ClearButton
-              className={classes.deleteButton}
-              handleClick={clearForm}
-              label="Clear" />
-          )}
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.updateButton}
-            onClick={handleSubmit}
-            disabled={disableAdd}
-          >
-            {searchSelection ? "Update" : "Submit"}
-          </Button>
 
           <hr /><hr />
           {/*----------------------------------*/}

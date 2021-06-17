@@ -13,6 +13,7 @@ const formatGroceryObj = (resultObj = {}) => {
 
   const itemName = valueFromPossibleKeys(resultObj, "product_nameen", "product_name", "name", "resultObj_nameen", "resultObj_name", "generic_name") || grocerySchema.name
   const formattedName = itemName.replace(/-/gi, " ")
+  const shortenedName = formattedName.slice(0, 25);
   const itemImage = valueFromPossibleKeys(resultObj, "image", "image_url", "image_small_url") || missingImage
   const itemPriority = valueFromPossibleKeys(resultObj, "priority", "rating", "preference") || grocerySchema.priority
   const itemQuantity = valueFromPossibleKeys(resultObj, "quantity", "servings_per", "serving_count") || grocerySchema.quantity
@@ -32,7 +33,7 @@ const formatGroceryObj = (resultObj = {}) => {
   const ItemServingQuantity = valueFromPossibleKeys(resultObj, "serving_quantity") || grocerySchema.serving_quantity
 
   const formattedObj = {
-    name: toTitleCase(formattedName),
+    name: toTitleCase(shortenedName),
     image: itemImage,
     priority: itemPriority,
     purchase_size: itemPurchaseSize,

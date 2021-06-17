@@ -25,11 +25,11 @@ const formatBrand = (brand) => {
 const SearchCard = ({ product }) => {
   const classes = useStyles();
   const history = useHistory()
-  const { setSearchSelection, setCurrentId } = useForm()
+  const { setSearchSelection, setEditSelection } = useForm()
 
   const handleClick = () => {
     const formattedProduct = formatGroceryObj(product)
-    setCurrentId(formattedProduct.name)
+    setEditSelection(null)
     setSearchSelection(formattedProduct)
     history.push(FORM)
   }

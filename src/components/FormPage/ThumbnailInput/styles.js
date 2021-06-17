@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
     height: "max(10vh, auto)",
     minHeight: "160px",
     "& img": {
+      "border": "4px solid white",
       height: "200px",
       maxWidth: "200px",
     },

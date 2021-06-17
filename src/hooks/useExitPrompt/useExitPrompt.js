@@ -27,14 +27,16 @@ export default function useExitPrompt(bool) {
     setSearchSelection(null)
   }, [pathname])
 
-  // Track page unmounts
-  window.onload = function () {
-    initBeforeUnLoad(showExitPrompt);
-  };
+  // // Track page unmounts
+  // window.onload = function () {
+  //   initBeforeUnLoad(showExitPrompt);
+  // };
 
-  useEffect(() => {
-    initBeforeUnLoad(showExitPrompt);
-  }, [showExitPrompt]);
+  // useEffect(() => {
+  //   if (showExitPrompt) {
+  //     initBeforeUnLoad(showExitPrompt);
+  //   }
+  // }, [showExitPrompt]);
 
   return [showExitPrompt, setShowExitPrompt];
 }

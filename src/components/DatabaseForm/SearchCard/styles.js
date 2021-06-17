@@ -12,10 +12,10 @@ export default makeStyles(() => ({
     maxWidth: "150px",
     flexWrap: "wrap",
     borderRadius: "8px",
-    "WebkitBoxShadow": "0px -1px 9px -2px #000000",
-    "boxShadow": "0px -1px 9px -2px #000000",
+    "WebkitBoxShadow": "0px 0px 5px -2px #000000",
+    "boxShadow": "0px 0px 5px -2px #000000",
     '&:hover': {
-      "boxShadow": "0px -1px 8px 2px #000000",
+      "boxShadow": "0px 0px 2px 1px #000000",
     },
   },
   thumbnailContainer: {

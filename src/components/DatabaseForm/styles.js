@@ -2,13 +2,14 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   formContainer: {
-    marginTop: "2%",
+    marginTop: "3em",
     minHeight: "80vh",
   },
   form: {
     maxWidth: "750px",
     margin: "auto",
     padding: "24px",
+    marginTop: "2em",
     marginBottom: "1vh",
     backgroundColor: "white",
     borderRadius: "1vh",
@@ -74,7 +75,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "#f3f3f3",
         color: "#ab1515",
         border: "3px solid #ab1515",
-        boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
+        boxShadow: "0px 0px 5px -2px #000000",
       },
     },
   },

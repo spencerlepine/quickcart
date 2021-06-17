@@ -358,7 +358,7 @@ export default makeStyles((theme) => ({
     overflowY: "scroll",
     display: "grid",
     gridTemplateColumns: "auto auto auto",
-
+    maxHeight: "70vh",
     "@media (max-width:900px)": {
       gridTemplateColumns: "auto auto",
     },

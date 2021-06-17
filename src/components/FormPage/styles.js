@@ -37,6 +37,7 @@ export default makeStyles((theme) => ({
     },
   },
   itemSize: {
+    minWidth: "160px",
     width: "30vw",
     display: "inline",
     maxWidth: "175px",
@@ -103,6 +104,7 @@ export default makeStyles((theme) => ({
   dollarSign: {
     position: "relative",
     width: "50%",
+    minWidth: "110px",
     marginLeft: "auto",
     "& div": {
       marginTop: "0",

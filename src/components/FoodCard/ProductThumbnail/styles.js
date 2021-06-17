@@ -87,5 +87,6 @@ export default makeStyles(() => ({
   foodName: {
     margin: "0",
     marginBottom: "5px !important",
+    overflowWrap: "anywhere",
   },
 }));
