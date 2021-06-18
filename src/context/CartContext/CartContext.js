@@ -5,6 +5,7 @@ export const CartContext = React.createContext()
 
 export function CartProvider({ children }) {
   const [allCartItems, setAllCartItems] = useState([])
+  const [allCartLogs, setAllCartLogs] = useState([])
 
   async function addItemToCart(groceryItem) {
     const data = await api.addToCart(groceryItem)
@@ -20,24 +21,24 @@ export function CartProvider({ children }) {
   async function updateCartItem(updatedCartItem) {
     try {
       const newCartItem = await api.updateCartItem(updatedCartItem)
-      const newItemId = newCartItem["name"]
+      const newItemId = newCartItem["_id"]
 
       // go through and replace the old grocery
       setAllCartItems(prevList => {
-        return prevList.map(item => item["name"] === newItemId ? newCartItem : item)
+        return prevList.map(item => item["_id"] === newItemId ? newCartItem : item)
       })
     } catch (error) {
       console.log(error.message)
     }
-  } 
+  }
 
-  async function deleteCartItem(groceryName) {
+  async function deleteCartItem(groceryId) {
     try {
-      await api.removeFromCart(groceryName)
+      await api.removeFromCart(groceryId)
 
       // go through and replace the old grocery
       setAllCartItems(prevList =>
-        prevList.filter(item => item["name"] !== groceryName)
+        prevList.filter(item => item["_id"] !== groceryId)
       )
     } catch (error) {
       console.log(error.message)
@@ -52,17 +53,28 @@ export function CartProvider({ children }) {
     }
   }
 
+  async function getAllCartLogs() {
+    try {
+      const result = await api.fetchCartLogs()
+      setAllCartLogs(result)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   useEffect(() => {
     getAllCartItems()
   }, [])
 
   const value = {
     allCartItems,
+    allCartLogs,
     addItemToCart,
     getAllCartItems,
     updateCartItem,
     deleteCartItem,
     logCartItem,
+    getAllCartLogs,
   }
 
   return (
@@ -72,16 +84,18 @@ export function CartProvider({ children }) {
   )
 }
 
-const useCart= () => {
-  const { allCartItems, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
-  
+const useCart = () => {
+  const { allCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
+
   return {
     allCartItems,
+    allCartLogs,
     addItemToCart,
     getAllCartItems,
     updateCartItem,
     deleteCartItem,
     logCartItem,
+    getAllCartLogs,
   };
 };
 

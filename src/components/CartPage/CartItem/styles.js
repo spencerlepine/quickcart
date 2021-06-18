@@ -2,9 +2,13 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   cartItem: {
-    paddingTop: "10px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
     display: "flex",
     // borderBottom: "1px solid lightgray",
+    '&:hover': {
+      backgroundColor: "whitesmoke",
+    },
   },
   itemPrice: {
     marginLeft: "auto",
@@ -37,10 +41,10 @@ export default makeStyles((theme) => ({
     width: "56px",
     border: "1px solid rgb(224, 224, 224)",
     padding: "0px",
+    backgroundColor: "white",
     lineHeight: "40px",
     borderRadius: "4px",
     zIndex: "4",
-    backgroundColor: "transparent",
     "&:hover": {
       backgroundColor: "rgb(247, 247, 247)",
     },

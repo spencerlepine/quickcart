@@ -22,6 +22,7 @@ const formatGroceryObj = (resultObj = {}) => {
   const itemCategory = valueFromPossibleKeys(resultObj, "category") || grocerySchema.category
   const itemServingCost = valueFromPossibleKeys(resultObj, "serving_cost", "serving_price") || grocerySchema.serving_cost
   const itemPurchasePrice = valueFromPossibleKeys(resultObj, "purchase_price", "unit_price", "cost") || grocerySchema.purchase_price
+  const itemUnitSize = valueFromPossibleKeys(resultObj, "unit_size", "quantity", "net_weight_value", "net_weight_unit", "volume_unit", "purchase_size") || grocerySchema.unit_size
   const itemUPC = valueFromPossibleKeys(resultObj, "item_upc", "upc", "upc_code", "item_upc_code", "code") || grocerySchema.upc
   const itemId = valueFromPossibleKeys(resultObj, "_id", "id") || grocerySchema._id || currentTime
   const itemBrand = valueFromPossibleKeys(resultObj, "brands", "brand", "brand_owner", "brand_owner_imported") || grocerySchema.brand
@@ -51,6 +52,7 @@ const formatGroceryObj = (resultObj = {}) => {
     quantity: itemQuantity,
     serving_size: itemServingSize,
     serving_quantity: ItemServingQuantity,
+    unit_size: itemUnitSize,
   };
 
   return formattedObj

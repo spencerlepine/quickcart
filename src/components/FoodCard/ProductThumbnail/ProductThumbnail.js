@@ -12,13 +12,7 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
 
   return (
     <div className={classes.foodCard}>
-      <img
-        alt={groceryItem.name}
-        src={
-          groceryItem.image ||
-          "https://d2d8wwwkmhfcva.cloudfront.net/197x/filters:fill(FFF,true):format(jpg)/d1s8987jlndkbs.cloudfront.net/assets/missing-item-4bbe82b8555e4d1c12626fd482cb2409713e8e30835645ff3650ef66a725d03c.png"
-        }
-      ></img>
+      <img alt={groceryItem.name} src={groceryItem.image}></img>
       <h4 className={classes.foodName}>{groceryItem.name}</h4>
 
       <p className={classes.foodPrice} style={{ color: getPriceColor(groceryItem.serving_cost) }}>
@@ -26,7 +20,7 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
       </p>
 
       <p className={classes.purchaseSize}>
-        {groceryItem.purchase_size}
+        {`(${groceryItem.purchase_size})`}
       </p>
 
       <p className={classes.foodSize}>{ }</p>

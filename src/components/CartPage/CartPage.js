@@ -6,6 +6,7 @@ import cartImg from "../../images/cart.svg";
 import ReccomendedWidget from "../RecommendedWidget/RecommendedWidget";
 import useCart from "../../context/CartContext/CartContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import groupItemsByCategory from "./groupItemsByCategory"
 import useStyles from "./styles.js";
 
 const CartPage = () => {
@@ -32,6 +33,8 @@ const CartPage = () => {
     }
   }, []);
 
+  const sortedCart = groupItemsByCategory(allCartItems)
+
   return (
     <div className={classes.cartView}>
       {allCartItems.length === 0 ? (
@@ -40,8 +43,8 @@ const CartPage = () => {
         <>
           <CartHeader cartItems={allCartItems} />
           <div className={classes.userCart}>
-            {allCartItems !== null &&
-              allCartItems.map((item, i) => <CartItem key={i} cartItem={item} />)}
+            {sortedCart !== null &&
+              sortedCart.map((item, i) => <CartItem key={i} cartItem={item} />)}
           </div>
         </>
       )}

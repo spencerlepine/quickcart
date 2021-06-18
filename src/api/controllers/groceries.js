@@ -96,6 +96,28 @@ export const updateGrocery = async (updatedGroceryItem) => {
     const { uid: userId } = auth.currentUser
     const updatedGroceryId = updatedGroceryItem["_id"]
 
+    let cartItemRef = await db.collection('users')
+      .doc(userId)
+      .collection('userCart')
+      .doc(updatedGroceryId)
+
+    await cartItemRef.get()
+      .then(async (docSnapshot) => {
+        if (docSnapshot.exists) {
+          // Get the current data
+          const itemData = await docSnapshot.data()
+
+          // Create the object to populate the existing doc
+          const existingItem = {
+            ...updatedGroceryItem,
+            quantity: itemData.quantity
+          }
+
+          // Overwrite the current doc
+          await cartItemRef.set(existingItem)
+        }
+      });
+
     await db.collection('users')
       .doc(userId)
       .collection('userGroceries')

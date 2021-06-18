@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom"
-import { HOME, LOGIN, SIGNUP, WELCOME, SETTINGS, PANTRY, FORM, CART, RECOMMENDED, SEARCH } from "../../constants/routeConstants"
+import { HOME, LOGIN, SIGNUP, WELCOME, SETTINGS, PANTRY, FORM, CART, CART_LOGS, RECOMMENDED, SEARCH } from "../../constants/routeConstants"
 import UserWelcome from "../UserWelcome/UserWelcome"
 import MissingPage from "../MissingPage/MissingPage"
 import SignUp from "../SignUp/SignUp"
@@ -11,11 +11,14 @@ import RecommendedPage from "../RecommendedPage/RecommendedPage"
 import Settings from "../Settings/Settings"
 import BrowseGroceries from "../BrowseGroceries/BrowseGroceries"
 import DatabaseForm from "../DatabaseForm/DatabaseForm"
+import CartLogPage from "../CartLogPage/CartLogPage"
 
 const Routes = () => (
   <Switch>
     <Route exact path={HOME} component={BrowseGroceries} />
+
     <Route exact path={WELCOME} component={UserWelcome} />
+    <Route path={CART_LOGS} component={CartLogPage} />
     <Route path={LOGIN} component={LogIn} />
     <Route path={SIGNUP} component={SignUp} />
     <Route path={FORM} component={FormPage} />

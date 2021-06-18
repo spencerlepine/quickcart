@@ -54,6 +54,7 @@ const grocerySchema = {
   quantity: "0 g",
   serving_size: "0 g",
   serving_quantity: 0,
+  unit_size: "1 unit",
 }
 
 export default grocerySchema

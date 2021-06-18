@@ -13,7 +13,7 @@ const CartHeader = ({ cartItems }) => {
   const { logCartItem, deleteCartItem } = useCart()
   const { updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
- 
+
   const handleCartPurchase = () => {
     if (cartItems.length) {
       cartItems.forEach((item) => {
@@ -22,7 +22,7 @@ const CartHeader = ({ cartItems }) => {
           last_purchased: todaysDate,
         }
         logCartItem(groceryObjNewDate)
-        deleteCartItem(groceryObjNewDate.name)
+        deleteCartItem(groceryObjNewDate._id)
         updateGroceryItem(groceryObjNewDate)
       })
       const purchaseMessage = {
@@ -36,8 +36,8 @@ const CartHeader = ({ cartItems }) => {
 
   let totalCost = cartItems.reduce(
     (total, item) =>
-      (total +=
-        item.quantity * parseFloat(item.purchase_price)),
+    (total +=
+      item.quantity * parseFloat(item.purchase_price)),
     0
   )
 

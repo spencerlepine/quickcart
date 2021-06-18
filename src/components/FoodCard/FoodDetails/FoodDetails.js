@@ -3,7 +3,6 @@ import React from "react"
 import useForm from "../../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
 // import useNotification from "../../../context/NotificationContext/NotificationContext.js"
-import missingImage from "../../../images/missing.jpeg"
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
@@ -48,12 +47,8 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
             </p>
 
             <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
-              {groceryItem.purchase_size}
+              Size: {groceryItem.purchase_size}
             </p>
-
-            <p className={`${classes.servingSize} ${classes.productSpecification}`}>
-              {groceryItem.serving_size}</p>
-
           </div>
 
           <Rating
@@ -84,21 +79,5 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
     </div>
   )
 }
-
-FoodDetails.defaultProps = {
-  groceryItem: {
-    name: 'Unkown',
-    purchase_price: "0.0",
-    purchase_size: "1 oz",
-    serving_cost: "0.0",
-    serving_size: "1 oz",
-    brand: "unknown",
-    nutrition_score: "",
-    image: missingImage,
-    priority: "0",
-    ingredients: "",
-    upc_code: "n/a",
-  }
-};
 
 export default FoodDetails

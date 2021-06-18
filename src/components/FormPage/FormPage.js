@@ -17,20 +17,7 @@ import schema from "../../schema/groceryItem"
 import ClearButton from "./ClearButton"
 import categoryDropdown from "./categoryDropdown"
 import formatGroceryObj from "../../modules/formatGroceryObj"
-
-const Field = (thisGrocery, handleChange, name, placeholder, thisClass = "") => (
-  <TextField
-    className={thisClass}
-    onChange={handleChange}
-    variant="outlined"
-    margin="normal"
-    required
-    fullWidth
-    name={name}
-    placeholder={placeholder || name}
-    value={thisGrocery[name]}
-  />
-);
+import InputField from "./InputField"
 
 const FormPage = () => {
   const history = useHistory();
@@ -137,15 +124,15 @@ const FormPage = () => {
 
       <form className={classes.form} noValidate>
         <div className={classes.itemDetails}>
-          {Field(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
+          {InputField(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
 
           <div><label className={classes.divLabel}>Unit Size</label>
-            {Field(thisGrocery, handleChange, "purchase_size", "Dozen", classes.itemSize)}</div>
+            {InputField(thisGrocery, handleChange, "purchase_size", "Dozen", classes.itemSize)}</div>
 
           <div className={classes.dollarSign}>
             <label className={classes.divLabel}>Purchase Price</label>
             <p className={classes.priceIndicator}>$</p>
-            {Field(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
+            {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
           </div>
 
           <div className={classes.itemCategory}>
@@ -168,7 +155,7 @@ const FormPage = () => {
           <div className={`${classes.dollarSign} ${classes.itemServing}`}>
             <label className={classes.divLabel}>Serving Cost:</label>
             <p className={classes.priceIndicator}>$</p>
-            {Field(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
+            {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
           </div>
 
           {editSelection ? (
@@ -226,7 +213,7 @@ const FormPage = () => {
           <hr /><hr />
           {/*----------------------------------*/}
           {Object.keys(schema).map(key =>
-          (<><label className={classes.divLabel}>{key}</label>
+          (<div key={key}><label className={classes.divLabel}>{key}</label>
             <TextField
               className={classes.itemSize}
               onChange={handleChange}
@@ -238,7 +225,7 @@ const FormPage = () => {
               placeholder={key}
               disabled={!(typeof thisGrocery[key] === "string" || typeof thisGrocery[key] === "number")}
               value={thisGrocery[key]}
-            /></>)
+            /></div>)
           )}
           {/*----------------------------------*/}
         </div>
