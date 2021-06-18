@@ -10,7 +10,16 @@ export function CartProvider({ children }) {
   async function addItemToCart(groceryItem) {
     const data = await api.addToCart(groceryItem)
 
-    setAllCartItems(prevList => [...prevList, data])
+    // Is this already in the cart?
+    if (allCartItems.any(item => item["_id"] === groceryItem["_id"])) {
+      // Update the existing list
+      setAllCartItems(prevList => {
+        return prevList.map(item => item["_id"] === groceryItem["_id"] ? groceryItem : item)
+      })
+    } else {
+      // Just append it to the list
+      setAllCartItems(prevList => [...prevList, data])
+    }
   }
 
   async function getAllCartItems() {
