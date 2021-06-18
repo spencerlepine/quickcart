@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { FORM } from "../../../constants/routeConstants";
-import useSearch from "../../../context/SearchContext/SearchContext";
+import useForm from "../../../context/FormContext/FormContext";
 
 import useStyles from "./styles";
 
@@ -9,11 +9,10 @@ const PantryItem = ({ groceryItem }) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const { setCurrentId } = useSearch()
+  const { setEditSelection } = useForm()
 
   const handleEdit = (e) => {
-    const selectedGrocery = groceryItem.name
-    setCurrentId(selectedGrocery)
+    setEditSelection(groceryItem)
     history.push(FORM);
   };
 
@@ -35,7 +34,6 @@ const PantryItem = ({ groceryItem }) => {
   const groceryNotExpired =
     groceryExpirationDate.getTime() >= todaysDate.getTime();
 
-  console.log(groceryExpirationDate.getDay() - todaysDate.getDay())
   return (
     <>
       {groceryNotExpired && (

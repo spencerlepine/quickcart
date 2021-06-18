@@ -1,9 +1,8 @@
 // use grocery item/product schema
 import grocerySchema from "../schema/groceryItem"
-import toTitleCase from "../modules/toTitleCase"
+import toTitleCase from "./toTitleCase"
 import missingImage from "../images/missing.jpeg"
-
-
+import filterNutriscoreObj from "./filterNutriscoreObj"
 
 const formatGroceryObj = (resultObj = {}) => {
   // update the keys and values
@@ -27,7 +26,10 @@ const formatGroceryObj = (resultObj = {}) => {
   const itemId = valueFromPossibleKeys(resultObj, "_id", "id") || grocerySchema._id || currentTime
   const itemBrand = valueFromPossibleKeys(resultObj, "brands", "brand", "brand_owner", "brand_owner_imported") || grocerySchema.brand
   const itemIngredients = valueFromPossibleKeys(resultObj, "ingredients", "ingredients_tags") || grocerySchema.ingredients
-  const itemNutriscoreData = valueFromPossibleKeys(resultObj, "nutriscore_data") || grocerySchema.nutriscore_data
+  let itemNutriscoreData = valueFromPossibleKeys(resultObj, "nutriscore_data") || grocerySchema.nutriscore_data
+  // Make sure you format spots for nutriscore_data object
+  itemNutriscoreData = filterNutriscoreObj(itemNutriscoreData)
+
   const itemNutriscoreDataPer = valueFromPossibleKeys(resultObj, "nutriscore_data_per") || grocerySchema.nutriscore_data_per
   const itemNutriscoreDataPreparedPer = valueFromPossibleKeys(resultObj, "nutriscore_data_prepared_per") || grocerySchema.nutriscore_data_prepared_per
   const itemServingSize = valueFromPossibleKeys(resultObj, "serving_size") || grocerySchema.serving_size

@@ -31,20 +31,4 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
   )
 }
 
-ProductThumbnail.defaultProps = {
-  groceryItem: {
-    name: 'Unkown',
-    purchase_price: "0.0",
-    purchase_size: "1 oz",
-    serving_cost: "0.0",
-    serving_size: "1 oz",
-    brand: "unknown",
-    nutrition_score: "",
-    image: missingImage,
-    priority: "0",
-    ingredients: "",
-  },
-  handleAdd: () => { },
-};
-
 export default ProductThumbnail

@@ -25,7 +25,8 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
   ).toLocaleString("en-US", { style: "currency", currency: "USD" })
 
   const servingPrice = parseFloat(groceryItem.serving_cost)
-
+  const nutFacts = groceryItem.nutriscore_data
+  console.log(nutFacts)
   return (
     <div className={classes.popupContainer}>
       <div className={classes.popupElement}>
@@ -83,22 +84,22 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
         </div>
         <div className={classes.nutritionDetials}>
           <NutritionLabel
-            servingSize={'1 cup (228g)'}
-            servingsPerContainer={2}
-            calories={260}
-            totalFat={13}
-            saturatedFat={5}
-            transFat={2}
-            cholesterol={30}
-            sodium={660}
-            totalCarbs={31}
-            dietaryFiber={0}
-            sugars={5}
-            protein={5}
-            vitaminA={4}
-            vitaminC={2}
-            calcium={15}
-            iron={4}
+            servingSize={nutFacts.serving_size}
+            servingsPerContainer={nutFacts.serving_quantity || 1}
+            calories={Math.round(nutFacts.energy * 0.23900573614) || 0}
+            totalFat={nutFacts.fat || 0}
+            saturatedFat={nutFacts["saturated-fat"] || 0}
+            transFat={nutFacts["trans_fat"] || 0}
+            cholesterol={nutFacts.cholesterol || 0}
+            sodium={nutFacts.sodium}
+            totalCarbs={nutFacts["carbohydrates_serving"] || 0}
+            dietaryFiber={nutFacts["fiber"] || 0}
+            sugars={nutFacts.sugars || 0}
+            protein={nutFacts.proteins || 0}
+            vitaminA={nutFacts["vitamin-a"] || 0}
+            vitaminC={nutFacts["vitamin-c"] || 0}
+            calcium={nutFacts.calcium || 0}
+            iron={nutFacts.iron || 0}
           />
         </div>
       </div>

@@ -1,39 +1,6 @@
-const todaysDate = new Date().toISOString().slice(0, 10);
+import nutriscoreSchema from "./nutriscoreSchema.js"
 
-const nutriscoreSchema = {
-  grade: "",
-  score: 0,
-  energy: 0,
-  energy_points: 0,
-  energy_value: 0,
-  fiber: 0,
-  fiber_points: 0,
-  fiber_value: 0,
-  fruits_vegetables_nuts_colza_walnut_olive_oils: 0,
-  fruits_vegetables_nuts_colza_walnut_olive_oils_points: 0,
-  fruits_vegetables_nuts_colza_walnut_olive_oils_value: 0,
-  is_beverage: 0,
-  is_cheese: "0",
-  is_fat: 0,
-  is_water: 0,
-  negative_points: 0,
-  positive_points: 0,
-  proteins: 0,
-  proteins_points: 0,
-  proteins_value: 0,
-  saturated_fat: 0,
-  saturated_fat_points: 0,
-  saturated_fat_ratio: 0,
-  saturated_fat_ratio_points: 0,
-  saturated_fat_ratio_value: 0,
-  saturated_fat_value: 0,
-  sodium: 0,
-  sodium_points: 0,
-  sodium_value: 0,
-  sugars: 0,
-  sugars_points: 0,
-  sugars_value: 0,
-}
+const todaysDate = new Date().toISOString().slice(0, 10);
 
 const grocerySchema = {
   name: "unknown",
@@ -51,7 +18,7 @@ const grocerySchema = {
   nutriscore_data: nutriscoreSchema,
   nutriscore_data_per: "0.1 g",
   nutriscore_data_prepared_per: "0.1 g",
-  quantity: "0.1 g",
+  quantity: 1,
   serving_size: "0.1 g",
   serving_quantity: 1,
   unit_size: "1 unit",
