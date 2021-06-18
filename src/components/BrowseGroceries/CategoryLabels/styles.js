@@ -2,15 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
   categoriesContainter: {
-    paddingTop: "20px",
-    margin: "auto",
-    marginTop: "5px",
-    width: "fit-content",
+    "height": "fit-content",
+    "margin": "auto",
+    "maxWidth": "800px",
+    "marginTop": "5px",
+    "minHeight": "40px",
+    "overflowX": "scroll",
+    "paddingTop": "20px",
     minWidth: "400px",
-    minHeight: "40px",
-    height: "fit-content",
-    maxWidth: "800px",
-    overflowX: "scroll",
     MsOverflowStyle: "none",
     scrollbarWidth: "none",
     "&::-webkit-scrollbar": {
