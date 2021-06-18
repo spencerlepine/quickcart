@@ -4,14 +4,17 @@ import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import FoodGrid from "./FoodGrid/FoodGrid"
 import CategoryLabels from "./CategoryLabels/CategoryLabels"
 import SearchBar from "./SearchBar/SearchBar"
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const BrowseGroceries  = () => {
-  const { loading } = useGroceries
+const BrowseGroceries = () => {
+  const { loading } = useGroceries()
 
   return (
     <>
-      {!loading
-        &&
+      {loading
+        ?
+        <CircularProgress />
+        :
         <>
           <SearchBar />
           <CategoryLabels />

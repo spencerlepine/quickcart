@@ -5,11 +5,14 @@ export const RecommendedContext = React.createContext()
 
 export function RecommendedProvider({ children }) {
   const [allRecommendedItems, setAllRecommendedItems] = useState([])
+  const [loading, setLoading] = useState(false)
 
   async function getAllRecommendedItems() {
+    setLoading(true)
     const data = await api.fetchRecommended()
 
     setAllRecommendedItems(data)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -17,6 +20,7 @@ export function RecommendedProvider({ children }) {
   }, [])
 
   const value = {
+    loading,
     allRecommendedItems,
     getAllRecommendedItems,
   }
@@ -28,11 +32,12 @@ export function RecommendedProvider({ children }) {
   )
 }
 
-const useRecommended= () => {
-  const { allRecommendedItems, getAllRecommendedItems } = useContext(RecommendedContext);
-  
+const useRecommended = () => {
+  const { allRecommendedItems, loading, getAllRecommendedItems } = useContext(RecommendedContext);
+
   return {
     allRecommendedItems,
+    loading,
     getAllRecommendedItems,
   };
 };

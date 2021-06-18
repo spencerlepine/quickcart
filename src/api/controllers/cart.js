@@ -168,7 +168,6 @@ export const fetchCartLogs = async () => {
         // } else {
         //   return data._id
         // }
-        console.log(data)
         dateData.push(data)
       })
       cartLogData.push(dateData)

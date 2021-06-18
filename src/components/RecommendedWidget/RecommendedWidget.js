@@ -3,15 +3,16 @@ import React from "react"
 import useStyles from "./styles.js"
 import FoodCard from "../FoodCard/FoodCard"
 import useRecommended from "../../context/RecommendedContext/RecommendedContext.js"
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecommendedWidget = () => {
   const classes = useStyles()
 
-  const { allRecommendedItems } = useRecommended()
+  const { allRecommendedItems, loading } = useRecommended()
 
   const recommendedCards = []
   for (const category in allRecommendedItems) {
-    let [ firstCategoryElem ] = allRecommendedItems[category]
+    let [firstCategoryElem] = allRecommendedItems[category]
     if (firstCategoryElem) {
       recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} key={category} />)
     }
@@ -23,7 +24,12 @@ const RecommendedWidget = () => {
         <>
           <h3>Recommended</h3>
           <hr />
-          <div className={classes.itemsGrid}>{recommendedCards}</div>
+          {loading
+            ?
+            <CircularProgress />
+            :
+            <div className={classes.itemsGrid}>{recommendedCards}</div>
+          }
         </>
       )}
     </div>

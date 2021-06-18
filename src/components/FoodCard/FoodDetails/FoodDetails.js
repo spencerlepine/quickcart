@@ -26,7 +26,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
 
   const servingPrice = parseFloat(groceryItem.serving_cost)
   const nutFacts = groceryItem.nutriscore_data
-  console.log(nutFacts)
+
   return (
     <div className={classes.popupContainer}>
       <div className={classes.popupElement}>

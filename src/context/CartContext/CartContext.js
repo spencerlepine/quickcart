@@ -5,6 +5,7 @@ export const CartContext = React.createContext()
 
 export function CartProvider({ children }) {
   const [allCartItems, setAllCartItems] = useState([])
+  const [loading, setLoading] = useState(false)
   const [allCartLogs, setAllCartLogs] = useState([])
 
   async function addItemToCart(groceryItem) {
@@ -23,8 +24,10 @@ export function CartProvider({ children }) {
   }
 
   async function getAllCartItems() {
+    setLoading(true)
     const data = await api.fetchCartItems()
     setAllCartItems(data || [])
+    setLoading(false)
   }
 
   async function updateCartItem(updatedCartItem) {
@@ -63,12 +66,14 @@ export function CartProvider({ children }) {
   }
 
   async function getAllCartLogs() {
+    setLoading(true)
     try {
       const result = await api.fetchCartLogs()
       setAllCartLogs(result)
     } catch (error) {
       console.log(error.message)
     }
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -79,6 +84,7 @@ export function CartProvider({ children }) {
     setAllCartItems,
     allCartItems,
     allCartLogs,
+    loading,
     addItemToCart,
     getAllCartItems,
     updateCartItem,
@@ -95,9 +101,10 @@ export function CartProvider({ children }) {
 }
 
 const useCart = () => {
-  const { allCartItems, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
+  const { allCartItems, loading, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
 
   return {
+    loading,
     setAllCartItems,
     allCartItems,
     allCartLogs,

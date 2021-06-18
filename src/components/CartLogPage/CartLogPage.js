@@ -4,12 +4,14 @@ import cartImg from "../../images/cart.svg";
 import useCart from "../../context/CartContext/CartContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import CartLogItem from "./CartLogItem/CartLogItem"
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import useStyles from "./styles.js";
 
 const CartLogPage = () => {
   const classes = useStyles();
 
-  const { getAllCartLogs, allCartLogs } = useCart()
+  const { getAllCartLogs, allCartLogs, loading } = useCart()
 
   const renderEmptyCart = () => {
     return (
@@ -32,28 +34,33 @@ const CartLogPage = () => {
 
   return (
     <div className={classes.logsView}>
-      {allCartLogs.length === 0 ? (
-        renderEmptyCart()
-      ) : (
+      {loading
+        ?
+        <CircularProgress />
+        :
         <>
-          <div className={classes.cartLogs}>
-            {allCartLogs.map(list => {
-              let totalCost = list.reduce(
-                (total, item) =>
-                (total +=
-                  item.quantity * parseFloat(item.purchase_price)),
-                0
-              )
-              return (
-                <div className={classes.cartLog}>
-                  {list.map(cartItem => <CartLogItem cartLogItem={cartItem} />)}
-                  <p>Total: ${totalCost} ({list.length} items)</p>
-                </div>
-              )
-            })}
-          </div>
-        </>
-      )}
+          {allCartLogs.length === 0 ? (
+            renderEmptyCart()
+          ) : (
+            <>
+              <div className={classes.cartLogs}>
+                {allCartLogs.map(list => {
+                  let totalCost = list.reduce(
+                    (total, item) =>
+                    (total +=
+                      item.quantity * parseFloat(item.purchase_price)),
+                    0
+                  )
+                  return (
+                    <div className={classes.cartLog}>
+                      {list.map(cartItem => <CartLogItem cartLogItem={cartItem} />)}
+                      <p>Total: ${totalCost} ({list.length} items)</p>
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          )}</>}
     </div>
   );
 };

@@ -7,12 +7,13 @@ import ReccomendedWidget from "../RecommendedWidget/RecommendedWidget";
 import useCart from "../../context/CartContext/CartContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import groupItemsByCategory from "./groupItemsByCategory"
+import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from "./styles.js";
 
 const CartPage = () => {
   const classes = useStyles();
 
-  const { getAllCartItems, allCartItems } = useCart()
+  const { getAllCartItems, allCartItems, loading } = useCart()
 
   const renderEmptyCart = () => {
     return (
@@ -37,17 +38,24 @@ const CartPage = () => {
 
   return (
     <div className={classes.cartView}>
-      {allCartItems.length === 0 ? (
-        renderEmptyCart()
-      ) : (
-        <>
-          <CartHeader cartItems={allCartItems} />
-          <div className={classes.userCart}>
-            {sortedCart !== null &&
-              sortedCart.map((item, i) => <CartItem key={i} cartItem={item} />)}
-          </div>
-        </>
-      )}
+      {loading
+        ?
+        <CircularProgress />
+        :
+        <>{
+          allCartItems.length === 0 ? (
+            renderEmptyCart()
+          ) : (
+            <>
+              <CartHeader cartItems={allCartItems} />
+              <div className={classes.userCart}>
+                {sortedCart !== null &&
+                  sortedCart.map((item, i) => <CartItem key={i} cartItem={item} />)}
+              </div>
+            </>
+          )
+        }</>
+      }
 
       <ReccomendedWidget />
     </div>
