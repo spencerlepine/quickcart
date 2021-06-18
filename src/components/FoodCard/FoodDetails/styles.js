@@ -12,6 +12,8 @@ export default makeStyles(() => ({
     zIndex: "200",
   },
   popupElement: {
+    maxHeight: "70%",
+    overflowY: "scroll",
     "visibility": "visible",
     "opacity": "1",
     "margin": "70px auto",
@@ -25,6 +27,7 @@ export default makeStyles(() => ({
     height: "fit-content",
   },
   productGrid: {
+    marginTop: "1em",
     display: "grid",
     gridTemplateColumns: "40% auto",
     justifyContent: "space-around",
@@ -35,13 +38,14 @@ export default makeStyles(() => ({
     },
   },
   productImage: {
+    maxWidth: "200px",
     "@media (max-width:900px)": {
       width: "70%",
     },
     margin: "auto",
     objectFit: "cover",
     maxHeight: "250px",
-    minHeight: "100px",
+    minHeight: "200px",
     columnFill: "auto",
     "gridRowStart": "1",
     "gridRowEnd": "2"
@@ -86,6 +90,7 @@ export default makeStyles(() => ({
     touchAction: "manipulation",
     fontWeight: "200",
     color: "white",
+    height: "fit-content",
     whiteSpace: "nowrap",
     userSelect: "none",
     webkitFontSmoothing: "antialiased",
@@ -115,6 +120,7 @@ export default makeStyles(() => ({
     fontWeight: "400",
     color: "rgb(241 154 47)",
     whiteSpace: "nowrap",
+    height: "fit-content",
     userSelect: "none",
     webkitFontSmoothing: "antialiased",
     backgroundImage: "none",
@@ -122,7 +128,7 @@ export default makeStyles(() => ({
     alignItems: "center",
     zIndex: "2",
     padding: "10px 20px 10px 20px",
-    margin: " 5px auto 5px auto",
+    margin: " 1em auto 1em auto",
     justifyContent: "center",
     "&:hover": {
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 0px 4px",
@@ -137,13 +143,14 @@ export default makeStyles(() => ({
     },
   },
   foodPrice: {
+    float: "right",
+    display: "block",
     "@media (max-width:900px)": {
       float: "right",
     },
     "color": "#929292",
     width: "fit-content",
     "fontWeight": "400",
-    display: "block",
     "margin": "auto",
     "fontSize": "1.7em"
   },
@@ -158,8 +165,20 @@ export default makeStyles(() => ({
     "width": "fit-content",
     "padding": "0.3em",
     "margin": "1px",
-    "border": "1px solid white",
     "color": "#4f4d4b",
     "borderRadius": "5px"
+  },
+  nutritionDetials: {
+    margin: "auto",
+    // width: "100%",
+    maxWidth: "400px",
+    gridColumnStart: 1,
+    gridColumnEnd: 2,
+    minWidth: "300px",
+  },
+  extraDetials: {
+    backgroundColor: "#dcdfe1",
+    borderRadius: "6px",
+    padding: "10px",
   },
 }));

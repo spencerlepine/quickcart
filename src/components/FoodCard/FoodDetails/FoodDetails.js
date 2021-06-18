@@ -8,6 +8,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PriceIndicator from "./PriceIndicator"
 import useStyles from "./styles"
+import { NutritionLabel } from "react-fda-nutrition-facts"
 
 const FoodDetails = ({ groceryItem, handleAdd }) => {
   const classes = useStyles()
@@ -42,13 +43,17 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
               className={`${classes.servingCost} ${classes.productSpecification}`}
               priceInt={servingPrice} />
 
-            <p className={`${classes.foodBrand} ${classes.productSpecification}`}>
-              {groceryItem.brand}
-            </p>
+            <br />
 
-            <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
-              Size: {groceryItem.purchase_size}
-            </p>
+            <div className={classes.extraDetials}>
+              <p className={`${classes.foodBrand} ${classes.productSpecification}`}>
+                {groceryItem.brand}
+              </p>
+
+              <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
+                Size: {groceryItem.purchase_size}
+              </p>
+            </div>
           </div>
 
           <Rating
@@ -60,20 +65,41 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
             className={classes.productRating}
           />
 
-          <button className={classes.addButton}
-            onClick={handleAdd}>
-            <span className={classes.cartIcon}><AddShoppingCartIcon /></span>
-            ADD TO CART
-          </button>
+          <p></p>
 
           <button className={classes.editButton}
             onClick={handleEdit}>
             Edit Item
           </button>
 
-          <p className={classes.groceryUPC}>
-            {groceryItem.upc_code}
-          </p>
+          <button className={classes.addButton}
+            onClick={handleAdd}>
+            <span className={classes.cartIcon}><AddShoppingCartIcon /></span>
+            ADD TO CART
+          </button>
+
+
+          <p></p>
+        </div>
+        <div className={classes.nutritionDetials}>
+          <NutritionLabel
+            servingSize={'1 cup (228g)'}
+            servingsPerContainer={2}
+            calories={260}
+            totalFat={13}
+            saturatedFat={5}
+            transFat={2}
+            cholesterol={30}
+            sodium={660}
+            totalCarbs={31}
+            dietaryFiber={0}
+            sugars={5}
+            protein={5}
+            vitaminA={4}
+            vitaminC={2}
+            calcium={15}
+            iron={4}
+          />
         </div>
       </div>
     </div>

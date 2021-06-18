@@ -48,7 +48,7 @@ const formatGroceryObj = (resultObj = {}) => {
     ingredients: itemIngredients,
     nutriscore_data: itemNutriscoreData,
     nutriscore_data_per: itemNutriscoreDataPer,
-    nutriscore_data_prepared: itemNutriscoreDataPreparedPer,
+    nutriscore_data_prepared_per: itemNutriscoreDataPreparedPer,
     quantity: itemQuantity,
     serving_size: itemServingSize,
     serving_quantity: ItemServingQuantity,

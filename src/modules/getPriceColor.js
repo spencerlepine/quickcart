@@ -1,6 +1,8 @@
 const getPriceColor = (priceFloat) => {
-    if (priceFloat <= 0.10) {
-        return "green" 
+    if (priceFloat <= 0.01) {
+        return "#949494"
+    } else if (priceFloat <= 0.10) {
+        return "green"
     } else if (priceFloat <= 0.20) {
         return "#9bb31c"
     } else if (priceFloat <= 0.30) {
@@ -9,7 +11,7 @@ const getPriceColor = (priceFloat) => {
         return "#b3851c"
     } else if (priceFloat <= 0.50) {
         return "#b3471c"
-    }  else if (priceFloat > 0.50) {
+    } else if (priceFloat > 0.50) {
         return "#7b2909"
     }
 }
