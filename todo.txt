@@ -1,50 +1,52 @@
 # To do:
-- more indications 
-- add search bar to browse page
-- Refactor gorcery items to follow OFF conventions (key constants)
-- ONLY REFERENCE ITEMS BY ID (Not full name with spaces)
-  - save names to cart logs for consistency
-- Left off:
- - clean up FormContext, FormPage, DatabaseForm, SearchResults
- - food grade
- - styling the search cards
- 
- - OpenSourceFood for searching and adding groceries
-   - add grocery by scanning barcode
-   - Basically fetch grocery data, then save a copy to user account
-     - user can modify the data further based on their own use
-   - https://www.npmjs.com/package/scandit-sdk-react
-   - https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#get-search-scenario
-   
-- Get UI idea from Yuka onboarding item form (price, name, category, price, serving price)
+- message for missing field value
+- expand on click to show ingredients
+- put image into square with canvas (crop image and make it always a square)
+- Food details
+  - show food grade
+  - show eco score
+  - show ingredients?
+- Search product by UPC code
+- Product Onboarding experience:
+  - Search item in BrowseGroceries, prompt (can't find item? search here (link to search))
+  - Fill in details from search (missing feild? Search for product here)
+- Sort items in cart and make categories clear
+- Tell which food groups you still need to buy (progress circles? Lots of veggies, not enough fruit)
+- Improve cart logs:
+ - load more button to view further back
+ - add graphs visualize
+  - Cart logs
+    - Admin can view cart data
+      - admin can create charts + graphs
+      - see most categories
+      - see average spending per week
+      - see money spent per Category
+      - most popular items
+      - count purchase per item with a countObj
+    - Display cart logs for the user?
+      - list with DATE, TOTAL_PRICE, GROCERY_COUNT
+        - dropdown button showing list of name, price, category
 
-- Merge login form
-- Merge sign-up form
+- Features:
+ - Explanation on home page
+   - Combination between Yuka, Instacart, and a To-do list
+   - Help yourself budget while grocery shopping
+   - Cycle through groceries and eat a variety
+   - view nutrional data and eco score
+ - Highlight/Mark a grocery found in cart
+ - Recipes (connected with ids)
+  - add a purchase item to a recipe, enter how many servings
+  - estimate recipe costs,
+  - add RECIPE to cart to automatically add all necesarry purchases
 
-- Implement Loading for every Context
-- Make sure currentId is reset
-- Make sure showExitPrompt is reset (no leave-page prompts everywhere)
+- Bugs:
+ - remove useExitPrompt
+ - load up groceries on re-login (uid is still undefined at the start (just add the await keyword))
+ - import will create seemingly 'duplicate' items
+ - search database for existing similar items?
+ - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
+  - try to search the database with an item close to that name
+   - fill in the id for that log
 
-Upcoming features:
-- Searchbar
-- Screenshots and Explanation on WelcomePage
+Extra:
 - Feedback page with reviews and message submission form?
-- Mark done in cart as you shop
-- Recipes (connected with ids)
-- Cart logs
-  - Admin can view cart data
-    - admin can create charts + graphs
-    - see most categories
-    - see average spending per week
-    - see money spent per Category
-    - most popular items
-    - count purchase per item with a countObj
-  - Display cart logs for the user?
-    - list with DATE, TOTAL_PRICE, GROCERY_COUNT
-      - dropdown button showing list of name, price, category
-      - don't track quantity
-
-Bugs:
-    - add button going off right side of screen on mobile (LoadingSkeletons are larger than FoodCard cells)
-    - crop input images, don't smoosh em
-    - import is broken

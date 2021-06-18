@@ -94,6 +94,7 @@ export function GroceriesProvider({ children }) {
     updateGroceryItem,
     deleteGroceryItem,
     setTotalGroceryCount,
+    fetchTotalGroceryCount,
   }
 
   return (
@@ -104,10 +105,11 @@ export function GroceriesProvider({ children }) {
 }
 
 const useGroceries = () => {
-  const { loading, setAllGroceryItems, setTotalGroceryCount, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
+  const { loading, setAllGroceryItems, fetchTotalGroceryCount, setTotalGroceryCount, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
 
   return {
     setAllGroceryItems,
+    fetchTotalGroceryCount,
     setTotalGroceryCount,
     loading,
     totalGroceryCount,

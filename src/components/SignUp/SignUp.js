@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
 import { LOGIN } from "../../constants/routeConstants"
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import useAuth from "../../context/AuthContext/AuthContext"
 import useNotification from "../../context/NotificationContext/NotificationContext"
+import useGroceries from "../../context/GroceriesContext/GroceriesContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles"
@@ -12,8 +11,8 @@ import useStyles from "./styles"
 function SignUp() {
   const classes = useStyles()
   const { signupUser } = useAuth()
-  const { setCurrentNotification } = useNotification()  
-  
+  const { setCurrentNotification } = useNotification()
+  const { fetchTotalGroceryCount } = useGroceries()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("")
@@ -34,6 +33,8 @@ function SignUp() {
     if (validateForm()) {
       try {
         await signupUser(displayName, email, password)
+        // start loading the app
+        fetchTotalGroceryCount()
       } catch {
         setCurrentNotification("Invalid email or password", "Please try again", "danger")
       }
@@ -82,7 +83,7 @@ function SignUp() {
       <hr />
       <p className={classes.accountMessage}>Already have an account?</p>
       <div className={classes.accountRedirect}>
-        <Link to="/login">Log in</Link>
+        <Link to={LOGIN}>Log in</Link>
       </div>
     </div>
   );

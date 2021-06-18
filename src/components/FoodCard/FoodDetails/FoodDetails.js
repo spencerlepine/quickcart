@@ -91,7 +91,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
             saturatedFat={nutFacts["saturated-fat"] || 0}
             transFat={nutFacts["trans_fat"] || 0}
             cholesterol={nutFacts.cholesterol || 0}
-            sodium={nutFacts.sodium}
+            sodium={nutFacts.sodium || 0}
             totalCarbs={nutFacts["carbohydrates_serving"] || 0}
             dietaryFiber={nutFacts["fiber"] || 0}
             sugars={nutFacts.sugars || 0}

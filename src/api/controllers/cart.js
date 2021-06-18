@@ -147,6 +147,8 @@ export const fetchCartLogs = async () => {
       .limit(10)
       .get()
 
+    console.log(dateLogs ? dateLogs.length : "was undefined")
+
     const cartLogData = []
     for (let i = 0; i < dateLogs.length; i++) {
       const dateData = []
