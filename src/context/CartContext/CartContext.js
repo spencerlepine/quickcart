@@ -11,7 +11,7 @@ export function CartProvider({ children }) {
     const data = await api.addToCart(groceryItem)
 
     // Is this already in the cart?
-    if (allCartItems.any(item => item["_id"] === groceryItem["_id"])) {
+    if (allCartItems.some(item => item["_id"] === groceryItem["_id"])) {
       // Update the existing list
       setAllCartItems(prevList => {
         return prevList.map(item => item["_id"] === groceryItem["_id"] ? groceryItem : item)
