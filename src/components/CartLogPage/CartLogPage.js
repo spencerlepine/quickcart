@@ -3,7 +3,7 @@ import EmptyPrompt from "../EmptyPrompt/EmptyPrompt";
 import cartImg from "../../images/cart.svg";
 import useCart from "../../context/CartContext/CartContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-import CartLogItem from "./CartLogItem"
+import CartLogItem from "./CartLogItem/CartLogItem"
 import useStyles from "./styles.js";
 
 const CartLogPage = () => {
@@ -37,11 +37,20 @@ const CartLogPage = () => {
       ) : (
         <>
           <div className={classes.cartLogs}>
-            {allCartLogs.map(list => (
-              <div className={classes.cartLog}>
-                {list.map(cartItem => <CartLogItem cartLogItem={cartItem} />)}
-              </div>
-            ))}
+            {allCartLogs.map(list => {
+              let totalCost = list.reduce(
+                (total, item) =>
+                (total +=
+                  item.quantity * parseFloat(item.purchase_price)),
+                0
+              )
+              return (
+                <div className={classes.cartLog}>
+                  {list.map(cartItem => <CartLogItem cartLogItem={cartItem} />)}
+                  <p>Total: ${totalCost} ({list.length} items)</p>
+                </div>
+              )
+            })}
           </div>
         </>
       )}

@@ -88,10 +88,12 @@ export function GroceriesProvider({ children }) {
   const value = {
     loading,
     allGroceryItems,
+    setAllGroceryItems,
     totalGroceryCount,
     createGroceryItem,
     updateGroceryItem,
     deleteGroceryItem,
+    setTotalGroceryCount,
   }
 
   return (
@@ -102,9 +104,11 @@ export function GroceriesProvider({ children }) {
 }
 
 const useGroceries = () => {
-  const { loading, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
+  const { loading, setAllGroceryItems, setTotalGroceryCount, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
 
   return {
+    setAllGroceryItems,
+    setTotalGroceryCount,
     loading,
     totalGroceryCount,
     allGroceryItems,

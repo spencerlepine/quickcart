@@ -76,6 +76,7 @@ export function CartProvider({ children }) {
   }, [])
 
   const value = {
+    setAllCartItems,
     allCartItems,
     allCartLogs,
     addItemToCart,
@@ -94,9 +95,10 @@ export function CartProvider({ children }) {
 }
 
 const useCart = () => {
-  const { allCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
+  const { allCartItems, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
 
   return {
+    setAllCartItems,
     allCartItems,
     allCartLogs,
     addItemToCart,

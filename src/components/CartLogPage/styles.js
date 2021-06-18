@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
-  logView: {
+  logsView: {
     maxWidth: "700px",
     marginTop: "1%",
     marginBottom: "1vh",
@@ -25,6 +25,7 @@ export default makeStyles(() => ({
   },
   cartLog: {
     border: "1px solid black",
+    margin: "1em 0 1em 0",
   },
   logsView: {
     margin: "auto",
