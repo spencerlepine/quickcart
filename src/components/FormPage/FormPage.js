@@ -18,6 +18,7 @@ import ClearButton from "./ClearButton"
 import categoryDropdown from "./categoryDropdown"
 import formatGroceryObj from "../../modules/formatGroceryObj"
 import InputField from "./InputField"
+import toTitleCase from "../../modules/toTitleCase";
 
 const FormPage = () => {
   const history = useHistory();
@@ -126,15 +127,6 @@ const FormPage = () => {
         <div className={classes.itemDetails}>
           {InputField(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
 
-          <div><label className={classes.divLabel}>Unit Size</label>
-            {InputField(thisGrocery, handleChange, "purchase_size", "Dozen", classes.itemSize)}</div>
-
-          <div className={classes.dollarSign}>
-            <label className={classes.divLabel}>Purchase Price</label>
-            <p className={classes.priceIndicator}>$</p>
-            {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
-          </div>
-
           <div className={classes.itemCategory}>
             <label className={classes.divLabel}>Category</label>
             <br />
@@ -152,10 +144,16 @@ const FormPage = () => {
             <button onClick={handleAddCategory} className={classes.newCategoryBtn}>+</button>
           </div>
 
-          <div className={`${classes.dollarSign} ${classes.itemServing}`}>
-            <label className={classes.divLabel}>Serving Cost:</label>
-            <p className={classes.priceIndicator}>$</p>
-            {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
+          <div className={classes.itemPriority}>
+            <label>Preference</label>
+            <br />
+            <Rating
+              name="priority"
+              value={parseInt(thisGrocery.priority)}
+              precision={1}
+              emptyIcon={<StarBorderIcon fontSize="inherit" />}
+              onChange={handleChange}
+            />
           </div>
 
           {editSelection ? (
@@ -184,51 +182,51 @@ const FormPage = () => {
 
           <hr /><hr />
 
-          <div className={classes.itemPriority}>
-            <label>Priority</label>
-            <br />
-            <Rating
-              name="priority"
-              value={parseInt(thisGrocery.priority)}
-              precision={1}
-              emptyIcon={<StarBorderIcon fontSize="inherit" />}
-              onChange={handleChange}
-            />
-          </div>
+          <div className={classes.importantFields}>
+            <div className={classes.dollarSign}>
+              <label className={classes.divLabel}>Purchase Price</label>
+              <p className={classes.priceIndicator}>$</p>
+              {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
+            </div>
 
-          <div className={classes.itemDate}>
-            <TextField
-              name="last_purchased"
-              label="Last Purchased"
-              type="date"
-              value={thisGrocery.last_purchased}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            />
-          </div>
+            <div className={`${classes.dollarSign} ${classes.itemServing}`}>
+              <label className={classes.divLabel}>Serving Cost:</label>
+              <p className={classes.priceIndicator}>$</p>
+              {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
+            </div>
 
-          <hr /><hr />
-          {/*----------------------------------*/}
-          {Object.keys(schema).map(key =>
-          (<div key={key}><label className={classes.divLabel}>{key}</label>
-            <TextField
-              className={classes.itemSize}
-              onChange={handleChange}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name={key}
-              placeholder={key}
-              disabled={!(typeof thisGrocery[key] === "string" || typeof thisGrocery[key] === "number")}
-              value={thisGrocery[key]}
-            /></div>)
-          )}
-          {/*----------------------------------*/}
+            <div className={classes.itemDate}>
+              <TextField
+                name="last_purchased"
+                label="Last Purchased"
+                type="date"
+                value={thisGrocery.last_purchased}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
+        {/*----------------------------------*/}
+        {Object.keys(schema).map(key =>
+        (<div key={key} className={classes.productField}><label className={classes.divLabel}>{toTitleCase(key)}</label>
+          <TextField
+            className={classes.itemSize}
+            onChange={handleChange}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name={key}
+            placeholder={key}
+            disabled={!(typeof thisGrocery[key] === "string" || typeof thisGrocery[key] === "number")}
+            value={thisGrocery[key]}
+          /></div>)
+        )}
+        {/*----------------------------------*/}
       </form>
     </div>
   );

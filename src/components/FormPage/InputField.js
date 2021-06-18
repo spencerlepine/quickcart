@@ -1,4 +1,5 @@
 import TextField from "@material-ui/core/TextField";
+import toTitleCase from "../../modules/toTitleCase";
 
 const InputField = (thisGrocery, handleChange, name, placeholder, thisClass = "") => (
   <TextField
@@ -9,7 +10,7 @@ const InputField = (thisGrocery, handleChange, name, placeholder, thisClass = ""
     required
     fullWidth
     name={name}
-    placeholder={placeholder || name}
+    placeholder={toTitleCase(placeholder || name)}
     value={thisGrocery[name]}
   />
 );

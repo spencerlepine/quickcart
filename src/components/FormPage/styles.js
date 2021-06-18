@@ -83,7 +83,10 @@ export default makeStyles((theme) => ({
     },
   },
   itemPrice: {
+    margin: "auto",
     "& input": {
+      width: "fit-content",
+      margin: "auto",
       fontSize: "26px",
       lineHeigt: "26px",
       fontWeight: "700",
@@ -99,13 +102,16 @@ export default makeStyles((theme) => ({
     bottom: "15px",
   },
   itemPriority: {
-    margin: "inherit",
+    // width: "fit-content",
+    // marginLeft: "auto",
+    // marginRight: "1.5em",
+    justifySelf: "center",
   },
   dollarSign: {
     position: "relative",
-    width: "50%",
-    minWidth: "110px",
-    marginLeft: "auto",
+    minWidth: "100px",
+    width: "100px",
+    margin: "auto",
     "& div": {
       marginTop: "0",
     },
@@ -115,6 +121,9 @@ export default makeStyles((theme) => ({
     padding: "0",
     color: "#403e3e",
   },
+  productField: {
+    marginTop: "0.5em",
+  },
   itemServing: {
     color: "#3c78a5",
     "& input": {
@@ -122,8 +131,10 @@ export default makeStyles((theme) => ({
     },
   },
   itemDate: {
+    gridColumnStart: 1,
+    gridColumnEnd: 3,
     width: "fit-content",
-    marginLeft: "auto",
+    margin: "auto",
   },
   updateButton: {
     marginTop: "15px",
@@ -191,5 +202,14 @@ export default makeStyles((theme) => ({
   },
   itemCategory: {
     position: "relative",
+    justifySelf: "center",
   },
+  importantFields: {
+    gridColumnStart: "1",
+    gridColumnEnd: "3",
+    border: "2px solid #d8d8d8",
+    backgroundColor: "#f0f4f7",
+    display: "flex",
+    padding: "1em",
+  }
 }))
