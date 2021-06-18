@@ -19,27 +19,27 @@ const history = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={history}>
-    <FoodFactsProvider>
-      <NotificationProvider>
-        <RecommendedProvider>
-          <GroceriesProvider>
-            <CartProvider>
-              <SearchProvider>
-                <FormProvider>
-                  <ProductOnboardProvider>
-                    <CategoriesProvider>
-                      <AuthProvider>
+    <AuthProvider>
+      <FoodFactsProvider>
+        <NotificationProvider>
+          <RecommendedProvider>
+            <GroceriesProvider>
+              <CartProvider>
+                <SearchProvider>
+                  <FormProvider>
+                    <ProductOnboardProvider>
+                      <CategoriesProvider>
                         <App />
-                      </AuthProvider>
-                    </CategoriesProvider>
-                  </ProductOnboardProvider>
-                </FormProvider>
-              </SearchProvider>
-            </CartProvider>
-          </GroceriesProvider>
-        </RecommendedProvider>
-      </NotificationProvider>
-    </FoodFactsProvider>
+                      </CategoriesProvider>
+                    </ProductOnboardProvider>
+                  </FormProvider>
+                </SearchProvider>
+              </CartProvider>
+            </GroceriesProvider>
+          </RecommendedProvider>
+        </NotificationProvider>
+      </FoodFactsProvider>
+    </AuthProvider>
   </Router >,
   document.getElementById('root')
 );

@@ -33,6 +33,8 @@ export const fetchGroceryCount = async () => {
       .doc("totalCount")
       .get()
 
+    console.log(countResult.data())
+
     const data = countResult.data()
     const totalCount = data ? data.totalCount : 0
 
