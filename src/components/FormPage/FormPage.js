@@ -194,20 +194,6 @@ const FormPage = () => {
               <p className={classes.priceIndicator}>$</p>
               {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
             </div>
-
-            <div className={classes.itemDate}>
-              <TextField
-                name="last_purchased"
-                label="Last Purchased"
-                type="date"
-                value={thisGrocery.last_purchased}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleChange}
-              />
-            </div>
           </div>
         </div>
         {/*----------------------------------*/}
@@ -227,6 +213,20 @@ const FormPage = () => {
           /></div>)
         )}
         {/*----------------------------------*/}
+
+        <div className={classes.itemDate}>
+          <TextField
+            name="last_purchased"
+            label="Last Purchased"
+            type="date"
+            value={thisGrocery.last_purchased}
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+          />
+        </div>
       </form>
     </div>
   );

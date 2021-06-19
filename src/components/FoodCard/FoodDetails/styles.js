@@ -21,7 +21,7 @@ export default makeStyles(() => ({
     "background": "#fff",
     "borderRadius": "5px",
     "width": "60%",
-    "transition": "all 5s ease-in-out",
+    "transition": "all 1s ease-in-out",
     minWidth: "300px",
     minHeight: "70vh",
     height: "fit-content",
@@ -176,5 +176,6 @@ export default makeStyles(() => ({
     backgroundColor: "#dcdfe1",
     borderRadius: "6px",
     padding: "10px",
+    marginTop: "0.5em",
   },
 }));

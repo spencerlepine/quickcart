@@ -85,6 +85,7 @@ export default makeStyles((theme) => ({
   itemPrice: {
     margin: "auto",
     "& input": {
+      background: "white",
       width: "fit-content",
       margin: "auto",
       fontSize: "26px",
@@ -99,7 +100,7 @@ export default makeStyles((theme) => ({
     margin: "0",
     padding: "0",
     left: "-15px",
-    bottom: "15px",
+    bottom: "6px",
   },
   itemPriority: {
     // width: "fit-content",
@@ -135,6 +136,7 @@ export default makeStyles((theme) => ({
     gridColumnEnd: 3,
     width: "fit-content",
     margin: "auto",
+    padding: "1em",
   },
   updateButton: {
     marginTop: "15px",
