@@ -10,4 +10,15 @@ export default makeStyles(() => ({
     textAlign: "center",
     lineHeight: "1.5em",
   },
+  searchImg: {
+    maxHeight: "200px",
+    maxWidth: "200px"
+  },
+  homeLink: {
+    color: "rgb(67, 176, 42)",
+    textDecoration: "none",
+  },
+  searchMessage: {
+    color: "rgb(114, 118, 12)",
+  },
 }))
