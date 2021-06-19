@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     padding: "0.5em",
     minWidth: "160px",
     maxWidth: "200px",
-    height: "225px",
+    // height: "225px",
     cursor: "pointer",
     position: "relative",
     width: "12vh",
@@ -15,13 +15,17 @@ export default makeStyles(() => ({
     fontFamily:
       "Eina, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     "& img": {
-      "display": "block",
+      // "display": "block",
       "maxWidth": "17vh",
       "maxHeight": "140px",
       "width": "auto",
       "height": "auto",
-      margin: "auto",
-      padding: "10px",
+      "margin": "0",
+      "position": "absolute",
+      "top": "50%",
+      "left": "50%",
+      "MsTransform": "translate(-50%, -50%)",
+      "transform": "translate(-50%, -50%)"
     },
     "& h4": {
       color: "#000",
@@ -29,6 +33,9 @@ export default makeStyles(() => ({
       fontWeight: "600",
       marginBottom: "0",
       maxWidth: "150px",
+      maxHeight: "18px",
+      overflow: "hidden",
+      marginTop: "10px",
     },
     "& p": {
       padding: "1px 5px 1px 0px",
@@ -91,4 +98,12 @@ export default makeStyles(() => ({
     marginBottom: "5px !important",
     overflowWrap: "anywhere",
   },
+  imageContainer: {
+    "width": "17vh",
+    height: "17vh",
+    position: "relative",
+    "maxHeight": "140px",
+    padding: "10px",
+    margin: "auto",
+  }
 }));

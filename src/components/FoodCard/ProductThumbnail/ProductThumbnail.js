@@ -11,7 +11,9 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
 
   return (
     <div className={classes.foodCard}>
-      <img alt={groceryItem.name} src={groceryItem.image}></img>
+      <div className={classes.imageContainer}>
+        <img alt={groceryItem.name} src={groceryItem.image}></img>
+      </div>
       <h4 className={classes.foodName}>{groceryItem.name}</h4>
 
       <p className={classes.foodPrice} style={{ color: getPriceColor(groceryItem.serving_cost) }}>
