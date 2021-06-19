@@ -4,7 +4,7 @@ export default makeStyles(() => ({
   foodCard: {
     backgroundColor: "#fff",
     padding: "0.5em",
-    minWidth: "140px",
+    minWidth: "160px",
     maxWidth: "200px",
     height: "225px",
     cursor: "pointer",
@@ -16,7 +16,7 @@ export default makeStyles(() => ({
       "Eina, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     "& img": {
       "display": "block",
-      "maxWidth": "140px",
+      "maxWidth": "17vh",
       "maxHeight": "140px",
       "width": "auto",
       "height": "auto",

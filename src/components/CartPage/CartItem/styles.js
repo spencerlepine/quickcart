@@ -2,33 +2,36 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   cartItem: {
-    paddingTop: "5px",
-    paddingBottom: "5px",
+    paddingTop: "10px",
+    paddingBottom: "10px",
     display: "flex",
     // borderBottom: "1px solid lightgray",
     '&:hover': {
       backgroundColor: "whitesmoke",
     },
   },
-  itemPrice: {
-    marginLeft: "auto",
-    marginRight: "5px",
-    // color: "#008643",
+  itemSize: {
+    maxWidth: "200px",
+    textWrap: "anywhere",
+    margin: "0.25em",
+    color: "rgb(140 140 140)",
     fontSize: "14px",
-    color: "rgb(66, 66, 66)",
     "@media (max-width: 900px)": {
-      color: "rgb(66, 66, 66)",
       fontSize: "14px",
     },
   },
   itemName: {
-    fontSize: "14px",
+    maxWidth: "180px",
+    overflow: "hidden",
+    whiteSpace: "wrap",
+    fontWeight: "600",
+    display: "inline",
+    fontSize: "18",
     marginRight: "auto",
-    minWidth: "82px",
-    color: "rgb(50, 50, 50)",
+    color: "black",
     "@media (max-width: 900px)": {
       color: "rgb(50, 50, 50)",
-      fontSize: "14px",
+      fontSize: "18px",
     },
   },
   itemCount: {
@@ -50,21 +53,13 @@ export default makeStyles((theme) => ({
     },
   },
   btn: {
-    // width: "1em",
-    // height: "100%",
-    // margin: "auto 5px",
-    // lineHeight: "1em",
-    // fontSize: "2em",
-    // fontWeight: "bold",
-    // textAlign: "center",
-    // color: "#43ace3",
-    // display: "inline-block",
     textAlign: "center",
     position: "relative",
     cursor: "pointer",
     height: "44px",
+    marginTop: "auto",
+    marginBottom: "auto",
     width: "40px",
-    // border: "1px solid rgb(224, 224, 224)",
     fontFamily: 'Eina, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     padding: "0px",
     lineHeight: "40px",
@@ -78,20 +73,34 @@ export default makeStyles((theme) => ({
       backgroundColor: "rgb(247, 247, 247)",
     },
   },
-  delete: {
-    width: "1.3em",
-    height: "100%",
-    color: "#ff6363",
-    margin: "auto 5px",
-    fontSize: "1.5em",
-    textAlign: "center",
+  deleteBtn: {
+    marginLeft: "auto",
   },
   itemImage: {
-    width: "50px",
-    height: "50px",
+    width: "auto",
+    maxWidth: "80px",
+    margin: "auto",
+    height: "80px",
+    display: "block",
+  },
+  itemInfo: {
+    margin: "auto",
+    marginLeft: "0.5em",
+    minWidth: "100px",
+    width: "auto",
+    display: "inline",
+  },
+  imageContainer: {
+    backgroundColor: "#e6e6e6",
     marginRight: "20px",
+    width: "80px",
     "@media (max-width: 600px)": {
       marginRight: "5px",
     },
   },
+  itemPrice: {
+    "color": "#4284ff",
+    "height": "fit-content",
+    "margin": "auto"
+  }
 }))

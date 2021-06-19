@@ -10,8 +10,8 @@ export default makeStyles(() => ({
     color: "rgb(57, 57, 57)",
     textShadow: "1px 1px #20a0000f",
     margin: "auto 0 auto auto",
-    fontSize: "16px",
-    fontWeight: "600",
+    fontSize: "18px",
+    fontWeight: "500",
   },
   orderButton: {
     width: "fit-content",

@@ -36,12 +36,20 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <div className={classes.cartItem}>
-      <img className={classes.itemImage} src={cartItem.image} alt={cartItem.name}></img>
-      <p className={classes.itemName}>{cartItem.name}</p>
-      <p className={classes.itemPrice}>
-        {itemPrice}
-      </p>
-      <div className={classes.btn} onClick={() => handleDecrement(cartItem)}>
+      <div className={classes.imageContainer}>
+        <img className={classes.itemImage} src={cartItem.image} alt={cartItem.name}></img>
+      </div>
+      <div className={classes.itemInfo}>
+        <p className={classes.itemName}>{cartItem.name}</p>
+        <p className={classes.itemSize}>
+          ({cartItem.unit_size})
+          <span className={classes.itemPrice}>
+            {' - ' + itemPrice}
+          </span>
+        </p>
+      </div>
+
+      <div className={`${classes.btn} ${classes.deleteBtn}`} onClick={() => handleDecrement(cartItem)}>
         -
       </div>
       <p className={classes.itemCount}>{cartItem.quantity}</p>
