@@ -1,6 +1,7 @@
 import { auth, db } from "../firebase.js"
 
 const CATEGORY_KEY = "id"
+const DEFAULT_CATEGORIES = ['fruits', 'vegetables', 'meat', 'bread', 'beverages', 'breakfast', 'canned goods', 'condements', 'dairy', 'desserts', 'grains', 'pantry', 'pasta', 'vegetables', 'snacks', 'dinner']
 
 export const addCategory = async (newCategoryName) => {
   try {
@@ -19,7 +20,7 @@ export const addCategory = async (newCategoryName) => {
           categoryDocRef.set(newCategories)
           return
         }
-    });
+      });
   } catch (error) {
     console.log(error.message)
   }
@@ -35,8 +36,8 @@ export const getGroceryCategories = async () => {
       .collection('userCategories')
       .get()
 
-    let sampleCategories = new Set(['bread', 'beverages', 'breakfast', 'canned goods', 'condements', 'dairy', 'desserts', 'fruit', 'grains', 'pantry', 'pasta', 'vegetables', 'snacks', 'dinner'])
-    
+    let sampleCategories = new Set(DEFAULT_CATEGORIES)
+
     if (categoryCollection.docs.length > 0) {
       categoryCollection.docs.forEach(doc => sampleCategories.add(doc.data()[CATEGORY_KEY]))
     }
