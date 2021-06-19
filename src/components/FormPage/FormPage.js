@@ -19,6 +19,7 @@ import categoryDropdown from "./categoryDropdown"
 import formatGroceryObj from "../../modules/formatGroceryObj"
 import InputField from "./InputField"
 import ProductFields from "./ProductFields/ProductFields"
+import SearchPrompt from "./SearchPrompt/SearchPrompt"
 
 const FormPage = () => {
   const history = useHistory();
@@ -33,6 +34,9 @@ const FormPage = () => {
   const { allCategories, createNewCategory } = useCategories()
   const { setEditSelection, editSelection, searchSelection, setSearchSelection } = useForm()
 
+  const currentlyEditing = !editSelection && !searchSelection
+  const [showPopup, setShowPopup] = useState(!currentlyEditing);
+
   const clearForm = () => {
     setEditSelection(null)
     setThisGrocery(schema);
@@ -46,6 +50,7 @@ const FormPage = () => {
     } else if (searchSelection) {
       setThisGrocery(searchSelection);
     }
+    setShowPopup(!editSelection && !searchSelection)
   }, []);
 
   const handleChange = (event) => {
@@ -119,6 +124,7 @@ const FormPage = () => {
 
   return (
     <div className={classes.formContainer}>
+      <SearchPrompt showPopup={showPopup} setShowPopup={setShowPopup} />
       <ThumbnailInput
         updateImageState={(newImg) => handleChange({ target: { name: "image", value: newImg } })}
         currentImage={thisGrocery.image} />
