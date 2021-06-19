@@ -4,7 +4,7 @@ Make a shopping list with personal grocery data to help budget.
 ## Demo:
 Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123@gmail.com```.
 
-![Grocery App Screenshot](/src/images/screenshot.png)
+![Grocery App Screenshot](/src/images/demo.png)
 
 ## Setup:
 - ```git clone https://github.com/spencerlepine/quickcart.git```
@@ -13,21 +13,22 @@ Visit [here](https://grocery-client-sl.herokuapp.com/) and login with ```demo123
 - ```npm install```
 - ```npm start```
 
-## Features:
-- Create an account
-- Browse grocery item database
-- Add items to cart
-- Submit/Update Grocery items via **/form**
-- View recommended items to buy
-- Search for existing products
-- Search product images
-- Export data to file
-- Import from file
-
 ## Technologies:
 - [React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/)
+- [OpenFoodFacts](https://world.openfoodfacts.org)
+- [Google CSE](https://cse.google.com)
 - [Material-UI](https://material-ui.com/)
+
+## Features:
+- Save grocery items to a database
+- Add custom images and values to each item
+- View recommended items to buy
+- Search for existing products from OpenFoodFacts dump
+- Search product images
+- Export data to file
+- Import from backup file
+- Log cart 'purchases'
 
 ---
 
