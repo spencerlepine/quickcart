@@ -18,7 +18,7 @@ import ClearButton from "./ClearButton"
 import categoryDropdown from "./categoryDropdown"
 import formatGroceryObj from "../../modules/formatGroceryObj"
 import InputField from "./InputField"
-import toTitleCase from "../../modules/toTitleCase";
+import ProductFields from "./ProductFields/ProductFields"
 
 const FormPage = () => {
   const history = useHistory();
@@ -186,33 +186,18 @@ const FormPage = () => {
             <div className={classes.dollarSign}>
               <label className={classes.divLabel}>Purchase Price</label>
               <p className={classes.priceIndicator}>$</p>
-              {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice)}
+              {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice, "number")}
             </div>
 
             <div className={`${classes.dollarSign} ${classes.itemServing}`}>
               <label className={classes.divLabel}>Serving Cost:</label>
               <p className={classes.priceIndicator}>$</p>
-              {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice)}
+              {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice, "number")}
             </div>
           </div>
         </div>
-        {/*----------------------------------*/}
-        {Object.keys(schema).map(key =>
-        (<div key={key} className={classes.productField}><label className={classes.divLabel}>{toTitleCase(key)}</label>
-          <TextField
-            className={classes.itemSize}
-            onChange={handleChange}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name={key}
-            placeholder={key}
-            disabled={!(typeof thisGrocery[key] === "string" || typeof thisGrocery[key] === "number")}
-            value={thisGrocery[key]}
-          /></div>)
-        )}
-        {/*----------------------------------*/}
+
+        <ProductFields thisGrocery={thisGrocery} handleChange={handleChange} />
 
         <div className={classes.itemDate}>
           <TextField

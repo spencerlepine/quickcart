@@ -16,8 +16,11 @@ const filterNutriscoreObj = (resultObj = {}) => {
     if (inputVal) {
       // Check if it is custom
       if (inputVal !== nutriscoreSchema[key]) {
-        // Save the custom value
-        formattedObj[key] = inputVal
+        // Make sure the data type wasn't changed
+        if (typeof nutriscoreSchema[key] === typeof inputVal) {
+          // Save the custom value
+          formattedObj[key] = inputVal
+        }
       } else {
         // Save the defualt value
         formattedObj[key] = nutriscoreSchema[key]
