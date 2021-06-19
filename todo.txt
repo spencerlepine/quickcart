@@ -1,4 +1,5 @@
 # To do:
+- assume pantry items that are over 10 servings per last more than 10 days (not exactly 1 serving everyday)
 - message for missing field value
 - expand on click to show ingredients
 - put image into square with canvas (crop image and make it always a square)
