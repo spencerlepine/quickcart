@@ -39,13 +39,9 @@ export default makeStyles(() => ({
   },
   productImage: {
     maxWidth: "200px",
-    "@media (max-width:900px)": {
-      width: "70%",
-    },
+    maxHeight: "200px",
+    height: "auto",
     margin: "auto",
-    objectFit: "cover",
-    maxHeight: "250px",
-    minHeight: "200px",
     columnFill: "auto",
     "gridRowStart": "1",
     "gridRowEnd": "2"

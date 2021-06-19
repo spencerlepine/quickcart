@@ -1,6 +1,5 @@
 import React from "react"
 import getPriceColor from "../../../modules/getPriceColor"
-import missingImage from "../../../images/missing.jpeg"
 import useStyles from "./styles"
 
 const ProductThumbnail = ({ groceryItem, handleAdd }) => {
