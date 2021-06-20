@@ -105,5 +105,29 @@ export default makeStyles(() => ({
     "maxHeight": "140px",
     padding: "10px",
     margin: "auto",
-  }
+  },
+  expandButton: {
+    display: "inline",
+    position: "absolute",
+    width: "fit-content",
+    color: "gray",
+    right: "25px",
+    '& svg': {
+      fontSize: "20px",
+      "margin": "0",
+      "position": "absolute",
+      "top": "0%",
+      "left": "0",
+      "transform": "translate(0%, 0%)",
+      "MsTransform": "translate(0%, 0%)",
+    }
+  },
+  infoText: {
+    display: "inline",
+    "margin": "0",
+    "position": "absolute",
+    "left": "80%",
+    "transform": "translate(80%, 0%)",
+    "MsTransform": "translate(80%, 0%)",
+  },
 }));

@@ -1,5 +1,6 @@
 import React from "react"
 import getPriceColor from "../../../modules/getPriceColor"
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from "./styles"
 
 const ProductThumbnail = ({ groceryItem, handleAdd }) => {
@@ -24,10 +25,14 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
         {`(${groceryItem.purchase_size})`}
       </p>
 
-      <p className={classes.foodSize}>{ }</p>
       <button onClick={handleAdd} className={classes.addButton}>
         +
       </button>
+
+      <div className={classes.expandButton}>
+        <ExpandMoreIcon />
+      </div>
+
     </div>
   )
 }
