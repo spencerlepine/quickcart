@@ -15,7 +15,7 @@ const formatGroceryObj = (resultObj = {}) => {
   const shortenedName = formattedName.slice(0, 25);
   const itemImage = valueFromPossibleKeys(resultObj, "image", "image_url", "image_small_url") || missingImage
   const itemPriority = valueFromPossibleKeys(resultObj, "priority", "rating", "preference") || grocerySchema.priority
-  const itemQuantity = valueFromPossibleKeys(resultObj, "quantity", "servings_per", "serving_count") || grocerySchema.quantity
+  const itemQuantity = grocerySchema.quantity
   const itemPurchaseSize = valueFromPossibleKeys(resultObj, "purchase_size", "quantity", "net_weight_value", "net_weight_unit", "volume_unit") || itemQuantity || grocerySchema.purchase_size
   const itemLastBought = valueFromPossibleKeys(resultObj, "last_purchased", "last_purchase", "purchase_date") || grocerySchema.last_purchased
   const itemCategory = valueFromPossibleKeys(resultObj, "category") || grocerySchema.category
