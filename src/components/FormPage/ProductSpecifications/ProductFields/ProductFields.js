@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import useStyles from "./styles.js";
-import grocerySchema from "../../../schema/groceryItem"
-import toTitleCase from "../../../modules/toTitleCase";
+import grocerySchema from "../../../../schema/groceryItem"
+import toTitleCase from "../../../../modules/toTitleCase";
 
 const ProductFields = ({ thisGrocery, handleChange }) => {
   const classes = useStyles();

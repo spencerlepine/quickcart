@@ -20,7 +20,7 @@ const ServingCount = ({ handleChange, thisGrocery }) => {
         name={"serving_quantity"}
         placeholder={"1"}
         value={thisGrocery["serving_quantity"]}
-        inputProps={{ step: 0.5, min: 0 }}
+        inputProps={{ min: 1 }}
       />
     </div>
   );

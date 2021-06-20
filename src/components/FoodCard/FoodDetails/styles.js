@@ -23,7 +23,7 @@ export default makeStyles(() => ({
     "width": "60%",
     "transition": "all 1s ease-in-out",
     minWidth: "300px",
-    minHeight: "70vh",
+    minHeight: "80vh",
     height: "fit-content",
   },
   productGrid: {
