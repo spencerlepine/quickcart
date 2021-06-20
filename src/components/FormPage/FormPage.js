@@ -53,10 +53,20 @@ const FormPage = () => {
     setShowPopup(!editSelection && !searchSelection)
   }, []);
 
+  const caclulateServingQuantity = (name, value) => {
+    const currentGrocery = { ...thisGrocery }
+    if (name === "serving_quantity" || name === "purchase_price") {
+      const servingCost = parseFloat(currentGrocery["purchase_price"]) / parseFloat(currentGrocery["serving_quantity"])
+      currentGrocery['serving_cost'] = Number.parseFloat(servingCost).toFixed(2)
+    }
+    setThisGrocery(currentGrocery)
+  }
+
   const handleChange = (event) => {
     setShowExitPrompt(true)
     setDisableAdd(false)
     const { name, value } = event.target;
+    caclulateServingQuantity(name, value);
 
     setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
   };
@@ -196,9 +206,9 @@ const FormPage = () => {
             </div>
 
             <div className={`${classes.dollarSign} ${classes.itemServing}`}>
-              <label className={classes.divLabel}>Serving Cost:</label>
-              <p className={classes.priceIndicator}>$</p>
-              {InputField(thisGrocery, handleChange, "serving_cost", "1.49", classes.itemPrice, "number")}
+              <label className={classes.divLabel}>Servings Per:</label>
+              <p className={classes.priceIndicator}>x</p>
+              {InputField(thisGrocery, handleChange, "serving_quantity", "1", classes.itemPrice, "number")}
             </div>
           </div>
         </div>

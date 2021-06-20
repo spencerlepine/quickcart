@@ -1,14 +1,12 @@
 import React from "react"
-// import useCart from "../../../context/CartContext/CartContext"
 import useForm from "../../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
-// import useNotification from "../../../context/NotificationContext/NotificationContext.js"
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PriceIndicator from "./PriceIndicator"
 import useStyles from "./styles"
-import { NutritionLabel } from "react-fda-nutrition-facts"
+import NutritionFacts from "./NutritionFacts/NutritionFacts"
 
 const FoodDetails = ({ groceryItem, handleAdd }) => {
   const classes = useStyles()
@@ -25,7 +23,6 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
   ).toLocaleString("en-US", { style: "currency", currency: "USD" })
 
   const servingPrice = parseFloat(groceryItem.serving_cost)
-  const nutFacts = groceryItem.nutriscore_data
 
   return (
     <div className={classes.popupContainer}>
@@ -83,24 +80,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
           <p></p>
         </div>
         <div className={classes.nutritionDetials}>
-          <NutritionLabel
-            servingSize={nutFacts.serving_size}
-            servingsPerContainer={nutFacts.serving_quantity || 1}
-            calories={Math.round(nutFacts.energy * 0.23900573614) || 0}
-            totalFat={nutFacts.fat || 0}
-            saturatedFat={nutFacts["saturated-fat"] || 0}
-            transFat={nutFacts["trans_fat"] || 0}
-            cholesterol={nutFacts.cholesterol || 0}
-            sodium={nutFacts.sodium || 0}
-            totalCarbs={nutFacts["carbohydrates_serving"] || 0}
-            dietaryFiber={nutFacts["fiber"] || 0}
-            sugars={nutFacts.sugars || 0}
-            protein={nutFacts.proteins || 0}
-            vitaminA={nutFacts["vitamin-a"] || 0}
-            vitaminC={nutFacts["vitamin-c"] || 0}
-            calcium={nutFacts.calcium || 0}
-            iron={nutFacts.iron || 0}
-          />
+          <NutritionFacts nutFacts={groceryItem.nutriscore_data} />
         </div>
       </div>
     </div>
