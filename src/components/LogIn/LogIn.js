@@ -28,7 +28,7 @@ function LogIn() {
   const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        loginUser(formValues["email"], formValues["password"])
+        await loginUser(formValues["email"], formValues["password"])
         fetchTotalGroceryCount()
         history.push("/");
       } catch {
