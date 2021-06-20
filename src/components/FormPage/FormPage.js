@@ -20,6 +20,8 @@ import formatGroceryObj from "../../modules/formatGroceryObj"
 import InputField from "./InputField"
 import ProductFields from "./ProductFields/ProductFields"
 import SearchPrompt from "./SearchPrompt/SearchPrompt"
+import PurchasePrice from "./ProductSpecifications/PurchasePrice/PurchasePrice"
+import ServingCount from "./ProductSpecifications/ServingCount/ServingCount"
 
 const FormPage = () => {
   const history = useHistory();
@@ -55,7 +57,8 @@ const FormPage = () => {
   const caclulateServingQuantity = (name, value) => {
     const currentGrocery = { ...thisGrocery }
     if (name === "serving_quantity" || name === "purchase_price") {
-      const servingCost = parseFloat(currentGrocery["purchase_price"]) / parseFloat(currentGrocery["serving_quantity"])
+      const servingCost = parseFloat(currentGrocery["purchase_price"]) / (parseFloat(currentGrocery["serving_quantity"]) || 1)
+      console.log(servingCost, typeof servingCost)
       currentGrocery['serving_cost'] = Number.parseFloat(servingCost).toFixed(2)
     }
     setThisGrocery(currentGrocery)
@@ -208,17 +211,9 @@ const FormPage = () => {
           <hr /><hr />
 
           <div className={classes.importantFields}>
-            <div className={classes.dollarSign}>
-              <label className={classes.divLabel}>Purchase Price</label>
-              <p className={classes.priceIndicator}>$</p>
-              {InputField(thisGrocery, handleChange, "purchase_price", "2.50", classes.itemPrice, "number")}
-            </div>
+            <PurchasePrice handleChange={handleChange} thisGrocery={thisGrocery} />
 
-            <div className={`${classes.dollarSign} ${classes.itemServing}`}>
-              <label className={classes.divLabel}>Servings Per:</label>
-              <p className={classes.priceIndicator}>x</p>
-              {InputField(thisGrocery, handleChange, "serving_quantity", "1", classes.itemPrice, "number")}
-            </div>
+            <ServingCount handleChange={handleChange} thisGrocery={thisGrocery} />
           </div>
         </div>
 
