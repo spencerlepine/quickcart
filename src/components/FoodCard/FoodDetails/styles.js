@@ -153,8 +153,10 @@ export default makeStyles(() => ({
   productSpecification: {
     display: "block",
     color: "#4f4e4e",
+    maxWidth: "250px",
     padding: "2px",
     margin: "0",
+    wordWrap: "wrap",
   },
   foodBrand: {
     "background": "#eeeeee",
@@ -173,7 +175,7 @@ export default makeStyles(() => ({
     minWidth: "300px",
   },
   extraDetials: {
-    backgroundColor: "#dcdfe1",
+    backgroundColor: "#e0e0e0",
     borderRadius: "6px",
     padding: "10px",
     marginTop: "0.5em",

@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PriceIndicator from "./PriceIndicator"
 import useStyles from "./styles"
 import NutritionFacts from "./NutritionFacts/NutritionFacts"
+import ScoreElement from "./ScoreElement/ScoreElement"
 
 const FoodDetails = ({ groceryItem, handleAdd }) => {
   const classes = useStyles()
@@ -23,6 +24,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
   ).toLocaleString("en-US", { style: "currency", currency: "USD" })
 
   const servingPrice = parseFloat(groceryItem.serving_cost)
+  const nutriScore = groceryItem.nutriscore_data.grade;
 
   return (
     <div className={classes.popupContainer}>
@@ -51,6 +53,10 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
               <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
                 Size: {groceryItem.purchase_size}
               </p>
+
+              {nutriScore && <p className={`${classes.itemGrade} ${classes.productSpecification}`}>
+                Grade: {<ScoreElement nutriScore={nutriScore} />}
+              </p>}
             </div>
           </div>
 
