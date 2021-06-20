@@ -10,7 +10,7 @@ const formatGroceryObj = (resultObj = {}) => {
 
   const currentTime = new Date().getTime().toString()
 
-  const itemName = valueFromPossibleKeys(resultObj, "product_nameen", "product_name", "name", "resultObj_nameen", "resultObj_name", "generic_name") || grocerySchema.name
+  const itemName = valueFromPossibleKeys(resultObj, "product_nameen", "product_name", "name", "resultObj_nameen", "resultObj_name", "generic_name", "title") || grocerySchema.name
   const formattedName = itemName.replace(/-/gi, " ")
   const shortenedName = formattedName.slice(0, 25);
   const itemImage = valueFromPossibleKeys(resultObj, "image", "image_url", "image_small_url") || missingImage

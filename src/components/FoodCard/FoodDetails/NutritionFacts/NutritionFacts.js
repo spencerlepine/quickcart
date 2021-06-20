@@ -4,7 +4,7 @@ import hasNutritionData from "../../../../modules/hasNutritionData"
 import useStyles from "./styles"
 
 const NutritionFacts = ({ nutFacts }) => {
-  const [showNutritionFacts, setShowNutritionFacts] = useState(true)
+  const [showNutritionFacts, setShowNutritionFacts] = useState(false)
 
   useEffect(() => {
     const validNutrition = hasNutritionData(nutFacts)

@@ -27,7 +27,7 @@ const FormPage = () => {
   const [thisGrocery, setThisGrocery] = useState({ ...schema });
 
   const [, setShowExitPrompt] = useExitPrompt(false);
-  const [disableAdd, setDisableAdd] = useState(true);
+  const [disableAdd, setDisableAdd] = useState(false);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()

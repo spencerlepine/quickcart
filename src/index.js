@@ -14,6 +14,7 @@ import { FoodFactsProvider } from "./context/FoodFactsContext/FoodFactsContext"
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { ProductOnboardProvider } from './context/ProductOnboardContext/ProductOnboardContext';
+import { SpoonacularProvider } from "./context/SpoonacularContext/SpoonacularContext"
 
 const history = createBrowserHistory();
 
@@ -29,7 +30,9 @@ ReactDOM.render(
                   <FormProvider>
                     <ProductOnboardProvider>
                       <CategoriesProvider>
-                        <App />
+                        <SpoonacularProvider>
+                          <App />
+                        </SpoonacularProvider>
                       </CategoriesProvider>
                     </ProductOnboardProvider>
                   </FormProvider>

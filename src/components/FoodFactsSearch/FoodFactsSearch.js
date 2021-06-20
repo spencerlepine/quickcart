@@ -6,7 +6,7 @@ import useStyles from "./styles.js";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchResult from "./SearchResult/SearchResult";
 
-const DatabaseForm = () => {
+const FoodFactsSearch = () => {
   const classes = useStyles();
   const [itemSearch, setItemSearch] = useState("");
   const { searchProducts, loading } = useFoodFacts()
@@ -34,4 +34,4 @@ const DatabaseForm = () => {
   );
 };
 
-export default withAuthRedirect(DatabaseForm)
+export default withAuthRedirect(FoodFactsSearch)

@@ -1,4 +1,5 @@
 # To do:
+- Sort by price or name, date, ASC, DEC
 - assume pantry items that are over 10 servings per last more than 10 days (not exactly 1 serving everyday)
 - message for missing field value
 - expand on click to show ingredients
@@ -51,3 +52,5 @@
 
 Extra:
 - Feedback page with reviews and message submission form?
+- Brainbi: https://www.programmableweb.com/api/brainbi-price-rest-api-v10
+- Recipes: https://www.programmableweb.com/api/bigoven-recipe-rest-api-v2
