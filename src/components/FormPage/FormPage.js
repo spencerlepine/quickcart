@@ -24,7 +24,7 @@ import SearchPrompt from "./SearchPrompt/SearchPrompt"
 const FormPage = () => {
   const history = useHistory();
   const classes = useStyles();
-  const [thisGrocery, setThisGrocery] = useState(schema);
+  const [thisGrocery, setThisGrocery] = useState({ ...schema });
 
   const [, setShowExitPrompt] = useExitPrompt(false);
   const [disableAdd, setDisableAdd] = useState(true);
@@ -39,7 +39,7 @@ const FormPage = () => {
 
   const clearForm = () => {
     setEditSelection(null)
-    setThisGrocery(schema);
+    setThisGrocery({ ...schema });
   };
 
   // Load up a selected grocery item
@@ -62,11 +62,21 @@ const FormPage = () => {
     setThisGrocery(currentGrocery)
   }
 
+  const matchUnitSize = (name, value) => {
+    if (name === 'purchase_size') {
+      setThisGrocery(prevGrocery => ({
+        ...prevGrocery,
+        "unit_size": `${value}`
+      }))
+    }
+  }
+
   const handleChange = (event) => {
     setShowExitPrompt(true)
     setDisableAdd(false)
     const { name, value } = event.target;
     caclulateServingQuantity(name, value);
+    matchUnitSize(name, value);
 
     setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
   };
