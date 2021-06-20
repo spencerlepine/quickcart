@@ -55,7 +55,7 @@ export default makeStyles((theme) => ({
     color: "#25a941",
     fontWeight: "600",
     whiteSpace: "nowrap",
-    "margin": "0",
+    "marginBottom": "0.5em",
     "position": "absolute",
     bottom: "6%",
     "left": "50%",

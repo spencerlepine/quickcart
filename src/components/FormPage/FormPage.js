@@ -34,8 +34,7 @@ const FormPage = () => {
   const { allCategories, createNewCategory } = useCategories()
   const { setEditSelection, editSelection, searchSelection, setSearchSelection } = useForm()
 
-  const currentlyEditing = !editSelection && !searchSelection
-  const [showPopup, setShowPopup] = useState(!currentlyEditing);
+  const [showPopup, setShowPopup] = useState(false);
 
   const clearForm = () => {
     setEditSelection(null)

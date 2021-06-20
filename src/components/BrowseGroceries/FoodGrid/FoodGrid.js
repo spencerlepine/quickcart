@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import FoodCard from "../../FoodCard/FoodCard"
 import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt"
 import missingImage from "../../../images/empty.jpg"
@@ -7,15 +7,22 @@ import { FORM } from "../../../constants/routeConstants"
 import useStyles from "./styles"
 
 import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
+import useForm from "../../../context/FormContext/FormContext.js"
 
 const FoodGrid = () => {
   const classes = useStyles()
-  
+
   const { allGroceryItems, totalGroceryCount } = useGroceries()
-  
+  const { setEditSelection, setSearchSelection } = useForm()
+
   const foodCards = allGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
-  const fetchProgress = Math.ceil((allGroceryItems.length / totalGroceryCount)*100)
+  const fetchProgress = Math.ceil((allGroceryItems.length / totalGroceryCount) * 100)
   const progressStyle = { width: `${fetchProgress}%` }
+
+  useEffect(() => {
+    setEditSelection(null)
+    setSearchSelection(null)
+  }, [])
 
   return (
     <>
