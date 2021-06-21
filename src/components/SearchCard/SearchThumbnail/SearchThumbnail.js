@@ -13,7 +13,7 @@ const formatName = (name) => {
 
 const SearchThumbnail = ({ product }) => {
   const classes = useStyles();
-  const { getProductDetails } = useSpoonacular()
+  const { getProductDetails, itemDetails } = useSpoonacular()
 
   const formattedProduct = formatGroceryObj(product)
   const itemName = formattedProduct.name
@@ -21,7 +21,9 @@ const SearchThumbnail = ({ product }) => {
 
   const handleClick = async () => {
     const productId = product["id"]
-    await getProductDetails(productId)
+    if (`${itemDetails["id"]}` !== `${product["id"]}`) {
+      await getProductDetails(productId)
+    }
   }
 
   return (
