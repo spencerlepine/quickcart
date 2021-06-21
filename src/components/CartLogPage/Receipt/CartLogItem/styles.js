@@ -4,8 +4,9 @@ export default makeStyles(() => ({
   logView: {
     position: "relative",
     height: "fit-content",
-    margin: "3px",
+    margin: "0.5em 1em",
     minWidth: "300px",
+    fontSize: "15px",
   },
   productName: {
     overflowWrap: "anywhere",

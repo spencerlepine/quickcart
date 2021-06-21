@@ -8,3 +8,8 @@ body {
     background-color: rgb(249, 249, 249);
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
+
+@font-face {
+  font-family: 'MerchantCopy';
+  src: local('MerchantCopy'), url("./fonts/MerchantCopy.ttf") format('ttf');
+}

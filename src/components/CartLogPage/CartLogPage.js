@@ -3,7 +3,7 @@ import EmptyPrompt from "../EmptyPrompt/EmptyPrompt";
 import cartImg from "../../images/cart.svg";
 import useCart from "../../context/CartContext/CartContext"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-import CartLogItem from "./CartLogItem/CartLogItem"
+import Receipt from "./Receipt/Receipt"
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from "./styles.js";
@@ -44,23 +44,9 @@ const CartLogPage = () => {
           ) : (
             <>
               <div className={classes.cartLogs}>
-                {allCartLogs.map((receipt, key) => {
-                  const receiptDate = `${receipt[0]}`
-                  const thisReceipt = receipt.slice(1,)
-                  let totalCost = thisReceipt.reduce(
-                    (total, item) =>
-                    (total +=
-                      item.quantity * parseFloat(item.purchase_price)),
-                    0
-                  )
-                  return (
-                    <div className={classes.cartLog} key={key}>
-                      <p>{receiptDate}</p>
-                      {thisReceipt.map((cartItem, key) => <CartLogItem key={key} cartLogItem={cartItem} />)}
-                      <p>Total: ${totalCost} ({thisReceipt.length} items)</p>
-                    </div>
-                  )
-                })}
+                {allCartLogs.map((receipt, key) => (
+                  <Receipt receiptItems={receipt} key={key} />
+                ))}
               </div>
             </>
           )}</>}
