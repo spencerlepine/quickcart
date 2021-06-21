@@ -9,7 +9,7 @@ import useStyles from "./styles"
 import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
 import useForm from "../../../context/FormContext/FormContext.js"
 
-const FoodGrid = () => {
+const FoodGrid = ({ loading }) => {
   const classes = useStyles()
 
   const { allGroceryItems, totalGroceryCount } = useGroceries()
@@ -30,7 +30,7 @@ const FoodGrid = () => {
         ?
         <>
           {fetchProgress < 100 && <div className={classes.progressBar} style={progressStyle}></div>}
-          <CardGrid cardItems={foodCards} />
+          <CardGrid cardItems={foodCards} loading={loading} />
         </>
         :
         <div className={classes.overviewContainer}>

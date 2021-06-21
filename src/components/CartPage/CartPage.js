@@ -13,7 +13,7 @@ import useStyles from "./styles.js";
 const CartPage = () => {
   const classes = useStyles();
 
-  const { getAllCartItems, allCartItems, loading } = useCart()
+  const { getAllCartItems, allCartItems, loading, initialFetch } = useCart()
 
   const renderEmptyCart = () => {
     return (
@@ -28,7 +28,7 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    if (allCartItems.length === 0) {
+    if (allCartItems.length === 0 && !initialFetch) {
       getAllCartItems()
       return;
     }

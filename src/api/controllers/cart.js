@@ -10,7 +10,6 @@ export const fetchCartItems = async (req, res) => {
       .get()
 
     let cartData = cartItems.map(firebaseDoc => firebaseDoc.data())
-
     return cartData
   } catch (error) {
     console.log(error.message)
@@ -146,8 +145,6 @@ export const fetchCartLogs = async () => {
       .collection("userCartLogs")
       .limit(10)
       .get()
-
-    console.log(dateLogs ? dateLogs.length : "was undefined")
 
     const cartLogData = []
     for (let i = 0; i < dateLogs.length; i++) {

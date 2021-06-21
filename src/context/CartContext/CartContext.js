@@ -4,6 +4,7 @@ import * as api from "../../api/controllers/cart"
 export const CartContext = React.createContext()
 
 export function CartProvider({ children }) {
+  const [initialFetch, setInitialFetch] = useState(false)
   const [allCartItems, setAllCartItems] = useState([])
   const [loading, setLoading] = useState(false)
   const [allCartLogs, setAllCartLogs] = useState([])
@@ -15,7 +16,7 @@ export function CartProvider({ children }) {
     if (allCartItems.some(item => item["_id"] === groceryItem["_id"])) {
       // Update the existing list
       setAllCartItems(prevList => {
-        return prevList.map(item => item["_id"] === groceryItem["_id"] ? groceryItem : item)
+        return prevList.map(item => item["_id"] === groceryItem["_id"] ? data : item)
       })
     } else {
       // Just append it to the list
@@ -24,6 +25,7 @@ export function CartProvider({ children }) {
   }
 
   async function getAllCartItems() {
+    setInitialFetch(true)
     setLoading(true)
     const data = await api.fetchCartItems()
     setAllCartItems(data || [])
@@ -77,10 +79,13 @@ export function CartProvider({ children }) {
   }
 
   useEffect(() => {
-    getAllCartItems()
-  }, [])
+    if (allCartItems.length === 0 && initialFetch === false) {
+      getAllCartItems()
+    }
+  }, [allCartItems, initialFetch])
 
   const value = {
+    initialFetch,
     setAllCartItems,
     allCartItems,
     allCartLogs,
@@ -101,10 +106,11 @@ export function CartProvider({ children }) {
 }
 
 const useCart = () => {
-  const { allCartItems, loading, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
+  const { allCartItems, initialFetch, loading, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
 
   return {
     loading,
+    initialFetch,
     setAllCartItems,
     allCartItems,
     allCartLogs,

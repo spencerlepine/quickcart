@@ -9,7 +9,7 @@ import formatGroceryObj from "../../modules/formatGroceryObj"
 const FormLogic = ({ Component }) => {
   const history = useHistory();
   const [thisGrocery, setThisGrocery] = useState({ ...schema });
-  const [disableAdd, setDisableAdd] = useState(false);
+  const [disableAdd, setDisableAdd] = useState(true);
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
