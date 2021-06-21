@@ -87,7 +87,7 @@ const FormLogic = ({ Component }) => {
     } else {
       createGroceryItem(filledObj)
       const groceryMessage = {
-        message: `Saved ${thisGrocery._id || "item"}`,
+        message: `Saved ${thisGrocery.name || "item"}`,
         type: "success"
       }
       setCurrentNotification(groceryMessage)

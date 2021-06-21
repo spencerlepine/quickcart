@@ -25,7 +25,7 @@ const formatGroceryObj = (resultObj = {}) => {
 
   formattedObj.category = (formattedObj.category).trim();
   formattedObj["_id"] = formattedObj["_id"] || currentTime
-  formattedObj.image = formattedObj.image || getImageFromList(resultObj)
+  formattedObj.image = getImageFromList(resultObj) || formattedObj.image
 
   // Override some nutritional details
   const itemNutriscoreData = filterNutriscoreObj(formattedObj["nutriscore_data"])

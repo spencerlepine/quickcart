@@ -19,6 +19,7 @@ const similarFields = {
   "serving_quantity": ["serving_quantity", "number_of_servings"],
   "nutriscore_data_per": ["nutriscore_data_per", "serving_size"],
   "nutriscore_data_prepared_per": ["nutriscore_data_prepared_per", "nutriscore_data_per", "serving_size"],
+  "image": ["image"],
 }
 
 const similarGroceryFields = (key) => {
