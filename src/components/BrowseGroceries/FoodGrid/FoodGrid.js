@@ -8,6 +8,7 @@ import useStyles from "./styles"
 
 import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
 import useForm from "../../../context/FormContext/FormContext.js"
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn"
 
 const FoodGrid = ({ loading }) => {
   const classes = useStyles()
@@ -26,6 +27,7 @@ const FoodGrid = ({ loading }) => {
 
   return (
     <>
+      <LoadMoreBtn />
       {foodCards.length > 0
         ?
         <>

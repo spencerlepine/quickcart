@@ -6,6 +6,8 @@ export const GroceriesContext = React.createContext()
 
 export function GroceriesProvider({ children }) {
   const [allGroceryItems, setAllGroceryItems] = useState([])
+  const starterCount = 20;
+  const [displayStarters, setDisplayStarters] = useState(true)
   const [totalGroceryCount, setTotalGroceryCount] = useState(-1)
   const [loading, setLoading] = useState()
 
@@ -17,9 +19,13 @@ export function GroceriesProvider({ children }) {
 
   useEffect(() => {
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
-      const lastItem = allGroceryItems.slice(-1)
-      const lastId = lastItem.length ? lastItem[0]["_id"] : ""
-      getAllGroceries(lastId)
+      if (allGroceryItems.length < starterCount) {
+        const lastItem = allGroceryItems.slice(-1)
+        const lastId = lastItem.length ? lastItem[0]["_id"] : ""
+        getAllGroceries(lastId)
+      }
+    } else {
+      setDisplayStarters(false)
     }
   }, [totalGroceryCount, allGroceryItems])
 
@@ -89,6 +95,8 @@ export function GroceriesProvider({ children }) {
     loading,
     allGroceryItems,
     setAllGroceryItems,
+    displayStarters,
+    setDisplayStarters,
     totalGroceryCount,
     createGroceryItem,
     updateGroceryItem,
@@ -105,9 +113,11 @@ export function GroceriesProvider({ children }) {
 }
 
 const useGroceries = () => {
-  const { loading, setAllGroceryItems, fetchTotalGroceryCount, setTotalGroceryCount, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
+  const { loading, displayStarters, setDisplayStarters, setAllGroceryItems, fetchTotalGroceryCount, setTotalGroceryCount, totalGroceryCount, allGroceryItems, updateGroceryItem, createGroceryItem, deleteGroceryItem } = useContext(GroceriesContext);
 
   return {
+    displayStarters,
+    setDisplayStarters,
     setAllGroceryItems,
     fetchTotalGroceryCount,
     setTotalGroceryCount,
