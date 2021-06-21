@@ -1,6 +1,24 @@
 # To do:
-- reset password, update email, update password
-- download csv
+- use ID for cart log page
+- ONE TIME load more button, just need to see the cart yaknow?
+ - load the rest if the user searches
+- REMOVE http://localhost:3000/ from production app
+- update rules for production firestore
+- search thing is broken
+- import prompt
+- copy delete stuff
+- update TODO
+- CHECK PHONE TODO
+- SEARCH DETAILS
+- update readme screenshot
+- HOme page:
+   - create a cart
+   - get reccomendations for the cart
+   - scan UPC
+   - search for products
+   - get nutrition data
+   - fill in missing fields
+- Add OpenFoodFacts search back
 - Details component for SearchCard (click on item, get details, click USE/SAVE ITEM)
   - open and close details box before saving this grocery to my database
 Get product details
@@ -35,7 +53,7 @@ Get product details
       - list with DATE, TOTAL_PRICE, GROCERY_COUNT
         - dropdown button showing list of name, price, category
 
-- Features:
+- More Features:
  - Explanation on home page
    - Combination between Yuka, Instacart, and a To-do list
    - Help yourself budget while grocery shopping
@@ -48,8 +66,6 @@ Get product details
   - add RECIPE to cart to automatically add all necesarry purchases
 
 - Bugs:
- - remove useExitPrompt
- - load up groceries on re-login (uid is still undefined at the start (just add the await keyword))
  - import will create seemingly 'duplicate' items
  - search database for existing similar items?
  - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
@@ -60,3 +76,5 @@ Extra:
 - Feedback page with reviews and message submission form?
 - Brainbi: https://www.programmableweb.com/api/brainbi-price-rest-api-v10
 - Recipes: https://www.programmableweb.com/api/bigoven-recipe-rest-api-v2
+- reset password, update email, update password
+- download csv

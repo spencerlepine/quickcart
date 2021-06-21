@@ -23,7 +23,7 @@ _Make a shopping list with personal grocery data to help budget._
 ```
 
 ## Technologies:
-- <img alt="logo" style="width:20px;" src="https://reactjs.org/favicon.ico"/>[React](https://reactjs.org/)
+- [React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/)
 - [OpenFoodFacts](https://world.openfoodfacts.org)
 - [Google CSE](https://cse.google.com)
