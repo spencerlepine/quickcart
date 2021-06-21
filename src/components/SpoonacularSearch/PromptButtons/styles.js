@@ -4,7 +4,6 @@ export default makeStyles((theme) => ({
   promptContainer: {
     width: "fit-content",
     margin: "auto",
-    marginTop: "2em",
   },
   upcSearchBtn: {
     borderRadius: "2px",
