@@ -160,33 +160,7 @@ export const fetchCartLogs = async () => {
       await cartLogData.push(dateReceipt)
     }
 
-    // let usersDocRef = await db.collection('users').doc(userId);
-    // console.log(usersDocRef.query)
-    // await usersDocRef.get()
-    //   .then(async (userDoc) => {
-    //     await userDoc.ref.collection('userCartLogs').onSnapshot(async (logDoc) => {
-    //       const cartItemsCol = await logDoc.query.get()
-    //       console.log(cartItemsCol)
-    //       await cartItemsCol.docs.forEach(async (doc) => {
-    //         const dateReceipt = [doc["id"]]
-
-    //         const data = await doc.ref.collection("cartItems").get()
-
-    //         await data.docs.forEach(async (doc) => {
-    //           await dateReceipt.push(doc.data())
-    //         })
-    //         console.log(dateReceipt)
-    //         cartLogData.push(dateReceipt)
-    //       })
-    //     });
-    //     console.log("hit the end of the userDocRef then")
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document: ", error);
-    //   });
-
     // Fill in the ID if this does not have one
-    // console.log("returning the cartLogData")
     return cartLogData
   } catch (error) {
     console.log(error.message)
