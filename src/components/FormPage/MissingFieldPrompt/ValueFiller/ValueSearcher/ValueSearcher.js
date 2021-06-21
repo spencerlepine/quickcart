@@ -1,16 +1,10 @@
-// popup component (info icon, missing name field!)
-// search products?
-
-
-// pass in handleChange, fieldName, upc, id, name
-// get foodfactscontext, get spoonacular context
-
 import React, { useEffect } from "react"
 import useStyles from "./styles.js";
 import toTitleCase from "../../../../../modules/toTitleCase";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useFoodFacts from "../../../../../context/FoodFactsContext/FoodFactsContext";
 import useSpoonacular from "../../../../../context/SpoonacularContext/SpoonacularContext";
+import madShiba from "../../../../../images/mad_shiba.png"
 
 const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
   const classes = useStyles();
@@ -76,7 +70,8 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
     } else {
       return (
         <>
-          <p>Sorry, this product was hard to find :(</p>
+          <img src={madShiba} className={classes.failureImg} alt="Missing product"></img>
+          <p className={classes.failureMsg}>Sorry,<br /> this product was hard to find :(</p>
         </>)
     }
   }

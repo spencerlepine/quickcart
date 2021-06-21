@@ -180,4 +180,13 @@ export default makeStyles(() => ({
     padding: "10px",
     marginTop: "0.5em",
   },
+  failureImg: {
+    margin: "auto",
+  },
+  failureMsg: {
+    "fontSize": "18px",
+    "lineHeight": "26px",
+    "fontWeight": "600",
+    color: "rgb(156 156 139)",
+  },
 }))
