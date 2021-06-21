@@ -3,7 +3,7 @@ import useStyles from "./styles"
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import Backup from "./Backup/Backup"
 import Import from "./Import/Import"
-import OpenLogs from "./OpenLogs/OpenLogs"
+import OpenLogs from "../OpenLogs/OpenLogs"
 import Logout from "../Logout/Logout"
 
 const Settings = () => {

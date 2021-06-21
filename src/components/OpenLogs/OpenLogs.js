@@ -1,6 +1,6 @@
 import React from "react"
 import LaunchIcon from '@material-ui/icons/Launch'; import { Link } from "react-router-dom";
-import { CART_LOGS } from "../../../constants/routeConstants"
+import { CART_LOGS } from "../../constants/routeConstants"
 import useStyles from "./styles"
 
 const OpenLogs = () => {

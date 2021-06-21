@@ -9,6 +9,7 @@ import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import groupItemsByCategory from "./groupItemsByCategory"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from "./styles.js";
+import OpenLogs from "../OpenLogs/OpenLogs"
 
 const CartPage = () => {
   const classes = useStyles();
@@ -58,6 +59,7 @@ const CartPage = () => {
       }
 
       <ReccomendedWidget />
+      <OpenLogs />
     </div>
   );
 };
