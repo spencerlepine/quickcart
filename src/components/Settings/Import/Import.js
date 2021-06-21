@@ -1,6 +1,5 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useHistory } from "react-router"
-import useExitPrompt from '../../../hooks/useExitPrompt/useExitPrompt.js'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import useGroceries from "../../../context/GroceriesContext/GroceriesContext";
 import useNotification from "../../../context/NotificationContext/NotificationContext.js";
@@ -10,19 +9,11 @@ import useStyles from "./styles"
 const Import = () => {
   const classes = useStyles()
   const history = useHistory()
-  const [, setShowExitPrompt] = useExitPrompt(false);
 
   const { createGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
 
-  useEffect(() => {
-    return () => {
-      setShowExitPrompt(false)
-    }
-  }, [setShowExitPrompt])
-
   const importData = async ({ target }) => {
-    setShowExitPrompt(true)
     var fr = new FileReader()
 
     fr.readAsText(target.files[0])
@@ -37,7 +28,6 @@ const Import = () => {
           message: `please select a valid .txt file`,
         }
         setCurrentNotification(importMessage)
-        setShowExitPrompt(false)
         return
       }
 
@@ -49,7 +39,6 @@ const Import = () => {
         }, 130)
       })
 
-      setShowExitPrompt(false)
       history.push("/")
     }
   }

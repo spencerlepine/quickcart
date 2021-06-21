@@ -1,5 +1,3 @@
-'use strict';
-
 var https = require('https');
 require('dotenv').config();
 
