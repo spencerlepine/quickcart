@@ -6,7 +6,7 @@ import ImageSearch from "../../ImageSearch/ImageSearch"
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from "./styles.js";
 
-const ThumbnailInput = ({ updateImageState, currentImage }) => {
+const ProductImageSearch = ({ updateImageState, currentImage }) => {
   const classes = useStyles();
 
   const handleImageInput = async (base64) => {
@@ -52,4 +52,4 @@ const ThumbnailInput = ({ updateImageState, currentImage }) => {
   );
 };
 
-export default ThumbnailInput
+export default ProductImageSearch

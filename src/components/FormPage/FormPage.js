@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import useExitPrompt from '../../hooks/useExitPrompt/useExitPrompt.js'
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
-import Rating from "@material-ui/lab/Rating";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-import ThumbnailInput from "./ThumbnailInput/ThumbnailInput";
 import useNotification from "../../context/NotificationContext/NotificationContext.js";
 import useGroceries from "../../context/GroceriesContext/GroceriesContext.js";
-import useCategories from "../../context/CategoriesContext/CategoriesContext"
 import useStyles from "./styles.js";
 import useForm from "../../context/FormContext/FormContext.js";
 import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import schema from "../../schema/groceryItem"
-import ClearButton from "./ClearButton"
-import categoryDropdown from "./categoryDropdown"
+import ClearButton from "./ClearButton/ClearButton"
 import formatGroceryObj from "../../modules/formatGroceryObj"
-import InputField from "./InputField"
+import ProductName from "./ProductSpecifications/ProductName/ProductName"
 import ProductFields from "./ProductSpecifications/ProductFields/ProductFields"
-import SearchPrompt from "./SearchPrompt/SearchPrompt"
+import ProductRating from "./ProductSpecifications/ProductRating/ProductRating"
+import ProductImageSearch from "./ProductImageSearch/ProductImageSearch"
 import PurchasePrice from "./ProductSpecifications/PurchasePrice/PurchasePrice"
+import ProductCategory from "./ProductSpecifications/ProductCategory/ProductCategory"
 import ServingCount from "./ProductSpecifications/ServingCount/ServingCount"
+import FindProductPrompt from "./FindProductPrompt/FindProductPrompt"
+import DatePurchased from "./ProductSpecifications/DatePurchased/DatePurchased"
+import SubmitButton from "./SubmitButton/SubmitButton"
 
 const FormPage = () => {
   const history = useHistory();
@@ -33,7 +30,6 @@ const FormPage = () => {
 
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries()
   const { setCurrentNotification } = useNotification()
-  const { allCategories, createNewCategory } = useCategories()
   const { setEditSelection, editSelection, searchSelection, setSearchSelection } = useForm()
 
   const [showPopup, setShowPopup] = useState(false);
@@ -123,115 +119,61 @@ const FormPage = () => {
     clearForm();
   };
 
-  const handleAddCategory = (e) => {
-    e.preventDefault()
-
-    const newCategory = prompt("Name the new category: ")
-
-    if (typeof newCategory === "string" && newCategory.length) {
-      createNewCategory(newCategory.toLowerCase())
-      // Save this category to state
-      setThisGrocery(prevObj => ({
-        ...prevObj,
-        category: newCategory
-      }))
-    } else if (newCategory) {
-      const importMessage = {
-        name: "Invalid Name!",
-        message: `please try again`,
-      }
-      setCurrentNotification(importMessage)
+  const handleClear = (handleDelete, clearForm, editSelection) => {
+    if (editSelection) {
+      handleDelete(editSelection._id)
+    } else {
+      clearForm()
     }
   }
 
   return (
     <div className={classes.formContainer}>
-      <SearchPrompt showPopup={showPopup} setShowPopup={setShowPopup} />
-      <ThumbnailInput
+      <FindProductPrompt showPopup={showPopup} setShowPopup={setShowPopup} />
+
+      <ProductImageSearch
         updateImageState={(newImg) => handleChange({ target: { name: "image", value: newImg } })}
-        currentImage={thisGrocery.image} />
+        currentImage={thisGrocery.image}>
+      </ProductImageSearch>
 
       <form className={classes.form} noValidate>
         <div className={classes.itemDetails}>
-          {InputField(thisGrocery, handleChange, "name", "Eggs", classes.itemName)}
+          <ProductName
+            value={thisGrocery["name"]}
+            name={"name"}
+            handleChange={handleChange}
+            thisClass={classes.itemName}>
+          </ProductName>
 
-          <div className={classes.itemCategory}>
-            <label className={classes.divLabel}>Category</label>
-            <br />
-            <Select
-              native
-              value={thisGrocery.category}
-              onChange={handleChange}
-              inputProps={{
-                name: "category",
-                id: "age-native-simple",
-              }}
-            >
-              {categoryDropdown(allCategories)}
-            </Select>
-            <button onClick={handleAddCategory} className={classes.newCategoryBtn}>+</button>
-          </div>
+          <ProductCategory
+            setCurrentNotification={setCurrentNotification}
+            handleChange={handleChange}
+            thisGrocery={thisGrocery}
+            setThisGrocery={setThisGrocery}>
+          </ProductCategory>
 
-          <div className={classes.itemPriority}>
-            <label>Preference</label>
-            <br />
-            <Rating
-              name="priority"
-              value={parseInt(thisGrocery.priority)}
-              precision={1}
-              emptyIcon={<StarBorderIcon fontSize="inherit" />}
-              onChange={handleChange}
-            />
-          </div>
+          <ProductRating rating={parseInt(thisGrocery.priority)} handleChange={handleChange} />
 
-          {editSelection ? (
-            <ClearButton
-              className={classes.deleteButton}
-              handleClick={() => handleDelete(editSelection._id)}
-              label="Delete" />
-          ) : (
-            <ClearButton
-              className={classes.deleteButton}
-              handleClick={clearForm}
-              label="Clear" />
-          )}
+          <ClearButton
+            handleClick={() => handleClear(handleDelete, clearForm, editSelection)}
+            editSelection={editSelection}>
+          </ClearButton>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.updateButton}
-            onClick={handleSubmit}
-            disabled={disableAdd}
-          >
-            {searchSelection ? "Update" : "Submit"}
-          </Button>
+          <SubmitButton handleSubmit={handleSubmit}
+            searchSelection={searchSelection}
+            disableAdd={disableAdd}>
+          </SubmitButton>
 
           <hr /><hr />
 
           <div className={classes.importantFields}>
             <PurchasePrice handleChange={handleChange} thisGrocery={thisGrocery} />
-
             <ServingCount handleChange={handleChange} thisGrocery={thisGrocery} />
           </div>
         </div>
 
         <ProductFields thisGrocery={thisGrocery} handleChange={handleChange} />
-
-        <div className={classes.itemDate}>
-          <TextField
-            name="last_purchased"
-            label="Last Purchased"
-            type="date"
-            value={thisGrocery.last_purchased}
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={handleChange}
-          />
-        </div>
+        <DatePurchased thisGrocery={thisGrocery} handleChange={handleChange} />
       </form>
     </div>
   );

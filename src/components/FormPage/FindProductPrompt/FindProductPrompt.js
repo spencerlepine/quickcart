@@ -4,7 +4,7 @@ import FindInPageIcon from '@material-ui/icons/FindInPage';
 import useStyles from "./styles.js";
 import { SEARCH } from "../../../constants/routeConstants"
 
-const SearchPrompt = ({ showPopup, setShowPopup }) => {
+const FindProductPrompt = ({ showPopup, setShowPopup }) => {
   const classes = useStyles()
   const history = useHistory();
 
@@ -35,4 +35,4 @@ const SearchPrompt = ({ showPopup, setShowPopup }) => {
   }
 };
 
-export default SearchPrompt
+export default FindProductPrompt

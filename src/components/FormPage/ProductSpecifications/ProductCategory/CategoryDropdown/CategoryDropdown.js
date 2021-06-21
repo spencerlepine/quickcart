@@ -1,5 +1,5 @@
 import React from "react";
-import toTitleCase from "../../modules/toTitleCase"
+import toTitleCase from "../../../../../modules/toTitleCase"
 
 const CategoryDropdown = (allCategories) => {
   let categoryOptions = allCategories.map((category, i) => {
