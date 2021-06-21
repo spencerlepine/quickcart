@@ -135,44 +135,58 @@ export const fetchCartLogs = async () => {
   try {
     const { uid: userId } = auth.currentUser
 
-    // Save the item
-    const userDoc = await db.collection('users').doc(userId)
-    const cartLogCollection = await userDoc.collection("userCartLogs")
-    // const { docs: dateLogs } = await cartLogCollection.get()
-
-    const { docs: dateLogs } = await db.collection('users')
-      .doc(userId)
-      .collection("userCartLogs")
-      .limit(10)
-      .get()
-
-    const cartLogData = []
-    for (let i = 0; i < dateLogs.length; i++) {
-      const dateData = []
-      const { docs: dateItems } = await cartLogCollection.doc(dateLogs[i].ref.id)
-        .collection('cartItems')
+    // Get all the cart logs for the user
+    let { docs: receiptDocs } = await
+      db.collection('users')
+        .doc(userId)
+        .collection('userCartLogs')
         .get()
 
-      await dateItems.map(async (firebaseDoc) => {
-        const data = await firebaseDoc.data()
-        // if (!data._id) {
-        //   // Find the id of this product with similar name
-        //   console.log("need to find an ID")
-        //   const ref =
-        //   var wantedOrder = await userDoc.collection("userGroceries").orderByChild('name').equalTo(data.name).on("value", function (snapshot) {
-        //     snapshot.forEach(function (child) {
-        //       console.log(child.val()) // NOW THE CHILDREN PRINT IN ORDER
-        //     });
-        //   });
-        // } else {
-        //   return data._id
-        // }
-        dateData.push(data)
-      })
-      cartLogData.push(dateData)
+    const cartLogData = []
+
+    // Get the cartItems for each receipt
+    for (let i = 0; i < receiptDocs.length; i++) {
+      const docSnapshot = receiptDocs[i];
+
+      const { docs: cartItemsCol } = await docSnapshot.ref.collection('cartItems').get()
+
+      const dateReceipt = [docSnapshot["id"]]
+      for (let d = 0; d < cartItemsCol.length; d++) {
+        const doc = cartItemsCol[d];
+        const data = await doc.data()
+        dateReceipt.push(data)
+      }
+
+      await cartLogData.push(dateReceipt)
     }
 
+    // let usersDocRef = await db.collection('users').doc(userId);
+    // console.log(usersDocRef.query)
+    // await usersDocRef.get()
+    //   .then(async (userDoc) => {
+    //     await userDoc.ref.collection('userCartLogs').onSnapshot(async (logDoc) => {
+    //       const cartItemsCol = await logDoc.query.get()
+    //       console.log(cartItemsCol)
+    //       await cartItemsCol.docs.forEach(async (doc) => {
+    //         const dateReceipt = [doc["id"]]
+
+    //         const data = await doc.ref.collection("cartItems").get()
+
+    //         await data.docs.forEach(async (doc) => {
+    //           await dateReceipt.push(doc.data())
+    //         })
+    //         console.log(dateReceipt)
+    //         cartLogData.push(dateReceipt)
+    //       })
+    //     });
+    //     console.log("hit the end of the userDocRef then")
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document: ", error);
+    //   });
+
     // Fill in the ID if this does not have one
+    // console.log("returning the cartLogData")
     return cartLogData
   } catch (error) {
     console.log(error.message)

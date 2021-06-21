@@ -6,10 +6,16 @@ export const CategoriesContext = React.createContext()
 export function CategoriesProvider({ children }) {
   const [allCategories, setAllCategories] = useState([])
   const [loading, setLoading] = useState(false)
+  const [initialFetch, setInitialFetch] = useState(false)
 
-  useEffect(() => getAllCategories(), [])
+  useEffect(() => {
+    if (!initialFetch) {
+      getAllCategories()
+    }
+  }, [initialFetch])
 
   async function getAllCategories() {
+    setInitialFetch(true);
     setLoading(true)
     try {
       const data = await api.getGroceryCategories()
@@ -34,6 +40,7 @@ export function CategoriesProvider({ children }) {
     loading,
     allCategories,
     getAllCategories,
+    initialFetch,
     createNewCategory,
   }
 
@@ -45,9 +52,10 @@ export function CategoriesProvider({ children }) {
 }
 
 const useCategories = () => {
-  const { allCategories, loading, getAllCategories, createNewCategory } = useContext(CategoriesContext);
+  const { allCategories, initialFetch, loading, getAllCategories, createNewCategory } = useContext(CategoriesContext);
 
   return {
+    initialFetch,
     allCategories,
     loading,
     getAllCategories,

@@ -6,11 +6,11 @@ import useStyles from "./styles"
 const CategoryLabels = () => {
   const classes = useStyles()
 
-  const { getAllCategories, allCategories } = useCategories()
+  const { getAllCategories, initialFetch, allCategories } = useCategories()
 
   useEffect(() => {
     getAllCategories()
-  })
+  }, [initialFetch])
 
   const categoryComponents = allCategories.map((category, i) => (
     <CategorySelector categoryName={category} key={i} selectorValue={category} />

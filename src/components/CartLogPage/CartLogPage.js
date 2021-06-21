@@ -11,7 +11,7 @@ import useStyles from "./styles.js";
 const CartLogPage = () => {
   const classes = useStyles();
 
-  const { getAllCartLogs, allCartLogs, loading } = useCart()
+  const { getAllCartLogs, allCartLogs, loading, logFetched } = useCart()
 
   const renderEmptyCart = () => {
     return (
@@ -26,11 +26,11 @@ const CartLogPage = () => {
   };
 
   useEffect(() => {
-    if (allCartLogs.length === 0) {
+    if (allCartLogs.length === 0 && JSON.stringify(allCartLogs) !== JSON.stringify([])) {
       getAllCartLogs()
       return;
     }
-  });
+  }, [allCartLogs, logFetched]);
 
   return (
     <div className={classes.logsView}>
@@ -44,7 +44,7 @@ const CartLogPage = () => {
           ) : (
             <>
               <div className={classes.cartLogs}>
-                {allCartLogs.map(list => {
+                {allCartLogs.map((list, key) => {
                   let totalCost = list.reduce(
                     (total, item) =>
                     (total +=
@@ -52,8 +52,8 @@ const CartLogPage = () => {
                     0
                   )
                   return (
-                    <div className={classes.cartLog}>
-                      {list.map(cartItem => <CartLogItem cartLogItem={cartItem} />)}
+                    <div className={classes.cartLog} key={key}>
+                      {list.map((cartItem, key) => <CartLogItem key={key} cartLogItem={cartItem} />)}
                       <p>Total: ${totalCost} ({list.length} items)</p>
                     </div>
                   )

@@ -1,22 +1,24 @@
 import React from "react"
 import { useHistory } from "react-router-dom";
 import useAuth from "../../context/AuthContext/AuthContext"
-import userGroceries from "../../context/GroceriesContext/GroceriesContext"
+import useGroceries from "../../context/GroceriesContext/GroceriesContext"
+import useCart from "../../context/CartContext/CartContext"
+
 import useStyles from "./styles"
 
 const Logout = ({ customWidth }) => {
   const classes = useStyles()
   const history = useHistory()
   const { logoutUser } = useAuth()
-  const { setAllGroceryItems, setTotalGroceryCount } = userGroceries()
-  const { setAllCartItems } = userGroceries()
+  const { setAllGroceryItems, setTotalGroceryCount } = useGroceries()
+  const { setAllCartItems } = useCart()
 
   const handleLougout = async () => {
     try {
       logoutUser();
       setAllGroceryItems([]);
-      setTotalGroceryCount(-1);
       setAllCartItems([]);
+      setTotalGroceryCount(-1);
       history.push("/")
     } catch {
       console.log("logout failed");

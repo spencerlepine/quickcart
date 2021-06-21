@@ -5,6 +5,7 @@ export const CartContext = React.createContext()
 
 export function CartProvider({ children }) {
   const [initialFetch, setInitialFetch] = useState(false)
+  const [logFetched, setLogFetched] = useState(false)
   const [allCartItems, setAllCartItems] = useState([])
   const [loading, setLoading] = useState(false)
   const [allCartLogs, setAllCartLogs] = useState([])
@@ -69,6 +70,7 @@ export function CartProvider({ children }) {
 
   async function getAllCartLogs() {
     setLoading(true)
+    setLogFetched(true)
     try {
       const result = await api.fetchCartLogs()
       setAllCartLogs(result)
@@ -81,6 +83,7 @@ export function CartProvider({ children }) {
   useEffect(() => {
     if (allCartItems.length === 0 && initialFetch === false) {
       getAllCartItems()
+      getAllCartLogs()
     }
   }, [allCartItems, initialFetch])
 
@@ -94,6 +97,7 @@ export function CartProvider({ children }) {
     getAllCartItems,
     updateCartItem,
     deleteCartItem,
+    logFetched,
     logCartItem,
     getAllCartLogs,
   }
@@ -106,10 +110,11 @@ export function CartProvider({ children }) {
 }
 
 const useCart = () => {
-  const { allCartItems, initialFetch, loading, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
+  const { allCartItems, logFetched, initialFetch, loading, setAllCartItems, getAllCartLogs, allCartLogs, addItemToCart, getAllCartItems, updateCartItem, deleteCartItem, logCartItem } = useContext(CartContext);
 
   return {
     loading,
+    logFetched,
     initialFetch,
     setAllCartItems,
     allCartItems,

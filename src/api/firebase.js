@@ -1,5 +1,7 @@
-import firebase from "firebase"
+import firebase from "firebase/app"
 import 'firebase/storage';
+import "firebase/auth";
+import "firebase/firestore";
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -13,9 +15,9 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = firebase.default.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
-export const db = firebase.default.firestore()
+export const db = firebase.firestore()
 export const auth = app.auth()
 export const storage = firebase.storage();
 export const useFirebase = firebase.firestore
