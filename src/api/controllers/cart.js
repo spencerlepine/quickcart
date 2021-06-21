@@ -142,8 +142,6 @@ export const fetchCartLogs = async () => {
         .collection('userCartLogs')
         .get()
 
-    console.log(receiptDocs)
-
     const cartLogData = []
 
     // Get the cartItems for each receipt

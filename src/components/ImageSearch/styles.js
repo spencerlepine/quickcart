@@ -354,7 +354,8 @@ export default makeStyles((theme) => ({
   },
   searchResultCards: {
     width: "min-content",
-    margin: "auto",
+    padding: "0",
+    margin: "0",
     overflowY: "scroll",
     display: "grid",
     gridTemplateColumns: "auto auto auto",

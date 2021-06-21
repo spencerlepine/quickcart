@@ -9,6 +9,7 @@ export default makeStyles(() => ({
     minWidth: "100px",
     textAlign: "center",
     lineHeight: "1.5em",
+    scrollbarColor: "white",
   },
   searchImg: {
     maxHeight: "200px",

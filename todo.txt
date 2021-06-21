@@ -1,14 +1,7 @@
 # To do:
-- use ID for cart log page
-- ONE TIME load more button, just need to see the cart yaknow?
  - load the rest if the user searches
-- REMOVE http://localhost:3000/ from production app
-- update rules for production firestore
 - search thing is broken
-- import prompt
 - copy delete stuff
-- update TODO
-- CHECK PHONE TODO
 - SEARCH DETAILS
 - update readme screenshot
 - HOme page:
