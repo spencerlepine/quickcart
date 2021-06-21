@@ -86,7 +86,11 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
           <p></p>
         </div>
         <div className={classes.nutritionDetials}>
-          <NutritionFacts nutFacts={groceryItem.nutriscore_data} />
+          <NutritionFacts
+            nutFacts={groceryItem.nutriscore_data}
+            servingSize={groceryItem.serving_size}
+            servingQuantity={groceryItem.serving_quantity}>
+          </NutritionFacts>
         </div>
       </div>
     </div>

@@ -35,6 +35,7 @@ const nutriscoreSchema = {
   "trans-fat": 0,
   cholesterol: 0,
   "total_carbs": 0,
+  calories: 0,
   carbohydrates_serving: 0,
   dietary_fiber: 0,
   protein: 0,
@@ -42,6 +43,8 @@ const nutriscoreSchema = {
   "vitamin-c": 0,
   calcium: 0,
   iron: 0,
+  serving_size: "~1 oz",
+  serving_quantity: 1,
 }
 
 export default nutriscoreSchema

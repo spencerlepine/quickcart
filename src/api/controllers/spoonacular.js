@@ -57,7 +57,6 @@ export const fetchProductDetails = async (id) => {
       url: searchUrl,
     }).then(result => {
       if (result) {
-        console.log(result)
         return result.data
       } else return null
     });

@@ -35,9 +35,11 @@ const formatGroceryObj = (resultObj = {}) => {
   const itemId = valueFromPossibleKeys(resultObj, "_id", "id") || grocerySchema._id || currentTime
   const itemBrand = valueFromPossibleKeys(resultObj, "brands", "brand", "brand_owner", "brand_owner_imported") || grocerySchema.brand
   const itemIngredients = valueFromPossibleKeys(resultObj, "ingredients", "ingredients_tags") || grocerySchema.ingredients
-  let itemNutriscoreData = valueFromPossibleKeys(resultObj, "nutriscore_data") || grocerySchema.nutriscore_data
+  let itemNutriscoreData = valueFromPossibleKeys(resultObj, "nutriscore_data", "nutrition") || grocerySchema.nutriscore_data
   // Make sure you format spots for nutriscore_data object
   itemNutriscoreData = filterNutriscoreObj(itemNutriscoreData)
+  itemNutriscoreData["total_carbs"] = itemNutriscoreData["carbs"] || itemNutriscoreData["carbohydrates_serving"]
+  itemNutriscoreData["energy"] = Math.round(itemNutriscoreData["calories"] / 0.23900573614) || itemNutriscoreData["carbohydrates_serving"]
 
   const itemNutriscoreDataPer = valueFromPossibleKeys(resultObj, "nutriscore_data_per") || grocerySchema.nutriscore_data_per
   const itemNutriscoreDataPreparedPer = valueFromPossibleKeys(resultObj, "nutriscore_data_prepared_per") || grocerySchema.nutriscore_data_prepared_per

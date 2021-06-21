@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { NutritionLabel } from "react-fda-nutrition-facts"
 import hasNutritionData from "../../../modules/hasNutritionData"
 
-const NutritionFacts = ({ nutFacts }) => {
+const NutritionFacts = ({ nutFacts, servingSize = null, servingQuantity = null }) => {
   const [showNutritionFacts, setShowNutritionFacts] = useState(false)
 
   useEffect(() => {
@@ -13,8 +13,8 @@ const NutritionFacts = ({ nutFacts }) => {
   if (showNutritionFacts) {
     return (
       <NutritionLabel
-        servingSize={nutFacts.serving_size}
-        servingsPerContainer={nutFacts.serving_quantity || 1}
+        servingSize={servingSize || nutFacts.serving_size}
+        servingsPerContainer={servingQuantity || nutFacts.serving_quantity || 1}
         calories={Math.round(nutFacts.energy * 0.23900573614) || 0}
         totalFat={nutFacts.fat || 0}
         saturatedFat={nutFacts["saturated-fat"] || 0}
