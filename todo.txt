@@ -65,6 +65,7 @@ Get product details
   - try to search the database with an item close to that name
    - fill in the id for that log
 - purchasing an item a second time will override current quantity in cartLogs
+- removed use effect arrays creating infinite loops
 
 Extra:
 - Feedback page with reviews and message submission form?

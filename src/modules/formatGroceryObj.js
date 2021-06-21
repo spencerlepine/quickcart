@@ -16,7 +16,7 @@ const formatGroceryObj = (resultObj = {}) => {
   const itemImage = valueFromPossibleKeys(resultObj, "image", "image_url", "image_small_url") || missingImage
   const itemPriority = valueFromPossibleKeys(resultObj, "priority", "rating", "preference") || grocerySchema.priority
   const itemQuantity = grocerySchema.quantity
-  const itemPurchaseSize = valueFromPossibleKeys(resultObj, "purchase_size", "quantity", "net_weight_value", "net_weight_unit", "volume_unit") || itemQuantity || grocerySchema.purchase_size
+  const itemPurchaseSize = `${valueFromPossibleKeys(resultObj, "purchase_size", "quantity", "net_weight_value", "net_weight_unit", "volume_unit") || itemQuantity || grocerySchema.purchase_size}`
   const itemLastBought = valueFromPossibleKeys(resultObj, "last_purchased", "last_purchase", "purchase_date") || grocerySchema.last_purchased
   const itemCategory = valueFromPossibleKeys(resultObj, "category") || grocerySchema.category
   const itemServingCost = valueFromPossibleKeys(resultObj, "serving_cost", "serving_price") || grocerySchema.serving_cost

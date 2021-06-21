@@ -1,6 +1,6 @@
 import React from "react"
-import getPriceColor from "../../../modules/getPriceColor"
-import getPriceRank from "../../../modules/getPriceRank"
+import getPriceColor from "../../modules/getPriceColor"
+import getPriceRank from "../../modules/getPriceRank"
 
 const PriceIndicator = ({ priceInt }) => {
   const priceStyles = {

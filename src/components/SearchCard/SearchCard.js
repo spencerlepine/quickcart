@@ -2,19 +2,12 @@ import React from "react";
 import useForm from "../../context/FormContext/FormContext"
 import formatGroceryObj from "../../modules/formatGroceryObj"
 import { FORM } from "../../constants/routeConstants"
-import useStyles from "./styles.js";
+import DetailsPopup from "../DetailsPopup/DetailsPopup"
 import { useHistory } from "react-router";
-
-const formatName = (name) => {
-  if (name && name.length > 36) {
-    return name.slice(0, 36) + "..."
-  } else {
-    return name
-  }
-}
+import SearchThumbnail from "./SearchThumbnail/SearchThumbnail"
+import SearchItemDetails from "./SearchItemDetails/SearchItemDetails"
 
 const SearchCard = ({ product }) => {
-  const classes = useStyles();
   const history = useHistory()
   const { setSearchSelection, setEditSelection } = useForm()
 
@@ -25,16 +18,10 @@ const SearchCard = ({ product }) => {
     history.push(FORM)
   }
 
-  const formattedProduct = formatGroceryObj(product)
-  const itemName = formattedProduct.name
-  const itemImageURL = formattedProduct.image
-
-  return (<div className={classes.itemCard}>
-    <div className={classes.thumbnailContainer} onClick={handleClick}>
-      <img src={itemImageURL} alt={itemName} className={classes.itemThumbnail}></img>
-    </div>
-    <p className={classes.itemName}>{formatName(itemName)}</p>
-  </div>)
+  return (<DetailsPopup
+    CardComponent={<SearchThumbnail product={product} />}
+    DetailsComponent={<SearchItemDetails groceryItem={product} />}
+  />)
 };
 
 export default SearchCard

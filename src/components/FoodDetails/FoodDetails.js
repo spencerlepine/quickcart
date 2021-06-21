@@ -1,5 +1,5 @@
 import React from "react"
-import useForm from "../../../context/FormContext/FormContext"
+import useForm from "../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
