@@ -1,6 +1,6 @@
 # To do:
- - load the rest if the user searches
-- search thing is broken
+- load the rest if the user searches
+- Search within the grocery context, return a list of the items I want (match name , catg, brand)
 - copy delete stuff
 - SEARCH DETAILS
 - update readme screenshot

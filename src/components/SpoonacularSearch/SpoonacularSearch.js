@@ -5,16 +5,20 @@ import SearchBar from "material-ui-search-bar";
 import useStyles from "./styles.js";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchResult from "./SearchResult/SearchResult";
+import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext.js";
 import PromptButtons from "./PromptButtons/PromptButtons"
+import SearchResulfOFF from "../FoodFactsSearch/SearchResult/SearchResult"
 
 const SpoonacularSearch = () => {
   const classes = useStyles();
   const [itemSearch, setItemSearch] = useState("");
   const { searchProducts, loading } = useSpoonacular()
+  const { searchProductsOFF } = useFoodFacts()
 
   const handleSubmit = async (e) => {
     if (itemSearch) {
       await searchProducts(itemSearch)
+      await searchProductsOFF(itemSearch)
     }
   }
 
@@ -33,6 +37,7 @@ const SpoonacularSearch = () => {
             />}
         </div>
         <SearchResult />
+        <SearchResulfOFF />
       </div>
     </div>
   );

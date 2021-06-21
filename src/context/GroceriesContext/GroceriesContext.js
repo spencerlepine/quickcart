@@ -62,6 +62,7 @@ export function GroceriesProvider({ children }) {
   }
 
   async function createGroceryItem(newGroceryItem) {
+    setDisplayStarters(false)
     try {
       const filledGroceryObj = formatGroceryObj(newGroceryItem)
       const newGrocery = await api.createGrocery(filledGroceryObj)
@@ -79,6 +80,7 @@ export function GroceriesProvider({ children }) {
   }
 
   async function deleteGroceryItem(groceryId) {
+    setDisplayStarters(false)
     try {
       await api.deleteGrocery(groceryId)
 

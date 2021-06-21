@@ -16,7 +16,7 @@ export function FoodFactsProvider({ children }) {
     setLoading(false)
   }
 
-  async function searchProducts(keyword) {
+  async function searchProductsOFF(keyword) {
     setLoading(true)
     // param {string}
     const data = await foodApi.searchProducts(keyword)
@@ -28,7 +28,7 @@ export function FoodFactsProvider({ children }) {
     itemUPCSearch,
     searchResultList,
     fetchUPCItemData,
-    searchProducts,
+    searchProductsOFF,
     loading,
     setSearchResultList,
   }
@@ -41,12 +41,12 @@ export function FoodFactsProvider({ children }) {
 }
 
 const useFoodFacts = () => {
-  const { itemUPCSearch, loading, fetchUPCItemData, searchProducts, searchResultList, setSearchResultList } = useContext(FoodFactsContext);
+  const { itemUPCSearch, loading, fetchUPCItemData, searchProductsOFF, searchResultList, setSearchResultList } = useContext(FoodFactsContext);
 
   return {
     itemUPCSearch,
     fetchUPCItemData,
-    searchProducts,
+    searchProductsOFF,
     searchResultList,
     loading,
     setSearchResultList,
