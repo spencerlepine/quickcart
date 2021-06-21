@@ -31,6 +31,11 @@ const Import = () => {
         return
       }
 
+      const importCount = typeof storageAccessed === "object" ? storageAccessed.length : 0
+      if (!window.confirm("Import " + importCount + " items?")) {
+        return
+      }
+
       storageAccessed.forEach((grocery) => {
         const filteredObj = formatGroceryObj(grocery)
 

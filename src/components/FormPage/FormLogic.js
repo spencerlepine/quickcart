@@ -99,7 +99,7 @@ const FormLogic = ({ Component }) => {
     clearForm();
   };
 
-  const handleClear = (handleDelete, clearForm, editSelection) => {
+  const handleClear = () => {
     if (editSelection) {
       handleDelete(editSelection._id)
     } else {

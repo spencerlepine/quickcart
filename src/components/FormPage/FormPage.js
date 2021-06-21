@@ -45,7 +45,7 @@ const FormPage = (props) => {
           <ProductRating rating={parseInt(props.thisGrocery.priority)} handleChange={props.handleChange} />
 
           <ClearButton
-            handleClick={() => props.handleClear(props.handleDelete, props.clearForm, props.editSelection)}
+            handleClick={() => props.handleClear(props.handleClear, props.editSelection)}
             editSelection={props.editSelection}>
           </ClearButton>
 

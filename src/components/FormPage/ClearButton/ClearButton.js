@@ -2,7 +2,7 @@ import React from "react"
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles"
 
-const ClearButton = ({ handleClick, editSelection, className }) => {
+const ClearButton = ({ handleClick, editSelection }) => {
   const classes = useStyles();
 
   return (<Button
