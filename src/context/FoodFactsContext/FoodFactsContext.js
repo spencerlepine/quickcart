@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import * as foodApi from "../../api/openfoodfacts"
+import * as foodApi from "../../api/controllers/foodFacts"
 
 export const FoodFactsContext = React.createContext()
 

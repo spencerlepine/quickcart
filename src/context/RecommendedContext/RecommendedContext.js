@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
-import * as api from "../../api/index"
+import * as api from "../../api/controllers/recommended"
 
 export const RecommendedContext = React.createContext()
 

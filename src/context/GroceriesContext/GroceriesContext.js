@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import formatGroceryObj from "../../modules/formatGroceryObj"
-import * as api from "../../api/index"
+import * as api from "../../api/controllers/groceries"
 
 export const GroceriesContext = React.createContext()
 
