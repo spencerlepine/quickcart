@@ -44,8 +44,10 @@ const CartLogPage = () => {
           ) : (
             <>
               <div className={classes.cartLogs}>
-                {allCartLogs.map((list, key) => {
-                  let totalCost = list.reduce(
+                {allCartLogs.map((receipt, key) => {
+                  const receiptDate = `${receipt[0]}`
+                  const thisReceipt = receipt.slice(1,)
+                  let totalCost = thisReceipt.reduce(
                     (total, item) =>
                     (total +=
                       item.quantity * parseFloat(item.purchase_price)),
@@ -53,8 +55,9 @@ const CartLogPage = () => {
                   )
                   return (
                     <div className={classes.cartLog} key={key}>
-                      {list.map((cartItem, key) => <CartLogItem key={key} cartLogItem={cartItem} />)}
-                      <p>Total: ${totalCost} ({list.length} items)</p>
+                      <p>{receiptDate}</p>
+                      {thisReceipt.map((cartItem, key) => <CartLogItem key={key} cartLogItem={cartItem} />)}
+                      <p>Total: ${totalCost} ({thisReceipt.length} items)</p>
                     </div>
                   )
                 })}

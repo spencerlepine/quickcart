@@ -71,6 +71,7 @@ Get product details
  - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
   - try to search the database with an item close to that name
    - fill in the id for that log
+- purchasing an item a second time will override current quantity in cartLogs
 
 Extra:
 - Feedback page with reviews and message submission form?
