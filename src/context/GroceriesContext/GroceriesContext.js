@@ -18,16 +18,18 @@ export function GroceriesProvider({ children }) {
   })
 
   useEffect(() => {
-    if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
-      if (allGroceryItems.length < starterCount) {
-        const lastItem = allGroceryItems.slice(-1)
-        const lastId = lastItem.length ? lastItem[0]["_id"] : ""
-        getAllGroceries(lastId)
+    if (displayStarters) {
+      if (allGroceryItems.length === totalGroceryCount || allGroceryItems.length === starterCount) {
+        return
       }
-    } else {
-      setDisplayStarters(false)
     }
-  }, [totalGroceryCount, allGroceryItems])
+
+    if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
+      const lastItem = allGroceryItems.slice(-1)
+      const lastId = lastItem.length ? lastItem[0]["_id"] : ""
+      getAllGroceries(lastId)
+    }
+  }, [totalGroceryCount, allGroceryItems, displayStarters])
 
   async function fetchTotalGroceryCount() {
     const count = await api.fetchGroceryCount()
