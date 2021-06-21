@@ -13,7 +13,7 @@ export function GroceriesProvider({ children }) {
     if (totalGroceryCount < 0) {
       fetchTotalGroceryCount()
     }
-  }, [])
+  })
 
   useEffect(() => {
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {

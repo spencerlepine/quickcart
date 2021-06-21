@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { NutritionLabel } from "react-fda-nutrition-facts"
 import hasNutritionData from "../../../../modules/hasNutritionData"
-import useStyles from "./styles"
 
 const NutritionFacts = ({ nutFacts }) => {
   const [showNutritionFacts, setShowNutritionFacts] = useState(false)

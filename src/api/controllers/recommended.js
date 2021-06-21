@@ -31,7 +31,7 @@ export const fetchRecommended = async (req, res) => {
     // Group groceries by category
     let groupedGroceries = {}
 
-    groceryItems.filter(grocery => {
+    groceryItems.forEach(grocery => {
       // Cross-reference stored cart data
       let thisId = grocery["name"];
 
@@ -46,7 +46,7 @@ export const fetchRecommended = async (req, res) => {
         let groceryLifeSpan = Math.round(
           grocery["purchase_price"] / grocery["serving_cost"]
         );
-        
+
         groceryExpirationDate.setDate(
           groceryExpirationDate.getDate() + groceryLifeSpan
         );
@@ -68,7 +68,7 @@ export const fetchRecommended = async (req, res) => {
       thisCategoryList.sort((groceryA, groceryB) => {
         const priorityA = groceryA["priority"];
         const priorityB = groceryB["priority"];
-        
+
         const servingCostA = Math.max(0, 5 - groceryA["serving_cost"] * 2.5);
         const servingCostB = Math.max(0, 5 - groceryB["serving_cost"] * 2.5);
 
@@ -87,7 +87,7 @@ export const fetchRecommended = async (req, res) => {
 
       // Return top 6 from each category
       let topRange = 6;
-      groupedGroceries[prop] = thisCategoryList.slice(0, Math.min(thisCategoryList.length, topRange))  
+      groupedGroceries[prop] = thisCategoryList.slice(0, Math.min(thisCategoryList.length, topRange))
     }
 
     return groupedGroceries

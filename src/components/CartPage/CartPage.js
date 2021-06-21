@@ -32,7 +32,7 @@ const CartPage = () => {
       getAllCartItems()
       return;
     }
-  }, []);
+  });
 
   const sortedCart = groupItemsByCategory(allCartItems)
 

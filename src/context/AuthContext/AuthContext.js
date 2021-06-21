@@ -39,9 +39,9 @@ export function AuthProvider({ children }) {
 
     // Create a Storage Ref w/ username
     var storageRef = await storage.ref(user.uid + '/profilePicture/avatar.png');
-    
+
     // Upload file
-    var task = await storageRef.put(newFile);
+    await storageRef.put(newFile);
 
     // Save the link to the image
     var imageUrl = await storageRef.getDownloadURL().then(url => url)
@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
     await user.updateProfile({
       photoURL: imageUrl
     })
-    
+
     return imageUrl
   }
 
@@ -80,6 +80,9 @@ export function AuthProvider({ children }) {
 
   const value = {
     loading,
+    resetPassword,
+    updatePassword,
+    updateEmail,
     currentUser,
     loginUser,
     logoutUser,
@@ -95,15 +98,18 @@ export function AuthProvider({ children }) {
         </div> :
         <>{children}</>
       }
-      
+
     </AuthContext.Provider>
   )
 }
 
 const useAuth = () => {
-  const { loading, currentUser, loginUser, signupUser, logoutUser, updateProfilePic } = useContext(AuthContext);
-  
+  const { loading, resetPassword, updatePassword, updateEmail, currentUser, loginUser, signupUser, logoutUser, updateProfilePic } = useContext(AuthContext);
+
   return {
+    resetPassword,
+    updatePassword,
+    updateEmail,
     loading,
     currentUser,
     loginUser,

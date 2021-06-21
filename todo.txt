@@ -1,4 +1,6 @@
 # To do:
+- reset password, update email, update password
+- download csv
 - Details component for SearchCard (click on item, get details, click USE/SAVE ITEM)
   - open and close details box before saving this grocery to my database
 Get product details

@@ -13,7 +13,7 @@ const ImageSearch = ({ updateImageState }) => {
 
   useEffect(() => {
     setImageSearchResult([])
-  }, [])
+  })
 
   const handleSubmit = async (e) => {
     await keywordSearch(itemSearch, searchCallback)

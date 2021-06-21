@@ -12,7 +12,7 @@ const RecommendedPage = () => {
 
   useEffect(() => {
     getAllRecommendedItems()
-  }, [])
+  })
 
   const categorySliders = []
   for (const category in allRecommendedItems) {

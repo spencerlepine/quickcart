@@ -30,7 +30,7 @@ const CartLogPage = () => {
       getAllCartLogs()
       return;
     }
-  }, []);
+  });
 
   return (
     <div className={classes.logsView}>

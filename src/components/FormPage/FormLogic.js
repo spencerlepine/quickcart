@@ -31,7 +31,7 @@ const FormLogic = ({ Component }) => {
       setThisGrocery(searchSelection);
     }
     setShowPopup(!editSelection && !searchSelection)
-  }, []);
+  }, [editSelection, searchSelection]);
 
   const caclulateServingQuantity = (name, value) => {
     const currentGrocery = { ...thisGrocery }

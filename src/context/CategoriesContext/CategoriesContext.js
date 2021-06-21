@@ -8,7 +8,7 @@ export function CategoriesProvider({ children }) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => getAllCategories(), [])
-  
+
   async function getAllCategories() {
     setLoading(true)
     try {
@@ -31,6 +31,7 @@ export function CategoriesProvider({ children }) {
   }
 
   const value = {
+    loading,
     allCategories,
     getAllCategories,
     createNewCategory,
@@ -43,11 +44,12 @@ export function CategoriesProvider({ children }) {
   )
 }
 
-const useCategories= () => {
-  const { allCategories, getAllCategories, createNewCategory } = useContext(CategoriesContext);
-  
+const useCategories = () => {
+  const { allCategories, loading, getAllCategories, createNewCategory } = useContext(CategoriesContext);
+
   return {
     allCategories,
+    loading,
     getAllCategories,
     createNewCategory,
   };

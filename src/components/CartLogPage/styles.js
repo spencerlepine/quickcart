@@ -1,18 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
-  logsView: {
-    maxWidth: "700px",
-    marginTop: "1%",
-    marginBottom: "1vh",
-    backgroundColor: "white",
-    padding: "2vh",
-    borderRadius: "1vh",
-    alignItems: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-    fontSize: "1.2em",
-  },
   itemsGrid: {
     display: "flex",
     overflow: "scroll",
@@ -28,6 +16,15 @@ export default makeStyles(() => ({
     margin: "1em 0 1em 0",
   },
   logsView: {
+    maxWidth: "700px",
+    marginTop: "1%",
+    marginBottom: "1vh",
+    backgroundColor: "white",
+    borderRadius: "1vh",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontSize: "1.2em",
     margin: "auto",
     padding: "10px",
     width: "fit-content",

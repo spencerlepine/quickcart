@@ -10,7 +10,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     setSearchResultList(null)
-  }, [])
+  })
 
   if (searchResultList && searchResultList.length > 0) {
     const resultList = searchResultList.map(item => <SearchCard product={item} />)

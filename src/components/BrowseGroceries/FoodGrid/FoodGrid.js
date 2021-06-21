@@ -22,7 +22,7 @@ const FoodGrid = () => {
   useEffect(() => {
     setEditSelection(null)
     setSearchSelection(null)
-  }, [])
+  })
 
   return (
     <>

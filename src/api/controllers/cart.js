@@ -120,7 +120,7 @@ export const logCartItem = async (itemToLog) => {
     }
 
     // Save the item
-    const logsCollectionRef = await db.collection('users')
+    await db.collection('users')
       .doc(userId)
       .collection('userCartLogs')
       .doc(formattedDate)

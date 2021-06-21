@@ -10,7 +10,7 @@ const CategoryLabels = () => {
 
   useEffect(() => {
     getAllCategories()
-  }, [])
+  })
 
   const categoryComponents = allCategories.map((category, i) => (
     <CategorySelector categoryName={category} key={i} selectorValue={category} />
