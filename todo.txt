@@ -1,4 +1,12 @@
 # To do:
+PUT PRODUCT SKELETON WHEN LOADING
+SAVE ITEM or close
+
+IF YOUR EDITING SOMETHING,
+ - get the empty fields
+ - make a list of filler prompts
+
+cross referecning things to COMBINER THEM AND MAKE A SUPER GROCERY
 - load the rest if the user searches
 - Search within the grocery context, return a list of the items I want (match name , catg, brand)
 - copy delete stuff
