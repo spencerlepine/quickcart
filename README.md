@@ -8,7 +8,7 @@ _Make a shopping list with personal grocery data to help budget._
   <a href="#contributing">Contributing</a>
 </p>
 
-<div style="text-align:center"><img src="./src/images/demo_small.png" alt="QuickCart Screenshot/></div>
+<div style="text-align:center"><img src="./src/images/demo_small.png" alt="QuickCart Screenshot"/></div>
 
 ## Setup:
 ```sh
@@ -23,7 +23,7 @@ _Make a shopping list with personal grocery data to help budget._
 ```
 
 ## Technologies:
-- <p><img alt="logo" src="https://reactjs.org/favicon.ico"/></p>[React](https://reactjs.org/)
+- <img alt="logo" style="width:20px;" src="https://reactjs.org/favicon.ico"/>[React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/)
 - [OpenFoodFacts](https://world.openfoodfacts.org)
 - [Google CSE](https://cse.google.com)
