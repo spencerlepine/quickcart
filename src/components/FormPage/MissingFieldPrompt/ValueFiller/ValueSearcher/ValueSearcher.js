@@ -48,14 +48,6 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
     await spoonacularName(name, fieldName);
     await foodFactsId(ID, fieldName);
     await spoonacularId(ID, fieldName);
-
-    // Use the data and handle it
-    console.log(spoonacularIdResult);
-    console.log(spoonacularNameResult);
-    console.log(spoonacularUpcResult);
-    console.log(foodFactsIdResult);
-    console.log(foodFactsNameResult);
-    console.log(foodFactsUpcResult);
   }
 
   useEffect(() => {
@@ -63,13 +55,31 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
     retreiveFieldInfo(fieldName, UPC, ID, name)
   }, [])
 
-  // get list of values
-  // prompt user to USE the value
-  // Generate a list of the options
-  // Set purchase price:
-  // Find best match?
-  // 3.40 SELECT
-  // 2.40 SELECT
+  const DisplaySearch = () => {
+    if (spoonacularIdResult
+      || spoonacularNameResult
+      || spoonacularUpcResult
+      || foodFactsIdResult
+      || foodFactsNameResult
+      || foodFactsUpcResult) {
+      return (
+        <div className={classes.valueSelector}>
+          <p>{toTitleCase(fieldName)}</p>
+          <p>{spoonacularIdResult}</p>
+          <p>{spoonacularNameResult}</p>
+          <p>{spoonacularUpcResult}</p>
+          <p>{foodFactsIdResult}</p>
+          <p>{foodFactsNameResult}</p>
+          <p>{foodFactsUpcResult}</p>
+        </div>
+      )
+    } else {
+      return (
+        <>
+          <p>Sorry, this product was hard to find :(</p>
+        </>)
+    }
+  }
 
   // Update with loading state
   const loading = foodFactsLoading || spoonLoading;
@@ -81,9 +91,7 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
             ?
             <CircularProgress />
             :
-            <div className={classes.valueSelector}>
-              <p>{toTitleCase(fieldName)}</p>
-            </div>
+            <DisplaySearch />
           }</>
         </div>
       </div>

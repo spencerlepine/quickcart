@@ -34,14 +34,6 @@ const MissingFieldPrompt = ({ handleChange, groceryItem }) => {
 
   return (
     <div className={classes.missingPromptContainer}>
-      <DetailsPopup
-        CardComponent={<Prompt key={"category"} field={"category"} />}
-        DetailsComponent={<ValueSearcher handleChange={handleChange}
-          fieldName={"category"}
-          UPC={groceryItem["upc"]}
-          ID={groceryItem["_id"]}
-          name={groceryItem["name"]} />}
-      />
       {missingPrompts}
     </div >
   );

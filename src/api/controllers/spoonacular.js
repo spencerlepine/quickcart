@@ -14,7 +14,6 @@ export const fetchUPCItem = async (upc) => {
       url: searchUrl,
     }).then(result => {
       if (result.data) {
-        console.log(result)
         if (result.data.status === "failure") {
           alert("could not find product")
           return false
@@ -100,7 +99,6 @@ export const searchProductById = async (id) => {
       if (result) {
         const idToFetch = result.data["_id"]
         const details = await fetchProductDetails(idToFetch)
-        console.log(details)
         return details
       } else return null
     });

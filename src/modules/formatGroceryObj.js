@@ -3,6 +3,7 @@ import grocerySchema from "../schema/groceryItem"
 import toTitleCase from "./toTitleCase"
 import extractGroceryValue from "./extractGroceryValue"
 import filterNutriscoreObj from "./filterNutriscoreObj"
+import missingImage from "../images/missing.jpeg"
 
 const getImageFromList = (obj) => {
   const imageList = obj.images
@@ -25,7 +26,7 @@ const formatGroceryObj = (resultObj = {}) => {
 
   formattedObj.category = (formattedObj.category).trim();
   formattedObj["_id"] = formattedObj["_id"] || currentTime
-  formattedObj.image = getImageFromList(resultObj) || formattedObj.image
+  formattedObj.image = getImageFromList(resultObj) || formattedObj.image || missingImage
 
   // Override some nutritional details
   const itemNutriscoreData = filterNutriscoreObj(formattedObj["nutriscore_data"])

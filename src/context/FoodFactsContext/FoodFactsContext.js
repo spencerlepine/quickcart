@@ -35,7 +35,7 @@ export function FoodFactsProvider({ children }) {
     const data = await foodApi.searchProductById(id)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
+    // console.log(fieldResult)
     setIdFieldResult(fieldResult)
     setLoading(false)
   }
@@ -46,7 +46,6 @@ export function FoodFactsProvider({ children }) {
     const data = await foodApi.searchProductByName(name)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
     setNameFieldResult(fieldResult)
     setLoading(false)
   }
@@ -57,7 +56,7 @@ export function FoodFactsProvider({ children }) {
     const data = await foodApi.searchProductById(upc)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
+    // console.log(fieldResult)
     setUpcFieldResult(fieldResult)
     setLoading(false)
   }

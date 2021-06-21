@@ -45,7 +45,7 @@ export const searchProductByName = async (searchString) => {
     }).then(result => {
       if (result) {
         return result.data.products[0]
-      } else return null
+      } else { return null }
     });
     return result
   } catch (error) {

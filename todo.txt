@@ -74,6 +74,7 @@ Get product details
    - fill in the id for that log
 - purchasing an item a second time will override current quantity in cartLogs
 - removed use effect arrays creating infinite loops
+- duplicate items added, when Save ITEM button is clicked, setting the same ID, but the totalgrocery count is getting tripped up
 
 Extra:
 - Feedback page with reviews and message submission form?

@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchResult from "./SearchResult/SearchResult";
 import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext.js";
 import PromptButtons from "./PromptButtons/PromptButtons"
-import SearchResulfOFF from "../FoodFactsSearch/SearchResult/SearchResult"
+import SearchResulfOFF from "./SearchResultOFF/SearchResultOFF"
 
 const SpoonacularSearch = () => {
   const classes = useStyles();

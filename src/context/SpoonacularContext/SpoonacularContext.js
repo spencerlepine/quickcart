@@ -38,38 +38,32 @@ export function SpoonacularProvider({ children }) {
     setLoading(false)
   }
 
-  async function fieldFromId(id, fieldName) {
+  async function fieldFromId(id = "", fieldName) {
     setLoading(true)
     // param {string}
     const data = await foodApi.searchProductById(id)
-    console.log(data)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
     setIdFieldResult(fieldResult)
     setLoading(false)
   }
 
-  async function fieldFromName(name, fieldName) {
+  async function fieldFromName(name = "", fieldName) {
     setLoading(true)
     // param {string}
     const data = await foodApi.searchProductByName(name)
-    console.log(data)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
     setNameFieldResult(fieldResult)
     setLoading(false)
   }
 
-  async function fieldFromUPC(upc, fieldName) {
+  async function fieldFromUPC(upc = "", fieldName) {
     setLoading(true)
     // param {string}
     const data = await foodApi.searchProductByUpc(upc)
-    console.log(data)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
-    console.log(fieldResult)
     setUpcFieldResult(fieldResult)
     setLoading(false)
   }

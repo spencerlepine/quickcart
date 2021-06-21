@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
-import SearchCard from "../SearchCard/SearchCard"
+import SearchCard from "../../SearchCard/SearchCard"
 import useStyles from "./styles.js";
 
 const SearchResult = () => {
