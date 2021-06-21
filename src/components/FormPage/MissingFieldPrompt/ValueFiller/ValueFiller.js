@@ -16,7 +16,6 @@ import toTitleCase from "../../../../modules/toTitleCase";
 import ErrorIcon from '@material-ui/icons/Error';
 
 const ValueFiller = ({ handleChange, fieldName, UPC, ID, name }) => {
-  console.log({ handleChange, fieldName, UPC, ID, name })
   const classes = useStyles();
   const [displayPopup, setDisplayPopup] = useState(false)
 

@@ -9,9 +9,9 @@ export function FoodFactsProvider({ children }) {
   const [itemUPCSearch, setItemUPCSearch] = useState("")
   const [searchResultList, setSearchResultList] = useState(null)
 
-  const [idFeildResult, setIdFeildResult] = useState(null)
-  const [nameFeildResult, setNameFeildResult] = useState(null)
-  const [upcFeildResult, setUpcFeildResult] = useState(null)
+  const [idFieldResult, setIdFieldResult] = useState(null)
+  const [nameFieldResult, setNameFieldResult] = useState(null)
+  const [upcFieldResult, setUpcFieldResult] = useState(null)
 
   async function fetchUPCItemData(UPC) {
     setLoading(true)
@@ -32,33 +32,33 @@ export function FoodFactsProvider({ children }) {
   async function fieldFromId(id, fieldName) {
     setLoading(true)
     // param {string}
-    const data = await foodApi.searchProductsById(id)
+    const data = await foodApi.searchProductById(id)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
     console.log(fieldResult)
-    setIdFeildResult(fieldResult)
+    setIdFieldResult(fieldResult)
     setLoading(false)
   }
 
   async function fieldFromName(name, fieldName) {
     setLoading(true)
     // param {string}
-    const data = await foodApi.searchProductsByName(name)
+    const data = await foodApi.searchProductByName(name)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
     console.log(fieldResult)
-    setIdFeildResult(fieldResult)
+    setNameFieldResult(fieldResult)
     setLoading(false)
   }
 
   async function fieldFromUPC(upc, fieldName) {
     setLoading(true)
     // param {string}
-    const data = await foodApi.searchProductsByUpc(upc)
+    const data = await foodApi.searchProductById(upc)
     // pull the desired field from it
     const fieldResult = extractGroceryValue(data, fieldName)
     console.log(fieldResult)
-    setIdFeildResult(fieldResult)
+    setUpcFieldResult(fieldResult)
     setLoading(false)
   }
 
@@ -69,9 +69,9 @@ export function FoodFactsProvider({ children }) {
     searchProductsOFF,
     loading,
     setSearchResultList,
-    idFeildResult,
-    nameFeildResult,
-    upcFeildResult,
+    idFieldResult,
+    nameFieldResult,
+    upcFieldResult,
     fieldFromId,
     fieldFromName,
     fieldFromUPC,
@@ -91,9 +91,9 @@ const useFoodFacts = () => {
     searchProductsOFF,
     searchResultList,
     setSearchResultList,
-    idFeildResult,
-    nameFeildResult,
-    upcFeildResult,
+    idFieldResult,
+    nameFieldResult,
+    upcFieldResult,
     fieldFromId,
     fieldFromName,
     fieldFromUPC, } = useContext(FoodFactsContext);
@@ -105,9 +105,9 @@ const useFoodFacts = () => {
     searchResultList,
     loading,
     setSearchResultList,
-    idFeildResult,
-    nameFeildResult,
-    upcFeildResult,
+    idFieldResult,
+    nameFieldResult,
+    upcFieldResult,
     fieldFromId,
     fieldFromName,
     fieldFromUPC,

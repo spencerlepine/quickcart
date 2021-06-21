@@ -1,7 +1,7 @@
 // [key] : QuickCart convention
 // values : external api conventions (similar keys)
 // LEFT will be found first
-const similarGroceryFields = {
+const similarFields = {
   "name": ["product_nameen", "product_name", "name", "resultObj_nameen", "resultObj_name", "generic_name", "title"],
   "priority": ["priority", "rating", "preference"],
   "quantity": ["quantity"],
@@ -19,6 +19,10 @@ const similarGroceryFields = {
   "serving_quantity": ["serving_quantity", "number_of_servings"],
   "nutriscore_data_per": ["nutriscore_data_per", "serving_size"],
   "nutriscore_data_prepared_per": ["nutriscore_data_prepared_per", "nutriscore_data_per", "serving_size"],
+}
+
+const similarGroceryFields = (key) => {
+  return similarFields[key] || []
 }
 
 export default similarGroceryFields
