@@ -1,5 +1,6 @@
 import React from "react";
 import useForm from "../../context/FormContext/FormContext"
+import useSpoonacular from "../../context/SpoonacularContext/SpoonacularContext"
 import formatGroceryObj from "../../modules/formatGroceryObj"
 import { FORM } from "../../constants/routeConstants"
 import DetailsPopup from "../DetailsPopup/DetailsPopup"
@@ -9,6 +10,7 @@ import SearchItemDetails from "./SearchItemDetails/SearchItemDetails"
 
 const SearchCard = ({ product }) => {
   const history = useHistory()
+  const { getProductDetails, itemDetails } = useSpoonacular()
   const { setSearchSelection, setEditSelection } = useForm()
 
   const handleClick = () => {
@@ -20,7 +22,7 @@ const SearchCard = ({ product }) => {
 
   return (<DetailsPopup
     CardComponent={<SearchThumbnail product={product} />}
-    DetailsComponent={<SearchItemDetails groceryItem={product} />}
+    DetailsComponent={<SearchItemDetails product={itemDetails} />}
   />)
 };
 

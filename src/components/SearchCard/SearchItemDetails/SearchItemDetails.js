@@ -1,7 +1,9 @@
 import React from "react"
 import FoodDetails from "../../FoodDetails/FoodDetails"
+import formatGroceryObj from "../../../modules/formatGroceryObj"
 
 const SearchItemDetails = ({ product, handleAdd }) => {
+  const formattedProduct = formatGroceryObj(product)
   // const history = useHistory()
   // const { setEditSelection } = useForm()
 
@@ -11,7 +13,7 @@ const SearchItemDetails = ({ product, handleAdd }) => {
   // }
 
   return (
-    <FoodDetails groceryItem={product} handleAdd={() => { }} />
+    <FoodDetails groceryItem={formattedProduct} handleAdd={() => { }} />
   )
 }
 

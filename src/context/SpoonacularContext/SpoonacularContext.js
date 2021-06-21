@@ -7,6 +7,7 @@ export function SpoonacularProvider({ children }) {
   const [loading, setLoading] = useState(false)
   const [itemUPCSearch, setItemUPCSearch] = useState("")
   const [searchResultList, setSearchResultList] = useState(null)
+  const [itemDetails, setItemDetails] = useState({})
 
   async function fetchUPCItemData(UPC) {
     setLoading(true)
@@ -24,12 +25,23 @@ export function SpoonacularProvider({ children }) {
     setLoading(false)
   }
 
+  async function getProductDetails(id) {
+    setLoading(true)
+    // param {string}
+    const data = await foodApi.fetchProductDetails(id)
+    setItemDetails(data)
+    setLoading(false)
+  }
+
   const value = {
     itemUPCSearch,
     searchResultList,
     fetchUPCItemData,
     searchProducts,
     loading,
+    getProductDetails,
+    itemDetails,
+    setItemDetails,
     setSearchResultList,
   }
 
@@ -41,15 +53,18 @@ export function SpoonacularProvider({ children }) {
 }
 
 const useSpoonacular = () => {
-  const { itemUPCSearch, loading, fetchUPCItemData, searchProducts, searchResultList, setSearchResultList } = useContext(SpoonacularContext);
+  const { itemUPCSearch, getProductDetails, itemDetails, setItemDetails, loading, fetchUPCItemData, searchProducts, searchResultList, setSearchResultList } = useContext(SpoonacularContext);
 
   return {
     itemUPCSearch,
     fetchUPCItemData,
     searchProducts,
     searchResultList,
+    getProductDetails,
     loading,
     setSearchResultList,
+    itemDetails,
+    setItemDetails
   };
 };
 

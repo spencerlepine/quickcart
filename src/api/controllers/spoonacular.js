@@ -47,3 +47,22 @@ export const searchProducts = async (searchString) => {
     console.log(error.message)
   }
 }
+
+export const fetchProductDetails = async (id) => {
+  try {
+    const searchUrl = baseOFFURL + `/food/products/${id}?apiKey=${apiKey}`
+
+    const result = await axios({
+      method: 'get',
+      url: searchUrl,
+    }).then(result => {
+      if (result) {
+        console.log(result)
+        return result.data
+      } else return null
+    });
+    return result
+  } catch (error) {
+    console.log(error.message)
+  }
+}
