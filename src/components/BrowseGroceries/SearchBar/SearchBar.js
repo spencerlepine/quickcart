@@ -9,15 +9,15 @@ const SearchBar = () => {
   const { setCurrentSearch, currentSearch } = useSearch()
   const { setDisplayStarters } = useGroceries()
 
-  const handleSearch = (e) => {
+  const handleSearch = (newVal) => {
     setDisplayStarters(false)
-    setCurrentSearch(e.target.value)
+    setCurrentSearch(newVal)
   }
   return (
     <div className={classes.searchbar}>
       <SearchBarComponent
         value={currentSearch}
-        onChange={handleSearch} />
+        onChange={(newVal) => handleSearch(newVal)} />
     </div>
   )
 }

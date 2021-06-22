@@ -1,6 +1,8 @@
 import React, { useState } from "react"
+import useStyles from "./styles.js"
 
 const DetailsPopup = ({ CardComponent, DetailsComponent }) => {
+  const classes = useStyles();
   const [displayPopup, setDisplayPopup] = useState(false)
 
   const handleClick = () => {
@@ -9,7 +11,7 @@ const DetailsPopup = ({ CardComponent, DetailsComponent }) => {
 
   const Component = displayPopup ? DetailsComponent : CardComponent
   return (
-    <div className="details-popup" onClick={handleClick}>
+    <div className={classes.detailsPopup} onClick={handleClick}>
       {Component}
     </div>
   )
