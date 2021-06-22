@@ -34,7 +34,7 @@ const FormLogic = ({ Component }) => {
   }, [editSelection, searchSelection]);
 
   const caclulateServingCost = (name, value) => {
-    const currentGrocery = { ...thisGrocery }
+    const currentGrocery = { ...thisGrocery, [name]: value }
     if (name === "serving_quantity" || name === "purchase_price") {
       const servingCost = parseFloat(currentGrocery["purchase_price"]) / (parseFloat(currentGrocery["serving_quantity"]) || 1)
       currentGrocery['serving_cost'] = Number.parseFloat(servingCost).toFixed(2)
