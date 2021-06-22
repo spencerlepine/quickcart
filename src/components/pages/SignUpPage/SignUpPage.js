@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
-import { LOGIN } from "../../constants/routeConstants"
-import useAuth from "../../context/AuthContext/AuthContext"
-import useNotification from "../../context/NotificationContext/NotificationContext"
-import useGroceries from "../../context/GroceriesContext/GroceriesContext"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-import QuickCartLogo from "../../images/QuickCart-Logo.png"
+import { LOGIN } from "../../../constants/routeConstants"
+import useAuth from "../../../context/AuthContext/AuthContext"
+import useNotification from "../../../context/NotificationContext/NotificationContext"
+import useGroceries from "../../../context/GroceriesContext/GroceriesContext"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
+import QuickCartLogo from "../../../images/QuickCart-Logo.png"
 import useStyles from "./styles"
 
 function SignUpPage() {

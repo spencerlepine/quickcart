@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { FORM } from "../../../constants/routeConstants";
-import useForm from "../../../context/FormContext/FormContext";
+import { FORM } from "../../../../constants/routeConstants";
+import useForm from "../../../../context/FormContext/FormContext";
 
 import useStyles from "./styles";
 

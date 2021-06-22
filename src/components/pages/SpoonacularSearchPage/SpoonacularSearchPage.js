@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-import useSpoonacular from "../../context/SpoonacularContext/SpoonacularContext.js";
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
+import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext.js";
 import SearchBar from "material-ui-search-bar";
 import useStyles from "./styles.js";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchResult from "./SearchResult/SearchResult";
-import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext.js";
+import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
 import PromptButtons from "./PromptButtons/PromptButtons"
 import SearchResulfOFF from "./SearchResultOFF/SearchResultOFF"
 
-const SpoonacularSearch = () => {
+const SpoonacularSearchPage = () => {
   const classes = useStyles();
   const [itemSearch, setItemSearch] = useState("");
   const { searchProducts, loading } = useSpoonacular()
@@ -43,4 +43,4 @@ const SpoonacularSearch = () => {
   );
 };
 
-export default withAuthRedirect(SpoonacularSearch)
+export default withAuthRedirect(SpoonacularSearchPage)

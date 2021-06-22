@@ -12,7 +12,7 @@
 
 import React, { useState } from "react"
 import useStyles from "./styles.js";
-import toTitleCase from "../../../../modules/toTitleCase";
+import toTitleCase from "../../../../../modules/toTitleCase";
 import ErrorIcon from '@material-ui/icons/Error';
 
 const ValueFiller = ({ handleChange, fieldName, UPC, ID, name }) => {

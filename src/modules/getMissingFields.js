@@ -1,4 +1,4 @@
-import grocerySchema from "../schema/groceryItem"
+import grocerySchema from "./schema/groceryItem"
 
 const getMissingFields = (groceryObj) => {
   const missingFields = []

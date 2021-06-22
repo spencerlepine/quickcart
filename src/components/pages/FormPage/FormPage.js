@@ -1,5 +1,5 @@
 import React from "react";
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import ClearButton from "./ClearButton/ClearButton"
 import ProductName from "./ProductSpecifications/ProductName/ProductName"
 import ProductFields from "./ProductSpecifications/ProductFields/ProductFields"

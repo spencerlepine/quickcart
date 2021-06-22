@@ -1,4 +1,4 @@
-import nutriscoreSchema from "../schema/nutriscoreSchema"
+import nutriscoreSchema from "./schema/nutriscoreSchema"
 
 const filterNutriscoreObj = (resultObj = {}) => {
   // update the keys and values

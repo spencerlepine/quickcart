@@ -1,10 +1,10 @@
 import React from "react"
 import useStyles from "./styles"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import Backup from "./Backup/Backup"
 import Import from "./Import/Import"
-import OpenLogs from "../OpenLogs/OpenLogs"
-import Logout from "../Logout/Logout"
+import OpenLogs from "../../OpenLogs/OpenLogs"
+import Logout from "../../LogoutBtn/LogoutBtn"
 
 const SettingsPage = () => {
   const classes = useStyles()

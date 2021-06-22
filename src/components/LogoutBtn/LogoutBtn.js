@@ -6,7 +6,7 @@ import useCart from "../../context/CartContext/CartContext"
 
 import useStyles from "./styles"
 
-const LogoutPage = ({ customWidth }) => {
+const LogoutBtn = ({ customWidth }) => {
   const classes = useStyles()
   const history = useHistory()
   const { logoutUser } = useAuth()
@@ -37,4 +37,4 @@ const LogoutPage = ({ customWidth }) => {
   )
 }
 
-export default LogoutPage
+export default LogoutBtn

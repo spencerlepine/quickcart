@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./styles.js";
 import ValueFiller from "./ValueFiller/ValueFiller"
-import getMissingFields from "../../../modules/getMissingFields"
+import getMissingFields from "../../../../modules/getMissingFields"
 import DetailsPopup from "./DetailsPopup/DetailsPopup"
 import ValueSearcher from "./ValueFiller/ValueSearcher/ValueSearcher"
 

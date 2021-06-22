@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import useStyles from "./styles.js";
-import toTitleCase from "../../../../../modules/toTitleCase";
+import toTitleCase from "../../../../../../modules/toTitleCase";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import useFoodFacts from "../../../../../context/FoodFactsContext/FoodFactsContext";
-import useSpoonacular from "../../../../../context/SpoonacularContext/SpoonacularContext";
-import madShiba from "../../../../../images/mad_shiba.png"
+import useFoodFacts from "../../../../../../context/FoodFactsContext/FoodFactsContext";
+import useSpoonacular from "../../../../../../context/SpoonacularContext/SpoonacularContext";
+import madShiba from "../../../../../../images/mad_shiba.png"
 
 const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
   const classes = useStyles();

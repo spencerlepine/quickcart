@@ -1,5 +1,5 @@
 // use grocery item/product schema
-import grocerySchema from "../schema/groceryItem"
+import grocerySchema from "./schema/groceryItem"
 import toTitleCase from "./toTitleCase"
 import extractGroceryValue from "./extractGroceryValue"
 import filterNutriscoreObj from "./filterNutriscoreObj"

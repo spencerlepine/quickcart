@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
-import useSpoonacular from "../../context/SpoonacularContext/SpoonacularContext.js";
-import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
+import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext.js";
+import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext"
 import SearchBar from "material-ui-search-bar";
 import useStyles from "./styles.js";
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -9,7 +9,7 @@ import UPCResult from "./UPCResult/UPCResult"
 import PromptButtons from "./PromptButtons/PromptButtons"
 import UPCResultOFF from "./UPCResultOFF/UPCResultOFF"
 
-const SpoonUPCSearch = () => {
+const SpoonUPCSearchPage = () => {
   const classes = useStyles();
   const [upcSearch, setUpcSearch] = useState("");
   const { fetchUPCItemData, loading } = useSpoonacular()
@@ -43,4 +43,4 @@ const SpoonUPCSearch = () => {
   );
 };
 
-export default withAuthRedirect(SpoonUPCSearch)
+export default withAuthRedirect(SpoonUPCSearchPage)

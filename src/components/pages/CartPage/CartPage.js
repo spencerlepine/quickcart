@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import CartHeader from "./CartHeader/CartHeader";
 import CartItem from "./CartItem/CartItem";
-import EmptyPrompt from "../EmptyPrompt/EmptyPrompt";
-import cartImg from "../../images/cart.svg";
-import ReccomendedWidget from "../RecommendedWidget/RecommendedWidget";
-import useCart from "../../context/CartContext/CartContext"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt";
+import cartImg from "../../../images/cart.svg";
+import ReccomendedWidget from "../../RecommendedWidget/RecommendedWidget";
+import useCart from "../../../context/CartContext/CartContext"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import groupItemsByCategory from "./groupItemsByCategory"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from "./styles.js";
-import OpenLogs from "../OpenLogs/OpenLogs"
+import OpenLogs from "../../OpenLogs/OpenLogs"
 
 const CartPage = () => {
   const classes = useStyles();

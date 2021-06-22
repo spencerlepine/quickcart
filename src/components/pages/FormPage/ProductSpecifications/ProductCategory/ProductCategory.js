@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "@material-ui/core/Select";
 import CategoryDropdown from "./CategoryDropdown/CategoryDropdown"
-import useCategories from "../../../../context/CategoriesContext/CategoriesContext"
+import useCategories from "../../../../../context/CategoriesContext/CategoriesContext"
 import useStyles from "./styles.js";
 
 const ProductCategory = ({ handleChange, thisGrocery, setThisGrocery, setCurrentNotification }) => {

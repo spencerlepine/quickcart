@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { LOGIN, SIGNUP } from "../../constants/routeConstants"
-import demoImage from "../../images/demo.png"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import { LOGIN, SIGNUP } from "../../../constants/routeConstants"
+import demoImage from "../../../images/demo.png"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import useStyles from "./styles"
 
 function UserWelcomePage() {

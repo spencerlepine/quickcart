@@ -1,5 +1,5 @@
 import similarGroceryFields from "./similarGroceryFields"
-import grocerySchema from "../schema/groceryItem"
+import grocerySchema from "./schema/groceryItem"
 
 const extractGroceryValue = (groceryObj, key) => {
   if (groceryObj) {

@@ -1,8 +1,8 @@
 import React from "react";
 // import FoodCard from "../../FoodCard/FoodCard"
-import SearchCard from "../../SearchCard/SearchCard"
-import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
-import formatGroceryObj from "../../../modules/formatGroceryObj"
+import SearchCard from "../../../SearchCard/SearchCard"
+import useFoodFacts from "../../../../context/FoodFactsContext/FoodFactsContext.js";
+import formatGroceryObj from "../../../../modules/formatGroceryObj"
 import useStyles from "./styles.js";
 
 const UPCResultOFF = () => {

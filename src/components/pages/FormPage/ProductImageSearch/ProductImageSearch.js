@@ -1,8 +1,8 @@
 import React from "react";
 import FileBase from "react-file-base64";
 import CropInputImage from "./CropInputImage";
-import DetailsPopup from "../../DetailsPopup/DetailsPopup"
-import ImageSearch from "../../ImageSearch/ImageSearch"
+import DetailsPopup from "../../../DetailsPopup/DetailsPopup"
+import ImageSearch from "../../../ImageSearch/ImageSearch"
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from "./styles.js";
 

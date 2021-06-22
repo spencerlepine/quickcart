@@ -1,9 +1,9 @@
 import React from "react";
 // import FoodCard from "../../FoodCard/FoodCard"
-import SearchCard from "../../SearchCard/SearchCard"
-import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext.js";
-import formatGroceryObj from "../../../modules/formatGroceryObj"
-import SearchMessage from "../../SearchMessage/SearchMessage"
+import SearchCard from "../../../SearchCard/SearchCard"
+import useSpoonacular from "../../../../context/SpoonacularContext/SpoonacularContext.js";
+import formatGroceryObj from "../../../../modules/formatGroceryObj"
+import SearchMessage from "../../../SearchMessage/SearchMessage"
 import useStyles from "./styles.js";
 
 const UPCResult = () => {

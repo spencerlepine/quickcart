@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import useNotification from "../../context/NotificationContext/NotificationContext.js";
-import useGroceries from "../../context/GroceriesContext/GroceriesContext.js";
-import useForm from "../../context/FormContext/FormContext.js";
-import schema from "../../schema/groceryItem"
-import formatGroceryObj from "../../modules/formatGroceryObj"
+import useNotification from "../../../context/NotificationContext/NotificationContext.js";
+import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js";
+import useForm from "../../../context/FormContext/FormContext.js";
+import schema from "../../../modules/schema/groceryItem"
+import formatGroceryObj from "../../../modules/formatGroceryObj"
 
 const FormLogic = ({ Component }) => {
   const history = useHistory();

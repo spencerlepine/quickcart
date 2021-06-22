@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext.js";
-import SearchCard from "../../SearchCard/SearchCard"
-import SearchMessage from "../../SearchMessage/SearchMessage"
+import useFoodFacts from "../../../../context/FoodFactsContext/FoodFactsContext.js";
+import SearchCard from "../../../SearchCard/SearchCard"
 import useStyles from "./styles.js";
 
 const SearchResult = () => {
   const classes = useStyles();
-  const { searchResultList, setSearchResultList } = useSpoonacular()
+  const { searchResultList, setSearchResultList } = useFoodFacts()
 
   useEffect(() => {
     setSearchResultList(null)
@@ -20,7 +19,7 @@ const SearchResult = () => {
         {resultList}
       </div>
     );
-  } else { return <SearchMessage message="Search for products via brand or keywords" /> }
+  } else { return null }
 };
 
 export default SearchResult

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react"
-import FoodCard from "../../FoodCard/FoodCard"
-import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt"
-import missingImage from "../../../images/empty.jpg"
-import CardGrid from "../../CardGrid/CardGrid"
-import { FORM } from "../../../constants/routeConstants"
+import FoodCard from "../../../FoodCard/FoodCard"
+import EmptyPrompt from "../../../EmptyPrompt/EmptyPrompt"
+import missingImage from "../../../../images/empty.jpg"
+import CardGrid from "../../../CardGrid/CardGrid"
+import { FORM } from "../../../../constants/routeConstants"
 import useStyles from "./styles"
 
-import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
-import useForm from "../../../context/FormContext/FormContext.js"
+import useGroceries from "../../../../context/GroceriesContext/GroceriesContext.js"
+import useForm from "../../../../context/FormContext/FormContext.js"
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn"
 
 const FoodGrid = ({ loading }) => {

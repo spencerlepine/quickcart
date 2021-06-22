@@ -1,10 +1,10 @@
 import React from "react"
 import PantryItem from "./PantryItem/PantryItem"
-import EmptyPrompt from "../EmptyPrompt/EmptyPrompt"
-import groceryBag from "../../images/groceries.png"
-import CardGrid from "../CardGrid/CardGrid"
-import useGroceries from "../../context/GroceriesContext/GroceriesContext"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt"
+import groceryBag from "../../../images/groceries.png"
+import CardGrid from "../../CardGrid/CardGrid"
+import useGroceries from "../../../context/GroceriesContext/GroceriesContext"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from "./styles"

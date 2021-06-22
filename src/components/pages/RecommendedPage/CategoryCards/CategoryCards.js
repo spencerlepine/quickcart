@@ -1,6 +1,6 @@
 import React from "react"
 import useStyles from "./styles.js"
-import FoodCard from "../../FoodCard/FoodCard"
+import FoodCard from "../../../FoodCard/FoodCard"
 
 const CategoryCards = ({ categoryItems }) => {
   const classes = useStyles()

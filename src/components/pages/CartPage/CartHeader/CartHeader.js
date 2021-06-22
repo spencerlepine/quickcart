@@ -1,9 +1,9 @@
 import React from "react"
-import useNotification from "../../../context/NotificationContext/NotificationContext.js"
-import useCart from "../../../context/CartContext/CartContext.js"
+import useNotification from "../../../../context/NotificationContext/NotificationContext.js"
+import useCart from "../../../../context/CartContext/CartContext.js"
 
 import useStyles from "./styles.js"
-import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js"
+import useGroceries from "../../../../context/GroceriesContext/GroceriesContext.js"
 
 const todaysDate = new Date().toISOString().slice(0, 10)
 

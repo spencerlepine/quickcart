@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import useStyles from "./styles.js";
-import { SEARCH } from "../../../constants/routeConstants"
+import { SEARCH } from "../../../../constants/routeConstants"
 
 const FindProductPrompt = ({ showPopup, setShowPopup }) => {
   const classes = useStyles()

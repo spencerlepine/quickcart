@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import EmptyPrompt from "../EmptyPrompt/EmptyPrompt";
-import cartImg from "../../images/cart.svg";
-import useCart from "../../context/CartContext/CartContext"
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import EmptyPrompt from "../../EmptyPrompt/EmptyPrompt";
+import cartImg from "../../../images/cart.svg";
+import useCart from "../../../context/CartContext/CartContext"
+import withAuthRedirect from "../../../hooks/useAuthRedirect/useAuthRedirect"
 import Receipt from "./Receipt/Receipt"
 import CircularProgress from '@material-ui/core/CircularProgress';
 
