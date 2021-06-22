@@ -13,7 +13,7 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn"
 const FoodGrid = ({ loading }) => {
   const classes = useStyles()
 
-  const { allGroceryItems, totalGroceryCount } = useGroceries()
+  const { allGroceryItems, totalGroceryCount, displayStarters, setDisplayStarters } = useGroceries()
   const { setEditSelection, setSearchSelection } = useForm()
 
   const foodCards = allGroceryItems.map((item, i) => <FoodCard key={i} groceryItem={item} />)
@@ -27,12 +27,16 @@ const FoodGrid = ({ loading }) => {
 
   return (
     <>
-      <LoadMoreBtn />
       {foodCards.length > 0
         ?
         <>
-          {fetchProgress < 100 && <div className={classes.progressBar} style={progressStyle}></div>}
+          {(!displayStarters && fetchProgress < 100) && <div className={classes.progressBar} style={progressStyle}></div>}
           <CardGrid cardItems={foodCards} loading={loading} />
+          <LoadMoreBtn
+            setDisplayStarters={setDisplayStarters}
+            displayStarters={displayStarters}
+            loading={loading}>
+          </LoadMoreBtn>
         </>
         :
         <div className={classes.overviewContainer}>

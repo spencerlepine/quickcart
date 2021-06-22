@@ -1,8 +1,8 @@
-import firebase from "firebase/app"
+import firebase from 'firebase/app'
 import 'firebase/storage';
-import "firebase/auth";
-import "firebase/firestore";
-import dotenv from "dotenv"
+import 'firebase/auth';
+import 'firebase/firestore';
+import dotenv from 'dotenv'
 dotenv.config()
 
 const firebaseConfig = {
@@ -17,8 +17,8 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 
-export const db = firebase.firestore()
-export const auth = app.auth()
+export const db = firebase.firestore();
+export const auth = app.auth();
 export const storage = firebase.storage();
 export const useFirebase = firebase.firestore
 

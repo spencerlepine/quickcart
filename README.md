@@ -1,5 +1,6 @@
 # QuickCart &middot; [DEMO](https://grocery-client-sl.herokuapp.com/) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-_Make a shopping list with personal grocery data to help budget._
+
+<p align="center">Make a shopping list with personal grocery data to help budget.</p>
 
 <p align="center">
   <a href="#setup">Setup</a>  •
@@ -54,7 +55,7 @@ _Make a shopping list with personal grocery data to help budget._
 ## Contributing
 
 Feel free to begin create a pull request or suggest a feature :D
-> See [TODO](./todo.ext)
+> See [TODO](./todo.txt)
 
 ## License
 

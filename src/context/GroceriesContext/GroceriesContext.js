@@ -18,7 +18,7 @@ export function GroceriesProvider({ children }) {
   })
 
   useEffect(() => {
-    if (totalGroceryCount <= 0) {
+    if (totalGroceryCount === 0) {
       setDisplayStarters(false)
       return
     } else if (displayStarters) {

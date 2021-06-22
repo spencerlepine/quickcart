@@ -33,11 +33,10 @@ const FormLogic = ({ Component }) => {
     setShowPopup(!editSelection && !searchSelection)
   }, [editSelection, searchSelection]);
 
-  const caclulateServingQuantity = (name, value) => {
+  const caclulateServingCost = (name, value) => {
     const currentGrocery = { ...thisGrocery }
     if (name === "serving_quantity" || name === "purchase_price") {
       const servingCost = parseFloat(currentGrocery["purchase_price"]) / (parseFloat(currentGrocery["serving_quantity"]) || 1)
-      console.log(servingCost, typeof servingCost)
       currentGrocery['serving_cost'] = Number.parseFloat(servingCost).toFixed(2)
     }
     setThisGrocery(currentGrocery)
@@ -59,7 +58,7 @@ const FormLogic = ({ Component }) => {
     if (typeof value === "string") {
       trimmedVal = value.trim()
     }
-    caclulateServingQuantity(name, trimmedVal);
+    caclulateServingCost(name, trimmedVal);
     matchUnitSize(name, trimmedVal);
 
     setThisGrocery((prevItems) => ({ ...prevItems, [name]: trimmedVal }));
@@ -127,7 +126,7 @@ const FormLogic = ({ Component }) => {
     showPopup,
     setShowPopup,
     clearForm,
-    caclulateServingQuantity,
+    caclulateServingCost,
     matchUnitSize,
     handleChange,
     handleSubmit,

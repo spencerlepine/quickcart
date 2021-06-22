@@ -1,11 +1,8 @@
 import React from "react"
 import useStyles from "./styles"
-import useGroceries from "../../../../context/GroceriesContext/GroceriesContext.js"
 
-const LoadMoreBtn = () => {
+const LoadMoreBtn = ({ displayStarters, setDisplayStarters, loading }) => {
   const classes = useStyles()
-
-  const { displayStarters, setDisplayStarters, loading } = useGroceries()
 
   const handleClick = () => {
     setDisplayStarters(false)
