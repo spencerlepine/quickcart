@@ -54,7 +54,7 @@ _Make a shopping list with personal grocery data to help budget._
 ## Contributing
 
 Feel free to begin create a pull request or suggest a feature :D
-
+> See [TODO](./todo.ext)
 
 ## License
 

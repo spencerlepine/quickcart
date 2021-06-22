@@ -5,13 +5,13 @@ import useGroceries from "../../../../context/GroceriesContext/GroceriesContext.
 const LoadMoreBtn = () => {
   const classes = useStyles()
 
-  const { displayStarters, setDisplayStarters } = useGroceries()
+  const { displayStarters, setDisplayStarters, loading } = useGroceries()
 
   const handleClick = () => {
     setDisplayStarters(false)
   }
 
-  if (displayStarters) {
+  if (displayStarters && !loading) {
     return (
       <button
         onClick={handleClick}

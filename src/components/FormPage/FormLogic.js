@@ -55,10 +55,14 @@ const FormLogic = ({ Component }) => {
   const handleChange = (event) => {
     setDisableAdd(false)
     const { name, value } = event.target;
-    caclulateServingQuantity(name, value);
-    matchUnitSize(name, value);
+    let trimmedVal = value
+    if (typeof value === "string") {
+      trimmedVal = value.trim()
+    }
+    caclulateServingQuantity(name, trimmedVal);
+    matchUnitSize(name, trimmedVal);
 
-    setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
+    setThisGrocery((prevItems) => ({ ...prevItems, [name]: trimmedVal }));
   };
 
   const handleDelete = (idToDelete) => {
@@ -87,7 +91,7 @@ const FormLogic = ({ Component }) => {
     } else {
       createGroceryItem(filledObj)
       const groceryMessage = {
-        message: `Saved ${thisGrocery._id || "item"}`,
+        message: `Saved ${thisGrocery.name || "item"}`,
         type: "success"
       }
       setCurrentNotification(groceryMessage)

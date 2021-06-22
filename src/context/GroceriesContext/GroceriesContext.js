@@ -18,16 +18,21 @@ export function GroceriesProvider({ children }) {
   })
 
   useEffect(() => {
-    if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
-      if (allGroceryItems.length < starterCount) {
-        const lastItem = allGroceryItems.slice(-1)
-        const lastId = lastItem.length ? lastItem[0]["_id"] : ""
-        getAllGroceries(lastId)
-      }
-    } else {
+    if (totalGroceryCount <= 0) {
       setDisplayStarters(false)
+      return
+    } else if (displayStarters) {
+      if (allGroceryItems.length === totalGroceryCount || allGroceryItems.length === starterCount) {
+        return
+      }
     }
-  }, [totalGroceryCount, allGroceryItems])
+
+    if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
+      const lastItem = allGroceryItems.slice(-1)
+      const lastId = lastItem.length ? lastItem[0]["_id"] : ""
+      getAllGroceries(lastId)
+    }
+  }, [totalGroceryCount, allGroceryItems, displayStarters])
 
   async function fetchTotalGroceryCount() {
     const count = await api.fetchGroceryCount()
@@ -60,6 +65,7 @@ export function GroceriesProvider({ children }) {
   }
 
   async function createGroceryItem(newGroceryItem) {
+    setDisplayStarters(false)
     try {
       const filledGroceryObj = formatGroceryObj(newGroceryItem)
       const newGrocery = await api.createGrocery(filledGroceryObj)
@@ -77,6 +83,7 @@ export function GroceriesProvider({ children }) {
   }
 
   async function deleteGroceryItem(groceryId) {
+    setDisplayStarters(false)
     try {
       await api.deleteGrocery(groceryId)
 

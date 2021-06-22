@@ -5,7 +5,7 @@ const filterNutriscoreObj = (resultObj = {}) => {
   // pass in placeholder values
 
   // keep track of the final output
-  const formattedObj = {};
+  const formattedObj = { ...nutriscoreSchema };
 
   // Get every key in the schema object
   for (const key in nutriscoreSchema) {

@@ -1,5 +1,5 @@
 import React from "react"
-import useForm from "../../../context/FormContext/FormContext"
+import useForm from "../../context/FormContext/FormContext"
 import { useHistory } from "react-router-dom"
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
@@ -86,7 +86,11 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
           <p></p>
         </div>
         <div className={classes.nutritionDetials}>
-          <NutritionFacts nutFacts={groceryItem.nutriscore_data} />
+          <NutritionFacts
+            nutFacts={groceryItem.nutriscore_data}
+            servingSize={groceryItem.serving_size}
+            servingQuantity={groceryItem.serving_quantity}>
+          </NutritionFacts>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import DatePurchased from "./ProductSpecifications/DatePurchased/DatePurchased"
 import SubmitButton from "./SubmitButton/SubmitButton"
 import useStyles from "./styles.js";
 import FormLogic from "./FormLogic"
+import MissingFieldPrompt from "./MissingFieldPrompt/MissingFieldPrompt"
 
 const FormPage = (props) => {
   const classes = useStyles();
@@ -61,6 +62,15 @@ const FormPage = (props) => {
             <ServingCount handleChange={props.handleChange} thisGrocery={props.thisGrocery} />
           </div>
         </div>
+
+        {(props.editSelection || props.searchSelection) && (
+          <MissingFieldPrompt
+            handleChange={props.handleChange}
+            groceryItem={props.thisGrocery}>
+          </MissingFieldPrompt>
+        )}
+
+        <hr />
 
         <ProductFields thisGrocery={props.thisGrocery} handleChange={props.handleChange} />
         <DatePurchased thisGrocery={props.thisGrocery} handleChange={props.handleChange} />

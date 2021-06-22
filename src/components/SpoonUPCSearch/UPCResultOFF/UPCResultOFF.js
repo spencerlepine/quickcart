@@ -1,14 +1,13 @@
 import React from "react";
 // import FoodCard from "../../FoodCard/FoodCard"
 import SearchCard from "../../SearchCard/SearchCard"
-import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext.js";
+import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
 import formatGroceryObj from "../../../modules/formatGroceryObj"
-import SearchMessage from "../../SearchMessage/SearchMessage"
 import useStyles from "./styles.js";
 
-const UPCResult = () => {
+const UPCResultOFF = () => {
   const classes = useStyles();
-  const { itemUPCSearch } = useSpoonacular()
+  const { itemUPCSearch } = useFoodFacts()
 
   if (itemUPCSearch) {
     const product = formatGroceryObj({ ...itemUPCSearch })
@@ -18,7 +17,7 @@ const UPCResult = () => {
         <SearchCard product={product} />
       </div>
     );
-  } else { return <SearchMessage message="Enter the product UPC" /> }
+  } else { return null }
 };
 
-export default UPCResult
+export default UPCResultOFF

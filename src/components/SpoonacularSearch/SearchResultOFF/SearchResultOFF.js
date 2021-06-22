@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
-import SearchCard from "../SearchCard/SearchCard"
-import SearchMessage from "../../SearchMessage/SearchMessage"
+import SearchCard from "../../SearchCard/SearchCard"
 import useStyles from "./styles.js";
 
 const SearchResult = () => {
@@ -20,7 +19,7 @@ const SearchResult = () => {
         {resultList}
       </div>
     );
-  } else { return <SearchMessage message="Search for products via brand or keywords" /> }
+  } else { return null }
 };
 
 export default SearchResult

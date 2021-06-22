@@ -5,8 +5,8 @@ function Layout({ children }) {
   const classes = useStyles()
 
   return (
-    <div className={`container ${classes.container}`}>
-        {children}
+    <div className={`${classes.container}`}>
+      {children}
     </div>
   );
 }
