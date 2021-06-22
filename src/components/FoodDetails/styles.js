@@ -159,7 +159,7 @@ export default makeStyles(() => ({
     wordWrap: "wrap",
   },
   foodBrand: {
-    "background": "#eeeeee",
+    "background": "#d8d8d8",
     "width": "fit-content",
     "padding": "0.3em",
     "margin": "1px",
@@ -175,7 +175,8 @@ export default makeStyles(() => ({
     minWidth: "300px",
   },
   extraDetials: {
-    backgroundColor: "#e0e0e0",
+    backgroundColor: "#fbfbfb",
+    border: "1px solid #d8d8d8",
     borderRadius: "6px",
     padding: "10px",
     marginTop: "0.5em",
