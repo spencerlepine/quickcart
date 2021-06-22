@@ -1,0 +1,79 @@
+# Features to add:
+ - Checkmarks/Highlight in Cart
+   o mark a grocery items found for easy shopping use
+ - Recipes:
+  - Search common recipes and save the products required
+  - Add products of recipe to cart
+  - Should reference to personal grocery items ID
+  - estimate recipe costs?
+  - https://www.programmableweb.com/api/bigoven-recipe-rest-api-v2
+  - Search products to BUILD the recipe dynamically based on names and products
+ - Feedback page:
+  - Allow users to submit reviews/testimonial
+ - Account features
+  - Reset password
+  - Update email
+  - Update password
+ - Download CSV of grocery items
+
+# Work-in-progress:
+ - value filler/search:
+  - search dumps for a product
+   - display a possible result
+   - send that value to the form
+ - Explanation on home page
+   - Combination between Yuka, Instacart, and a To-do list
+   - Help yourself budget while grocery shopping
+   - Cycle through groceries and eat a variety
+   - view nutrional data and eco score
+ - load the rest if the user searches
+ - search thing is broken
+ - copy delete stuff
+ - SEARCH DETAILS
+ - update readme screenshot
+ - Home page:
+   - create a cart
+   - get reccomendations for the cart
+   - scan UPC
+   - search for products
+   - get nutrition data
+   - fill in missing fields
+ -Get product details
+ - https://api.spoonacular.com/food/products/{id}
+ - Sort by price or name, date, ASC, DEC
+ - assume pantry items that are over 10 servings per last more than 10 days (not exactly 1 serving everyday)
+ - message for missing field value
+ - expand on click to show ingredients
+ - put image into square with canvas (crop image and make it always a square)
+ - Food details
+  - show food grade
+  - show eco score
+  - show ingredients?
+ - Product Onboarding experience:
+  - Search item in BrowseGroceries, prompt (can't find item? search here (link to search))
+  - Fill in details from search (missing feild? Search for product here)
+ - Sort items in cart AND make categories clear
+ - Tell which food groups you still need to buy (progress circles? Lots of veggies, not enough fruit)
+ - Improve cart logs:
+  - load more button to view further back
+  - add graphs visualize
+  - Cart logs
+    - Admin can view cart data
+      - admin can create charts + graphs
+      - see most categories
+      - see average spending per week
+      - see money spent per Category
+      - most popular items
+      - count purchase per item with a countObj
+    - Display cart logs for the user?
+      - list with DATE, TOTAL_PRICE, GROCERY_COUNT
+        - dropdown button showing list of name, price, category
+
+# Bugs:
+ - cart logs just not showing up
+ - import will create seemingly 'duplicate' items
+ - search database for existing similar items?
+ - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
+   - try to search the database with an item close to that name
+   - fill in the id for that log
+ - purchasing an item a second time will override current quantity in cartLogs
