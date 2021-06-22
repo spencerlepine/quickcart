@@ -54,14 +54,10 @@ const FormLogic = ({ Component }) => {
   const handleChange = (event) => {
     setDisableAdd(false)
     const { name, value } = event.target;
-    let trimmedVal = value
-    if (typeof value === "string") {
-      trimmedVal = value.trim()
-    }
-    caclulateServingCost(name, trimmedVal);
-    matchUnitSize(name, trimmedVal);
+    caclulateServingCost(name, value);
+    matchUnitSize(name, value);
 
-    setThisGrocery((prevItems) => ({ ...prevItems, [name]: trimmedVal }));
+    setThisGrocery((prevItems) => ({ ...prevItems, [name]: value }));
   };
 
   const handleDelete = (idToDelete) => {

@@ -5,7 +5,8 @@ const extractGroceryValue = (groceryObj, key) => {
   if (groceryObj) {
     const similarFields = similarGroceryFields(key)
     const value = valueFromPossibleKeys(groceryObj, similarFields) || grocerySchema[key]
-    return value;
+    let trimmedVal = typeof value === "string" ? value.trim() : value
+    return trimmedVal;
   }
 }
 
