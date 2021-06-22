@@ -8,7 +8,7 @@ import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles"
 
-function LogIn() {
+function LogInPage() {
   const classes = useStyles()
   const history = useHistory();
   const { loginUser } = useAuth()
@@ -82,4 +82,4 @@ function LogIn() {
 }
 
 const isAuthPage = true
-export default withAuthRedirect(LogIn, isAuthPage);
+export default withAuthRedirect(LogInPage, isAuthPage);

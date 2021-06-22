@@ -5,7 +5,7 @@ import FoodGrid from "./FoodGrid/FoodGrid"
 import CategoryLabels from "./CategoryLabels/CategoryLabels"
 import SearchBar from "./SearchBar/SearchBar"
 
-const BrowseGroceries = () => {
+const BrowseGroceriesPage = () => {
   const { loading } = useGroceries();
 
   return (
@@ -17,4 +17,4 @@ const BrowseGroceries = () => {
   )
 }
 
-export default withAuthRedirect(BrowseGroceries)
+export default withAuthRedirect(BrowseGroceriesPage)

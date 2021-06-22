@@ -6,7 +6,7 @@ import Import from "./Import/Import"
 import OpenLogs from "../OpenLogs/OpenLogs"
 import Logout from "../Logout/Logout"
 
-const Settings = () => {
+const SettingsPage = () => {
   const classes = useStyles()
 
   return (
@@ -22,4 +22,4 @@ const Settings = () => {
   )
 }
 
-export default withAuthRedirect(Settings)
+export default withAuthRedirect(SettingsPage)

@@ -8,7 +8,7 @@ import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
 import QuickCartLogo from "../../images/QuickCart-Logo.png"
 import useStyles from "./styles"
 
-function SignUp() {
+function SignUpPage() {
   const classes = useStyles()
   const { signupUser } = useAuth()
   const { setCurrentNotification } = useNotification()
@@ -90,4 +90,4 @@ function SignUp() {
 }
 
 const isAuthPage = true
-export default withAuthRedirect(SignUp, isAuthPage);
+export default withAuthRedirect(SignUpPage, isAuthPage);
