@@ -22,7 +22,7 @@ const PurchasePrice = ({ handleChange, thisGrocery }) => {
         name={"purchase_price"}
         placeholder={"1.50"}
         value={formattedPrice}
-        inputProps={{ step: 0.5, min: 0 }}
+        inputProps={{ min: 0 }}
       />
     </div>
   );

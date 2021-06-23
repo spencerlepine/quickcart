@@ -36,14 +36,10 @@ const FormPage = (props) => {
             thisClass={classes.itemName}>
           </ProductName>
 
-          <ProductCategory
-            setCurrentNotification={props.setCurrentNotification}
-            handleChange={props.handleChange}
-            thisGrocery={props.thisGrocery}
-            setThisGrocery={props.setThisGrocery}>
-          </ProductCategory>
-
-          <ProductRating rating={parseInt(props.thisGrocery.priority)} handleChange={props.handleChange} />
+          <div className={classes.importantFields}>
+            <PurchasePrice handleChange={props.handleChange} thisGrocery={props.thisGrocery} />
+            <ServingCount handleChange={props.handleChange} thisGrocery={props.thisGrocery} />
+          </div>
 
           <ClearButton
             handleClick={() => props.handleClear(props.handleClear, props.editSelection)}
@@ -57,10 +53,14 @@ const FormPage = (props) => {
 
           <hr /><hr />
 
-          <div className={classes.importantFields}>
-            <PurchasePrice handleChange={props.handleChange} thisGrocery={props.thisGrocery} />
-            <ServingCount handleChange={props.handleChange} thisGrocery={props.thisGrocery} />
-          </div>
+          <ProductCategory
+            setCurrentNotification={props.setCurrentNotification}
+            handleChange={props.handleChange}
+            thisGrocery={props.thisGrocery}
+            setThisGrocery={props.setThisGrocery}>
+          </ProductCategory>
+
+          <ProductRating rating={parseInt(props.thisGrocery.priority)} handleChange={props.handleChange} />
         </div>
 
         {(props.editSelection || props.searchSelection) && (
