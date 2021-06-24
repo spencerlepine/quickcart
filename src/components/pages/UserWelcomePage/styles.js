@@ -105,6 +105,28 @@ export default makeStyles((theme) => ({
       top: "1.3em",
     },
   },
+  curveDivBottom: {
+    "transform": "scaleY(-1)",
+    position: "relative",
+    marginTop: "-3em",
+    marginLeft: "-2em",
+    // marginRight: "-2em",
+    // "@media (min-width:800px)": {
+    //   bottom: "-4em",
+    // },
+    // "@media (max-width:600px)": {
+    //   bottom: "-2em",
+    // },
+    // "@media (max-width:500px)": {
+    //   bottom: "-0.5em",
+    // },
+    // "@media (max-width:400px)": {
+    //   bottom: "0.3em",
+    // },
+    // "@media (max-width:300px)": {
+    //   bottom: "1.3em",
+    // },
+  },
   searchExample: {
     zIndex: "-3",
     position: "relative",
@@ -119,14 +141,21 @@ export default makeStyles((theme) => ({
     color: "white",
   },
   searchImg: {
-    filter: "opacity(0.4)",
     zIndex: "60",
-    padding: "5em 1em",
+    padding: "8em 1em",
     maxWidth: "90vw",
-    maxHeight: "50vh",
+    maxHeight: "60vh",
     margin: "auto",
     "display": "block",
     "marginLeft": "auto",
     "marginRight": "auto",
   },
+  searchHeader: {
+    "margin": "0",
+    "position": "absolute",
+    "top": "15%",
+    "left": "50%",
+    "MsTransform": "translate(-50%, -0%)",
+    "transform": "translate(-50%, -0%)"
+  }
 }))
