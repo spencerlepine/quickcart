@@ -9,7 +9,11 @@
   <a href="#contributing">Contributing</a>
 </p>
 
-<div style="text-align:center"><img src="./src/images/demo_small.png" alt="QuickCart Screenshot"/></div>
+<p align="center">
+  <a href="https://grocery-client-sl.herokuapp.com/">
+    <img alt="QuickCart" src="./src/images/demo_small.png" />
+  </a>
+</p>
 
 ## ⚙️ Setup:
 ```sh
