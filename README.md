@@ -44,20 +44,20 @@
 ## 🔑 Configue API Keys
 1.  **Create a Firebase project**:
 
-  - Navigate through until you find the SDK slide
-  - Save Firebase API keys
-  - Under **Authentication**:
+  Navigate through until you find the SDK slide
+  Save Firebase API keys
+  Under **Authentication**:
     - Activate email/password authentication
     - List <__domain_url__> or __localhost__ under:
       > Authentication > Sign-in method > Authorized domains
-  - Under **Firestore**:
+  Under **Firestore**:
     - Configure a Firestore database
     - Update Firestore **rules**
-    -
+
 2.  **Get the Spoonacular API key**:
 
-  - Create an account [here](https://spoonacular.com/food-api)
-  - Navigate to > Console > Profile
+  Create an account [here](https://spoonacular.com/food-api)
+  Navigate to > Console > Profile
 
 ## Contributing
 
