@@ -46,11 +46,11 @@
 
   - Navigate through until you find the SDK slide
   - Save Firebase API keys
-  > Under **Authentication**:
+  - Under **Authentication**:
     - Activate email/password authentication
     - List <__domain_url__> or __localhost__ under:
       > Authentication > Sign-in method > Authorized domains
-  > Under **Firestore**:
+  - Under **Firestore**:
     - Configure a Firestore database
     - Update Firestore **rules**
 
