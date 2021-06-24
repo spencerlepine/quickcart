@@ -1,4 +1,4 @@
-# QuickCart &middot; [DEMO](https://grocery-client-sl.herokuapp.com/) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+# <img alt="QuickCart Logo" src="./public/logo192.png" width="40" /> QuickCart &middot; [DEMO](https://grocery-client-sl.herokuapp.com/) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>
 
@@ -11,7 +11,7 @@
 
 <div style="text-align:center"><img src="./src/images/demo_small.png" alt="QuickCart Screenshot"/></div>
 
-## Setup:
+## ⚙️ Setup:
 ```sh
     git clone https://github.com/spencerlepine/quickcart.git
     cd quickcart
@@ -23,7 +23,7 @@
     npm start
 ```
 
-## Technologies:
+## 📦 Technologies:
 - [React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/)
 - [OpenFoodFacts](https://world.openfoodfacts.org)
@@ -31,7 +31,7 @@
 - [Material-UI](https://material-ui.com/)
 - [Spoonacular](https://spoonacular.com/food-api/docs)
 
-## Features:
+## 🌟 Features:
 - Save grocery items to a database
 - Add custom images and values to each item
 - View recommended items to buy
@@ -41,20 +41,27 @@
 - Import from backup file
 - Log cart 'purchases'
 
-## Configue API Keys
-- Veiw [.env.sample](./LICENSE)
-- Create a Firebase project
-  - Get Firebase API keys
-  - Activate email/pass authentication
-  - List <__domain_url__> or __localhost__ under:
-    > Authentication > Sign-in method > Authorized domains
-  - Configure a Firestore database
-  - Update Firestore **rules**
-- Retreive Spoonacular API key (after sign-up)
+## 🔑 Configue API Keys
+1.  **Create a Firebase project**:
+
+  - Navigate through until you find the SDK slide
+  - Save Firebase API keys
+  - Under **Authentication**:
+    - Activate email/password authentication
+    - List <__domain_url__> or __localhost__ under:
+      > Authentication > Sign-in method > Authorized domains
+  - Under **Firestore**:
+    - Configure a Firestore database
+    - Update Firestore **rules**
+    -
+2.  **Get the Spoonacular API key**:
+
+  - Create an account [here](https://spoonacular.com/food-api)
+  - Navigate to > Console > Profile
 
 ## Contributing
 
-See [TODO](./TODO) - Feel free to begin create a pull request or suggest a feature :D
+See [TODO](./TODO) - Feel free to create a pull request or suggest a feature :D
 
 ## License
 
