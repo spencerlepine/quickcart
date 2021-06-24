@@ -1,4 +1,4 @@
-# <img alt="QuickCart Logo" src="./public/logo192.png" width="40" /> QuickCart &middot; [DEMO](https://grocery-client-sl.herokuapp.com/) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+# QuickCart &middot; [DEMO](https://grocery-client-sl.herokuapp.com/) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>
 
