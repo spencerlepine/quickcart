@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export default makeStyles((theme) => ({
   demoImg: {
+    zIndex: "60",
     maxWidth: "90vw",
     maxHeight: "50vh",
     margin: "auto",
@@ -80,6 +81,52 @@ export default makeStyles((theme) => ({
     "lineHeight": "28px",
     margin: "auto",
     "marginTop": "2em",
+    textAlign: "center",
     color: "rgb(114, 118, 126)",
-  }
+  },
+  curveDiv: {
+    position: "relative",
+    marginTop: "-3em",
+    marginLeft: "-2em",
+    marginRight: "-2em",
+    "@media (min-width:800px)": {
+      top: "-4em",
+    },
+    "@media (max-width:600px)": {
+      top: "-2em",
+    },
+    "@media (max-width:500px)": {
+      top: "-0.5em",
+    },
+    "@media (max-width:400px)": {
+      top: "0.3em",
+    },
+    "@media (max-width:300px)": {
+      top: "1.3em",
+    },
+  },
+  searchExample: {
+    zIndex: "-3",
+    position: "relative",
+    margin: "-1em",
+    backgroundColor: "#42b029",
+    height: "fit-content",
+  },
+  searchBlob: {
+    zIndex: "-1",
+    position: "absolute",
+    margin: "-2em",
+    color: "white",
+  },
+  searchImg: {
+    filter: "opacity(0.4)",
+    zIndex: "60",
+    padding: "5em 1em",
+    maxWidth: "90vw",
+    maxHeight: "50vh",
+    margin: "auto",
+    "display": "block",
+    "marginLeft": "auto",
+    "marginRight": "auto",
+  },
 }))

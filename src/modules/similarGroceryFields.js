@@ -10,7 +10,7 @@ const similarFields = {
   "category": ["category"],
   "serving_cost": ["serving_cost", "serving_price"],
   "purchase_price": ["purchase_price", "unit_price", "cost", "price"],
-  "unit_size": ["unit_size", "quantity", "net_weight_value", "net_weight_unit", "volume_unit", "serving_size", "purchase_size"],
+  "unit_size": ["unit_size", "net_weight_value", "net_weight_unit", "volume_unit", "purchase_size"],
   "upc": ["item_upc", "upc", "upc_code", "item_upc_code", "code"],
   "ingredients": ["ingredients", "ingredients_tags"],
   "brand": ["brands", "brand", "brand_owner", "brand_owner_imported"],
