@@ -1,6 +1,7 @@
 # Features to add:
  - Checkmarks/Highlight in Cart
    o mark a grocery items found for easy shopping use
+   o CLICK DIV - remove add/plus sign, display check mark, make darker 
  - Recipes:
   - Search common recipes and save the products required
   - Add products of recipe to cart
