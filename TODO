@@ -1,4 +1,7 @@
 # Features to add:
+ - OCR scanning receipts:
+   o scan item name and price, match it with an item in the database for an id
+   o save the item to a cart log with the price
  - Checkmarks/Highlight in Cart
    o mark a grocery items found for easy shopping use
    o CLICK DIV - remove add/plus sign, display check mark, make darker 
@@ -69,6 +72,8 @@
     - Display cart logs for the user?
       - list with DATE, TOTAL_PRICE, GROCERY_COUNT
         - dropdown button showing list of name, price, category
+- Add basic dump for all users to access
+ - browse common items (mainly produce and menial things to add to a Quickcart account)
 
 # Bugs:
  - cart logs just not showing up
