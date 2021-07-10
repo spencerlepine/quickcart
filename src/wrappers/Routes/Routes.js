@@ -1,18 +1,18 @@
 import { Route, Switch } from 'react-router-dom'
 import * as ROUTES from '../../../constants/routeConstants';
-import UserWelcomePage from '../UserWelcomePage/UserWelcomePage';
-import MissingPage from '../MissingPage/MissingPage';
-import SignUpPage from '../SignUpPage/SignUpPage';
-import LogInPage from '../LogInPage/LogInPage';
-import CartPage from '../CartPage/CartPage';
-import FormPage from '../FormPage/FormPage';
-import PantryPage from '../PantryPage/PantryPage';
-import RecommendedPage from '../RecommendedPage/RecommendedPage';
-import SettingsPage from '../SettingsPage/SettingsPage';
-import BrowseGroceries from '../BrowseGroceriesPage/BrowseGroceriesPage';
-import SpoonUPCSearchPage from '../SpoonUPCSearchPage/SpoonUPCSearchPage';
-import SpoonacularSearchPage from '../SpoonacularSearchPage/SpoonacularSearchPage';
-import CartLogPage from '../CartLogPage/CartLogPage';
+import UserWelcomePage from '../../pages/UserWelcomePage/UserWelcomePage';
+import MissingPage from '../../pages/MissingPage/MissingPage';
+import SignUpPage from '../../pages/SignUpPage/SignUpPage';
+import LogInPage from '../../pages/LogInPage/LogInPage';
+import CartPage from '../../pages/CartPage/CartPage';
+import FormPage from '../../pages/FormPage/FormPage';
+import PantryPage from '../../pages/PantryPage/PantryPage';
+import RecommendedPage from '../../pages/RecommendedPage/RecommendedPage';
+import SettingsPage from '../../pages/SettingsPage/SettingsPage';
+import BrowseGroceries from '../../pages/BrowseGroceriesPage/BrowseGroceriesPage';
+import SpoonUPCSearchPage from '../../pages/SpoonUPCSearchPage/SpoonUPCSearchPage';
+import SpoonacularSearchPage from '../../pages/SpoonacularSearchPage/SpoonacularSearchPage';
+import CartLogPage from '../../pages/CartLogPage/CartLogPage';
 
 const Routes = () => (
   <Switch>
