@@ -1,18 +1,18 @@
-import { Route, Switch } from "react-router-dom"
-import * as ROUTES from "../../../constants/routeConstants";
-import UserWelcomePage from "../UserWelcomePage/UserWelcomePage";
-import MissingPage from "../MissingPage/MissingPage";
-import SignUpPage from "../SignUpPage/SignUpPage";
-import LogInPage from "../LogInPage/LogInPage";
-import CartPage from "../CartPage/CartPage";
-import FormPage from "../FormPage/FormPage";
-import PantryPage from "../PantryPage/PantryPage";
-import RecommendedPage from "../RecommendedPage/RecommendedPage";
-import SettingsPage from "../SettingsPage/SettingsPage";
-import BrowseGroceries from "../BrowseGroceriesPage/BrowseGroceriesPage";
-import SpoonUPCSearchPage from "../SpoonUPCSearchPage/SpoonUPCSearchPage";
-import SpoonacularSearchPage from "../SpoonacularSearchPage/SpoonacularSearchPage";
-import CartLogPage from "../CartLogPage/CartLogPage";
+import { Route, Switch } from 'react-router-dom'
+import * as ROUTES from '../../../constants/routeConstants';
+import UserWelcomePage from '../UserWelcomePage/UserWelcomePage';
+import MissingPage from '../MissingPage/MissingPage';
+import SignUpPage from '../SignUpPage/SignUpPage';
+import LogInPage from '../LogInPage/LogInPage';
+import CartPage from '../CartPage/CartPage';
+import FormPage from '../FormPage/FormPage';
+import PantryPage from '../PantryPage/PantryPage';
+import RecommendedPage from '../RecommendedPage/RecommendedPage';
+import SettingsPage from '../SettingsPage/SettingsPage';
+import BrowseGroceries from '../BrowseGroceriesPage/BrowseGroceriesPage';
+import SpoonUPCSearchPage from '../SpoonUPCSearchPage/SpoonUPCSearchPage';
+import SpoonacularSearchPage from '../SpoonacularSearchPage/SpoonacularSearchPage';
+import CartLogPage from '../CartLogPage/CartLogPage';
 
 const Routes = () => (
   <Switch>
@@ -28,8 +28,8 @@ const Routes = () => (
     <Route path={ROUTES.SETTINGS} component={SettingsPage} />
     <Route path={ROUTES.SEARCH} component={SpoonacularSearchPage} />
     <Route path={ROUTES.UPC_SEARCH} component={SpoonUPCSearchPage} />
-    <Route path="/empty" component={MissingPage} />
-    <Route path="/" component={MissingPage} />
+    <Route path='/empty' component={MissingPage} />
+    <Route path='/' component={MissingPage} />
   </Switch>
 )
 export default Routes;

@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   popupStyles: {
-    position: "fixed",
-    top: "90%",
+    position: 'fixed',
+    top: '90%',
   },
 }));

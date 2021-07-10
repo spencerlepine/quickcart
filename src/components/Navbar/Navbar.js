@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-import useCart from "../../context/CartContext/CartContext";
-import QuickCartLogo from "../../images/QuickCart-Logo.png";
-import Sidebar from "./Sidebar/Sidebar";
-import useStyles from "./styles.js";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import useCart from '../../context/CartContext/CartContext';
+import QuickCartLogo from '../../images/QuickCart-Logo.png';
+import Sidebar from './Sidebar/Sidebar';
+import useStyles from './styles.js';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -34,9 +34,9 @@ const Navbar = () => {
         <div className={classes.navbarContainer} >
           <div className={classes.menuToggleBtn}>
             {menuOpen ? (
-              <CloseIcon fontSize="large" onClick={() => toggleMenu(false)} />
+              <CloseIcon fontSize='large' onClick={() => toggleMenu(false)} />
             ) : (
-              <MenuIcon fontSize="large" onClick={() => toggleMenu(true)} />
+              <MenuIcon fontSize='large' onClick={() => toggleMenu(true)} />
             )}
           </div>
 
@@ -44,19 +44,19 @@ const Navbar = () => {
 
           <Link
             className={classes.logoLink}
-            to="/"
+            to='/'
             onClick={() => toggleMenu(false)}
           >
-            <img src={QuickCartLogo} alt="QuickCart Logo"></img>
+            <img src={QuickCartLogo} alt='QuickCart Logo'></img>
           </Link>
 
           <Link
             className={classes.link}
-            to="/cart"
+            to='/cart'
             onClick={() => toggleMenu(false)}
           >
             <div className={classes.cartLink}>
-              <ShoppingCartIcon fontSize="large" color="action" />
+              <ShoppingCartIcon fontSize='large' color='action' />
               {cartLength > 0 && <p>{cartLength}</p>}
             </div>
           </Link>
