@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./styles.js";
 
-function ViewLayout({ children }) {
+const ViewLayout = ({ children }) => {
   const classes = useStyles()
 
   return (
