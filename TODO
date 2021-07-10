@@ -1,10 +1,13 @@
 # Features to add:
+ - float cart log price
+ - Add to cart, sort by category and alphabet
+  - if last category doesn't match, insert a label
  - OCR scanning receipts:
    o scan item name and price, match it with an item in the database for an id
    o save the item to a cart log with the price
  - Checkmarks/Highlight in Cart
    o mark a grocery items found for easy shopping use
-   o CLICK DIV - remove add/plus sign, display check mark, make darker 
+   o CLICK DIV - remove add/plus sign, display check mark, make darker
  - Recipes:
   - Search common recipes and save the products required
   - Add products of recipe to cart
@@ -76,7 +79,10 @@
  - browse common items (mainly produce and menial things to add to a Quickcart account)
 
 # Bugs:
- - cart logs just not showing up
+ - incorrect backup dates
+ - full names not showing (not working in search either)
+ - price input won't let me type it
+ - Search REGEX will break when typing '['
  - import will create seemingly 'duplicate' items
  - search database for existing similar items?
  - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
