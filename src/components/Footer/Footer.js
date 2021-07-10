@@ -1,7 +1,7 @@
 import React from 'react';
 import gitHubLogo from '../../images/github.svg';
 import twitterLogo from '../../images/twitter.svg';
-import { TWITTER_LINK, GITHUB_LINK } from '../../constants';
+import { TWITTER_LINK, GITHUB_LINK } from '../../constants/socialsConstants';
 import useStyles from './styles.js';
 
 const Footer = () => {
