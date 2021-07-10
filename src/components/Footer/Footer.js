@@ -1,6 +1,7 @@
 import React from "react";
 import gitHubLogo from "../../images/github.svg";
 import twitterLogo from "../../images/twitter.svg";
+import { TWITTER_LINK, GITHUB_LINK } from "../../constants";
 import useStyles from "./styles.js";
 
 const Footer = () => {
@@ -15,7 +16,7 @@ const Footer = () => {
           className={classes.footerLink}
           target="_blank"
           rel="noreferrer"
-          href="https://github.com/spencerlepine"
+          href={GITHUB_LINK}
         >
           <img
             src={gitHubLogo}
@@ -27,7 +28,7 @@ const Footer = () => {
           className={classes.footerLink}
           target="_blank"
           rel="noreferrer"
-          href="https://twitter.com/SpencerLepine"
+          href={TWITTER_LINK}
         >
           <img
             src={twitterLogo}
