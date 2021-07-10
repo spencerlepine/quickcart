@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import FoodCard from '../../../FoodCard/FoodCard';
-import EmptyPrompt from '../../../EmptyPrompt/EmptyPrompt';
+import EmptyPrompt from '../EmptyPrompt/EmptyPrompt';
 import missingImage from '../../../images/empty.jpg';
 import CardGrid from '../CardGrid/CardGrid';
 import { FORM } from '../../../constants/routeConstants';
