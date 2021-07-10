@@ -1,4 +1,4 @@
-import nutriscoreSchema from './schema/nutriscoreSchema'
+import nutriscoreSchema from '../schema/nutriscoreSchema'
 const MIN_VALUES = 0;
 
 const hasNutritionData = (nutritionObj) => {

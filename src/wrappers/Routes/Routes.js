@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
-import * as ROUTES from '../../../constants/routeConstants';
+import * as ROUTES from '../../constants/routeConstants';
 // import UserWelcomePage from '../../pages/UserWelcomePage/UserWelcomePage';
 // import MissingPage from '../../pages/MissingPage/MissingPage';
 // import SignUpPage from '../../pages/SignUpPage/SignUpPage';

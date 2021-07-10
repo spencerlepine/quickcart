@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useCategories from '../../../context/CategoriesContext/CategoriesContext.js';
+import useCategories from '../../context/CategoriesContext/CategoriesContext.js';
 import CategorySelector from './CategorySelector/CategorySelector';
 import useStyles from './styles';
 
