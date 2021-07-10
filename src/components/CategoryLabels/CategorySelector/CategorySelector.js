@@ -1,5 +1,5 @@
 import React from 'react';
-import useSearch from '../../../../../context/SearchContext/SearchContext';
+import useSearch from '../../../context/SearchContext/SearchContext';
 import useStyles from './styles';
 
 const CategorySelector = ({ categoryName, selectorValue }) => {

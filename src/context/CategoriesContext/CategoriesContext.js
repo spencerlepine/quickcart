@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import * as api from '../../api/controllers/categories';
+import * as api from '../../api/firebase/categories';
 
 export const CategoriesContext = React.createContext();
 

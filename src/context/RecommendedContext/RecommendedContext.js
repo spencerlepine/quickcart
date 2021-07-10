@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import * as api from '../../api/controllers/recommended';
+import * as api from '../../api/firebase/recommended';
 
 export const RecommendedContext = React.createContext();
 
