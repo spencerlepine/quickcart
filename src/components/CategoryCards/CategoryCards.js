@@ -1,5 +1,5 @@
 import React from 'react';
-import FoodCard from '../../../FoodCard/FoodCard';
+import FoodCard from '../FoodCard/FoodCard';
 import useStyles from './styles.js';
 
 const CategoryCards = ({ categoryItems }) => {

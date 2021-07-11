@@ -7,8 +7,8 @@ import LogInPage from '../../pages/LogInPage/LogInPage';
 import CartPage from '../../pages/CartPage/CartPage';
 import FormPage from '../../pages/FormPage/FormPage';
 import PantryPage from '../../pages/PantryPage/PantryPage';
-// import RecommendedPage from '../../pages/RecommendedPage/RecommendedPage';
-// import SettingsPage from '../../pages/SettingsPage/SettingsPage';
+import RecommendedPage from '../../pages/RecommendedPage/RecommendedPage';
+import SettingsPage from '../../pages/SettingsPage/SettingsPage';
 import BrowseGroceries from '../../pages/BrowseGroceriesPage/BrowseGroceriesPage';
 // import SpoonUPCSearchPage from '../../pages/SpoonUPCSearchPage/SpoonUPCSearchPage';
 // import SpoonacularSearchPage from '../../pages/SpoonacularSearchPage/SpoonacularSearchPage';
@@ -23,9 +23,9 @@ const Routes = () => (
     <Route path={ROUTES.CART} component={CartPage} />
     <Route path={ROUTES.FORM} component={FormPage} />
     <Route path={ROUTES.PANTRY} component={PantryPage} />
-    {/* <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
     <Route path={ROUTES.RECOMMENDED} component={RecommendedPage} />
     <Route path={ROUTES.SETTINGS} component={SettingsPage} />
+    {/* <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
     <Route path={ROUTES.SEARCH} component={SpoonacularSearchPage} />
     <Route path={ROUTES.UPC_SEARCH} component={SpoonUPCSearchPage} /> */}
     <Route path='/empty' component={MissingPage} />

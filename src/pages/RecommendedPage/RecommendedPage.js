@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import CategoryCards from './CategoryCards/CategoryCards.js';
-import withAuthRedirect from '../../../hooks/useAuthRedirect/useAuthRedirect';
-import useRecommended from '../../../context/RecommendedContext/RecommendedContext.js';
+import CategoryCards from '../../components/CategoryCards/CategoryCards.js';
+import withAuthRedirect from '../../hooks/useAuthRedirect/useAuthRedirect';
+import useRecommended from '../../context/RecommendedContext/RecommendedContext.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './styles.js';
 
