@@ -5,7 +5,7 @@ import MissingPage from '../../pages/MissingPage/MissingPage';
 import SignUpPage from '../../pages/SignUpPage/SignUpPage';
 import LogInPage from '../../pages/LogInPage/LogInPage';
 import CartPage from '../../pages/CartPage/CartPage';
-// import FormPage from '../../pages/FormPage/FormPage';
+import FormPage from '../../pages/FormPage/FormPage';
 // import PantryPage from '../../pages/PantryPage/PantryPage';
 // import RecommendedPage from '../../pages/RecommendedPage/RecommendedPage';
 // import SettingsPage from '../../pages/SettingsPage/SettingsPage';
@@ -21,8 +21,8 @@ const Routes = () => (
     <Route path={ROUTES.LOGIN} component={LogInPage} />
     <Route path={ROUTES.SIGNUP} component={SignUpPage} />
     <Route path={ROUTES.CART} component={CartPage} />
-    {/* <Route path={ROUTES.FORM} component={FormPage} />
-    <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
+    <Route path={ROUTES.FORM} component={FormPage} />
+    {/* <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
     <Route path={ROUTES.PANTRY} component={PantryPage} />
     <Route path={ROUTES.RECOMMENDED} component={RecommendedPage} />
     <Route path={ROUTES.SETTINGS} component={SettingsPage} />
