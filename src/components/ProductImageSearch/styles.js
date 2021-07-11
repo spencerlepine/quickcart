@@ -46,9 +46,10 @@ export default makeStyles((theme) => ({
     maxWidth: '250px',
     display: 'block',
     marginBottom: '1em',
+    padding: '10px',
+    backgroundColor: '#cbdce1',
     '& div': {
-      backgroundColor: '#f5f5f5',
-      border: '2px dashed #b7b7b7',
+      border: '2px dashed #96b1b2',
       height: '100%',
       width: 'fit-content',
       margin: 'auto',
@@ -56,9 +57,12 @@ export default makeStyles((theme) => ({
     },
     '& input': {
       width: '80%',
-      padding: '15px',
+      padding: '1em',
       paddingBottom: '0',
-      color: '#0f690f',
+      color: '#717171',
+      '& btn': {
+        color: 'red',
+      },
       margin: 'auto',
       height: '100%',
       minHeight: '200px',
