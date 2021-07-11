@@ -3,7 +3,7 @@ import LaunchIcon from '@material-ui/icons/Launch'; import { Link } from 'react-
 import { CART_LOGS } from '../../constants/routeConstants';
 import useStyles from './styles';
 
-const OpenLogs = () => {
+const OpenLogsBtn = () => {
   const classes = useStyles();
 
   return (
@@ -16,4 +16,4 @@ const OpenLogs = () => {
   )
 }
 
-export default OpenLogs;
+export default OpenLogsBtn;

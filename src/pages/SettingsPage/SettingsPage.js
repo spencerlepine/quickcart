@@ -3,7 +3,7 @@ import useStyles from './styles';
 import withAuthRedirect from '../../hooks/useAuthRedirect/useAuthRedirect';
 import Backup from './Backup/Backup';
 import Import from './Import/Import';
-import OpenLogs from '../../components/OpenLogs/OpenLogs';
+import OpenLogsBtn from '../../components/OpenLogsBtn/OpenLogsBtn';
 import Logout from '../../components/LogoutBtn/LogoutBtn';
 
 const SettingsPage = () => {
@@ -11,7 +11,7 @@ const SettingsPage = () => {
 
   return (
     <div className={classes.settingsContainer}>
-      <OpenLogs />
+      <OpenLogsBtn />
       <hr />
       <Import />
       <hr />
