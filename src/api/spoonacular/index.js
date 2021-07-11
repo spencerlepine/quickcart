@@ -67,15 +67,18 @@ export const fetchProductDetails = async (id) => {
 
 export const searchProductByName = async (searchString) => {
   try {
-    const searchLimit = 1;
-    const searchUrl = baseOFFURL + `/food/products/search?query=${searchString}&number=${searchLimit}&apiKey=${apiKey}`;
+    const spaceRe = / /ig;
+    const dashRe = /'/ig;
+    const searchLimit = 10;
+    const searchUrl = baseOFFURL + `/food/products/search?query=${searchString.toLowerCase()}&number=${searchLimit}&apiKey=${apiKey}`;
+    const formatUrl = searchUrl.replace(spaceRe, '-').replace(dashRe, '');
 
     const result = await axios({
       method: 'get',
-      url: searchUrl,
+      url: formatUrl,
     }).then(async (result) => {
       if (result) {
-        const idToFetch = result.data.products[0]['_id'];
+        const idToFetch = result.data.products.length > 0 ? result.data.products[0]['id'] : 0;
         const details = await fetchProductDetails(idToFetch);
         return details;
       } else return null;
@@ -97,7 +100,7 @@ export const searchProductById = async (id) => {
       url: searchUrl,
     }).then(async (result) => {
       if (result) {
-        const idToFetch = result.data['_id'];
+        const idToFetch = result.data['id'];
         const details = await fetchProductDetails(idToFetch);
         return details;
       } else return null;
@@ -117,7 +120,7 @@ export const searchProductByUpc = async (upc) => {
       url: searchUrl,
     }).then(async (result) => {
       if (result) {
-        const idToFetch = result.data['_id'];
+        const idToFetch = result.data['id'];
         const details = await fetchProductDetails(idToFetch);
         return details;
       } else return null;

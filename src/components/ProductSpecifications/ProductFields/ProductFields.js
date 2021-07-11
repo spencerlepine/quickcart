@@ -6,7 +6,7 @@ import toTitleCase from '../../../modules/toTitleCase';
 
 const ProductFields = ({ thisGrocery, handleChange }) => {
   const classes = useStyles();
-  const validKeys = ['purchase_size', 'brand'];
+  const validKeys = ['purchase_size', 'brand', 'serving_size'];
 
   return (
     <>
