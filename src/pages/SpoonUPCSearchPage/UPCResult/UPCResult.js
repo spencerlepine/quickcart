@@ -3,7 +3,6 @@ import React from 'react';
 import SearchCard from '../../../components/SearchCard/SearchCard';
 import useSpoonacular from '../../../context/SpoonacularContext/SpoonacularContext.js';
 import formatGroceryObj from '../../../modules/formatGroceryObj';
-import SearchMessage from '../../../components/SearchMessage/SearchMessage';
 import useStyles from './styles.js';
 
 const UPCResult = () => {
@@ -18,7 +17,7 @@ const UPCResult = () => {
         <SearchCard product={product} />
       </div>
     );
-  } else { return <SearchMessage message='Enter the product UPC' />; }
+  } else { return null; }
 };
 
 export default UPCResult;

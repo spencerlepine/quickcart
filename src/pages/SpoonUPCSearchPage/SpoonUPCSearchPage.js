@@ -8,6 +8,7 @@ import UPCResult from './UPCResult/UPCResult';
 import PromptButtons from './PromptButtons/PromptButtons';
 import UPCResultOFF from './UPCResultOFF/UPCResultOFF';
 import ScanCodeBtn from '../../components/ScanCodeBtn/ScanCodeBtn';
+import SearchMessage from '../../components/SearchMessage/SearchMessage';
 import useStyles from './styles.js';
 
 const SpoonUPCSearchPage = () => {
@@ -16,10 +17,11 @@ const SpoonUPCSearchPage = () => {
   const { fetchUPCItemData, loading } = useSpoonacular();
   const { fetchUPCItemData: fetchUPCItemDataOFF } = useFoodFacts();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (manualSearch = "") => {
     if (upcSearch) {
-      await fetchUPCItemData(upcSearch);
-      await fetchUPCItemDataOFF(upcSearch);
+      const upcToSearch = manualSearch || upcSearch
+      await fetchUPCItemData(upcToSearch);
+      await fetchUPCItemDataOFF(upcToSearch);
     }
   }
 
@@ -27,7 +29,7 @@ const SpoonUPCSearchPage = () => {
     <div className={classes.formContainer}>
       <PromptButtons />
 
-      <ScanCodeBtn />
+      <ScanCodeBtn setUpcSearch={setUpcSearch} handleSubmit={handleSubmit} />
 
       <div className={classes.form} noValidate>
         <div className={classes.itemDetails}>
@@ -42,6 +44,7 @@ const SpoonUPCSearchPage = () => {
         </div>
         <UPCResult />
         <UPCResultOFF />
+        {!(fetchUPCItemData || fetchUPCItemDataOFF) && <SearchMessage message='Enter the product UPC' />}
       </div>
     </div>
   );

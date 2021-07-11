@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
+import DetailsPopup from '../DetailsPopup/DetailsPopup';
 import useStyles from './styles';
 
-const ScanCodeBtn = ({ setUPCResult }) => {
+const ScanCodeBtn = ({ setUpcSearch, handleSubmit }) => {
   const classes = useStyles();
+  const [upcScan, setUpcScan] = useState(null);
 
-  const handleClick = async () => {
-    // open the camera overlay
-    alert('opening the camera boss');
+  const handleScan = (err, result) => {
+    if (result) {
+      const newBarcode = result.text;
+      setUpcScan(newBarcode);
+      setUpcSearch(newBarcode);
+      handleSubmit(newBarcode);
+    }
   }
 
-  return (
-    <div className={classes.scanCodeDiv}>
-      <button className={classes.scanCodeBtn} onClick={handleClick}>Scan Code</button>
-    </div>
-  )
+  const resetScanner = () => {
+    setUpcScan(null);
+  }
+
+  if (!upcScan) {
+    return (
+      <DetailsPopup
+        CardComponent={(
+          <div className={classes.scanCodeDiv}>
+            <button className={classes.scanCodeBtn}>Scan Code</button>
+          </div>
+        )}
+        DetailsComponent={(
+          <BarcodeScannerComponent
+            width={500}
+            height={500}
+            onUpdate={handleScan}
+          />
+        )}
+      />
+    );
+  }
+  else {
+    return (
+      <button onClick={resetScanner}>Try Again</button>
+    )
+
+  }
 }
 
 export default ScanCodeBtn;
