@@ -22,10 +22,16 @@ export function GroceriesProvider({ children }) {
       setDisplayStarters(false);
       return;
     } else if (displayStarters) {
+      if (totalGroceryCount >= 0 && totalGroceryCount < starterCount) {
+        setDisplayStarters(false);
+        return
+      }
       if (allGroceryItems.length === totalGroceryCount || allGroceryItems.length === starterCount) {
         return;
       }
     }
+
+
 
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
       const lastItem = allGroceryItems.slice(-1);
