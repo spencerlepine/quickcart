@@ -18,8 +18,8 @@ const SpoonUPCSearchPage = () => {
   const { fetchUPCItemData: fetchUPCItemDataOFF } = useFoodFacts();
 
   const handleSubmit = async (manualSearch = "") => {
-    if (upcSearch) {
-      const upcToSearch = manualSearch || upcSearch
+    const upcToSearch = manualSearch || upcSearch
+    if (upcToSearch) {
       await fetchUPCItemData(upcToSearch);
       await fetchUPCItemDataOFF(upcToSearch);
     }

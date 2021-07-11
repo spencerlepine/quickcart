@@ -15,12 +15,11 @@ export const fetchUPCItem = async (upc) => {
     }).then(result => {
       if (result.data) {
         if (result.data.status === 'failure') {
-          alert('could not find product')
-          return false
+          return false;
         } else {
-          return result.data
+          return result.data;
         }
-      } else return null
+      } else return null;
     });
     return result;
   } catch (error) {
