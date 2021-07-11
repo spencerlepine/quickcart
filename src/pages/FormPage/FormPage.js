@@ -21,7 +21,6 @@ const FormPage = (props) => {
   return (
     <div className={classes.formContainer}>
       <FindProductPrompt showPopup={props.showPopup} setShowPopup={props.setShowPopup} />
-
       <ProductImageSearch
         updateImageState={(newImg) => props.handleChange({ target: { name: 'image', value: newImg } })}
         currentImage={props.thisGrocery.image}>

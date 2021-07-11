@@ -3,11 +3,12 @@ import withAuthRedirect from '../../hooks/useAuthRedirect/useAuthRedirect';
 import useSpoonacular from '../../context/SpoonacularContext/SpoonacularContext.js';
 import useFoodFacts from '../../context/FoodFactsContext/FoodFactsContext';
 import SearchBar from 'material-ui-search-bar';
-import useStyles from './styles.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UPCResult from './UPCResult/UPCResult';
 import PromptButtons from './PromptButtons/PromptButtons';
 import UPCResultOFF from './UPCResultOFF/UPCResultOFF';
+import ScanCodeBtn from '../../components/ScanCodeBtn/ScanCodeBtn';
+import useStyles from './styles.js';
 
 const SpoonUPCSearchPage = () => {
   const classes = useStyles();
@@ -25,6 +26,9 @@ const SpoonUPCSearchPage = () => {
   return (
     <div className={classes.formContainer}>
       <PromptButtons />
+
+      <ScanCodeBtn />
+
       <div className={classes.form} noValidate>
         <div className={classes.itemDetails}>
           {loading ?
