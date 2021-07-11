@@ -10,7 +10,7 @@ import PantryPage from '../../pages/PantryPage/PantryPage';
 import RecommendedPage from '../../pages/RecommendedPage/RecommendedPage';
 import SettingsPage from '../../pages/SettingsPage/SettingsPage';
 import BrowseGroceries from '../../pages/BrowseGroceriesPage/BrowseGroceriesPage';
-// import SpoonUPCSearchPage from '../../pages/SpoonUPCSearchPage/SpoonUPCSearchPage';
+import SpoonUPCSearchPage from '../../pages/SpoonUPCSearchPage/SpoonUPCSearchPage';
 import SpoonacularSearchPage from '../../pages/SpoonacularSearchPage/SpoonacularSearchPage';
 import CartLogPage from '../../pages/CartLogPage/CartLogPage';
 
@@ -27,7 +27,7 @@ const Routes = () => (
     <Route path={ROUTES.SETTINGS} component={SettingsPage} />
     <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
     <Route path={ROUTES.SEARCH} component={SpoonacularSearchPage} />
-    {/* <Route path={ROUTES.UPC_SEARCH} component={SpoonUPCSearchPage} /> */}
+    <Route path={ROUTES.UPC_SEARCH} component={SpoonUPCSearchPage} />
     <Route path='/empty' component={MissingPage} />
     <Route path='/' component={MissingPage} />
   </Switch>
