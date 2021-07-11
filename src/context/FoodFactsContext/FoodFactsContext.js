@@ -1,64 +1,64 @@
-import React, { useState, useContext } from "react"
-import * as foodApi from "../../api/controllers/foodFacts"
-import extractGroceryValue from "../../modules/extractGroceryValue"
+import React, { useState, useContext } from 'react';
+import * as foodApi from '../../api/openfoodfacts';
+import extractGroceryValue from '../../modules/extractGroceryValue';
 
-export const FoodFactsContext = React.createContext()
+export const FoodFactsContext = React.createContext();
 
 export function FoodFactsProvider({ children }) {
-  const [loading, setLoading] = useState(false)
-  const [itemUPCSearch, setItemUPCSearch] = useState("")
-  const [searchResultList, setSearchResultList] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [itemUPCSearch, setItemUPCSearch] = useState('');
+  const [searchResultList, setSearchResultList] = useState(null);
 
-  const [idFieldResult, setIdFieldResult] = useState(null)
-  const [nameFieldResult, setNameFieldResult] = useState(null)
-  const [upcFieldResult, setUpcFieldResult] = useState(null)
+  const [idFieldResult, setIdFieldResult] = useState(null);
+  const [nameFieldResult, setNameFieldResult] = useState(null);
+  const [upcFieldResult, setUpcFieldResult] = useState(null);
 
   async function fetchUPCItemData(UPC) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.fetchUPCItem(UPC)
-    setItemUPCSearch(data)
-    setLoading(false)
+    const data = await foodApi.fetchUPCItem(UPC);
+    setItemUPCSearch(data);
+    setLoading(false);
   }
 
   async function searchProductsOFF(keyword) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProducts(keyword)
-    setSearchResultList(data)
-    setLoading(false)
+    const data = await foodApi.searchProducts(keyword);
+    setSearchResultList(data);
+    setLoading(false);
   }
 
   async function fieldFromId(id, fieldName) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductById(id)
+    const data = await foodApi.searchProductById(id);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
+    const fieldResult = extractGroceryValue(data, fieldName);
     // console.log(fieldResult)
-    setIdFieldResult(fieldResult)
-    setLoading(false)
+    setIdFieldResult(fieldResult);
+    setLoading(false);
   }
 
   async function fieldFromName(name, fieldName) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductByName(name)
+    const data = await foodApi.searchProductByName(name);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
-    setNameFieldResult(fieldResult)
-    setLoading(false)
+    const fieldResult = extractGroceryValue(data, fieldName);
+    setNameFieldResult(fieldResult);
+    setLoading(false);
   }
 
   async function fieldFromUPC(upc, fieldName) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductById(upc)
+    const data = await foodApi.searchProductById(upc);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
+    const fieldResult = extractGroceryValue(data, fieldName);
     // console.log(fieldResult)
-    setUpcFieldResult(fieldResult)
-    setLoading(false)
+    setUpcFieldResult(fieldResult);
+    setLoading(false);
   }
 
   const value = {
@@ -74,7 +74,7 @@ export function FoodFactsProvider({ children }) {
     fieldFromId,
     fieldFromName,
     fieldFromUPC,
-  }
+  };
 
   return (
     <FoodFactsContext.Provider value={value}>

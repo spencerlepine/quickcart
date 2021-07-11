@@ -7,4 +7,4 @@ const toTitleCase = (str) => {
   );
 }
 
-export default toTitleCase
+export default toTitleCase;

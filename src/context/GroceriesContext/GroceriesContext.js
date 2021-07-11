@@ -1,100 +1,100 @@
-import React, { useState, useEffect, useContext } from "react"
-import formatGroceryObj from "../../modules/formatGroceryObj"
-import * as api from "../../api/controllers/groceries"
+import React, { useState, useEffect, useContext } from 'react';
+import formatGroceryObj from '../../modules/formatGroceryObj';
+import * as api from '../../api/firebase/groceries';
 
-export const GroceriesContext = React.createContext()
+export const GroceriesContext = React.createContext();
 
 export function GroceriesProvider({ children }) {
-  const [allGroceryItems, setAllGroceryItems] = useState([])
+  const [allGroceryItems, setAllGroceryItems] = useState([]);
   const starterCount = 20;
-  const [displayStarters, setDisplayStarters] = useState(true)
-  const [totalGroceryCount, setTotalGroceryCount] = useState(-1)
-  const [loading, setLoading] = useState()
+  const [displayStarters, setDisplayStarters] = useState(true);
+  const [totalGroceryCount, setTotalGroceryCount] = useState(-1);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
     if (totalGroceryCount < 0) {
-      fetchTotalGroceryCount()
+      fetchTotalGroceryCount();
     }
   })
 
   useEffect(() => {
     if (totalGroceryCount === 0) {
-      setDisplayStarters(false)
-      return
+      setDisplayStarters(false);
+      return;
     } else if (displayStarters) {
       if (allGroceryItems.length === totalGroceryCount || allGroceryItems.length === starterCount) {
-        return
+        return;
       }
     }
 
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
-      const lastItem = allGroceryItems.slice(-1)
-      const lastId = lastItem.length ? lastItem[0]["_id"] : ""
-      getAllGroceries(lastId)
+      const lastItem = allGroceryItems.slice(-1);
+      const lastId = lastItem.length ? lastItem[0]['_id'] : '';
+      getAllGroceries(lastId);
     }
-  }, [totalGroceryCount, allGroceryItems, displayStarters])
+  }, [totalGroceryCount, allGroceryItems, displayStarters]);
 
   async function fetchTotalGroceryCount() {
-    const count = await api.fetchGroceryCount()
-    setTotalGroceryCount(count)
+    const count = await api.fetchGroceryCount();
+    setTotalGroceryCount(count);
   }
 
-  async function getAllGroceries(lastGroceryId = "") {
-    setLoading(true)
+  async function getAllGroceries(lastGroceryId = '') {
+    setLoading(true);
     try {
-      const data = await api.fetchGroceries(lastGroceryId)
-      setAllGroceryItems(prevList => [...prevList, ...data])
+      const data = await api.fetchGroceries(lastGroceryId);
+      setAllGroceryItems(prevList => [...prevList, ...data]);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   async function updateGroceryItem(updatedGroceryItem) {
     try {
-      const newGrocery = await api.updateGrocery(updatedGroceryItem)
-      const newGroceryId = newGrocery["_id"]
+      const newGrocery = await api.updateGrocery(updatedGroceryItem);
+      const newGroceryId = newGrocery['_id'];
 
       // go through and replace the old grocery
       setAllGroceryItems(prevList => {
-        return prevList.map(item => item["_id"] === newGroceryId ? newGrocery : item)
+        return prevList.map(item => item['_id'] === newGroceryId ? newGrocery : item);
       })
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
   async function createGroceryItem(newGroceryItem) {
-    setDisplayStarters(false)
+    setDisplayStarters(false);
     try {
-      const filledGroceryObj = formatGroceryObj(newGroceryItem)
-      const newGrocery = await api.createGrocery(filledGroceryObj)
+      const filledGroceryObj = formatGroceryObj(newGroceryItem);
+      const newGrocery = await api.createGrocery(filledGroceryObj);
 
       // Add only new groceries
       setAllGroceryItems(prevList => {
-        return [...prevList, newGrocery]
+        return [...prevList, newGrocery];
       })
 
       // Save the total count
-      await setTotalGroceryCount(prevCount => prevCount + 1)
+      await setTotalGroceryCount(prevCount => prevCount + 1);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
   async function deleteGroceryItem(groceryId) {
-    setDisplayStarters(false)
+    setDisplayStarters(false);
     try {
-      await api.deleteGrocery(groceryId)
+      await api.deleteGrocery(groceryId);
 
       // go through and replace the old grocery
       setAllGroceryItems(prevList => {
-        return prevList.filter(item => item["_id"] !== groceryId)
+        return prevList.filter(item => item['_id'] !== groceryId);
       })
 
-      await setTotalGroceryCount(prevCount => prevCount - 1)
+      await setTotalGroceryCount(prevCount => prevCount - 1);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
@@ -110,7 +110,7 @@ export function GroceriesProvider({ children }) {
     deleteGroceryItem,
     setTotalGroceryCount,
     fetchTotalGroceryCount,
-  }
+  };
 
   return (
     <GroceriesContext.Provider value={value}>

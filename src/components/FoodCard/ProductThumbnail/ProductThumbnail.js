@@ -1,14 +1,14 @@
-import React from "react"
-import getPriceColor from "../../../modules/getPriceColor"
+import React from 'react';
+import getPriceColor from '../../../modules/getPriceColor';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import useStyles from "./styles"
+import useStyles from './styles';
 
 const ProductThumbnail = ({ groceryItem, handleAdd }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const productPrice = parseFloat(
     groceryItem.purchase_price
-  ).toLocaleString("en-US", { style: "currency", currency: "USD" })
+  ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
   return (
     <div className={classes.foodCard}>
@@ -34,7 +34,7 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
       </div>
 
     </div>
-  )
+  );
 }
 
-export default ProductThumbnail
+export default ProductThumbnail;

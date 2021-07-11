@@ -1,20 +1,19 @@
-import React from "react"
-
-import useStyles from "./styles.js"
-import FoodCard from "../FoodCard/FoodCard"
-import useRecommended from "../../context/RecommendedContext/RecommendedContext.js"
+import React from 'react';
+import FoodCard from '../FoodCard/FoodCard';
+import useRecommended from '../../context/RecommendedContext/RecommendedContext.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import useStyles from './styles.js';
 
 const RecommendedWidget = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const { allRecommendedItems, loading } = useRecommended()
+  const { allRecommendedItems, loading } = useRecommended();
 
   const recommendedCards = []
   for (const category in allRecommendedItems) {
-    let [firstCategoryElem] = allRecommendedItems[category]
+    let [firstCategoryElem] = allRecommendedItems[category];
     if (firstCategoryElem) {
-      recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} key={category} />)
+      recommendedCards.push(<FoodCard groceryItem={firstCategoryElem} key={category} />);
     }
   }
 
@@ -36,4 +35,4 @@ const RecommendedWidget = () => {
   )
 }
 
-export default RecommendedWidget
+export default RecommendedWidget;

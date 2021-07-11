@@ -1,4 +1,4 @@
-import nutriscoreSchema from "./schema/nutriscoreSchema"
+import nutriscoreSchema from '../schema/nutriscoreSchema'
 const MIN_VALUES = 0;
 
 const hasNutritionData = (nutritionObj) => {
@@ -13,10 +13,10 @@ const hasNutritionData = (nutritionObj) => {
     }
 
     if (validValues > MIN_VALUES) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }
 
-export default hasNutritionData
+export default hasNutritionData;

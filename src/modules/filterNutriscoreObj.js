@@ -1,4 +1,4 @@
-import nutriscoreSchema from "./schema/nutriscoreSchema"
+import nutriscoreSchema from '../schema/nutriscoreSchema';
 
 const filterNutriscoreObj = (resultObj = {}) => {
   // update the keys and values
@@ -10,7 +10,7 @@ const filterNutriscoreObj = (resultObj = {}) => {
   // Get every key in the schema object
   for (const key in nutriscoreSchema) {
     // Reference the input object value here
-    const inputVal = resultObj[key]
+    const inputVal = resultObj[key];
 
     // Check if it exists
     if (inputVal) {
@@ -19,16 +19,16 @@ const filterNutriscoreObj = (resultObj = {}) => {
         // Make sure the data type wasn't changed
         if (typeof nutriscoreSchema[key] === typeof inputVal) {
           // Save the custom value
-          formattedObj[key] = inputVal
+          formattedObj[key] = inputVal;
         }
       } else {
         // Save the defualt value
-        formattedObj[key] = nutriscoreSchema[key]
+        formattedObj[key] = nutriscoreSchema[key];
       }
     }
   }
 
-  return formattedObj
+  return formattedObj;
 }
 
-export default filterNutriscoreObj
+export default filterNutriscoreObj;

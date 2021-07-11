@@ -1,18 +1,18 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import useStyles from "./styles.js"
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useStyles from './styles.js';
 
-const EmptyCart = ({ image, message, buttonText, destination, addFilter=false }) => {
-  const classes = useStyles()
+const EmptyCart = ({ image, message, buttonText, destination, addFilter = false }) => {
+  const classes = useStyles();
 
-  let imageClasses = `${classes.emptyImage}`
+  let imageClasses = `${classes.emptyImage}`;
   if (addFilter) {
-    imageClasses += ` ${classes.imageFilter}`
+    imageClasses += ` ${classes.imageFilter}`;
   }
 
   return (
     <div className={classes.emptyContainer}>
-      <img className={imageClasses} src={image} alt="empty"></img>
+      <img className={imageClasses} src={image} alt='empty'></img>
       <p className={classes.emptyMessage}>{message}</p>
       <span className={classes.actionButton}>
         <Link to={destination} className={classes.orderButton}>
@@ -23,4 +23,4 @@ const EmptyCart = ({ image, message, buttonText, destination, addFilter=false })
   )
 }
 
-export default EmptyCart
+export default EmptyCart;

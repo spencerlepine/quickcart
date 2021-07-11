@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
-import useProductOnboard from "../../context/ProductOnboardContext/ProductOnboardContext"
-import SearchCard from "./SearchCard/SearchCard"
-import SearchMessage from "../SearchMessage/SearchMessage"
+import React, { useEffect, useState } from 'react';
+import useProductOnboard from '../../context/ProductOnboardContext/ProductOnboardContext';
+import SearchCard from './SearchCard/SearchCard';
+import SearchMessage from '../SearchMessage/SearchMessage';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import SearchBar from "material-ui-search-bar";
-import useStyles from "./styles.js";
+import SearchBar from 'material-ui-search-bar';
+import useStyles from './styles.js';
 
 const ImageSearch = ({ updateImageState }) => {
   const classes = useStyles();
   const { imageSearchResult, setImageSearchResult, loading, keywordSearch, searchCallback } = useProductOnboard()
-  const [itemSearch, setItemSearch] = useState("");
+  const [itemSearch, setItemSearch] = useState('');
 
   useEffect(() => {
-    setImageSearchResult([])
-  }, [])
+    setImageSearchResult([]);
+  }, []);
 
   const handleSubmit = async (e) => {
-    await keywordSearch(itemSearch, searchCallback)
+    await keywordSearch(itemSearch, searchCallback);
   }
 
   const handleSearchClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
   }
 
-  const resultList = imageSearchResult.map((item, i) => (<SearchCard product={item} key={i} handleSelection={updateImageState} />))
+  const resultList = imageSearchResult.map((item, i) => (<SearchCard product={item} key={i} handleSelection={updateImageState} />));
 
   return (
     <div className={classes.popupContainer}>
@@ -44,13 +44,13 @@ const ImageSearch = ({ updateImageState }) => {
             {resultList.length > 0 ?
               <>{resultList}</>
               :
-              <SearchMessage message="Search for product images" />
+              <SearchMessage message='Search for product images' />
             }
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default ImageSearch
+export default ImageSearch;

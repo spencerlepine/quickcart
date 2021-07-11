@@ -1,38 +1,37 @@
-import React from "react"
-import useStyles from "./styles"
-import formatGroceryObj from "../../../modules/formatGroceryObj"
-import useNotification from "../../../context/NotificationContext/NotificationContext.js";
-import useGroceries from "../../../context/GroceriesContext/GroceriesContext.js";
-import { useHistory } from "react-router-dom"
+import React from 'react';
+import useStyles from './styles';
+import formatGroceryObj from '../../../modules/formatGroceryObj';
+import useNotification from '../../../context/NotificationContext/NotificationContext.js';
+import useGroceries from '../../../context/GroceriesContext/GroceriesContext.js';
+import { useHistory } from 'react-router-dom';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import PriceIndicator from "./PriceIndicator"
-import ScoreElement from "./ScoreElement/ScoreElement"
+import PriceIndicator from './PriceIndicator';
+import ScoreElement from './ScoreElement/ScoreElement';
 
 const SearchItemDetails = ({ product, handleAdd }) => {
-  const formattedProduct = formatGroceryObj(product)
-  const classes = useStyles()
-  const history = useHistory()
+  const formattedProduct = formatGroceryObj(product);
+  const classes = useStyles();
+  const history = useHistory();
 
-  const { createGroceryItem } = useGroceries()
-  const { setCurrentNotification } = useNotification()
+  const { createGroceryItem } = useGroceries();
+  const { setCurrentNotification } = useNotification();
 
   const handleSave = (e) => {
-    createGroceryItem(formattedProduct)
+    createGroceryItem(formattedProduct);
     const groceryMessage = {
-      message: `Saved ${formattedProduct.name || "item"}`,
-      type: "success"
+      message: `Saved ${formattedProduct.name || 'item'}`,
+      type: 'success'
     }
-    setCurrentNotification(groceryMessage)
-    history.push("/")
+    setCurrentNotification(groceryMessage);
+    history.push('/');
   }
 
   const productPrice = parseFloat(
     formattedProduct.purchase_price
-  ).toLocaleString("en-US", { style: "currency", currency: "USD" })
+  ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  const servingPrice = parseFloat(formattedProduct.serving_cost)
+  const servingPrice = parseFloat(formattedProduct.serving_cost);
   const nutriScore = formattedProduct.nutriscore_data.grade;
-
 
   return (
     <div className={classes.popupContainer}>
@@ -79,4 +78,4 @@ const SearchItemDetails = ({ product, handleAdd }) => {
   )
 }
 
-export default SearchItemDetails
+export default SearchItemDetails;

@@ -1,7 +1,7 @@
-import React from "react";
-import useFoodFacts from "../../../context/FoodFactsContext/FoodFactsContext.js";
-import missingImage from "../../../images/missing.jpeg"
-import useStyles from "./styles.js";
+import React from 'react';
+import useFoodFacts from '../../../context/FoodFactsContext/FoodFactsContext.js';
+import missingImage from '../../../images/missing.jpeg';
+import useStyles from './styles.js';
 
 // useful keys
 // product_name_en
@@ -18,17 +18,17 @@ import useStyles from "./styles.js";
 
 const UPCResult = () => {
   const classes = useStyles();
-  const { itemUPCSearch } = useFoodFacts()
+  const { itemUPCSearch } = useFoodFacts();
 
   if (itemUPCSearch) {
-    const itemName = itemUPCSearch["product_nameen"] || itemUPCSearch["product_name"] || itemUPCSearch["generic_name"]
-    const itemBrand = itemUPCSearch["brands"] || "unknown"
-    const itemNetWeight = itemUPCSearch["net_weight_value"] || itemUPCSearch["net_weight_unit"] || itemUPCSearch["volume_unit"] || "n/a"
-    const itemCategory = itemUPCSearch["main_category"] // || itemUPCSearch["categories"]
-    const itemImageURL = itemUPCSearch["image_url"] || itemUPCSearch["image_small_url"] || missingImage
-    const itemServingQuantity = itemUPCSearch["serving_quantity"]
-    const itemServingSize = itemUPCSearch["serving_size"]
-    const itemGrade = itemUPCSearch["nutrition_grade_en"] || itemUPCSearch["nutrition_grade_fr"]
+    const itemName = itemUPCSearch['product_nameen'] || itemUPCSearch['product_name'] || itemUPCSearch['generic_name'];
+    const itemBrand = itemUPCSearch['brands'] || 'unknown';
+    const itemNetWeight = itemUPCSearch['net_weight_value'] || itemUPCSearch['net_weight_unit'] || itemUPCSearch['volume_unit'] || 'n/a';
+    const itemCategory = itemUPCSearch['main_category']; // || itemUPCSearch['categories'];
+    const itemImageURL = itemUPCSearch['image_url'] || itemUPCSearch['image_small_url'] || missingImage;
+    const itemServingQuantity = itemUPCSearch['serving_quantity'];
+    const itemServingSize = itemUPCSearch['serving_size'];
+    const itemGrade = itemUPCSearch['nutrition_grade_en'] || itemUPCSearch['nutrition_grade_fr'];
 
     return (
       <div>
@@ -43,11 +43,11 @@ const UPCResult = () => {
         <p>{itemServingQuantity}</p>
         <p>{itemServingSize}</p>
         <p>Unit: {itemNetWeight}</p>
-        <p>{itemUPCSearch.ingredients_text}</p> 
+        <p>{itemUPCSearch.ingredients_text}</p>
         <p>UPC: {itemUPCSearch.code}</p>
       </div>
     );
-  } else { return null }
+  } else { return null; }
 };
 
-export default UPCResult
+export default UPCResult;

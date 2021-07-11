@@ -1,29 +1,29 @@
-import React, { useState, useContext, useEffect } from "react"
-import * as api from "../../api/controllers/recommended"
+import React, { useState, useContext, useEffect } from 'react';
+import * as api from '../../api/firebase/recommended';
 
-export const RecommendedContext = React.createContext()
+export const RecommendedContext = React.createContext();
 
 export function RecommendedProvider({ children }) {
-  const [allRecommendedItems, setAllRecommendedItems] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [allRecommendedItems, setAllRecommendedItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function getAllRecommendedItems() {
-    setLoading(true)
-    const data = await api.fetchRecommended()
+    setLoading(true);
+    const data = await api.fetchRecommended();
 
-    setAllRecommendedItems(data)
-    setLoading(false)
+    setAllRecommendedItems(data);
+    setLoading(false);
   }
 
   useEffect(() => {
-    getAllRecommendedItems()
-  }, [])
+    getAllRecommendedItems();
+  }, []);
 
   const value = {
     loading,
     allRecommendedItems,
     getAllRecommendedItems,
-  }
+  };
 
   return (
     <RecommendedContext.Provider value={value}>

@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext } from "react"
-import { auth, storage, db } from "../../api/firebase.js"
-import LoadingGif from "../../images/loading.gif"
-import useStyles from "./styles.js"
+import React, { useState, useEffect, useContext } from 'react';
+import { auth, storage, db } from '../../api/firebase';
+import LoadingGif from '../../images/loading.gif';
+import useStyles from './styles.js';
 
-export const AuthContext = React.createContext()
+export const AuthContext = React.createContext();
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
-  const [loading, setLoading] = useState(true)
+  const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(true);
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   function loginUser(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
+    return auth.signInWithEmailAndPassword(email, password);
   }
 
   function signupUser(displayName, email, password) {
@@ -20,17 +20,17 @@ export function AuthProvider({ children }) {
       .then(async (res) => {
         const user = auth.currentUser;
 
-        const { uid: userId } = user
-        const userDocRef = await db.collection('users').doc(userId)
+        const { uid: userId } = user;
+        const userDocRef = await db.collection('users').doc(userId);
         await userDocRef
-          .collection("groceryCount")
-          .doc("totalCount")
-          .set({ totalCount: 0 })
+          .collection('groceryCount')
+          .doc('totalCount')
+          .set({ totalCount: 0 });
 
         return user.updateProfile({
           displayName: displayName,
-        })
-      })
+        });
+      });
   }
 
   async function updateProfilePic(newFile) {
@@ -44,39 +44,39 @@ export function AuthProvider({ children }) {
     await storageRef.put(newFile);
 
     // Save the link to the image
-    var imageUrl = await storageRef.getDownloadURL().then(url => url)
+    var imageUrl = await storageRef.getDownloadURL().then(url => url);
 
     await user.updateProfile({
       photoURL: imageUrl
-    })
+    });
 
-    return imageUrl
+    return imageUrl;
   }
 
   function logoutUser() {
-    return auth.signOut()
+    return auth.signOut();
   }
 
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
+    return auth.sendPasswordResetEmail(email);
   }
 
   function updateEmail(email) {
-    return currentUser.updateEmail(email)
+    return currentUser.updateEmail(email);
   }
 
   function updatePassword(password) {
-    return currentUser.updatePassword(password)
+    return currentUser.updatePassword(password);
   }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
-      setLoading(false)
-    })
+      setCurrentUser(user);
+      setLoading(false);
+    });
 
-    return unsubscribe
-  }, [])
+    return unsubscribe;
+  }, []);
 
   const value = {
     loading,
@@ -88,13 +88,13 @@ export function AuthProvider({ children }) {
     logoutUser,
     signupUser,
     updateProfilePic,
-  }
+  };
 
   return (
     <AuthContext.Provider value={value}>
       {loading ?
         <div className={classes.fullscreenDiv}>
-          <img src={LoadingGif} className={classes.center} alt="Loading animation"></img>
+          <img src={LoadingGif} className={classes.center} alt='Loading animation'></img>
         </div> :
         <>{children}</>
       }

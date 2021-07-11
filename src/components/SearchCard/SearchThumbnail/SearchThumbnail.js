@@ -1,6 +1,6 @@
 import React from "react";
-import formatGroceryObj from "../../../modules/formatGroceryObj"
-import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext"
+import formatGroceryObj from "../../../modules/formatGroceryObj";
+import useSpoonacular from "../../../context/SpoonacularContext/SpoonacularContext";
 import useStyles from "./styles.js";
 
 const formatName = (name) => {
@@ -13,11 +13,11 @@ const formatName = (name) => {
 
 const SearchThumbnail = ({ product }) => {
   const classes = useStyles();
-  const { getProductDetails, itemDetails } = useSpoonacular()
+  const { getProductDetails, itemDetails } = useSpoonacular();
 
-  const formattedProduct = formatGroceryObj(product)
-  const itemName = formattedProduct.name
-  const itemImageURL = formattedProduct.image
+  const formattedProduct = formatGroceryObj(product);
+  const itemName = formattedProduct.name;
+  const itemImageURL = formattedProduct.image;
 
   const handleClick = async () => {
     const productId = product["id"]
@@ -33,7 +33,7 @@ const SearchThumbnail = ({ product }) => {
       </div>
       <p className={classes.itemName}>{formatName(itemName)}</p>
     </div>
-  )
-};
+  );
+}
 
-export default SearchThumbnail
+export default SearchThumbnail;

@@ -1,71 +1,71 @@
-import React, { useState, useContext } from "react"
-import * as foodApi from "../../api/controllers/spoonacular"
-import extractGroceryValue from "../../modules/extractGroceryValue"
+import React, { useState, useContext } from 'react';
+import * as foodApi from '../../api/spoonacular';
+import extractGroceryValue from '../../modules/extractGroceryValue';
 
-export const SpoonacularContext = React.createContext()
+export const SpoonacularContext = React.createContext();
 
 export function SpoonacularProvider({ children }) {
-  const [loading, setLoading] = useState(false)
-  const [itemUPCSearch, setItemUPCSearch] = useState("")
-  const [searchResultList, setSearchResultList] = useState(null)
-  const [itemDetails, setItemDetails] = useState({})
+  const [loading, setLoading] = useState(false);
+  const [itemUPCSearch, setItemUPCSearch] = useState('');
+  const [searchResultList, setSearchResultList] = useState(null);
+  const [itemDetails, setItemDetails] = useState({});
 
-  const [idFieldResult, setIdFieldResult] = useState(null)
-  const [nameFieldResult, setNameFieldResult] = useState(null)
-  const [upcFieldResult, setUpcFieldResult] = useState(null)
+  const [idFieldResult, setIdFieldResult] = useState(null);
+  const [nameFieldResult, setNameFieldResult] = useState(null);
+  const [upcFieldResult, setUpcFieldResult] = useState(null);
 
   async function fetchUPCItemData(UPC) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.fetchUPCItem(UPC)
-    setItemUPCSearch(data)
-    setLoading(false)
+    const data = await foodApi.fetchUPCItem(UPC);
+    setItemUPCSearch(data);
+    setLoading(false);
   }
 
   async function searchProducts(keyword) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProducts(keyword)
-    setSearchResultList(data)
-    setLoading(false)
+    const data = await foodApi.searchProducts(keyword);
+    setSearchResultList(data);
+    setLoading(false);
   }
 
   async function getProductDetails(id) {
-    setLoading(true)
+    setLoading(true);
     // param {string}
-    const data = await foodApi.fetchProductDetails(id)
-    setItemDetails(data)
-    setLoading(false)
+    const data = await foodApi.fetchProductDetails(id);
+    setItemDetails(data);
+    setLoading(false);
   }
 
-  async function fieldFromId(id = "", fieldName) {
-    setLoading(true)
+  async function fieldFromId(id = '', fieldName) {
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductById(id)
+    const data = await foodApi.searchProductById(id);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
-    setIdFieldResult(fieldResult)
-    setLoading(false)
+    const fieldResult = extractGroceryValue(data, fieldName);
+    setIdFieldResult(fieldResult);
+    setLoading(false);
   }
 
-  async function fieldFromName(name = "", fieldName) {
-    setLoading(true)
+  async function fieldFromName(name = '', fieldName) {
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductByName(name)
+    const data = await foodApi.searchProductByName(name);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
-    setNameFieldResult(fieldResult)
-    setLoading(false)
+    const fieldResult = extractGroceryValue(data, fieldName);
+    setNameFieldResult(fieldResult);
+    setLoading(false);
   }
 
-  async function fieldFromUPC(upc = "", fieldName) {
-    setLoading(true)
+  async function fieldFromUPC(upc = '', fieldName) {
+    setLoading(true);
     // param {string}
-    const data = await foodApi.searchProductByUpc(upc)
+    const data = await foodApi.searchProductByUpc(upc);
     // pull the desired field from it
-    const fieldResult = extractGroceryValue(data, fieldName)
-    setUpcFieldResult(fieldResult)
-    setLoading(false)
+    const fieldResult = extractGroceryValue(data, fieldName);
+    setUpcFieldResult(fieldResult);
+    setLoading(false);
   }
 
   const value = {
@@ -84,13 +84,13 @@ export function SpoonacularProvider({ children }) {
     fieldFromId,
     fieldFromName,
     fieldFromUPC,
-  }
+  };
 
   return (
     <SpoonacularContext.Provider value={value}>
       {children}
     </SpoonacularContext.Provider>
-  )
+  );
 }
 
 const useSpoonacular = () => {

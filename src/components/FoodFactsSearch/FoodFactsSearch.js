@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect"
+import withAuthRedirect from "../../hooks/useAuthRedirect/useAuthRedirect";
 import useFoodFacts from "../../context/FoodFactsContext/FoodFactsContext.js";
 import SearchBar from "material-ui-search-bar";
 import useStyles from "./styles.js";
@@ -9,10 +9,10 @@ import SearchResult from "./SearchResult/SearchResult";
 const FoodFactsSearch = () => {
   const classes = useStyles();
   const [itemSearch, setItemSearch] = useState("");
-  const { searchProducts, loading } = useFoodFacts()
+  const { searchProducts, loading } = useFoodFacts();
 
   const handleSubmit = async (e) => {
-    await searchProducts(itemSearch)
+    await searchProducts(itemSearch);
   }
 
   return (
@@ -32,6 +32,6 @@ const FoodFactsSearch = () => {
       </div>
     </div>
   );
-};
+}
 
-export default withAuthRedirect(FoodFactsSearch)
+export default withAuthRedirect(FoodFactsSearch);

@@ -1,29 +1,30 @@
-import React from "react"
-import useForm from "../../context/FormContext/FormContext"
-import { useHistory } from "react-router-dom"
-import Rating from "@material-ui/lab/Rating";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Rating from '@material-ui/lab/Rating';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import PriceIndicator from "./PriceIndicator"
-import useStyles from "./styles"
-import NutritionFacts from "./NutritionFacts/NutritionFacts"
-import ScoreElement from "./ScoreElement/ScoreElement"
+import PriceIndicator from './PriceIndicator';
+import useForm from '../../context/FormContext/FormContext';
+import { FORM } from "../../constants/routeConstants";
+import NutritionFacts from './NutritionFacts/NutritionFacts';
+import ScoreElement from './ScoreElement/ScoreElement';
+import useStyles from './styles';
 
 const FoodDetails = ({ groceryItem, handleAdd }) => {
-  const classes = useStyles()
-  const history = useHistory()
-  const { setEditSelection } = useForm()
+  const classes = useStyles();
+  const history = useHistory();
+  const { setEditSelection } = useForm();
 
   const handleEdit = (e) => {
-    setEditSelection(groceryItem)
-    history.push("/form")
-  }
+    setEditSelection(groceryItem);
+    history.push(FORM);
+  };
 
   const productPrice = parseFloat(
     groceryItem.purchase_price
-  ).toLocaleString("en-US", { style: "currency", currency: "USD" })
+  ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  const servingPrice = parseFloat(groceryItem.serving_cost)
+  const servingPrice = parseFloat(groceryItem.serving_cost);
   const nutriScore = groceryItem.nutriscore_data.grade;
 
   return (
@@ -61,11 +62,11 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
           </div>
 
           <Rating
-            name="priority"
+            name='priority'
             value={parseInt(groceryItem.priority)}
             precision={1}
             readOnly
-            emptyIcon={<StarBorderIcon fontSize="inherit" />}
+            emptyIcon={<StarBorderIcon fontSize='inherit' />}
             className={classes.productRating}
           />
 
@@ -94,7 +95,7 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default FoodDetails
+export default FoodDetails;

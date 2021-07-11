@@ -1,38 +1,38 @@
-import React, { useState, useContext, useEffect } from "react"
-import * as api from "../../api/controllers/categories"
+import React, { useState, useContext, useEffect } from 'react';
+import * as api from '../../api/firebase/categories';
 
-export const CategoriesContext = React.createContext()
+export const CategoriesContext = React.createContext();
 
 export function CategoriesProvider({ children }) {
-  const [allCategories, setAllCategories] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [initialFetch, setInitialFetch] = useState(false)
+  const [allCategories, setAllCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [initialFetch, setInitialFetch] = useState(false);
 
   useEffect(() => {
     if (!initialFetch) {
-      getAllCategories()
+      getAllCategories();
     }
-  }, [initialFetch])
+  }, [initialFetch]);
 
   async function getAllCategories() {
     setInitialFetch(true);
-    setLoading(true)
+    setLoading(true);
     try {
-      const data = await api.getGroceryCategories()
-      setAllCategories(prevList => data)
+      const data = await api.getGroceryCategories();
+      setAllCategories(prevList => data);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   async function createNewCategory(newCategoryName) {
     try {
-      await api.addCategory(newCategoryName)
+      await api.addCategory(newCategoryName);
 
-      setAllCategories(prevList => [...prevList, newCategoryName])
+      setAllCategories(prevList => [...prevList, newCategoryName]);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
@@ -42,7 +42,7 @@ export function CategoriesProvider({ children }) {
     getAllCategories,
     initialFetch,
     createNewCategory,
-  }
+  };
 
   return (
     <CategoriesContext.Provider value={value}>

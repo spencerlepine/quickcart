@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext } from 'react';
 
-export const FormContext = React.createContext()
+export const FormContext = React.createContext();
 
 export function FormProvider({ children }) {
-  const [editSelection, setEditSelection] = useState(null)
-  const [searchSelection, setSearchSelection] = useState(null)
+  const [editSelection, setEditSelection] = useState(null);
+  const [searchSelection, setSearchSelection] = useState(null);
 
   const value = {
     editSelection,
     setEditSelection,
     setSearchSelection,
     searchSelection,
-  }
+  };
 
   return (
     <FormContext.Provider value={value}>

@@ -1,10 +1,10 @@
-import React from "react"
-import LaunchIcon from '@material-ui/icons/Launch'; import { Link } from "react-router-dom";
-import { CART_LOGS } from "../../constants/routeConstants"
-import useStyles from "./styles"
+import React from 'react';
+import LaunchIcon from '@material-ui/icons/Launch'; import { Link } from 'react-router-dom';
+import { CART_LOGS } from '../../constants/routeConstants';
+import useStyles from './styles';
 
 const OpenLogs = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Link
@@ -16,4 +16,4 @@ const OpenLogs = () => {
   )
 }
 
-export default OpenLogs
+export default OpenLogs;

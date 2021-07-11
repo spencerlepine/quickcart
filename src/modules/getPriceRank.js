@@ -1,16 +1,16 @@
 const getPriceRank = (priceFloat) => {
     if (priceFloat <= 0.01) {
-        return ""
+        return '';
     } else if (priceFloat <= 0.10) {
-        return "$"
+        return '$';
     } else if (priceFloat <= 0.30) {
-        return "$$"
+        return '$$';
     } else if (priceFloat <= 0.50) {
-        return "$$$"
+        return '$$$';
     } else if (priceFloat < 0.70) {
-        return "$$$$"
+        return '$$$$';
     } else if (priceFloat > 0.70) {
-        return "$$$$$"
+        return '$$$$$';
     }
 }
-export default getPriceRank
+export default getPriceRank;
