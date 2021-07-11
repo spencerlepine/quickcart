@@ -40,7 +40,7 @@ const ScanCodeBtn = ({ setUpcSearch, handleSubmit }) => {
   }
   else {
     return (
-      <button onClick={resetScanner}>Try Again</button>
+      <button className={classes.tryAgainBtn} onClick={resetScanner}>Try Again</button>
     )
 
   }
