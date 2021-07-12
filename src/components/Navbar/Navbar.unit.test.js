@@ -3,8 +3,7 @@ import { shallow } from 'enzyme';
 import Navbar from './Navbar';
 import OpenCartBtn from '../OpenCartBtn/OpenCartBtn';
 import HomeLink from '../HomeLink/HomeLink';
-import QuickCartLogo from '../../images/QuickCart-Logo.png';
-import Sidebar from './Sidebar/Sidebar';
+import MenuButton from '../MenuButton/MenuButton';
 
 describe('Navbar component', () => {
   it('should render correctly with no errors', () => {
@@ -24,5 +23,12 @@ describe('Navbar component', () => {
 
     const logoElem = component.find(HomeLink)
     expect(logoElem.exists()).toBeTruthy();
+  });
+
+  it('should render MenuButton component', () => {
+    const component = shallow(<Navbar />);
+
+    const menuElem = component.find(MenuButton)
+    expect(menuElem.exists()).toBeTruthy();
   });
 });
