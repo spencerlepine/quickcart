@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component should render banner text correctly with given strings 1`] = `ShallowWrapper {}`;
+exports[`App component should render Footer 1`] = `<Footer />`;
 
-exports[`App component should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+exports[`App component should render Navbar 1`] = `<Navbar />`;
 
-exports[`App component should render correctly with no props 1`] = `ShallowWrapper {}`;
+exports[`App component should render NotificationsPopup 1`] = `<NofiticationPopup />`;
+
+exports[`App component should render ViewLayoutWrapper 1`] = `
+<ViewLayout>
+  <Routes />
+</ViewLayout>
+`;

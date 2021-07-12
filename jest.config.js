@@ -1,3 +1,6 @@
 module.exports = {
-    resetMocks: true,
-  };
+  "setupFiles": [
+    "./src/tests/setupTests.js"
+  ],
+  resetMocks: true,
+};
