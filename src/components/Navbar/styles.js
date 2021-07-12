@@ -31,22 +31,6 @@ export default makeStyles(() => ({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
-  cartLink: {
-    display: 'flex',
-    margin: '0',
-    backgroundColor: 'ghostwhite',
-    padding: '0px 10px 0px 10px',
-    borderRadius: '15px',
-    '& p': {
-      color: '#333333',
-      fontWeight: '700',
-      margin: 'auto',
-      display: 'inline !important',
-    },
-    '& svg': {
-      color: '#333333',
-    },
-  },
   link: {
     width: 'max-content',
     display: 'flex',

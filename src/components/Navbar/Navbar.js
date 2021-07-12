@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import OpenCartBtn from '../OpenCartBtn/OpenCartBtn';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import useCart from '../../context/CartContext/CartContext';
@@ -50,16 +50,7 @@ const Navbar = () => {
             <img src={QuickCartLogo} alt='QuickCart Logo'></img>
           </Link>
 
-          <Link
-            className={classes.link}
-            to='/cart'
-            onClick={() => toggleMenu(false)}
-          >
-            <div className={classes.cartLink}>
-              <ShoppingCartIcon fontSize='large' color='action' />
-              {cartLength > 0 && <p>{cartLength}</p>}
-            </div>
-          </Link>
+          <OpenCartBtn />
         </div>
       </div>
       <div className={classes.navBarSpacing}></div>
