@@ -10,64 +10,36 @@ import LogoutBtn from '../../LogoutBtn/LogoutBtn';
 import { PANTRY, RECOMMENDED, SETTINGS, HOME, FORM, SEARCH } from '../../../constants/routeConstants';
 import useStyles from './styles.js';
 
+const SideBarLink = ({ Icon, To, Name }) => {
+  const classes = useStyles();
+  const thisClass = classes[`${Name.toLowerCase()}Icon}`]
+
+  return (
+    <Link className={`${classes.sidebarLink} ${thisClass}`}
+      to={To}
+      onClick={() => this.toggleMenu(false)}
+    >
+      <Icon fontSize='large' />
+      <p>{Name}</p>
+    </Link>)
+};
+
 const Sidebar = ({ toggleMenu }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.sidebar}>
-      <Link className={classes.sidebarLink}
-        to={HOME}
-        onClick={() => toggleMenu(false)}
-      >
-        <ListAltIcon fontSize='large' />
-        <p>Browse</p>
-      </Link>
+      <SideBarLink Icon={ListAltIcon} To={HOME} Name='Browse' />
 
-      <Link
-        className={classes.sidebarLink}
-        to={FORM}
-        onClick={() => toggleMenu(false)}
-      >
-        <AddCircleOutlineIcon fontSize='large' />
-        <p>Create</p>
-      </Link>
+      <SideBarLink Icon={AddCircleOutlineIcon} To={FORM} Name='Create' />
 
-      <Link
-        className={classes.sidebarLink}
-        to={SEARCH}
-        onClick={() => toggleMenu(false)}
-      >
-        <SearchIcon fontSize='large' />
-        <p>Find</p>
-      </Link>
+      <SideBarLink Icon={SearchIcon} To={SEARCH} Name='Find' />
 
+      <SideBarLink Icon={EmojiObjects} To={RECOMMENDED} Name='Suggested' />
 
-      <Link
-        className={`${classes.sidebarLink} ${classes.recommendedIcon}`}
-        to={RECOMMENDED}
-        onClick={() => toggleMenu(false)}
-      >
-        <EmojiObjects fontSize='large' />
-        <p>Suggested</p>
-      </Link>
+      <SideBarLink Icon={KitchenIcon} To={PANTRY} Name='Pantry' />
 
-      <Link
-        className={`${classes.sidebarLink} ${classes.pantryIcon}`}
-        to={PANTRY}
-        onClick={() => toggleMenu(false)}
-      >
-        <KitchenIcon fontSize='large' />
-        <p>Pantry</p>
-      </Link>
-
-      <Link
-        className={`${classes.sidebarLink} ${classes.settingIcon}`}
-        to={SETTINGS}
-        onClick={() => toggleMenu(false)}
-      >
-        <SettingsIcon fontSize='large' />
-        <p>Settings</p>
-      </Link>
+      <SideBarLink Icon={SettingsIcon} To={SETTINGS} Name='Settings' />
 
       <LogoutBtn />
     </div>
