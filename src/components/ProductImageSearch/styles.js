@@ -47,9 +47,9 @@ export default makeStyles((theme) => ({
     display: 'block',
     marginBottom: '1em',
     padding: '10px',
-    backgroundColor: '#cbdce1',
+    backgroundColor: '#ffdede',
     '& div': {
-      border: '2px dashed #96b1b2',
+      border: '2px dashed #b29696',
       height: '100%',
       width: 'fit-content',
       margin: 'auto',

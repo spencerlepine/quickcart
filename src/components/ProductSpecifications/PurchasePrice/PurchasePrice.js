@@ -5,7 +5,7 @@ import useStyles from './styles.js';
 const PurchasePrice = ({ handleChange, thisGrocery }) => {
   const classes = useStyles();
 
-  const formattedPrice = Number.parseFloat(thisGrocery['purchase_price']).toFixed(2);
+  const formattedPrice = Number.parseFloat(thisGrocery['purchase_price']);
 
   return (
     <div className={classes.purchasePrice}>
@@ -22,7 +22,7 @@ const PurchasePrice = ({ handleChange, thisGrocery }) => {
         name={'purchase_price'}
         placeholder={'1.50'}
         value={formattedPrice}
-        inputProps={{ min: 0, step: 0.1 }}
+        inputProps={{ min: 0, step: 0.5 }}
       />
     </div>
   );
