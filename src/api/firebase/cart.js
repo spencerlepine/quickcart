@@ -128,11 +128,11 @@ export const logCartItem = async (itemToLog) => {
       .set(itemLogObj);
 
     // Add a field to the collection to make it appear in queries
-    db.collection('users')
+    await db.collection('users')
       .doc(userId)
       .collection('userCartLogs')
       .doc(formattedDate)
-      .update({ logDate: formattedDate });
+      .set({ logDate: formattedDate });
   } catch (error) {
     console.log(error.message);
   }
