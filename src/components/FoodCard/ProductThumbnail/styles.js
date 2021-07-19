@@ -1,6 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
+  unitCost: {
+    "color": "#c7973c",
+    "border": "1px solid #eaeaea",
+    "zIndex": "5",
+    "position": "absolute",
+    "top": "0.2em",
+    "left": "0.2em",
+    "fontWeight": "500",
+    "background": "#f9f9f9",
+  },
   foodCard: {
     backgroundColor: '#fff',
     padding: '0.5em',

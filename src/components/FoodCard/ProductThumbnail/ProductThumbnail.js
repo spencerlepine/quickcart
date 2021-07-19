@@ -1,5 +1,6 @@
 import React from 'react';
 import getPriceColor from '../../../modules/getPriceColor';
+import parseUnitPrice from '../../../modules/parseUnitPrice';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from './styles';
 
@@ -10,8 +11,13 @@ const ProductThumbnail = ({ groceryItem, handleAdd }) => {
     groceryItem.purchase_price
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
+  const unitPrice = parseUnitPrice(groceryItem.purchase_size, groceryItem.purchase_price);
+
   return (
     <div className={classes.foodCard}>
+      {unitPrice && <div className={classes.unitCost}>
+        <p>{unitPrice}</p>
+      </div>}
       <div className={classes.imageContainer}>
         <img alt={groceryItem.name} src={groceryItem.image}></img>
       </div>
