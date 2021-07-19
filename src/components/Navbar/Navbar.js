@@ -4,7 +4,7 @@ import OpenCartBtn from '../OpenCartBtn/OpenCartBtn';
 import HomeLink from '../HomeLink/HomeLink';
 import useStyles from './styles.js';
 
-const Navbar = ({ toggleElem: toggleMenu, showElem: showMenu }) => {
+const Navbar = () => {
   const classes = useStyles();
 
   return (
