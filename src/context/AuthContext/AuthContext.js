@@ -95,7 +95,7 @@ export function AuthProvider({ children }) {
       {loading ?
         <div className={classes.fullscreenDiv}>
           <img src={LoadingGif} className={classes.center} alt='Loading animation'></img>
-        </div> :
+        </div>
         <>{children}</>
       }
 
