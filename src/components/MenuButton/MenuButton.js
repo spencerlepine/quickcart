@@ -15,7 +15,7 @@ const MenuButton = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <div className={classes.menuToggleBtn}>
         {showMenu ? (
           <CloseIcon fontSize='large' onClick={() => setShowMenu(false)} />
@@ -25,7 +25,7 @@ const MenuButton = () => {
       </div>
 
       {showMenu && <Sidebar toggleMenu={toggleMenu} />}
-    </>
+    </React.Fragment>
   );
 };
 

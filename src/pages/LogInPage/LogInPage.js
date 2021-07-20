@@ -31,7 +31,7 @@ function LogInPage() {
         await loginUser(formValues['email'], formValues['password']);
         fetchTotalGroceryCount();
         history.push('/');
-      } catch {
+      } catch (err) {
         setCurrentNotification('Invalid credentials', 'Please try again', 'danger')
       }
     }

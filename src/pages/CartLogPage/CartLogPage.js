@@ -37,18 +37,18 @@ const CartLogPage = () => {
         ?
         <CircularProgress />
         :
-        <>
+        <React.Fragment>
           {allCartLogs.length === 0 ? (
             renderEmptyCart()
           ) : (
-            <>
+            <React.Fragment>
               <div className={classes.cartLogs}>
                 {allCartLogs.map((receipt, key) => (
                   <Receipt receiptItems={receipt} key={key} />
                 ))}
               </div>
-            </>
-          )}</>}
+            </React.Fragment>
+          )}</React.Fragment>}
     </div>
   );
 }

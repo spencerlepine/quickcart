@@ -35,7 +35,7 @@ function SignUpPage() {
         await signupUser(displayName, email, password)
         // start loading the app
         fetchTotalGroceryCount();
-      } catch {
+      } catch (err) {
         setCurrentNotification('Invalid email or password', 'Please try again', 'danger');
       }
     }

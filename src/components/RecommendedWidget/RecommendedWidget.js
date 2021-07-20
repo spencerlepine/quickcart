@@ -20,7 +20,7 @@ const RecommendedWidget = () => {
   return (
     <div className={classes.widgetView}>
       {recommendedCards.length > 0 && (
-        <>
+        <React.Fragment>
           <h3>Recommended</h3>
           <hr />
           {loading
@@ -29,7 +29,7 @@ const RecommendedWidget = () => {
             :
             <div className={classes.itemsGrid}>{recommendedCards}</div>
           }
-        </>
+        </React.Fragment>
       )}
     </div>
   )

@@ -130,7 +130,7 @@ const FormLogic = ({ Component }) => {
     handleClear,
   };
 
-  return (<><Component {...valueProps} /></>);
+  return (<React.Fragment><Component {...valueProps} /></React.Fragment>);
 };
 
 export default FormLogic;

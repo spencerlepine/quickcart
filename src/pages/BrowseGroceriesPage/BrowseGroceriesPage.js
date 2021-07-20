@@ -9,11 +9,11 @@ const BrowseGroceriesPage = () => {
   const { loading } = useGroceries();
 
   return (
-    <>
+    <React.Fragment>
       <SearchBar />
       <CategoryLabels />
       <FoodGrid loading={loading} />
-    </>
+    </React.Fragment>
   )
 }
 

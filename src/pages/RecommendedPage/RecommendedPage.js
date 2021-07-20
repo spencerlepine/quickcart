@@ -28,9 +28,9 @@ const RecommendedPage = () => {
         ?
         <CircularProgress />
         :
-        <>
+        <React.Fragment>
           {categorySliders}
-        </>}
+        </React.Fragment>}
     </div>
   )
 }

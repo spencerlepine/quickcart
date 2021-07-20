@@ -9,7 +9,7 @@ const ProductFields = ({ thisGrocery, handleChange }) => {
   const validKeys = ['purchase_size', 'brand', 'serving_size'];
 
   return (
-    <>
+    <React.Fragment>
       {Object.keys(grocerySchema).map(key => {
         if (validKeys.includes(key)) {
           return (<div key={key} className={classes.productField}><label className={classes.divLabel}>{toTitleCase(key)}</label>
@@ -29,7 +29,7 @@ const ProductFields = ({ thisGrocery, handleChange }) => {
         }
       }
       )}
-    </>
+    </React.Fragment>
   );
 }
 

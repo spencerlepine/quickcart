@@ -22,7 +22,7 @@ const Import = () => {
       let storageAccessed;
       try {
         storageAccessed = JSON.parse(fr.result);
-      } catch {
+      } catch (err) {
         const importMessage = {
           name: 'Invalid File!',
           message: `please select a valid .txt file`,

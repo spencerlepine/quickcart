@@ -8,7 +8,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <React.Fragment>
       <div className={classes.navBar}>
         <div className={classes.navbarContainer} >
           <MenuButton />
@@ -19,7 +19,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={classes.navBarSpacing}></div>
-    </>
+    </React.Fragment>
   );
 };
 

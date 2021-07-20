@@ -19,7 +19,7 @@ const LogoutBtn = ({ customWidth }) => {
       setAllCartItems([]);
       setTotalGroceryCount(-1);
       history.push('/');
-    } catch {
+    } catch (err) {
       console.log('logout failed');
     }
   }

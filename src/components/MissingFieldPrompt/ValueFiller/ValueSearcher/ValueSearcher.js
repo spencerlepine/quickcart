@@ -69,10 +69,10 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
       )
     } else {
       return (
-        <>
+        <React.Fragment>
           <img src={madShiba} className={classes.failureImg} alt='Missing product'></img>
           <p className={classes.failureMsg}>Sorry,<br /> this product was hard to find :(</p>
-        </>)
+        </React.Fragment>)
     }
   }
 
@@ -82,12 +82,12 @@ const ValueSearcher = ({ handleChange, fieldName, UPC, ID, name }) => {
     <div className={classes.popupContainer}>
       <div className={classes.popupElement}>
         <div className={classes.productGrid}>
-          <>{loading
+          <React.Fragment>{loading
             ?
             <CircularProgress />
             :
             <DisplaySearch />
-          }</>
+          }</React.Fragment>
         </div>
       </div>
     </div>

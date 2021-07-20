@@ -96,9 +96,9 @@ export function AuthProvider({ children }) {
         <div className={classes.fullscreenDiv}>
           <img src={LoadingGif} className={classes.center} alt='Loading animation'></img>
         </div>
-        <>{children}</>
+        :
+        <React.Fragment>{children}</React.Fragment>
       }
-
     </AuthContext.Provider>
   )
 }

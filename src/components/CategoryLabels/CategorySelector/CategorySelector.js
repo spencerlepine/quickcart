@@ -16,14 +16,14 @@ const CategorySelector = ({ categoryName, selectorValue }) => {
   const formatedName = categoryName[0].toUpperCase() + categoryName.slice(1, categoryName.length);
 
   return (
-    <>
+    <React.Fragment>
       <p
         className={classes.categoryCard}
         onClick={handleSelection}
         style={currentlySelected}>
         {formatedName}
       </p>
-    </>
+    </React.Fragment>
   );
 }
 

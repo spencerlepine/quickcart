@@ -26,10 +26,10 @@ const FoodGrid = ({ loading }) => {
   });
 
   return (
-    <>
+    <React.Fragment>
       {foodCards.length > 0
         ?
-        <>
+        <React.Fragment>
           {(!displayStarters && fetchProgress < 100) && <div className={classes.progressBar} style={progressStyle}></div>}
           <CardGrid cardItems={foodCards} loading={loading} />
           <LoadMoreBtn
@@ -37,7 +37,7 @@ const FoodGrid = ({ loading }) => {
             displayStarters={displayStarters}
             loading={loading}>
           </LoadMoreBtn>
-        </>
+        </React.Fragment>
         :
         <div className={classes.overviewContainer}>
           <EmptyPrompt
@@ -48,7 +48,7 @@ const FoodGrid = ({ loading }) => {
           />
         </div>
       }
-    </>
+    </React.Fragment>
   );
 }
 

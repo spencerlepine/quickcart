@@ -6,14 +6,14 @@ import Routes from './wrappers/Routes/Routes';
 import NotificationsPopup from './components/NotificationsPopup/NotificationsPopup';
 
 const App = () => (
-  <>
+  <React.Fragment>
     <NotificationsPopup />
     <Navbar />
     <ViewLayout>
       <Routes />
     </ViewLayout>
     <Footer />
-  </>
+  </React.Fragment>
 );
 
 export default App;

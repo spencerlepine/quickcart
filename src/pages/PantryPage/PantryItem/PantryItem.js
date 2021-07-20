@@ -35,7 +35,7 @@ const PantryItem = ({ groceryItem }) => {
     groceryExpirationDate.getTime() >= todaysDate.getTime();
 
   return (
-    <>
+    <React.Fragment>
       {groceryNotExpired && (
         <div className={classes.foodCard} onClick={handleEdit}>
           <img
@@ -50,7 +50,7 @@ const PantryItem = ({ groceryItem }) => {
           <p className={classes.foodSize}>{groceryItem.purchase_size}</p>
         </div>
       )}
-    </>
+    </React.Fragment>
   );
 }
 

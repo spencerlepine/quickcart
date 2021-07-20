@@ -19,14 +19,14 @@ const ProductImageSearch = ({ updateImageState, currentImage }) => {
   return (
     <div className={classes.imageContainer}>
       {currentImage ? (
-        <>
+        <React.Fragment>
           <img src={currentImage} alt='product'></img>
           <button className={classes.removeImageBtn}
             onClick={() => updateImageState('')}
           >
             X
           </button>
-        </>
+        </React.Fragment>
       ) : (
         <div>
           <div className={classes.fileInput}>

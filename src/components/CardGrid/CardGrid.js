@@ -29,9 +29,9 @@ const CardGrid = ({ cardItems, loading }) => {
   return (
     <div className={classes.cardGrid}>
       {cardItems}
-      {loading && (<>
+      {loading && (<React.Fragment>
         {placeHolderTiles}
-      </>)}
+      </React.Fragment>)}
     </div>
   );
 }

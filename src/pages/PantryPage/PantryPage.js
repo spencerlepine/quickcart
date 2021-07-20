@@ -20,14 +20,14 @@ const PantryPage = () => {
         ?
         <CircularProgress />
         :
-        <>
+        <React.Fragment>
           {pantryItems.length > 0
             ?
-            <>
+            <React.Fragment>
               <h3>Recent Purchases</h3>
               <hr />
               <CardGrid cardItems={pantryItems} />
-            </>
+            </React.Fragment>
             :
             <EmptyPrompt
               image={groceryBag}
@@ -36,7 +36,7 @@ const PantryPage = () => {
               buttonText='Browse Items'
             />
           }
-        </>}
+        </React.Fragment>}
     </div>
   )
 }

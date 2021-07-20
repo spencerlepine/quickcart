@@ -42,7 +42,7 @@ const ImageSearch = ({ updateImageState }) => {
             />}
           <div className={classes.searchResultCards}>
             {resultList.length > 0 ?
-              <>{resultList}</>
+              <React.Fragment>{resultList}</React.Fragment>
               :
               <SearchMessage message='Search for product images' />
             }

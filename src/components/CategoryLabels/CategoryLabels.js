@@ -16,14 +16,14 @@ const CategoryLabels = () => {
     <CategorySelector categoryName={category} key={i} selectorValue={category} />
   ));
 
-  return (<>
+  return (<React.Fragment>
     {categoryComponents.length > 0 &&
       (<div className={classes.categoriesContainter}>
         <CategorySelector categoryName='all' selectorValue={null} />
         {categoryComponents}
       </div>)
     }
-  </>);
+  </React.Fragment>);
 }
 
 export default CategoryLabels;

@@ -3,7 +3,7 @@ import CartHeader from '../../components/CartHeader/CartHeader';
 import CartItem from '../../components/CartItem/CartItem';
 import EmptyPrompt from '../../components/EmptyPrompt/EmptyPrompt';
 import cartImg from '../../images/cart.svg';
-import ReccomendedWidget from '../../components/RecommendedWidget/RecommendedWidget';
+import RecommendedWidget from '../../components/RecommendedWidget/RecommendedWidget';
 import useCart from '../../context/CartContext/CartContext';
 import withAuthRedirect from '../../hooks/useAuthRedirect/useAuthRedirect';
 import groupItemsByCategory from './groupItemsByCategory';
@@ -43,22 +43,22 @@ const CartPage = () => {
         ?
         <CircularProgress />
         :
-        <>{
+        <React.Fragment>{
           allCartItems.length === 0 ? (
             renderEmptyCart()
           ) : (
-            <>
+            <React.Fragment>
               <CartHeader cartItems={allCartItems} />
               <div className={classes.userCart}>
                 {sortedCart !== null &&
                   sortedCart.map((item, i) => <CartItem key={i} cartItem={item} />)}
               </div>
-            </>
+            </React.Fragment>
           )
-        }</>
+        }</React.Fragment>
       }
 
-      <ReccomendedWidget />
+      <RecommendedWidget />
       <OpenLogsBtn />
     </div>
   );
