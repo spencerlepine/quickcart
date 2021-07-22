@@ -6,13 +6,22 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchBar from 'material-ui-search-bar';
 import useStyles from './styles.js';
 
-const ImageSearch = ({ updateImageState }) => {
+const ImageSearch = ({ updateImageState, defaultSearch }) => {
   const classes = useStyles();
-  const { imageSearchResult, setImageSearchResult, loading, keywordSearch, searchCallback } = useProductOnboard()
+  const { imageSearchResult, setImageSearchResult, loading, keywordSearch, searchCallback } = useProductOnboard();
   const [itemSearch, setItemSearch] = useState('');
 
+  const reset = () => {
+    setItemSearch('');
+    setImageSearchResult('');
+  }
+
+  // search default term on OPEN
+  // close EVERYTHING and reset if button is pressed -> for manual search
   useEffect(() => {
     setImageSearchResult([]);
+    setItemSearch(defaultSearch);
+    keywordSearch(defaultSearch, searchCallback);
   }, []);
 
   const handleSubmit = async (e) => {

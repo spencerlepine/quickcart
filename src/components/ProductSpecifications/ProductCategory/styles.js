@@ -25,5 +25,6 @@ export default makeStyles((theme) => ({
   itemCategory: {
     position: 'relative',
     justifySelf: 'center',
+    margin: 'auto',
   }
 }));

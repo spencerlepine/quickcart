@@ -6,8 +6,9 @@ import ImageSearch from '../ImageSearch/ImageSearch';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from './styles.js';
 
-const ProductImageSearch = ({ updateImageState, currentImage }) => {
+const ProductImageSearch = ({ updateImageState, currentImage, thisGrocery }) => {
   const classes = useStyles();
+  const defaultSearch = thisGrocery["name"] + ' ' + thisGrocery["brand"];
 
   const handleImageInput = async (base64) => {
     const croppedImage = await CropInputImage(base64);
@@ -42,7 +43,7 @@ const ProductImageSearch = ({ updateImageState, currentImage }) => {
           </div>
           <DetailsPopup
             CardComponent={<ImageSearchIcon className={classes.searchPopup}></ImageSearchIcon>}
-            DetailsComponent={<ImageSearch updateImageState={updateImageState} />}
+            DetailsComponent={<ImageSearch defaultSearch={defaultSearch} updateImageState={updateImageState} />}
           />
         </div>
       )}
