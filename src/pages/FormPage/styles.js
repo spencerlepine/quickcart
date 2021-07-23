@@ -47,5 +47,9 @@ export default makeStyles((theme) => ({
     backgroundColor: '#f0f4f7',
     display: 'flex',
     padding: '1em',
-  }
+  },
+  sizeInputs: {
+    width: 'fit-content',
+    margin: 'auto',
+  },
 }));

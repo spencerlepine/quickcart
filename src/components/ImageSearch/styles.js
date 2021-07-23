@@ -353,9 +353,13 @@ export default makeStyles((theme) => ({
     width: '90%',
   },
   searchResultCards: {
-    width: 'min-content',
+    "&::-webkit-scrollbar": {
+      background: 'white',
+    },
+    width: 'fit-content',
     padding: '0',
-    margin: '0',
+    margin: 'auto',
+    marginTop: '2em',
     overflowY: 'scroll',
     display: 'grid',
     gridTemplateColumns: 'auto auto auto',

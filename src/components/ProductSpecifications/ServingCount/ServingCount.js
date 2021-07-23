@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import useStyles from './styles.js';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const ServingCount = ({ handleChange, thisGrocery }) => {
   const classes = useStyles();
@@ -8,7 +9,6 @@ const ServingCount = ({ handleChange, thisGrocery }) => {
   return (
     <div className={`${classes.dollarSign} ${classes.itemServing}`}>
       <label className={classes.divLabel}>Servings Per</label>
-      <p className={classes.priceIndicator}>x</p>
       <TextField
         className={classes.itemPrice}
         onChange={handleChange}
@@ -21,6 +21,9 @@ const ServingCount = ({ handleChange, thisGrocery }) => {
         placeholder={'1'}
         value={thisGrocery['serving_quantity']}
         inputProps={{ min: 1 }}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">x</InputAdornment>,
+        }}
       />
     </div>
   );

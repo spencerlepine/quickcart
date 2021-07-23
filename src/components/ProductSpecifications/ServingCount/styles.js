@@ -9,6 +9,7 @@ export default makeStyles((theme) => ({
   itemPrice: {
     display: 'block',
     margin: 'auto',
+    minWidth: '60px',
     maxWidth: '100px',
     '& input': {
       background: 'white',

@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import toTitleCase from '../../../modules/toTitleCase';
 
 const ProductName = ({ value, handleChange, name, thisClass }) => {
+  const productName = value === "unknown" ? "" : value;
+
   return (
     <TextField
       className={thisClass}
@@ -14,7 +16,7 @@ const ProductName = ({ value, handleChange, name, thisClass }) => {
       fullWidth
       name={name}
       placeholder={toTitleCase(name)}
-      value={value}
+      value={productName}
     />
   );
 }

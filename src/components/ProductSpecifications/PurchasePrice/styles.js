@@ -1,36 +1,31 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  itemSize: {
+    padding: '0.5em 1em 0em 0.5em',
+  },
   purchasePrice: {
     position: 'relative',
+    margin: '2em',
+    marginTop: '1em',
+    padding: '0',
+    border: '4px solid #ababab59',
+    borderRadius: '5px',
+    background: 'white',
+    width: 'fit-content',
+    display: 'inline-block',
     justifySelf: 'center',
     margin: 'auto',
   },
-  itemPrice: {
-    display: 'block',
-    margin: 'auto',
-    maxWidth: '100px',
-    '& input': {
-      background: 'white',
-      width: 'fit-content',
-      margin: 'auto',
-      fontSize: '26px',
-      lineHeigt: '26px',
-      fontWeight: '700',
-      padding: '6px',
-    },
-  },
-  priceIndicator: {
-    position: 'absolute',
-    fontSize: '26px',
-    margin: '0',
-    padding: '0',
-    left: '-15px',
-    bottom: '6px',
-  },
   divLabel: {
+    display: 'block',
+    borderTopLeftRadius: '8px',
+    borderTopRightRadius: '8px',
+    position: 'absolute',
     fontSize: '13px',
-    padding: '0',
+    background: 'white',
+    padding: '0.5em 0.5em 0 0.5em',
+    top: '-1.5em',
     color: '#403e3e',
   },
 }));

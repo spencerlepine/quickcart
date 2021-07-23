@@ -50,6 +50,7 @@ export default makeStyles((theme) => ({
     backgroundColor: '#ffdede',
     '& div': {
       border: '2px dashed #b29696',
+      background: '#f0f4f7',
       height: '100%',
       width: 'fit-content',
       margin: 'auto',

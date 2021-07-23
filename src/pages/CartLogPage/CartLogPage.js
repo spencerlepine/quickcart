@@ -25,7 +25,7 @@ const CartLogPage = () => {
   };
 
   useEffect(() => {
-    if (allCartLogs.length === 0 && JSON.stringify(allCartLogs) !== JSON.stringify([])) {
+    if (allCartLogs && allCartLogs.length === 0 && JSON.stringify(allCartLogs) !== JSON.stringify([])) {
       getAllCartLogs()
       return;
     }
@@ -38,7 +38,7 @@ const CartLogPage = () => {
         <CircularProgress />
         :
         <React.Fragment>
-          {allCartLogs.length === 0 ? (
+          {!allCartLogs || (allCartLogs && allCartLogs.length) === 0 ? (
             renderEmptyCart()
           ) : (
             <React.Fragment>
