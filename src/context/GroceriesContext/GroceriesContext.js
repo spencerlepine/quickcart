@@ -5,7 +5,7 @@ import * as api from '../../api/firebase/groceries';
 export const GroceriesContext = React.createContext();
 
 export function GroceriesProvider({ children }) {
-  const [allGroceryItems, setAllGroceryItems] = useState([]);
+  const [allGroceryItems, setAllGroceryItems] = useState([test]);
   const starterCount = 20;
   const [displayStarters, setDisplayStarters] = useState(true);
   const [totalGroceryCount, setTotalGroceryCount] = useState(-1);

@@ -36,6 +36,7 @@ const UnitSelector = ({ classes, handleChange, currentUnit }) => {
         </MenuItem>
         <MenuItem value={'oz'}>oz</MenuItem>
         <MenuItem value={'g'}>g</MenuItem>
+        <MenuItem value={'fl oz'}>g</MenuItem>
         <MenuItem value={'pound'}>lbs</MenuItem>
       </Select>
     </FormControl>
@@ -43,13 +44,13 @@ const UnitSelector = ({ classes, handleChange, currentUnit }) => {
 }
 
 const SizeInput = ({ thisKey, thisGrocery, handleChange }) => {
+  const key = thisKey;
   const classes = useStyles();
   const groceryUnit = thisGrocery[key] || "1 unit";
   const parseCount = (groceryUnit.match(/^\d+/) || ["1"])[0];
-  const parseUnit = (groceryUnit.match(/[ ][a-zA-Z]+$/) || ["unit"])[0].trim()
+  const parseUnit = (groceryUnit.match(/[ ][a-zA-Z ]+$/) || ["unit"])[0].trim()
   const [currentUnit, setCurrentUnit] = useState(parseUnit);
   const [count, setCount] = useState(parseCount);
-  const key = thisKey;
 
   const handleUpdate = (e) => {
     const { target: { name, value } } = e;
