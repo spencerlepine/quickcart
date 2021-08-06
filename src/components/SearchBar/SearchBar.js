@@ -13,11 +13,17 @@ const SearchBar = () => {
     setDisplayStarters(false);
     setCurrentSearch(newVal);
   }
+
+  const handleCancel = () => {
+    setCurrentSearch("");
+  }
+
   return (
     <div className={classes.searchbar}>
       <SearchBarComponent
         value={currentSearch}
-        onChange={(newVal) => handleSearch(newVal)} />
+        onChange={(newVal) => handleSearch(newVal)}
+        onCancelSearch={handleCancel} />
     </div>
   )
 }
