@@ -35,9 +35,9 @@ const Sidebar = ({ toggleMenu }) => {
 
       <SideBarLink Icon={SearchIcon} To={SEARCH} Name='Find' toggleMenu={toggleMenu} />
 
-      <SideBarLink Icon={EmojiObjects} To={RECOMMENDED} Name='Suggested' toggleMenu={toggleMenu} />
+      {/* <SideBarLink Icon={EmojiObjects} To={RECOMMENDED} Name='Suggested' toggleMenu={toggleMenu} /> */}
 
-      <SideBarLink Icon={KitchenIcon} To={PANTRY} Name='Pantry' toggleMenu={toggleMenu} />
+      {/* <SideBarLink Icon={KitchenIcon} To={PANTRY} Name='Pantry' toggleMenu={toggleMenu} /> */}
 
       <SideBarLink Icon={SettingsIcon} To={SETTINGS} Name='Settings' toggleMenu={toggleMenu} />
 

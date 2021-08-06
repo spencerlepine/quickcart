@@ -23,8 +23,8 @@ const Routes = () => (
     <Route path={ROUTES.SIGNUP} component={SignUpPage} />
     <Route path={ROUTES.CART} component={CartPage} />
     <Route path={ROUTES.FORM} component={FormPage} />
-    <Route path={ROUTES.PANTRY} component={PantryPage} />
-    <Route path={ROUTES.RECOMMENDED} component={RecommendedPage} />
+    {/* <Route path={ROUTES.PANTRY} component={PantryPage} /> */}
+    {/* <Route path={ROUTES.RECOMMENDED} component={RecommendedPage} /> */}
     <Route path={ROUTES.SETTINGS} component={SettingsPage} />
     <Route path={ROUTES.CART_LOGS} component={CartLogPage} />
     <Route path={ROUTES.SEARCH} component={SpoonacularSearchPage} />

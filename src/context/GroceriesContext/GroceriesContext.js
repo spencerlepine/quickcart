@@ -31,8 +31,6 @@ export function GroceriesProvider({ children }) {
       }
     }
 
-
-
     if (totalGroceryCount > 0 && allGroceryItems.length < totalGroceryCount) {
       const lastItem = allGroceryItems.slice(-1);
       const lastId = lastItem.length ? lastItem[0]['_id'] : '';
