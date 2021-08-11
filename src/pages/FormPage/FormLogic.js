@@ -56,7 +56,6 @@ const FormLogic = ({ Component }) => {
   const handleChange = (event) => {
     setDisableAdd(false);
     const { name, value } = event.target;
-    console.log(name, value)
     caclulateServingCost(name, value);
     matchUnitSize(name, value);
 

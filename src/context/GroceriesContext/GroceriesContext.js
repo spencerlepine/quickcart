@@ -47,7 +47,24 @@ export function GroceriesProvider({ children }) {
     setLoading(true);
     try {
       const data = await api.fetchGroceries(lastGroceryId);
-      setAllGroceryItems(prevList => [...prevList, ...data]);
+      setAllGroceryItems(prevList => {
+        var uniqueItems = []
+        for (let a = 0; a < data.length; a++) {
+          var item = data[a];
+          var itemExists = false;
+          for (let i = 0; i < prevList.length; i++) {
+            if (JSON.stringify(item) === JSON.stringify(prevList[i])) {
+              itemExists = true;
+              break;
+            }
+          }
+          if (!itemExists) {
+            uniqueItems.push(item)
+          }
+        }
+        uniqueItems = [...prevList, ...uniqueItems];
+        return uniqueItems
+      });
     } catch (error) {
       console.log(error.message);
     }
