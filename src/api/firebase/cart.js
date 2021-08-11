@@ -88,26 +88,16 @@ export const logCartItem = async (itemToLog) => {
   try {
     const { uid: userId } = auth.currentUser;
 
-    // Get this weeks Sunday
-    function getSunday(d) {
-      d = new Date(d);
-      var day = d.getDay(),
-        diff = d.getDate() - day; // adjust when day is sunday
-
-      return new Date(d.setDate(diff));
-    }
-
     function formatDate(d) {
+      // Format to YEAR-MM-DD
       let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
       let mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
       let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
       return `${ye}-${mo}-${da}`;
     }
 
-    // Format to YEAR-MM-DD
     const today = new Date();
-    const thisWeekSunday = getSunday(today); // Mon Nov 08 2010
-    const formattedDate = formatDate(thisWeekSunday);
+    const formattedDate = formatDate(today);
 
     // Get the user cartLogs collection
     const itemLogObj = {
