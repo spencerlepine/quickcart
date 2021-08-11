@@ -65,13 +65,6 @@ const FormPage = (props) => {
           </section>
         </div>
 
-        {/* {(props.editSelection || props.searchSelection) && (
-          <MissingFieldPrompt
-            handleChange={props.handleChange}
-            groceryItem={props.thisGrocery}>
-          </MissingFieldPrompt>
-        )} */}
-
         <section className={classes.sizeInputs}>
           <SizeInput
             setCurrentNotification={props.setCurrentNotification}

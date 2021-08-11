@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import CartPrompt from '../CartPrompt/CartPrompt';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import useStyles from './styles';
 
 const SubmitButton = ({ handleSubmit, searchSelection, className, disableAdd }) => {

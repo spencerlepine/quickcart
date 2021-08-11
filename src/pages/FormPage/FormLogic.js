@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import useNotification from '../../context/NotificationContext/NotificationContext.js';
 import useGroceries from '../../context/GroceriesContext/GroceriesContext.js';
 import useForm from '../../context/FormContext/FormContext.js';
+import useCart from '../../context/CartContext/CartContext.js';
 import schema from '../../schema/groceryItem';
 import formatGroceryObj from '../../modules/formatGroceryObj';
 
@@ -14,6 +15,7 @@ const FormLogic = ({ Component }) => {
   const { createGroceryItem, deleteGroceryItem, updateGroceryItem } = useGroceries();
   const { setCurrentNotification } = useNotification();
   const { setEditSelection, editSelection, searchSelection, setSearchSelection } = useForm();
+  const { addItemToCart } = useCart();
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -85,6 +87,7 @@ const FormLogic = ({ Component }) => {
         setDisableAdd(true);
       }
     } else {
+      addItemToCart(filledObj);
       createGroceryItem(filledObj)
       const groceryMessage = {
         message: `Saved ${thisGrocery.name || 'item'}`,

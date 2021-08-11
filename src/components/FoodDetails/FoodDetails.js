@@ -82,8 +82,6 @@ const FoodDetails = ({ groceryItem, handleAdd }) => {
             <span className={classes.cartIcon}><AddShoppingCartIcon /></span>
             ADD TO CART
           </button>
-
-
           <p></p>
         </div>
         <div className={classes.nutritionDetials}>
