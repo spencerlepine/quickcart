@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
+// import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 import DetailsPopup from '../DetailsPopup/DetailsPopup';
 import useStyles from './styles';
+const BarcodeScannerComponent => null;
 
 const ScanCodeBtn = ({ setUpcSearch, handleSubmit }) => {
   const classes = useStyles();
