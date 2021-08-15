@@ -3,7 +3,6 @@
 <p align="center">
   <img alt="QuickCart License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
-  <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/93bbb53c-9780-4025-a24c-4eba761797b1/deploy-status" />
 </p>
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>
