@@ -10,18 +10,7 @@
     "plugin:react/recommended",
     "plugin:jest/recommended"
   ],
-  "overrides": [
-    {
-      "files": [
-        "**/*.spec.js",
-        "**/*.spec.jsx"
-      ],
-      "env": {
-        "jest": true
-      }
-    }
-  ],
   "rules": {
-    "no-console": "off",
+    "no-console": "off"
   }
 }

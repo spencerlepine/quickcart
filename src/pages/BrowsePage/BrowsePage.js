@@ -1,16 +1,15 @@
 import React from "react";
 import withAuthRedirect from "hooks/useAuthRedirect/useAuthRedirect";
-import CategoryBrowser from "components/browse/CategoryBrowser/CategoryBrowser";
-import SearchOptions from "components/search/SearchOptions/SearchOptions";
-import SearchBar from "components/search/SearchBar/SearchBar";
+import BrowseItems from "components/BrowseItems/BrowseItems";
 import useStyles from "./styles.js";
 
 const BrowsePage = () => {
+  const classes = useStyles();
+
   return (
     <div className="browse-container">
-      <SearchBar />
-      <SearchOptions />
-      <CategoryBrowser />
+      <p className={classes.test}>under construction</p>
+      <BrowseItems />
     </div>
   );
 };

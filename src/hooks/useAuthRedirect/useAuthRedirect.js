@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 const withAuthRedirect =
   (Component, isAuthPage = false) =>
-  (props) => {
+  () => {
     // Get the current user from AuthContext
     const { currentUser } = useAuth();
 

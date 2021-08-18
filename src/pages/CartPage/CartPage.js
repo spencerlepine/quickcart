@@ -3,9 +3,11 @@ import withAuthRedirect from "hooks/useAuthRedirect/useAuthRedirect";
 import useStyles from "./styles.js";
 
 const CartPage = () => {
+  const classes = useStyles();
+
   return (
     <div className="cart-container">
-      <p>Under construction</p>
+      <p className={classes.test}>under construction</p>
     </div>
   );
 };

@@ -2,9 +2,11 @@ import React from "react";
 import useStyles from "./styles.js";
 
 const Footer = () => {
+  const classes = useStyles();
+
   return (
     <div className="footer">
-      <p>under construction</p>
+      <p className={classes.test}>under construction</p>
     </div>
   );
 };

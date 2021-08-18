@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NotificationsProvider } from "context/NotificationsContext/NotificationsContext";
 import { AuthProvider } from "context/AuthContext/AuthContext";
 import NotificationsPopup from "components/ui/NotificationsPopup/NotificationsPopup";
@@ -11,9 +12,9 @@ const ViewLayout = ({ children }) => {
 
   return (
     <React.Fragment>
-      <NotificationsPopup />
       <AuthProvider>
         <NotificationsProvider>
+          <NotificationsPopup />
           <Navbar />
           <div className={`${classes.container}`}>{children}</div>
           <Footer />
@@ -24,3 +25,7 @@ const ViewLayout = ({ children }) => {
 };
 
 export default ViewLayout;
+
+ViewLayout.propTypes = {
+  children: PropTypes.any.isRequired,
+};

@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
 
-export const NotificationsProvider = React.createContext();
+export const NotificationsContext = React.createContext();
 
-export function NotificationsContext({ children }) {
+export function NotificationsProvider({ children }) {
   const [currentNotification, setCurrentNotification] = useState("");
 
   const value = {
@@ -28,3 +29,7 @@ const useNotifications = () => {
 };
 
 export default useNotifications;
+
+NotificationsProvider.propTypes = {
+  children: PropTypes.any.isRequired,
+};

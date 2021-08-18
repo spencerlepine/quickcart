@@ -2,9 +2,11 @@ import React from "react";
 import useStyles from "./styles.js";
 
 const SearchOptions = () => {
+  const classes = useStyles();
+
   return (
     <div className="search-options">
-      <p>under construction</p>
+      <p className={classes.test}>under construction</p>
     </div>
   );
 };

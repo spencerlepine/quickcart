@@ -13,5 +13,5 @@ body {
 @font-face {
   font-family: "MerchantCopy";
   src: local("MerchantCopy"),
-    url("./assests/fonts/MerchantCopy.ttf") format("ttf");
+    url("./assets/fonts/MerchantCopy.ttf") format("ttf");
 }

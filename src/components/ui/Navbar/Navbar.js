@@ -2,9 +2,11 @@ import React from "react";
 import useStyles from "./styles.js";
 
 const Navbar = () => {
+  const classes = useStyles();
+
   return (
     <div className="navbar">
-      <p>under construction</p>
+      <p className={classes.test}>under construction</p>
     </div>
   );
 };

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
 import * as authUser from "api/firebase/account";
 
 export const AuthContext = React.createContext();
@@ -26,7 +27,7 @@ export function AuthProvider({ children }) {
   function updateProfilePic(newFile) {
     setLoading(true);
     authUser.updateProfilePic(newFile, (newImage) => {
-      console.log("TODO -> RETURN THE NEW IMAGE URL");
+      console.log("TODO -> RETURN THE NEW IMAGE URL", newImage);
       setLoading(false);
     });
   }
@@ -41,7 +42,7 @@ export function AuthProvider({ children }) {
 
   function resetPassword(email) {
     setLoading(true);
-    authUser.sendPasswordResetEmail(email, (user) => {
+    authUser.sendPasswordResetEmail(email, () => {
       setLoading(false);
     });
   }
@@ -56,7 +57,7 @@ export function AuthProvider({ children }) {
 
   function updatePassword(password) {
     setLoading(true);
-    authUser.updatePassword(password, (user) => {
+    authUser.updatePassword(password, () => {
       setLoading(false);
     });
   }
@@ -103,3 +104,7 @@ const useAuth = () => {
 };
 
 export default useAuth;
+
+AuthProvider.propTypes = {
+  children: PropTypes.any.isRequired,
+};
