@@ -1,5 +1,9 @@
 {
   "root": true,
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  },
   "extends": [
     "@upstatement/eslint-config/react",
     "eslint:recommended",
@@ -16,5 +20,8 @@
         "jest": true
       }
     }
-  ]
+  ],
+  "rules": {
+    "no-console": "off",
+  }
 }

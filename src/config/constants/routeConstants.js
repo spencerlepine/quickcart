@@ -5,5 +5,5 @@ export const WELCOME = "/welcome";
 export const SETTINGS = "/settings";
 export const CREATE = "/create";
 export const CART = "/cart";
-export const SEARCH = "/search";
+export const SAVED = "/saved";
 export const CART_LOGS = "/cart-logs";
