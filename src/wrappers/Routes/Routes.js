@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import * as ROUTES from "config/constants/routeConstants";
-import * as PAGES from "pages";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import * as ROUTES from 'config/constants/routeConstants';
+import * as PAGES from 'pages';
 
 const Routes = () => (
   <Switch>

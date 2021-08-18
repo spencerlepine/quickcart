@@ -1,5 +1,5 @@
-import React from "react";
-import useStyles from "./styles.js";
+import React from 'react';
+import useStyles from './styles.js';
 
 const SearchBar = () => {
   const classes = useStyles();

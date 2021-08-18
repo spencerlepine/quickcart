@@ -1,6 +1,6 @@
-import React from "react";
-import withAuthRedirect from "hooks/useAuthRedirect/useAuthRedirect";
-import useStyles from "./styles.js";
+import React from 'react';
+import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
+import useStyles from './styles.js';
 
 const SavedPage = () => {
   const classes = useStyles();

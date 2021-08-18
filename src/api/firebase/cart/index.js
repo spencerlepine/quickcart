@@ -1,23 +1,23 @@
-import { auth, db } from "../config.js";
-import { ALL_USERS, USER_CART } from "../firebaseSchema.js";
+import { auth, db } from '../config.js';
+import { ALL_USERS, USER_CART } from '../firebaseSchema.js';
 
-export const fetchAll = (callback) => {
+export const fetchAll = successCb => {
   const { uid: userId } = auth.currentUser;
 
-  await db
+  db
     .collection(ALL_USERS)
     .doc(userId)
     .collection(USER_CART)
     .get()
-    .then((data) => {
-      let docs = data.docs || [];
-      let cartData = docs.map((firebaseDoc) => firebaseDoc.data());
+    .then(data => {
+      const docs = data.docs || [];
+      const cartData = docs.map(firebaseDoc => firebaseDoc.data());
       successCb(cartData);
     })
-    .catch((error) => console.log(err));
+    .catch(error => console.log(error));
 };
 
-export const saveItem = (item, callback) => {
+export const saveItem = (item, successCb) => {
   const { uid: userId } = auth.currentUser;
   const { _id: id } = item;
 
@@ -29,34 +29,35 @@ export const saveItem = (item, callback) => {
 
   itemDocRef
     .get()
-    .then((doc) => {
+    .then(doc => {
       let cartItem = {};
       if (doc.exists) {
         cartItem = { ...doc.data() };
-        cartItem["quantity"] += 1;
+        cartItem['quantity'] += 1;
       } else {
         cartItem = { ...item };
       }
       itemDocRef.set(cartItem).then(successCb);
     })
-    .catch((error) => console.log(err));
+    .catch(error => console.log(error));
 };
 
-export const removeItem = async (id, successCb) => {
+export const removeItem = async (itemID, successCb) => {
   const { uid: userId } = auth.currentUser;
 
   const itemDocRef = db
     .collection(ALL_USERS)
     .doc(userId)
     .collection(USER_CART)
-    .doc(groceryId);
+    .doc(itemID);
 
   itemDocRef
     .get()
-    .then((doc) => {
+    .then(doc => {
       if (doc.exists) {
         itemDocRef.delete();
+        successCb();
       }
     })
-    .catch((error) => console.log(err));
+    .catch(error => console.log(error));
 };

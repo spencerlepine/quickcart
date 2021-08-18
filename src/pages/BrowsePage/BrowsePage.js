@@ -1,7 +1,7 @@
-import React from "react";
-import withAuthRedirect from "hooks/useAuthRedirect/useAuthRedirect";
-import BrowseItems from "components/BrowseItems/BrowseItems";
-import useStyles from "./styles.js";
+import React from 'react';
+import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
+import BrowseItems from 'components/BrowseItems/BrowseItems';
+import useStyles from './styles.js';
 
 const BrowsePage = () => {
   const classes = useStyles();

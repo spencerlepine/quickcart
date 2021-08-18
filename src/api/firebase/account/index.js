@@ -1,7 +1,7 @@
-import { auth, storage, db } from "../config.js";
-import { ALL_USERS, USER_ACCOUNT, ACCOUNT_DETAILS } from "../firebaseSchema.js";
+import { auth, storage, db } from '../config.js';
+import { ALL_USERS, USER_ACCOUNT, ACCOUNT_DETAILS } from '../firebaseSchema.js';
 
-export const fetchDetails = (successCb) => {
+export const fetchDetails = successCb => {
   const { uid: userId } = auth.currentUser;
 
   db.collection(ALL_USERS)
@@ -9,28 +9,28 @@ export const fetchDetails = (successCb) => {
     .collection(USER_ACCOUNT)
     .doc(ACCOUNT_DETAILS)
     .get()
-    .then((data) => successCb(data))
-    .catch((error) => console.log(error));
+    .then(data => successCb(data))
+    .catch(error => console.log(error));
 };
 
 export const signInWithEmailAndPassword = (email, password, successCb) => {
   auth
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
+    .then(userCredential => {
       successCb(userCredential.user);
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 export const createUserWithEmailAndPassword = (
   displayName,
   email,
   password,
-  successCb
+  successCb,
 ) => {
   auth
     .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
+    .then(userCredential => {
       const user = userCredential.user;
 
       user.updateProfile({
@@ -41,7 +41,7 @@ export const createUserWithEmailAndPassword = (
         ...user,
         displayName: displayName,
         savedItemCount: 0,
-        joinDate: new Date() || "00-00-00",
+        joinDate: new Date() || '00-00-00',
       };
 
       db.collection(ALL_USERS)
@@ -53,7 +53,7 @@ export const createUserWithEmailAndPassword = (
           successCb(newUser);
         });
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 export const updateProfilePic = (newFile, successCb) => {
@@ -67,7 +67,7 @@ export const updateProfilePic = (newFile, successCb) => {
   storageRef
     .put(newFile)
     .then(() => {
-      storageRef.getDownloadURL().then((url) => {
+      storageRef.getDownloadURL().then(url => {
         user.updateProfile({
           photoURL: url,
         });
@@ -75,16 +75,16 @@ export const updateProfilePic = (newFile, successCb) => {
         successCb(url);
       });
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
-export const signOut = (successCb) => {
+export const signOut = successCb => {
   auth
     .signOut()
     .then(() => {
       successCb(true);
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 export const sendPasswordResetEmail = (email, successCb) => {
@@ -93,7 +93,7 @@ export const sendPasswordResetEmail = (email, successCb) => {
     .then(() => {
       successCb(true);
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 export const updateEmail = (email, successCb) => {
@@ -102,7 +102,7 @@ export const updateEmail = (email, successCb) => {
     .then(() => {
       successCb(true);
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 export const updatePassword = (password, successCb) => {
@@ -111,5 +111,5 @@ export const updatePassword = (password, successCb) => {
     .then(() => {
       successCb(true);
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };

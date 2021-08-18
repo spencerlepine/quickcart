@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 
 export const NotificationsContext = React.createContext();
 
 export function NotificationsProvider({ children }) {
-  const [currentNotification, setCurrentNotification] = useState("");
+  const [currentNotification, setCurrentNotification] = useState('');
 
   const value = {
     currentNotification,

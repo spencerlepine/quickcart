@@ -1,5 +1,5 @@
-import { auth, db } from "../config.js";
-import { ALL_USERS, USER_CART, LOG_ITEMS } from "../firebaseSchema.js";
+import { auth, db } from '../config.js';
+import { ALL_USERS, CART_LOGS, LOG_ITEMS } from '../firebaseSchema.js';
 
 export const logItem = (item, logID, successCb) => {
   const { uid: userId } = auth.currentUser;
@@ -20,10 +20,10 @@ export const logItem = (item, logID, successCb) => {
     .collection(CART_LOGS)
     .doc(logID)
     .collection(LOG_ITEMS)
-    .doc(itemLogObj["_id"])
+    .doc(itemLogObj['_id'])
     .set(itemLogObj)
-    .then((res) => successCb(itemLogObj))
-    .catch((error) => console.log(err));
+    .then(() => successCb(itemLogObj))
+    .catch(error => console.log(error));
 };
 
 export const fetchItem = (docReferenceID, successCb) => {
@@ -34,25 +34,25 @@ export const fetchItem = (docReferenceID, successCb) => {
     .collection(CART_LOGS)
     .doc(docReferenceID)
     .get()
-    .then((doc) => {
+    .then(doc => {
       if (doc.exists) {
         successCb(doc.data());
       }
     })
-    .catch((error) => console.log(err));
+    .catch(error => console.log(error));
 };
 
-export const fetchAll = (successCb) => {
+export const fetchAll = successCb => {
   const { uid: userId } = auth.currentUser;
 
   db.collection(ALL_USERS)
     .doc(userId)
     .collection(CART_LOGS)
     .get()
-    .then((res) => {
+    .then(data => {
       const docs = data.docs || [];
-      const logDocs = docs.map((firebaseDoc) => firebaseDoc.data());
+      const logDocs = docs.map(firebaseDoc => firebaseDoc.data());
       successCb(logDocs);
     })
-    .catch((error) => console.log(err));
+    .catch(error => console.log(error));
 };

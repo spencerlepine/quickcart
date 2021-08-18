@@ -1,24 +1,24 @@
-import React from "react";
-import withAuthRedirect from "hooks/useAuthRedirect/useAuthRedirect";
-import AccountForm from "components/AccountForm/AccountForm";
-import { SIGNUP } from "config/constants/routeConstants";
-import useStyles from "./styles.js";
+import React from 'react';
+import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
+import AccountForm from 'components/AccountForm/AccountForm';
+import { SIGNUP } from 'config/constants/routeConstants';
+import useStyles from './styles.js';
 
 const LoginPage = () => {
   const classes = useStyles();
 
-  const handleLogin = (formEntries) => {
-    console.log("HERE, login the user", formEntries);
+  const handleLogin = formEntries => {
+    console.log('HERE, login the user', formEntries);
   };
 
   const loginFields = [
     {
-      name: "email",
-      placeholder: "Email",
+      name: 'email',
+      placeholder: 'Email',
     },
     {
-      name: "password",
-      placeholder: "Password",
+      name: 'password',
+      placeholder: 'Password',
     },
   ];
 
@@ -28,8 +28,8 @@ const LoginPage = () => {
         SubmitLabel="Log in"
         FormTitle="Log In"
         FormFields={loginFields}
-        WrongFormLabel={"Don't have an account?"}
-        CorrectionFormName={"Sign Up"}
+        WrongFormLabel={'Don\'t have an account?'}
+        CorrectionFormName={'Sign Up'}
         CorrectionFormLink={SIGNUP}
         handleSubmit={handleLogin}
       />

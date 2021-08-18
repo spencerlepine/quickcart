@@ -1,6 +1,6 @@
-import React from "react";
-import ViewLayout from "wrappers/ViewLayout/ViewLayout";
-import Routes from "wrappers/Routes/Routes.js";
+import React from 'react';
+import ViewLayout from 'wrappers/ViewLayout/ViewLayout';
+import Routes from 'wrappers/Routes/Routes.js';
 
 const App = () => (
   <ViewLayout>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import QuickCartLogo from "assets/images/QuickCart-Logo.png";
-import useStyles from "./styles.js";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import QuickCartLogo from 'assets/images/QuickCart-Logo.png';
+import useStyles from './styles.js';
 
-const AccountForm = (props) => {
+const AccountForm = props => {
   const classes = useStyles();
   const {
     CorrectionFormLink,
@@ -18,9 +18,9 @@ const AccountForm = (props) => {
 
   const [formEntries, setFormEntries] = useState({});
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
-    setFormEntries((prevEntries) => ({
+    setFormEntries(prevEntries => ({
       ...prevEntries,
       [name]: value,
     }));
@@ -42,7 +42,7 @@ const AccountForm = (props) => {
           onChange={handleChange}
           type={name}
           name={name}
-          value={formEntries[name] || ""}
+          value={formEntries[name] || ''}
           placeholder={placeholder}
         ></input>
       ))}
