@@ -1,13 +1,30 @@
 import React from 'react';
+import Socials from 'config/constants/socialsConstants';
 import useStyles from './styles.js';
 
 const Footer = () => {
   const classes = useStyles();
 
   return (
-    <div className="footer">
-      <p className={classes.test}>under construction</p>
-    </div>
+    <footer className="footer">
+      <div className={classes.copyright}>
+        <p>Built by Spencer Lepine</p>
+      </div>
+
+      <div className={classes.socials}>
+        {Socials.map((social, i) => (
+          <a
+            href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={i}
+            className={classes.socialsLink}
+          >
+            <p>{social.name}</p>
+          </a>
+        ))}
+      </div>
+    </footer>
   );
 };
 
