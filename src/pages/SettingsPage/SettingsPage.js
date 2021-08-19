@@ -7,7 +7,13 @@ const SettingsPage = () => {
 
   return (
     <div className="settings-container">
-      <p className={classes.test}>under construction</p>
+      <div className={classes.settingOptions}>
+
+      </div>
+
+      {/* <AccountDetials /> */}
+
+      {/* <SyncDataOptions /> */}
     </div>
   );
 };
