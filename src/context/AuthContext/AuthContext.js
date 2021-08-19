@@ -34,8 +34,8 @@ export function AuthProvider({ children }) {
 
   function logoutUser() {
     setLoading(true);
-    authUser.signOut(user => {
-      setCurrentUser(user);
+    authUser.signOut(() => {
+      setCurrentUser(null);
       setLoading(false);
     });
   }

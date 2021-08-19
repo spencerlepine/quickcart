@@ -47,7 +47,7 @@ const AccountForm = props => {
         ></input>
       ))}
 
-      <button onClick={handleSubmit} className={classes.loginButton}>
+      <button onClick={() => handleSubmit(formEntries)} className={classes.loginButton}>
         {SubmitLabel}
       </button>
       <hr />

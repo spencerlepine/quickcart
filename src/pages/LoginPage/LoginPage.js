@@ -2,13 +2,15 @@ import React from 'react';
 import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import AccountForm from 'components/AccountForm/AccountForm';
 import { SIGNUP } from 'config/constants/routeConstants';
+import useAuth from 'context/AuthContext/AuthContext';
 import useStyles from './styles.js';
 
 const LoginPage = () => {
   const classes = useStyles();
+  const { loginUser } = useAuth();
 
   const handleLogin = formEntries => {
-    console.log('HERE, login the user', formEntries);
+    loginUser(formEntries['email'], formEntries['password']);
   };
 
   const loginFields = [
