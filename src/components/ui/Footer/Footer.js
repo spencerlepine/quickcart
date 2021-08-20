@@ -6,7 +6,7 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <footer className="footer">
+    <footer className={`footer ${classes.footer}`}>
       <div className={classes.copyright}>
         <p>Built by Spencer Lepine</p>
       </div>

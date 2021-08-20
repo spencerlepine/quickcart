@@ -12,7 +12,7 @@ import { HOME, SAVED, CREATE, CART, SETTINGS } from 'config/constants/routeConst
 import useStyles from './styles.js';
 
 const SideBarLink = ({ Icon, To, Name, classes, toggleMenu }) => (
-  <Link className={`${classes.sidebarLink}`}
+  <Link className={`${classes.sidebarLink} ${classes.underline}`}
     to={To}
     onClick={() => toggleMenu(false)}
   >
@@ -28,23 +28,21 @@ const Sidebar = () => {
 
   return (
     <div className={`sidebar ${classes.sidebar}`}>
-      <div className={classes.menuToggleBtn}>
-        {showMenu ? (
-          <CloseIcon fontSize='large' onClick={() => setShowMenu(false)} />
-        ) : (
-          <MenuIcon fontSize='large' onClick={() => setShowMenu(true)} />
-        )}
-      </div>
-
       {showMenu &&
-        <React.Fragment>
-          <SideBarLink Icon={ListAltIcon} To={HOME} Name={'Explore Products'} classes={classes} toggleMenu={setShowMenu} />
-          <SideBarLink Icon={KitchenIcon} To={SAVED} Name={'Saved Items'} classes={classes} toggleMenu={setShowMenu} />
-          <SideBarLink Icon={AddCircleOutlineIcon} To={CREATE} Name={'Add Product'} classes={classes} toggleMenu={setShowMenu} />
-          <SideBarLink Icon={ShoppingCartIcon} To={CART} Name={'Cart'} classes={classes} toggleMenu={setShowMenu} />
-          <SideBarLink Icon={SettingsIcon} To={SETTINGS} Name={'Settings'} classes={classes} toggleMenu={setShowMenu} />
-        </React.Fragment>
-      }
+        <div className={classes.sidebarContainer}>
+          <div className={classes.toggledMenu}>
+            <React.Fragment>
+              <CloseIcon fontSize='large' onClick={() => setShowMenu(false)} className={classes.toggleIcon} />
+              <SideBarLink Icon={ListAltIcon} To={HOME} Name={'Explore Products'} classes={classes} toggleMenu={setShowMenu} />
+              <SideBarLink Icon={KitchenIcon} To={SAVED} Name={'Saved Items'} classes={classes} toggleMenu={setShowMenu} />
+              <SideBarLink Icon={AddCircleOutlineIcon} To={CREATE} Name={'Add Product'} classes={classes} toggleMenu={setShowMenu} />
+              <SideBarLink Icon={ShoppingCartIcon} To={CART} Name={'Cart'} classes={classes} toggleMenu={setShowMenu} />
+              <SideBarLink Icon={SettingsIcon} To={SETTINGS} Name={'Settings'} classes={classes} toggleMenu={setShowMenu} />
+            </React.Fragment>
+          </div>
+        </div>}
+
+      <MenuIcon style={{ visibility: !showMenu ? 'visible' : 'hidden' }} fontSize='large' onClick={() => setShowMenu(true)} className={classes.toggleIcon} />
     </div >
   );
 };

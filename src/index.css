@@ -6,8 +6,11 @@ html {
 }
 
 body {
-  background-color: rgb(249, 249, 249);
+  background-color: #f9f9f9;
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
 }
 
 @font-face {

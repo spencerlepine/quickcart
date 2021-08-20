@@ -9,18 +9,20 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <div className="navbar">
-      <Sidebar />
+    <navbar className={`navbar ${classes.navbar}`}>
+      <div className={`navbarContainer ${classes.navbarContainer}`}>
+        <Sidebar />
 
-      <Link
-        className={classes.logoLink}
-        to='/'
-      >
-        <img src={QuickCartLogo} alt='QuickCart Logo'></img>
-      </Link>
+        <Link
+          className={classes.logoLink}
+          to='/'
+        >
+          <img src={QuickCartLogo} alt='QuickCart Logo' className={classes.logoLink}></img>
+        </Link>
 
-      <CartButton />
-    </div>
+        <CartButton />
+      </div>
+    </navbar >
   );
 };
 

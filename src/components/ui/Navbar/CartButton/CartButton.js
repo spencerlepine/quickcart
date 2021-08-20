@@ -8,7 +8,7 @@ const CartButton = () => {
   const classes = useStyles();
 
   // const { allCartItems } = useCart();
-  const cartLength = 0; //allCartItems.length;
+  const cartLength = 1; //allCartItems.length;
 
   return (
     <Link
@@ -16,8 +16,8 @@ const CartButton = () => {
       to={CART}
     >
       <div className={classes.cartLink}>
-        <ShoppingCartIcon fontSize='large' color='action' />
         {cartLength > 0 && <p>{cartLength}</p>}
+        <ShoppingCartIcon fontSize='large' color='action' />
       </div>
     </Link>
   );

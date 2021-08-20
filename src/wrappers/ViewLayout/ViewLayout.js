@@ -17,6 +17,7 @@ const ViewLayout = ({ children }) => {
           <NotificationsPopup />
           <Navbar />
           <div className={`${classes.container}`}>{children}</div>
+          <div className={classes.footerSpacing}></div>
           <Footer />
         </NotificationsProvider>
       </AuthProvider>

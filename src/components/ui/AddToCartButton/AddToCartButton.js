@@ -16,7 +16,7 @@ const AddToCartButton = ({ itemID }) => {
     <React.Fragment>
       {/* <CartProvider> */}
       <div className='edit-item-button'>
-        <button className={classes.editItemBtn} onClick={handleClick}>Edit Item</button>
+        <button className={classes.addToCartBtn} onClick={handleClick}>Edit Item</button>
       </div>
       {/* </CartProvider> */}
     </ React.Fragment>
