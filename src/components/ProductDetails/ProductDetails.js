@@ -4,19 +4,31 @@ import AddToCartButton from 'components/ui/AddToCartButton/AddToCartButton';
 import EditItemButton from 'components/ui/EditItemButton/EditItemButton';
 import useStyles from './styles.js';
 
-const ProductDetails = ({ item, canEdit }) => {
+const ProductDetails = props => {
   const classes = useStyles();
+  const {
+    _id,
+    canEdit,
+    name,
+    purchase_size,
+    purchase_price,
+    // serving_size,
+    // servings_per,
+    // image,
+    brand,
+    // cateogry,
+  } = props;
 
   const productPrice = parseFloat(
-    item.purchase_price,
+    purchase_price,
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  // const servingPrice = parseFloat(item.serving_cost);
+  // const servingPrice = parseFloat(serving_cost);
 
   return (
     <div className={`productDetails ${classes.productDetails}`}>
       <div className={classes.productDetails}>
-        <h4 className={classes.foodName}>{item.name}</h4>
+        <h4 className={classes.foodName}>{name}</h4>
 
         <p className={classes.foodPrice}>
           {productPrice}
@@ -24,16 +36,16 @@ const ProductDetails = ({ item, canEdit }) => {
 
         <div className={classes.itemSpecifications}>
           <p className={`${classes.foodBrand} ${classes.productSpecification}`}>
-            {item.brand}
+            {brand}
           </p>
 
           <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
-            Size: {item.purchase_size}
+            Size: {`${purchase_size['count']} ${purchase_size['unit']}`}
           </p>
         </div>
       </div>
 
-      <AddToCartButton />
+      <AddToCartButton className={classes.addToCartBtn} itemID={_id} />
       {canEdit && <EditItemButton />}
     </div >
   );
@@ -42,6 +54,13 @@ const ProductDetails = ({ item, canEdit }) => {
 export default ProductDetails;
 
 ProductDetails.propTypes = {
-  item: PropTypes.object.isRequired,
+  _id: PropTypes.string.isRequired,
   canEdit: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  purchase_size: PropTypes.object.isRequired,
+  purchase_price: PropTypes.number.isRequired,
+  serving_size: PropTypes.object.isRequired,
+  servings_per: PropTypes.number.isRequired,
+  brand: PropTypes.string,
+  category: PropTypes.string.isRequired,
 };

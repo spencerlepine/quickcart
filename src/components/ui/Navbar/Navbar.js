@@ -9,7 +9,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <navbar className={`navbar ${classes.navbar}`}>
+    <nav className={`navbar ${classes.navbar}`}>
       <div className={`navbarContainer ${classes.navbarContainer}`}>
         <Sidebar />
 
@@ -22,7 +22,7 @@ const Navbar = () => {
 
         <CartButton />
       </div>
-    </navbar >
+    </nav >
   );
 };
 

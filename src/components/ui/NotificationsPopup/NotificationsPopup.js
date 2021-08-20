@@ -5,7 +5,7 @@ const NotificationsPopup = () => {
   const classes = useStyles();
 
   return (
-    <div className="notifications-popup">
+    <div className={`notifications-popup ${classes.popupContainer}`}>
       <p className={classes.test}>under construction</p>
     </div>
   );

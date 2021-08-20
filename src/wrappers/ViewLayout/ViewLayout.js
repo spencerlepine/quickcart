@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NotificationsProvider } from 'context/NotificationsContext/NotificationsContext';
 import { AuthProvider } from 'context/AuthContext/AuthContext';
+import { SavedProvider } from 'context/SavedContext/SavedContext';
 import NotificationsPopup from 'components/ui/NotificationsPopup/NotificationsPopup';
 import Footer from 'components/ui/Footer/Footer';
 import Navbar from 'components/ui/Navbar/Navbar';
@@ -14,11 +15,14 @@ const ViewLayout = ({ children }) => {
     <React.Fragment>
       <AuthProvider>
         <NotificationsProvider>
-          <NotificationsPopup />
-          <Navbar />
-          <div className={`${classes.container}`}>{children}</div>
-          <div className={classes.footerSpacing}></div>
-          <Footer />
+          <SavedProvider>
+            <NotificationsPopup />
+            <Navbar />
+            <div className={classes.navbarSpacing}></div>
+            <div className={`${classes.content}`}>{children}</div>
+            <div className={classes.footerSpacing}></div>
+            <Footer />
+          </SavedProvider>
         </NotificationsProvider>
       </AuthProvider>
     </React.Fragment>

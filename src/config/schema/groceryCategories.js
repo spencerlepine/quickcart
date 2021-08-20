@@ -10,6 +10,9 @@ const groceryCategories = {
   BEVERAGES: 'beverages',
   GRAINS: 'grains',
   SNACKS: 'snacks',
+  CONDEMENTS: 'condements',
+  DESSERTS: 'desserts',
+  OTHER: 'other',
 };
 
 export default groceryCategories;

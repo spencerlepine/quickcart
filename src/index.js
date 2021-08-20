@@ -7,6 +7,11 @@ import App from './App';
 
 const history = createBrowserHistory();
 
+window.toTitleCase = key => {
+  const result = key.replace(/([A-Z])/g, ' $1');
+  return result.charAt(0).toUpperCase() + result.slice(1);
+};
+
 ReactDOM.render(
   <Router history={history}>
     <App />

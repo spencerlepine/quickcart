@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import groceryCategories from 'config/schema/groceryCategories';
 import CategoryItems from 'components/CategoryItems/CategoryItems';
 import useStyles from './styles.js';
 
-const CategoryBrowser = () => {
+const CategoryBrowser = ({ cateogryProducts }) => {
   const classes = useStyles();
 
   const categories = Object.values(groceryCategories);
@@ -12,9 +13,9 @@ const CategoryBrowser = () => {
       <p className={classes.test}>under construction</p>
       {categories.map((category, i) => (
         <section className={classes.categorySection} key={i}>
-          <h3>{category}</h3>
+          <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
           <hr />
-          <CategoryItems category={category} />
+          <CategoryItems category={category} products={cateogryProducts[category]} />
         </section>
       ))}
     </div>
@@ -22,3 +23,7 @@ const CategoryBrowser = () => {
 };
 
 export default CategoryBrowser;
+
+CategoryBrowser.propTypes = {
+  cateogryProducts: PropTypes.object.isRequired,
+};

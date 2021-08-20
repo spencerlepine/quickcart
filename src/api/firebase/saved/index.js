@@ -1,5 +1,5 @@
-import { auth, db } from './index';
-import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../userSchema.js';
+import { auth, db } from '../config';
+import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.js';
 
 export const fetchCategory = (categoryID, successCb) => {
   const { uid: userId } = auth.currentUser;
@@ -10,9 +10,8 @@ export const fetchCategory = (categoryID, successCb) => {
     .doc(categoryID)
     .get()
     .then(data => {
-      // get the data of ALL docs stored here
-      // process the data and come up with 3-8 recommended products
-      successCb('under construction - visit api/firebase/suggesting/index.js', data);
+      const allDocs = data.docs.map(firebaseDoc => firebaseDoc.data());
+      successCb(allDocs);
     })
     .catch(error => console.log(error));
 };

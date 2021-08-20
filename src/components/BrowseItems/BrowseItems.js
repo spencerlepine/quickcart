@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import SearchOptions from './SearchOptions/SearchOptions';
-import ProductSearchResult from './ProductSearchResult/ProductSearchResult';
+import SearchBar from 'components/SearchBar/SearchBar';
+import SearchOptions from 'components/SearchOptions/SearchOptions';
+import ProductSearchResult from 'components/ProductSearchResult/ProductSearchResult';
 import CategoryBrowser from './CategoryBrowser/CategoryBrowser';
 import useStyles from './styles.js';
+
+import sampleProducts from 'config/sampleData/sampleProducts';
 
 const BROWSE_CATEGORIES = 'BROWSE_CATEGORIES';
 const BROWSE_SEARCH_RESULTS = 'BROWSE_SEARCH_RESULTS';
@@ -22,7 +24,7 @@ const BrowseItems = () => {
       {(browsingMode === BROWSE_SEARCH_RESULTS) ?
         <ProductSearchResult searchFilter={searchFilter} />
         :
-        <CategoryBrowser />
+        <CategoryBrowser cateogryProducts={sampleProducts} />
       }
     </div>
   );
