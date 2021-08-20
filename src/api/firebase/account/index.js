@@ -1,6 +1,14 @@
 import { auth, storage, db } from '../config.js';
 import { ALL_USERS, USER_ACCOUNT, ACCOUNT_DETAILS } from '../firebaseSchema.js';
 
+export const checkLoginStatus = successCb => {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      successCb(user);
+    }
+  });
+};
+
 export const fetchDetails = successCb => {
   const { uid: userId } = auth.currentUser;
 

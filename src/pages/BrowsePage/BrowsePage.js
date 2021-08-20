@@ -7,8 +7,7 @@ const BrowsePage = () => {
   const classes = useStyles();
 
   return (
-    <div className="browse-container">
-      <p className={classes.test}>under construction</p>
+    <div className={`browse-container ${classes.browseContainer}`}>
       <BrowseItems />
     </div>
   );

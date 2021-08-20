@@ -13,9 +13,13 @@ const AddToCartButton = ({ itemID }) => {
   };
 
   return (
-    <div className='edit-item-button'>
-      <button className={classes.editItemBtn} onClick={handleClick}>Edit Item</button>
-    </div>
+    <React.Fragment>
+      {/* <CartProvider> */}
+      <div className='edit-item-button'>
+        <button className={classes.editItemBtn} onClick={handleClick}>Edit Item</button>
+      </div>
+      {/* </CartProvider> */}
+    </ React.Fragment>
   );
 };
 

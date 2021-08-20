@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as authUser from 'api/firebase/account';
 
@@ -7,6 +7,14 @@ export const AuthContext = React.createContext();
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    authUser.checkLoginStatus(authenicatedUser => {
+      if (authenicatedUser) {
+        setCurrentUser(authenicatedUser);
+      }
+    }, []);
+  }, []);
 
   function loginUser(email, password) {
     setLoading(true);

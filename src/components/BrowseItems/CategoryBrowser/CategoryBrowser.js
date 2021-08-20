@@ -6,10 +6,11 @@ import useStyles from './styles.js';
 const CategoryBrowser = () => {
   const classes = useStyles();
 
+  const categories = Object.values(groceryCategories);
   return (
     <div className="category-browser">
       <p className={classes.test}>under construction</p>
-      {groceryCategories.map((category, i) => (
+      {categories.map((category, i) => (
         <section className={classes.categorySection} key={i}>
           <h3>{category}</h3>
           <hr />
