@@ -21,7 +21,7 @@ const Card = props => {
     category,
     loadProductFromID,
     minimalFormat,
-    canEdit,
+    isSavedProducts,
   } = props;
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Card = props => {
             servings_per={servings_per}
             brand={brand}
             category={category}
-            canEdit={canEdit} />}
+            isSavedProducts={isSavedProducts} />}
         />
       </div>
     );
@@ -98,7 +98,7 @@ const Card = props => {
             servings_per={servings_per}
             brand={brand}
             category={category}
-            canEdit={canEdit} />}
+            isSavedProducts={isSavedProducts} />}
         />
       </div>
     );
@@ -119,12 +119,17 @@ Card.propTypes = {
   category: PropTypes.string.isRequired,
   loadProductFromID: PropTypes.bool,
   minimalFormat: PropTypes.bool,
-  canEdit: PropTypes.bool,
+  isSavedProducts: PropTypes.bool,
 };
 
 Card.defaultProps = {
   minimalFormat: false,
-  canEdit: false,
+  isSavedProducts: false,
   loadProductFromID: true,
   image: 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=6&m=1147544807&s=612x612&w=0&h=8CXEtGfDlt7oFx7UyEZClHojvDjZR91U-mAU8UlFF4Y=',
+  purchase_size: { unit: 'unit', count: 1 },
+  purchase_price: 0.00,
+  serving_size: { unit: 'unit', count: 1 },
+  servings_per: 1,
+  category: 'other',
 };

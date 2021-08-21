@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
-import SearchBar from 'components/SearchBar/SearchBar';
-import SearchOptions from 'components/SearchOptions/SearchOptions';
-import ProductSearchResult from 'components/ProductSearchResult/ProductSearchResult';
+import PropTypes from 'prop-types';
+import SearchBar from './SearchBar/SearchBar';
+import SearchOptions from './SearchOptions/SearchOptions';
+import ProductSearchResult from './ProductSearchResult/ProductSearchResult';
 import CategoryBrowser from './CategoryBrowser/CategoryBrowser';
 import useStyles from './styles.js';
 
-import sampleProducts from 'config/sampleData/sampleProducts';
-
-const BROWSE_CATEGORIES = 'BROWSE_CATEGORIES';
-const BROWSE_SEARCH_RESULTS = 'BROWSE_SEARCH_RESULTS';
-
-const BrowseItems = () => {
+const BrowseItems = ({ productsObj, isSavedProducts }) => {
   const classes = useStyles();
 
-  const [browsingMode, setBrowsingMode] = useState(BROWSE_CATEGORIES);
-  const [searchFilter, setSearchFilter] = useState();
+  const [searchMode, setSearchMode] = useState(false);
+  const [searchFilter, setSearchFilter] = useState('');
 
   return (
     <div className={`browse-items ${classes.browseItems}`}>
-      <SearchBar browsingMode={browsingMode} setBrowsingMode={setBrowsingMode} setSearchFilter={setSearchFilter} />
-      <SearchOptions browsingMode={browsingMode} />
+      <SearchBar searchMode={searchMode} setSearchMode={setSearchMode} setSearchFilter={setSearchFilter} />
+      <SearchOptions searchMode={searchMode} />
 
-      {(browsingMode === BROWSE_SEARCH_RESULTS) ?
-        <ProductSearchResult searchFilter={searchFilter} />
+      {searchMode ?
+        <ProductSearchResult searchFilter={searchFilter} allProducts={productsObj} />
         :
-        <CategoryBrowser cateogryProducts={sampleProducts} />
+        <CategoryBrowser cateogryProducts={productsObj} isSavedProducts={isSavedProducts} />
       }
     </div>
   );
 };
 
 export default BrowseItems;
+
+BrowseItems.propTypes = {
+  productsObj: PropTypes.object.isRequired,
+  isSavedProducts: PropTypes.bool,
+};
+
+BrowseItems.defaultProps = {
+  isSavedProducts: false,
+};

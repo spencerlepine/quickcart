@@ -8,6 +8,7 @@ export const fetchCategory = (categoryID, successCb) => {
     .doc(userId)
     .collection(SAVED_CATEGORIES)
     .doc(categoryID)
+    .collection(CATEGORY_ITEMS)
     .get()
     .then(data => {
       const allDocs = data.docs.map(firebaseDoc => firebaseDoc.data());

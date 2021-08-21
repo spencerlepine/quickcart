@@ -1,8 +1,8 @@
 import C from '../schema/groceryCategories';
 
 const sampleProducts = {
-  [C.FROZEN_FOODS]: [
-    {
+  [C.FROZEN_FOODS]: {
+    'jJfndBeufiJEhgfu': {
       _id: 'jJfndBeufiJEhgfu',
       name: 'Pizza Rolls',
       purchase_size: { unit: 'oz', count: 24 },
@@ -12,9 +12,9 @@ const sampleProducts = {
       brand: 'Tostino\'s',
       category: 'frozenFoods',
     },
-  ],
-  [C.MEAT]: [
-    {
+  },
+  [C.MEAT]: {
+    'jJfndBufiJEhgfu': {
       _id: 'jJfndBufiJEhgfu',
       name: 'Ground Beef',
       purchase_size: { unit: 'lbs', count: 1 },
@@ -23,9 +23,9 @@ const sampleProducts = {
       servings_per: 3,
       category: 'frozenFoods',
     },
-  ],
-  [C.FRUITS]: [
-    {
+  },
+  [C.FRUITS]: {
+    'jJfndfeufiJEhgfu': {
       _id: 'jJfndfeufiJEhgfu',
       name: 'Bananas',
       purchase_size: { unit: 'lbs', count: 1 },
@@ -34,12 +34,12 @@ const sampleProducts = {
       servings_per: 1,
       category: 'fruits',
     },
-  ],
-  [C.VEGETABLES]: [
+  },
+  [C.VEGETABLES]: {
 
-  ],
-  [C.PANTRY]: [
-    {
+  },
+  [C.PANTRY]: {
+    'jJfsadasufiJEhgfu': {
       _id: 'jJfsadasufiJEhgfu',
       name: 'Peanut Butter',
       purchase_size: { unit: 'oz', count: 16 },
@@ -49,34 +49,34 @@ const sampleProducts = {
       brand: 'Jiffy',
       category: 'pantry',
     },
-  ],
-  [C.DAIRY]: [
+  },
+  [C.DAIRY]: {
 
-  ],
-  [C.CANNED_GOODS]: [
+  },
+  [C.CANNED_GOODS]: {
 
-  ],
-  [C.BREAD]: [
+  },
+  [C.BREAD]: {
 
-  ],
-  [C.CONDEMENTS]: [
+  },
+  [C.CONDEMENTS]: {
 
-  ],
-  [C.BEVERAGES]: [
+  },
+  [C.BEVERAGES]: {
 
-  ],
-  [C.GRAINS]: [
+  },
+  [C.GRAINS]: {
 
-  ],
-  [C.SNACKS]: [
+  },
+  [C.SNACKS]: {
 
-  ],
-  [C.OTHER]: [
+  },
+  [C.OTHER]: {
 
-  ],
-  [C.DESSERTS]: [
+  },
+  [C.DESSERTS]: {
 
-  ],
+  },
 };
 
 export default sampleProducts;

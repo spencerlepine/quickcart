@@ -8,7 +8,7 @@ const ProductDetails = props => {
   const classes = useStyles();
   const {
     _id,
-    canEdit,
+    isSavedProducts,
     name,
     purchase_size,
     purchase_price,
@@ -46,7 +46,7 @@ const ProductDetails = props => {
       </div>
 
       <AddToCartButton className={classes.addToCartBtn} itemID={_id} />
-      {canEdit && <EditItemButton />}
+      {isSavedProducts && <EditItemButton />}
     </div >
   );
 };
@@ -55,7 +55,7 @@ export default ProductDetails;
 
 ProductDetails.propTypes = {
   _id: PropTypes.string.isRequired,
-  canEdit: PropTypes.bool.isRequired,
+  isSavedProducts: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   purchase_size: PropTypes.object.isRequired,
   purchase_price: PropTypes.number.isRequired,
