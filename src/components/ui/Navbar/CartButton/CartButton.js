@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CART } from 'config/constants/routeConstants';
+import useCart from 'context/CartContext/CartContext';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useStyles from './styles.js';
 
 const CartButton = () => {
   const classes = useStyles();
 
-  // const { allCartItems } = useCart();
-  const cartLength = 1; //allCartItems.length;
+  const { itemCount } = useCart();
 
   return (
     <Link
@@ -16,7 +16,7 @@ const CartButton = () => {
       to={CART}
     >
       <div className={classes.cartLink}>
-        {cartLength > 0 && <p>{cartLength}</p>}
+        {itemCount > 0 && <p>{itemCount}</p>}
         <ShoppingCartIcon fontSize='large' color='action' />
       </div>
     </Link>

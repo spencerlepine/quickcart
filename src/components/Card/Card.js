@@ -54,16 +54,7 @@ const Card = props => {
               </div>
             </div>
           )}
-          PopupElem={<ProductDetails
-            _id={_id}
-            name={name}
-            purchase_size={purchase_size}
-            purchase_price={purchase_price}
-            serving_size={serving_size}
-            servings_per={servings_per}
-            brand={brand}
-            category={category}
-            isSavedProducts={isSavedProducts} />}
+          PopupElem={<ProductDetails {...props} />}
         />
       </div>
     );
@@ -73,7 +64,7 @@ const Card = props => {
         <Popup
           DefaultElem={(
             <div className={classes.minimalCard}>
-              <AddToCartButton className={classes.addCartBtn} itemID={_id} />
+              <AddToCartButton className={classes.addCartBtn} item={props} categoryID={category} />
               <div className={classes.imageContainer}>
                 <img alt={name} src={image}></img>
               </div>
@@ -97,6 +88,7 @@ const Card = props => {
             serving_size={serving_size}
             servings_per={servings_per}
             brand={brand}
+            image={image}
             category={category}
             isSavedProducts={isSavedProducts} />}
         />
@@ -110,7 +102,7 @@ export default Card;
 Card.propTypes = {
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.string.isRequired,
   purchase_size: PropTypes.object.isRequired,
   purchase_price: PropTypes.number.isRequired,
   serving_size: PropTypes.object.isRequired,
@@ -132,4 +124,5 @@ Card.defaultProps = {
   serving_size: { unit: 'unit', count: 1 },
   servings_per: 1,
   category: 'other',
+  brand: '',
 };

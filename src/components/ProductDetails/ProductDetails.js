@@ -7,7 +7,7 @@ import useStyles from './styles.js';
 const ProductDetails = props => {
   const classes = useStyles();
   const {
-    _id,
+    // _id,
     isSavedProducts,
     name,
     purchase_size,
@@ -16,7 +16,7 @@ const ProductDetails = props => {
     // servings_per,
     // image,
     brand,
-    // cateogry,
+    category,
   } = props;
 
   const productPrice = parseFloat(
@@ -45,7 +45,7 @@ const ProductDetails = props => {
         </div>
       </div>
 
-      <AddToCartButton className={classes.addToCartBtn} itemID={_id} />
+      <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />
       {isSavedProducts && <EditItemButton />}
     </div >
   );
@@ -62,5 +62,18 @@ ProductDetails.propTypes = {
   serving_size: PropTypes.object.isRequired,
   servings_per: PropTypes.number.isRequired,
   brand: PropTypes.string,
+  image: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+};
+
+ProductDetails.defaultProps = {
+  minimalFormat: false,
+  isSavedProducts: false,
+  loadProductFromID: true,
+  purchase_size: { unit: 'unit', count: 1 },
+  purchase_price: 0.00,
+  serving_size: { unit: 'unit', count: 1 },
+  servings_per: 1,
+  category: 'other',
+  brand: '',
 };

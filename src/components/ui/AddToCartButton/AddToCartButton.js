@@ -1,30 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { CartProvider } from 'context/CartContext/CartContext';
+import useCart from 'context/CartContext/CartContext';
 import useStyles from './styles.js';
 
-const AddToCartButton = ({ itemID }) => {
+const AddToCartButton = ({ item, categoryID }) => {
   const classes = useStyles();
-  // const { addToCart } = CartProvider();
+  const { addToCart } = useCart();
 
-  const handleClick = () => {
-    // addToCart(itemID);
-    console.log('HERE, SAVE THIS TO CART', itemID);
+  const handleClick = e => {
+    e.preventDefault();
+    addToCart(item, categoryID);
   };
 
   return (
-    <React.Fragment>
-      {/* <CartProvider> */}
-      <div className='edit-item-button'>
-        <button className={classes.addToCartBtn} onClick={handleClick}>+</button>
-      </div>
-      {/* </CartProvider> */}
-    </ React.Fragment>
+    <div className='edit-item-button'>
+      <button className={classes.addToCartBtn} onClick={handleClick}>+</button>
+    </div>
   );
 };
 
 export default AddToCartButton;
 
 AddToCartButton.propTypes = {
-  itemID: PropTypes.string.isRequired,
+  item: PropTypes.object.isRequired,
+  categoryID: PropTypes.string.isRequired,
 };

@@ -1,54 +1,75 @@
 import { auth, db } from '../config.js';
-import { ALL_USERS, USER_CART } from '../firebaseSchema.js';
+import { ALL_USERS, USER_CART, CATEGORY_ITEMS } from '../firebaseSchema.js';
 
 export const fetchAll = successCb => {
   const { uid: userId } = auth.currentUser;
 
-  db
-    .collection(ALL_USERS)
+  db.collection(ALL_USERS)
     .doc(userId)
     .collection(USER_CART)
     .get()
     .then(data => {
-      const docs = data.docs || [];
-      const cartData = docs.map(firebaseDoc => firebaseDoc.data());
+      const categoryDocs = data.docs || [];
+      const cartData = categoryDocs.map(firebaseDoc => firebaseDoc.data());
       successCb(cartData);
     })
     .catch(error => console.log(error));
 };
 
-export const saveItem = (item, successCb) => {
+export const fetchCategory = (categoryID, successCb) => {
+  const { uid: userId } = auth.currentUser;
+
+  db.collection(ALL_USERS)
+    .doc(userId)
+    .collection(USER_CART)
+    .doc(categoryID)
+    .collection(CATEGORY_ITEMS)
+    .get()
+    .then(querySnapshot => {
+      const items = querySnapshot.docs.map(firebaseDoc => firebaseDoc.data());
+      successCb(items);
+    })
+    .catch(error => console.log(error));
+};
+
+export const saveItem = (item, categoryID, successCb) => {
   const { uid: userId } = auth.currentUser;
   const { _id: id } = item;
 
-  const itemDocRef = db
+  // Add a filler value
+  const categoryRef = db
     .collection(ALL_USERS)
     .doc(userId)
     .collection(USER_CART)
-    .doc(id);
+    .doc(categoryID);
 
-  itemDocRef
+  categoryRef.set({ 'categoryID': categoryID });
+
+  categoryRef.collection(CATEGORY_ITEMS)
+    .doc(id)
     .get()
     .then(doc => {
       let cartItem = {};
       if (doc.exists) {
         cartItem = { ...doc.data() };
         cartItem['quantity'] += 1;
+        categoryRef.collection(CATEGORY_ITEMS).doc(id).update(cartItem).then(() => successCb(cartItem));
       } else {
-        cartItem = { ...item };
+        categoryRef.collection(CATEGORY_ITEMS).doc(id).set({ ...item, quantity: 1 }).then(() => successCb({ ...item, quantity: 1 }));
       }
-      itemDocRef.set(cartItem).then(successCb);
     })
     .catch(error => console.log(error));
 };
 
-export const removeItem = async (itemID, successCb) => {
+export const removeItem = async (itemID, categoryID, successCb) => {
   const { uid: userId } = auth.currentUser;
 
   const itemDocRef = db
     .collection(ALL_USERS)
     .doc(userId)
     .collection(USER_CART)
+    .doc(categoryID)
+    .collection(CATEGORY_ITEMS)
     .doc(itemID);
 
   itemDocRef
@@ -57,6 +78,28 @@ export const removeItem = async (itemID, successCb) => {
       if (doc.exists) {
         itemDocRef.delete();
         successCb();
+      }
+    })
+    .catch(error => console.log(error));
+};
+
+export const updateItem = async (item, categoryID, successCb) => {
+  const { uid: userId } = auth.currentUser;
+
+  const itemDocRef = db
+    .collection(ALL_USERS)
+    .doc(userId)
+    .collection(USER_CART)
+    .doc(categoryID)
+    .collection(CATEGORY_ITEMS)
+    .doc(item['_id']);
+
+  itemDocRef
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        itemDocRef.set(item);
+        successCb(item);
       }
     })
     .catch(error => console.log(error));

@@ -1,5 +1,5 @@
 const groceryCategories = {
-  FROZEN_FOODS: 'frozenFood',
+  FROZEN_FOODS: 'frozenFoods',
   MEAT: 'meat',
   FRUITS: 'fruits',
   VEGETABLES: 'vegetables',

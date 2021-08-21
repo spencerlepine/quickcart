@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CartCard from '../CartCard/CartCard';
+import useCart from 'context/CartContext/CartContext';
 import useStyles from './styles.js';
 
-const CartCategoryItems = ({ items }) => {
+const CartCategoryItems = ({ categoryID, products }) => {
   const classes = useStyles();
+  const { fetchCategoryDocs } = useCart();
 
+  useEffect(() => {
+    fetchCategoryDocs(categoryID);
+  }, []);
+
+  const categoryItems = Object.values(products);
   return (
-    <div className={`cart-category-items ${classes.cartCategoryItems}`}>
-      {items.map((item, i) => (
-        <CartCard
-          key={i}
-          _id={item['_id']}
-          quantity={item['quantity']}
-          image={item['image']}
-          name={item['name']}
-          unit_size={item['unit_size']}
-          purchase_price={item['purchase_price']}
-        />
-      ))}
-    </div>
+    <React.Fragment>
+      {categoryItems.length > 0 && <div className={`cart-category-items ${classes.cartCategoryItems}`}>
+        <h4>{window.toTitleCase(categoryID)}</h4>
+        <hr />
+        {categoryItems.map((item, i) => (
+          <CartCard
+            key={i}
+            _id={item['_id']}
+            quantity={item['quantity']}
+            image={item['image']}
+            category={item['category']}
+            name={item['name']}
+            serving_size={item['serving_size']}
+            purchase_price={item['purchase_price']}
+            isSavedProduct={false}
+          />
+        ))}
+      </div>}
+    </React.Fragment>
   );
 };
 
 export default CartCategoryItems;
 
 CartCategoryItems.propTypes = {
-  items: PropTypes.array.isRequired,
+  products: PropTypes.object.isRequired,
+  categoryID: PropTypes.string.isRequired,
 };

@@ -7,6 +7,8 @@ export const ACCOUNT_DETAILS = 'details';
 
 /* users/USER_ID/userCart COLLECTION */
 export const USER_CART = 'userCart';
+/* users/USER_ID/userCart/CATEGORY/items DOC */
+// export const CATEGORY_ITEMS = 'items';
 
 /* users/USER_ID/cartLogs COLLECTION */
 export const CART_LOGS = 'cartLogs';
