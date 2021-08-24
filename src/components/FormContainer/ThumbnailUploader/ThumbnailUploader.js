@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FileBase from 'react-file-base64';
 import useStyles from './styles.js';
 
-const ThumbnailUploader = ({ handleChangeImage, currentImage }) => {
+const ThumbnailUploader = ({ handleImageChange, currentImage }) => {
   const classes = useStyles();
 
   return (
@@ -14,7 +14,7 @@ const ThumbnailUploader = ({ handleChangeImage, currentImage }) => {
 
           <button
             className={classes.removeImageBtn}
-            onClick={() => handleChangeImage('')}
+            onClick={() => handleImageChange('')}
           >
             X
           </button>
@@ -26,7 +26,7 @@ const ThumbnailUploader = ({ handleChangeImage, currentImage }) => {
               type='file'
               multiple={false}
               onDone={({ base64 }) => {
-                handleChangeImage(base64);
+                handleImageChange(base64);
               }}
             />
           </div>
@@ -43,6 +43,6 @@ const ThumbnailUploader = ({ handleChangeImage, currentImage }) => {
 export default ThumbnailUploader;
 
 ThumbnailUploader.propTypes = {
-  handleChangeImage: PropTypes.func.isRequired,
+  handleImageChange: PropTypes.func.isRequired,
   currentImage: PropTypes.string.isRequired,
 };

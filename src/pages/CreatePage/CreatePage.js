@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
+// import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import FormContainer from 'components/FormContainer/FormContainer';
 import useStyles from './styles.js';
 
@@ -14,5 +14,5 @@ const CreatePage = () => {
     </div>
   );
 };
-
-export default withAuthRedirect(CreatePage);
+console.log('pages/CreatePage HERE COMMETN THIS OFF');
+export default CreatePage;//withAuthRedirect(CreatePage);

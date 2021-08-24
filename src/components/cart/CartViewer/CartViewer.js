@@ -6,6 +6,8 @@ import useCart from 'context/CartContext/CartContext';
 import CategoryAnalyzer from '../CategoryAnalyzer/CategoryAnalyzer';
 import useStyles from './styles.js';
 
+import { logCartItem } from 'api/firebase/cart';
+
 const getCartTotal = productsObj => (
   Object.values(productsObj).reduce((arr, categoryObj) => arr.concat(Object.values(categoryObj)), []).reduce((sum, obj) => sum += parseFloat(obj['purchase_price']), 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 );
@@ -19,13 +21,21 @@ const CartViewer = () => {
     setAnalyzeMode(prevMode => !prevMode);
   };
 
+  const handleCheckoutCart = () => {
+    for (const category in cartProducts) {
+      const products = Object.values(cartProducts[category]);
+
+      products.forEach(item => logCartItem(item));
+    }
+  };
+
   const categories = Object.values(groceryCategories);
   const cartTotal = getCartTotal(cartProducts);
   const modeTitle = analyzeMode ? 'View List' : 'Analyze Cart';
   return (
     <div className={`cart-viewer ${classes.cartViewer}`}>
       <div className={`cart-options ${classes.cartOptions}`}>
-        <button>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
+        <button onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
 
         <button onClick={toggleCartMode}>{modeTitle}</button>
 

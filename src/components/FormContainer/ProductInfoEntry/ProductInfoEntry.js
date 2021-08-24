@@ -10,6 +10,8 @@ import ProductCategoryInput from './ProductCategoryInput/ProductCategoryInput';
 import BrandSearchInput from './BrandSearchInput/BrandSearchInput';
 import ServingsPerInput from './ServingsPerInput/ServingsPerInput';
 import ServingSizeInput from './ServingSizeInput/ServingSizeInput';
+import { Link } from 'react-router-dom';
+import { HOME } from 'config/constants/routeConstants';
 import useStyles from './styles.js';
 
 const ProductInfoEntry = props => {
@@ -47,13 +49,20 @@ const ProductInfoEntry = props => {
   return (
     <div className={`productInfoEntry ${classes.formContainer}`}>
       <Popup
-        DefaultElem={(
-          <div>
-            <p>Search Products?</p>
-            <p>Scan UPC? Products?</p>
+        manualDisplay={true}
+        DefaultElem={(<React.Fragment></React.Fragment>)}
+        PopupElem={(
+          <div className={classes.searchProductsPrompt}>
+            <div className={classes.promptsRedirects}>
+              <Link className={classes.promptBtn} to={HOME}>Search Products</Link>
+              <Link className={classes.promptBtn} to={HOME}>Scan UPC</Link>
+            </div>
+            <div className={classes.separator}>or</div>
+            <button className={classes.manualBtn}>
+              ENTER MANUALLY
+            </button>
           </div>
         )}
-        PopupElem={(<React.Fragment></React.Fragment>)}
       />
 
       <form className={classes.productInfoForm}>
