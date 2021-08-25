@@ -24,6 +24,8 @@ const ProductInfoEntry = props => {
     handleSubmit,
     handleDelete,
     brand,
+    isExternal,
+    editingMode,
     category,
   } = props;
 
@@ -35,7 +37,6 @@ const ProductInfoEntry = props => {
     if (type === 'number') {
       value = Number(value);
     }
-    console.log(props);
     setFormEntries(prevEntries => ({
       ...prevEntries,
       [name]: value,
@@ -53,7 +54,7 @@ const ProductInfoEntry = props => {
   return (
     <div className={`productInfoEntry ${classes.formContainer}`}>
       <Popup
-        manualDisplay={true}
+        manualDisplay={!editingMode}
         DefaultElem={(<React.Fragment></React.Fragment>)}
         PopupElem={(<SearchPrompt />)}
       />
@@ -77,9 +78,9 @@ const ProductInfoEntry = props => {
         </section>
 
         <section className={classes.formButtonsContainer}>
-          <DeleteButton handleDelete={handleDelete} />
+          <DeleteButton handleDelete={handleDelete} existingProduct={isExternal} />
 
-          <SubmitButton handleSubmit={handleSubmit} />
+          <SubmitButton handleSubmit={handleSubmit} editingMode={editingMode} />
         </section>
 
         <section className={classes.categoryContainer}>
@@ -111,14 +112,6 @@ ProductInfoEntry.propTypes = {
   servings_per: PropTypes.number,
   brand: PropTypes.string,
   category: PropTypes.string.isRequired,
-};
-
-ProductInfoEntry.defaultProps = {
-  name: '',
-  purchase_size: { unit: 'unit', count: 1 },
-  purchase_price: 0,
-  serving_size: { unit: 'unit', count: 1 },
-  servings_per: 1,
-  brand: '',
-  category: 'other',
+  editingMode: PropTypes.bool.isRequired,
+  isExternal: PropTypes.bool.isRequired,
 };

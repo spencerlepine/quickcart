@@ -24,9 +24,10 @@ const ProductDetails = props => {
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
   // const servingPrice = parseFloat(serving_cost);
+  console.log({ ...props });
 
   return (
-    <div className={`productDetails ${classes.productDetails}`}>
+    <div className={`product-details ${classes.productDetails}`}>
       <div className={classes.productDetails}>
         <h4 className={classes.foodName}>{name}</h4>
 
@@ -46,7 +47,7 @@ const ProductDetails = props => {
       </div>
 
       <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />
-      {isSavedProducts && <EditItemButton />}
+      {isSavedProducts && <EditItemButton item={{ ...props }} isExternalProduct={!isSavedProducts} />}
     </div >
   );
 };

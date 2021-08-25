@@ -13,7 +13,7 @@ const AddToCartButton = ({ item, categoryID }) => {
   };
 
   return (
-    <div className='edit-item-button'>
+    <div className='add-item-button'>
       <button className={classes.addToCartBtn} onClick={handleClick}>+</button>
     </div>
   );

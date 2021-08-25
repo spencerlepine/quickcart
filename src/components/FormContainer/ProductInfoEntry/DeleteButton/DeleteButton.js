@@ -24,9 +24,5 @@ export default DeleteButton;
 
 DeleteButton.propTypes = {
   handleDelete: PropTypes.func.isRequired,
-  existingProduct: PropTypes.bool,
-};
-
-DeleteButton.defaultProps = {
-  existingProduct: false,
+  existingProduct: PropTypes.bool.isRequired,
 };

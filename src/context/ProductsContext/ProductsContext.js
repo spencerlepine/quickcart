@@ -2,11 +2,16 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as savedItemData from 'api/firebase/saved';
 // import * as ProductsData from 'api/firebase/products';
-
+import groceryCategories from 'config/schema/groceryCategories';
 export const ProductsContext = React.createContext();
 
+const placeholderObj = {};
+for (const cat in groceryCategories) {
+  placeholderObj[groceryCategories[cat]] = {};
+}
+
 export function ProductsProvider({ children }) {
-  const [savedProducts, setSavedProducts] = useState({});
+  const [savedProducts, setSavedProducts] = useState(placeholderObj);
   const [loading, setLoading] = useState(false);
 
   function fetchCategoryDocs(categoryID, savedItems) {
@@ -64,12 +69,26 @@ export function ProductsProvider({ children }) {
     });
   }
 
+  function deleteSavedProduct(itemID, categoryID) {
+    setLoading(true);
+    savedItemData.deleteItem(itemID, categoryID, item => {
+      console.log(item);
+      // setSavedProducts(prevProducts => {
+      //   const obj = { ...prevProducts };
+      //   obj[categoryID][item['_id']] = item;
+      //   return obj;
+      // });
+      setLoading(false);
+    });
+  }
+
   const value = {
     loading,
     fetchCategoryDocs,
     fetchDocByID,
     savedProducts,
     addSavedProduct,
+    deleteSavedProduct,
   };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
@@ -82,6 +101,7 @@ const useProducts = () => {
     fetchDocByID,
     savedProducts,
     addSavedProduct,
+    deleteSavedProduct,
   } = useContext(ProductsContext);
 
   return {
@@ -90,6 +110,7 @@ const useProducts = () => {
     savedProducts,
     loading,
     addSavedProduct,
+    deleteSavedProduct,
   };
 };
 

@@ -37,6 +37,9 @@ export const createItem = (newItem, categoryID, successCb) => {
     categoryCollection
       .add(newItem)
       .then(docRef => {
+        docRef.set({
+          _id: docRef.id,
+        }, { merge: true });
         successCb({ ...newItem, _id: docRef.id });
       })
       .catch(error => console.log(error));
@@ -53,7 +56,9 @@ export const updateItem = (updatedItem, categoryID, successCb) => {
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
     .doc(itemID)
-    .set(updatedItem)
+    .set({
+      ...updatedItem,
+    }, { merge: true })
     .then(() => successCb(updatedItem))
     .catch(error => console.log(error));
 };

@@ -7,10 +7,16 @@ import useStyles from './styles.js';
 const CategoryBrowser = ({ cateogryProducts, isSavedProducts }) => {
   const classes = useStyles();
 
-  const categories = Object.values(groceryCategories);
+  let categories;
+
+  if (process.env.NODE_ENV === 'development') {
+    categories = Object.values(groceryCategories).slice(1, 2);
+  } else {
+    categories = Object.values(groceryCategories);
+  }
+
   return (
     <div className="category-browser">
-      <p className={classes.test}>under construction</p>
       {categories.map((category, i) => (
         <section className={classes.categorySection} key={i}>
           <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
