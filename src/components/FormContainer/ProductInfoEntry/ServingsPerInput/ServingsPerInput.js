@@ -8,11 +8,11 @@ const ServingsPerInput = ({ servings_per, fieldsProps }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.purchaseSize} >
+    <div className={classes.servingsPer} >
       <label className={classes.divLabel} htmlFor={'servings_per'}>Servings Per</label>
       <TextField
         {...fieldsProps}
-        className={classes.itemPrice}
+        className={classes.servingsPerInput}
         type={'number'}
         fullWidth
         name={'servings_per'}
@@ -30,6 +30,6 @@ const ServingsPerInput = ({ servings_per, fieldsProps }) => {
 export default ServingsPerInput;
 
 ServingsPerInput.propTypes = {
-  servings_per: PropTypes.string.isRequired,
+  servings_per: PropTypes.number.isRequired,
   fieldsProps: PropTypes.object.isRequired,
 };

@@ -45,7 +45,19 @@ export function ProductsProvider({ children }) {
     savedItemData.fetchItem(itemID, categoryID, itemDoc => {
       setSavedProducts(prevProducts => {
         const obj = { ...prevProducts };
-        obj[itemID['category']][itemID['_id']] = itemDoc;
+        obj[categoryID][itemID] = itemDoc;
+        return obj;
+      });
+      setLoading(false);
+    });
+  }
+
+  function addSavedProduct(newItem, categoryID) {
+    setLoading(true);
+    savedItemData.createItem(newItem, categoryID, item => {
+      setSavedProducts(prevProducts => {
+        const obj = { ...prevProducts };
+        obj[categoryID][item['_id']] = item;
         return obj;
       });
       setLoading(false);
@@ -57,6 +69,7 @@ export function ProductsProvider({ children }) {
     fetchCategoryDocs,
     fetchDocByID,
     savedProducts,
+    addSavedProduct,
   };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
@@ -68,6 +81,7 @@ const useProducts = () => {
     fetchCategoryDocs,
     fetchDocByID,
     savedProducts,
+    addSavedProduct,
   } = useContext(ProductsContext);
 
   return {
@@ -75,6 +89,7 @@ const useProducts = () => {
     fetchDocByID,
     savedProducts,
     loading,
+    addSavedProduct,
   };
 };
 

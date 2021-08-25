@@ -15,7 +15,6 @@ const ProductSizeInput = ({ purchase_price, fieldsProps }) => {
         {...fieldsProps}
         id="standard-adornment-amount"
         name={'purchase_price'}
-        placeholder={0.00}
         value={purchase_price}
         type={'number'}
         className={classes.ProductSizeInput}

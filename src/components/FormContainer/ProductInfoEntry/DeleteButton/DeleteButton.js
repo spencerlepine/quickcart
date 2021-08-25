@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles.js';
 
-const DeleteButton = ({ handleDelete }) => {
+const DeleteButton = ({ handleDelete, existingProduct }) => {
   const classes = useStyles();
 
   return (
@@ -14,7 +14,7 @@ const DeleteButton = ({ handleDelete }) => {
         color='secondary'
         variant='contained'
       >
-        {/* {existingProduct ? 'Delete' : 'Clear'} */}Clear
+        {existingProduct ? 'Delete' : 'Clear'}
       </Button>
     </div >
   );
@@ -24,4 +24,9 @@ export default DeleteButton;
 
 DeleteButton.propTypes = {
   handleDelete: PropTypes.func.isRequired,
+  existingProduct: PropTypes.bool,
+};
+
+DeleteButton.defaultProps = {
+  existingProduct: false,
 };

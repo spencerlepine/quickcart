@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
+import groceryCategories from 'config/schema/groceryCategories';
 import useStyles from './styles.js';
 
 const ProductCategoryInput = ({ category, handleChange }) => {
   const classes = useStyles();
 
-  const allCategories = ['test', 'test2'];
-
-  const categoryOptions = allCategories.map((category, i) => (
+  const categories = Object.values(groceryCategories);
+  const categoryOptions = categories.map((category, i) => (
     <option key={i} value={category}>{category}</option>
   ));
 
-  const dropdowns = [<option label='None' value='' key={999} />, ...categoryOptions];
+  const dropdowns = [<option label='None' value='other' key={999} />, ...categoryOptions];
 
   return (
     <div className={classes.purchaseSize} >
-      <p className={classes.divLabel} hmtlFor={'category'}>Category</p>
-      <br />
+      <p className={classes.divLabel}>Category</p>
       <Select
         native
         value={category}

@@ -21,15 +21,26 @@ export const createItem = (newItem, categoryID, successCb) => {
   const { uid: userId } = auth.currentUser;
   const { _id: itemID } = newItem;
 
-  db.collection(ALL_USERS)
+  const categoryCollection = db.collection(ALL_USERS)
     .doc(userId)
     .collection(SAVED_CATEGORIES)
     .doc(categoryID)
-    .collection(CATEGORY_ITEMS)
-    .doc(itemID)
-    .set(newItem)
-    .then(() => successCb(newItem))
-    .catch(error => console.log(error));
+    .collection(CATEGORY_ITEMS);
+
+  if (itemID) {
+    categoryCollection
+      .doc(itemID)
+      .set(newItem)
+      .then(() => successCb(newItem))
+      .catch(error => console.log(error));
+  } else {
+    categoryCollection
+      .add(newItem)
+      .then(docRef => {
+        successCb({ ...newItem, _id: docRef.id });
+      })
+      .catch(error => console.log(error));
+  }
 };
 
 export const updateItem = (updatedItem, categoryID, successCb) => {

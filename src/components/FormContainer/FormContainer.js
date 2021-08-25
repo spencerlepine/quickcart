@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductInfoEntry from './ProductInfoEntry/ProductInfoEntry';
 import ThumbnailUploader from './ThumbnailUploader/ThumbnailUploader';
+import useProducts from 'context/ProductsContext/ProductsContext';
 import useStyles from './styles.js';
 
 const FormContainer = ({ item }) => {
   const classes = useStyles();
 
   const [formEntries, setFormEntries] = useState(item);
+  const { addSavedProduct } = useProducts();
 
   const handleDelete = () => {
     console.log('FORM: HERE DELETE THE PRODUCT OR CLEAR IT');
@@ -15,6 +17,8 @@ const FormContainer = ({ item }) => {
 
   const handleSubmit = () => {
     console.log(formEntries);
+    addSavedProduct(formEntries, formEntries['category']);
+    setFormEntries({});
     console.log('FORM: HERE SUBMIT THE NEW PRODUCT');
   };
 
@@ -33,13 +37,7 @@ const FormContainer = ({ item }) => {
         setFormEntries={setFormEntries}
         handleDelete={handleDelete}
         handleSubmit={handleSubmit}
-        name={item['name']}
-        purchase_size={item['purchase_size']}
-        purchase_price={item['purchase_price']}
-        serving_size={item['serving_size']}
-        servings_per={item['servings_per']}
-        brand={item['brand']}
-        cateogry={item['category']}
+        {...formEntries}
       />
     </div >
   );

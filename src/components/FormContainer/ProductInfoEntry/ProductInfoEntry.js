@@ -10,8 +10,7 @@ import ProductCategoryInput from './ProductCategoryInput/ProductCategoryInput';
 import BrandSearchInput from './BrandSearchInput/BrandSearchInput';
 import ServingsPerInput from './ServingsPerInput/ServingsPerInput';
 import ServingSizeInput from './ServingSizeInput/ServingSizeInput';
-import { Link } from 'react-router-dom';
-import { HOME } from 'config/constants/routeConstants';
+import SearchPrompt from './SearchPrompt/SearchPrompt';
 import useStyles from './styles.js';
 
 const ProductInfoEntry = props => {
@@ -25,13 +24,18 @@ const ProductInfoEntry = props => {
     handleSubmit,
     handleDelete,
     brand,
-    cateogry,
+    category,
   } = props;
 
   const classes = useStyles();
 
   const handleChange = event => {
-    const { name, value } = event.target;
+    let value = event.target.value;
+    const { name, type } = event.target;
+    if (type === 'number') {
+      value = Number(value);
+    }
+    console.log(props);
     setFormEntries(prevEntries => ({
       ...prevEntries,
       [name]: value,
@@ -51,18 +55,7 @@ const ProductInfoEntry = props => {
       <Popup
         manualDisplay={true}
         DefaultElem={(<React.Fragment></React.Fragment>)}
-        PopupElem={(
-          <div className={classes.searchProductsPrompt}>
-            <div className={classes.promptsRedirects}>
-              <Link className={classes.promptBtn} to={HOME}>Search Products</Link>
-              <Link className={classes.promptBtn} to={HOME}>Scan UPC</Link>
-            </div>
-            <div className={classes.separator}>or</div>
-            <button className={classes.manualBtn}>
-              ENTER MANUALLY
-            </button>
-          </div>
-        )}
+        PopupElem={(<SearchPrompt />)}
       />
 
       <form className={classes.productInfoForm}>
@@ -78,27 +71,27 @@ const ProductInfoEntry = props => {
         </div>
 
         <section className={classes.purchaseContainer}>
-          <ProductPriceInput purchase_price={purchase_price} fieldsProps={fieldsProps} />
+          <ProductPriceInput purchase_price={parseFloat(purchase_price || 0)} fieldsProps={fieldsProps} />
 
-          <ProductSizeInput purchase_size={purchase_size} fieldsProps={fieldsProps} />
+          <ProductSizeInput unit={(purchase_size || {})['unit'] || 'unit'} count={(purchase_size || {})['count'] || 1} fieldsProps={fieldsProps} />
         </section>
 
         <section className={classes.formButtonsContainer}>
           <DeleteButton handleDelete={handleDelete} />
 
-          <SubmitButton handleSumit={handleSubmit} />
+          <SubmitButton handleSubmit={handleSubmit} />
         </section>
 
         <section className={classes.categoryContainer}>
-          <ProductCategoryInput cateogry={cateogry} handleChange={handleChange} />
+          <ProductCategoryInput category={category} handleChange={handleChange} />
 
           <BrandSearchInput brand={brand} handleChange={handleChange} />
         </section>
 
         <section className={classes.servingContainer}>
-          <ServingsPerInput servings_per={servings_per} handleChange={handleChange} />
+          <ServingsPerInput servings_per={servings_per} handleChange={handleChange} fieldsProps={fieldsProps} />
 
-          <ServingSizeInput serving_size={serving_size} handleChange={handleChange} />
+          <ServingSizeInput unit={(serving_size || {})['unit'] || 'unit'} count={(serving_size || {})['count'] || 1} fieldsProps={fieldsProps} />
         </section>
       </form>
     </div >
@@ -111,11 +104,21 @@ ProductInfoEntry.propTypes = {
   setFormEntries: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  purchase_size: PropTypes.object.isRequired,
-  purchase_price: PropTypes.number.isRequired,
-  serving_size: PropTypes.object.isRequired,
-  servings_per: PropTypes.number.isRequired,
-  brand: PropTypes.string.isRequired,
-  cateogry: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  purchase_size: PropTypes.object,
+  purchase_price: PropTypes.number,
+  serving_size: PropTypes.object,
+  servings_per: PropTypes.number,
+  brand: PropTypes.string,
+  category: PropTypes.string.isRequired,
+};
+
+ProductInfoEntry.defaultProps = {
+  name: '',
+  purchase_size: { unit: 'unit', count: 1 },
+  purchase_price: 0,
+  serving_size: { unit: 'unit', count: 1 },
+  servings_per: 1,
+  brand: '',
+  category: 'other',
 };

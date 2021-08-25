@@ -35,7 +35,7 @@ const UnitSelector = ({ classes, handleChange, currentUnit }) => {
         </MenuItem>
         <MenuItem value={'oz'}>oz</MenuItem>
         <MenuItem value={'g'}>g</MenuItem>
-        <MenuItem value={'fl oz'}>g</MenuItem>
+        <MenuItem value={'fl oz'}>fl oz</MenuItem>
         <MenuItem value={'pound'}>lbs</MenuItem>
       </Select>
     </FormControl>
@@ -48,19 +48,20 @@ const ServingSizeInput = ({ count, unit, fieldsProps }) => {
   const [servingSize, setServingSize] = useState({ count, unit });
 
   const handleUnitUpdate = event => {
-    const { name, value } = event;
+    const { name, value } = event.target;
     if (name === 'count') {
-      const newServing = { ...servingSize, count: value };
+      const newServing = { ...servingSize, count: Number(value) };
       setServingSize(newServing);
-      fieldsProps.handleChange({ name: 'serving_size', value: newServing });
+      fieldsProps.onChange({ target: { name: 'serving_size', value: newServing } });
     } else if (name === 'unit') {
       const newServing = { ...servingSize, unit: value };
-      fieldsProps.handleChange({ name: 'serving_size', value: newServing });
+      fieldsProps.onChange({ target: { name: 'serving_size', value: newServing } });
+      setServingSize(newServing);
     }
   };
 
   return (
-    <div className={classes.purchaseSize} >
+    <div className={classes.productField} >
       <label className={classes.divLabel}>{'Serving Size'}</label>
       <TextField
         {...fieldsProps}
