@@ -3,12 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles(() => ({
   servingsPer: {
     height: 'fit-content',
-    margin: 'auto 0',
+    margin: 'auto',
   },
   servingsPerInput: {
     display: 'block',
     minWidth: '60px',
     maxWidth: '100px',
+    margin: 'auto',
     '& input': {
       background: 'white',
       width: 'fit-content',

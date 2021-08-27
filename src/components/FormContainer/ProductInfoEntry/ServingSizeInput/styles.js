@@ -7,8 +7,10 @@ export default makeStyles(() => ({
   },
   productField: {
     position: 'relative',
-    margin: '2em',
+    height: 'fit-content',
+    margin: 'auto',
     padding: '0',
+    marginTop: '2em',
     border: '4px solid #16af3859',
     borderRadius: '5px',
     background: '#e5fff4',
@@ -40,10 +42,14 @@ export default makeStyles(() => ({
   divLabel: {
     display: 'block',
     position: 'absolute',
+    border: '4px solid #16af3859',
+    borderBottomStyle: 'none',
+    borderTopLeftRadius: '8px',
+    borderTopRightRadius: '8px',
     fontSize: '13px',
     background: 'white',
     padding: '0.5em 0.5em 0 0.5em',
-    top: '-1.5em',
+    top: '-2em',
     color: '#403e3e',
   },
   formContainer: {

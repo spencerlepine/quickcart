@@ -27,7 +27,7 @@ const AccountForm = props => {
   };
 
   return (
-    <div className="account-form">
+    <div className={`account-form ${classes.accountForm}`}>
       <img
         src={QuickCartLogo}
         alt="QuickCart Logo"

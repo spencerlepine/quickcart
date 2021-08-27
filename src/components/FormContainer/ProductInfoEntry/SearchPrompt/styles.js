@@ -5,12 +5,7 @@ export default makeStyles(() => ({
     backgroundColor: '#fff',
     borderRadius: '0.5em',
     maxWidth: '500px',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
     padding: '1em 3em',
-    msTransform: 'translate(-50%, -50%)',
-    transform: 'translate(-50%, -50%)',
   },
   separator: {
     'display': 'flex',

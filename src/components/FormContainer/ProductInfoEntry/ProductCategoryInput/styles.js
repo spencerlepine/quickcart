@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
-  purchaseSize: {
+  productCategoryInput: {
     width: 'fit-content',
   },
   divLabel: {
@@ -10,6 +10,7 @@ export default makeStyles(() => ({
     color: '#403e3e',
   },
   itemCategory: {
+    background: '#fff !important',
     position: 'relative',
     justifySelf: 'center',
     margin: 'auto',

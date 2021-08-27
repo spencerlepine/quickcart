@@ -27,11 +27,12 @@
   },
   "scripts": {
     "dev": "react-scripts start",
+    "build": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
-    "lint-staged": "eslint --fix --ext .js,.jsx .",
+    "lint-staged": "eslint --fix --ext .js,.jsx",
     "prepare": "husky install"
   },
   "eslintConfig": {

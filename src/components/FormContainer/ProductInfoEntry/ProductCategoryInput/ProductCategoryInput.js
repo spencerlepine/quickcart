@@ -15,9 +15,10 @@ const ProductCategoryInput = ({ category, handleChange }) => {
   const dropdowns = [<option label='None' value='other' key={999} />, ...categoryOptions];
 
   return (
-    <div className={classes.purchaseSize} >
+    <div className={classes.productCategoryInput} >
       <p className={classes.divLabel}>Category</p>
       <Select
+        className={classes.itemCategory}
         native
         value={category}
         onChange={handleChange}

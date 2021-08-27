@@ -14,7 +14,7 @@ const ProductDetails = props => {
     purchase_price,
     // serving_size,
     // servings_per,
-    // image,
+    image,
     brand,
     category,
   } = props;
@@ -23,13 +23,46 @@ const ProductDetails = props => {
     purchase_price,
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  // const servingPrice = parseFloat(serving_cost);
-  console.log({ ...props });
 
   return (
-    <div className={`product-details ${classes.productDetails}`}>
+    <div className={`details-container ${classes.detailsContainer}`}>
       <div className={classes.productDetails}>
-        <h4 className={classes.foodName}>{name}</h4>
+        <div className={classes.productGrid}>
+          <img alt={name} src={image} className={classes.productImage}></img>
+
+          <div className={classes.productDetails}>
+            <h4 className={classes.foodName}>{name}</h4>
+
+            <p className={classes.foodPrice}>
+              {productPrice}
+            </p>
+
+            <br />
+
+            <div className={classes.extraDetials}>
+              <p className={`${classes.foodBrand} ${classes.productSpecification}`}>
+                {brand}
+              </p>
+
+              <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
+                ({`${purchase_size['count']} ${purchase_size['unit']}`})
+              </p>
+            </div>
+          </div>
+
+          {isSavedProducts && <EditItemButton item={{ ...props }} isExternalProduct={!isSavedProducts} />}
+
+          <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />
+        </div>
+        {/* <div className={classes.nutritionDetials}>
+          <NutritionFacts
+            nutFacts={groceryItem.nutriscore_data}
+            servingSize={groceryItem.serving_size}
+            servingQuantity={groceryItem.serving_quantity}>
+          </NutritionFacts>
+        </div> */}
+
+        {/* <h4 className={classes.foodName}>{name}</h4>
 
         <p className={classes.foodPrice}>
           {productPrice}
@@ -41,13 +74,10 @@ const ProductDetails = props => {
           </p>
 
           <p className={`${classes.purchaseSize} ${classes.productSpecification}`}>
-            Size: {`${purchase_size['count']} ${purchase_size['unit']}`}
+            ({`${purchase_size['count']} ${purchase_size['unit']}`})
           </p>
-        </div>
+        </div> */}
       </div>
-
-      <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />
-      {isSavedProducts && <EditItemButton item={{ ...props }} isExternalProduct={!isSavedProducts} />}
     </div >
   );
 };

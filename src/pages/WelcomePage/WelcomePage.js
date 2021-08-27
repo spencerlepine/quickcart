@@ -12,7 +12,7 @@ const WelcomePage = () => {
   const classes = useStyles();
 
   return (
-    <div className='welcome-container'>
+    <div className={`welcome-container ${classes.welcomeContainer}`}>
       <p className={classes.appDescription}>
         Organize and budget a personal grocery cart for easy shopping
       </p>
@@ -65,7 +65,7 @@ const WelcomePage = () => {
           Sign up
         </Link>
       </div>
-    </div>
+    </div >
   );
 };
 

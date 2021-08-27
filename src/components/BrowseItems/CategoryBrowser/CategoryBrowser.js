@@ -7,22 +7,20 @@ import useStyles from './styles.js';
 const CategoryBrowser = ({ cateogryProducts, isSavedProducts }) => {
   const classes = useStyles();
 
-  let categories;
-
-  if (process.env.NODE_ENV === 'development') {
-    categories = Object.values(groceryCategories).slice(1, 2);
-  } else {
-    categories = Object.values(groceryCategories);
-  }
+  const categories = Object.values(groceryCategories);
 
   return (
     <div className="category-browser">
-      {categories.map((category, i) => (
-        <section className={classes.categorySection} key={i}>
-          <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
-          <hr />
-          <CategoryItems category={category} products={cateogryProducts[category] || {}} isSavedProducts={isSavedProducts} />
-        </section>
+      {categories.map(category => (
+        <React.Fragment key={category}>
+          {cateogryProducts[category] && (
+            <section className={classes.categorySection}>
+              <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
+              <hr />
+              <CategoryItems category={category} products={cateogryProducts[category]} isSavedProducts={isSavedProducts} />
+            </section>
+          )}
+        </React.Fragment>
       ))}
     </div>
   );

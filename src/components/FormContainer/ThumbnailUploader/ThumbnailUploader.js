@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Popup from 'components/ui/Popup/Popup';
 import FileBase from 'react-file-base64';
+import ProductImageSearch from './ProductImageSearch/ProductImageSearch';
+import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from './styles.js';
 
 const ThumbnailUploader = ({ handleImageChange, currentImage }) => {
@@ -30,13 +33,16 @@ const ThumbnailUploader = ({ handleImageChange, currentImage }) => {
               }}
             />
           </div>
-        </div>
-      }
-      {/* <DetailsPopup
-        CardComponent={<ImageSearchIcon className={classes.searchPopup}></ImageSearchIcon>}
-        DetailsComponent={<ImageSearch defaultSearch={defaultSearch} updateImageState={updateImageState} />}
-      /> */}
-    </div>
+          <Popup
+            DefaultElem={(
+              <ImageSearchIcon className={classes.searchPopup}></ImageSearchIcon>
+            )}
+            PopupElem={(
+              <ProductImageSearch handleImageChange={handleImageChange} />
+            )}
+          />
+        </div>}
+    </div >
   );
 };
 

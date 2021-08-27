@@ -6,7 +6,6 @@ export default makeStyles(() => ({
   },
   purchasePrice: {
     position: 'relative',
-    marginTop: '1em',
     padding: '0',
     border: '4px solid #ababab59',
     borderRadius: '5px',
@@ -18,13 +17,15 @@ export default makeStyles(() => ({
   },
   divLabel: {
     display: 'block',
+    border: '4px solid #ababab59',
+    borderBottomStyle: 'none',
     borderTopLeftRadius: '8px',
     borderTopRightRadius: '8px',
     position: 'absolute',
     fontSize: '13px',
     background: 'white',
     padding: '0.5em 0.5em 0 0.5em',
-    top: '-1.5em',
+    top: '-1.7em',
     color: '#403e3e',
   },
 }));

@@ -12,11 +12,12 @@ for (const cat in groceryCategories) {
 
 export function ProductsProvider({ children }) {
   const [savedProducts, setSavedProducts] = useState(placeholderObj);
+  const [externalProducts, setExternalProducts] = useState(placeholderObj);
   const [loading, setLoading] = useState(false);
 
-  function fetchCategoryDocs(categoryID, savedItems) {
+  function fetchCategoryDocs(categoryID, isSavedItems) {
     setLoading(true);
-    if (savedItems) {
+    if (isSavedItems) {
       savedItemData.fetchCategory(categoryID, docList => {
         const categoryObj = {};
         docList.forEach(product => (
@@ -29,7 +30,8 @@ export function ProductsProvider({ children }) {
         setLoading(false);
       });
     } else {
-      console.log('HERE, FETCHING THE EXTERNAL PRODUCTS');
+      console.log('Fetch the external products in ProductsContext line:33');
+      console.log(setExternalProducts);
       // externalItemData.fetchCategory(categoryID, docList => {
       //   const categoryObj = {};
       //   docList.forEach(product => (
@@ -88,6 +90,7 @@ export function ProductsProvider({ children }) {
     fetchDocByID,
     savedProducts,
     addSavedProduct,
+    externalProducts,
     deleteSavedProduct,
   };
 
@@ -102,6 +105,7 @@ const useProducts = () => {
     savedProducts,
     addSavedProduct,
     deleteSavedProduct,
+    externalProducts,
   } = useContext(ProductsContext);
 
   return {
@@ -111,6 +115,7 @@ const useProducts = () => {
     loading,
     addSavedProduct,
     deleteSavedProduct,
+    externalProducts,
   };
 };
 

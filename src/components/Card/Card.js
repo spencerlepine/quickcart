@@ -64,7 +64,7 @@ const Card = props => {
         <Popup
           DefaultElem={(
             <div className={classes.minimalCard}>
-              <AddToCartButton className={classes.addCartBtn} item={props} categoryID={category} />
+              <AddToCartButton isBubbleBtn={!minimalFormat} item={props} categoryID={category} />
               <div className={classes.imageContainer}>
                 <img alt={name} src={image}></img>
               </div>

@@ -41,16 +41,13 @@ export default makeStyles(() => ({
     justifySelf: 'center',
   },
   categoryContainer: {
-    gridColumnStart: '1',
-    gridColumnEnd: '3',
     border: '2px solid #d8d8d8',
     backgroundColor: '#f0f4f7',
     display: 'flex',
+    justifyContent: 'space-evenly',
     padding: '1em',
   },
   purchaseContainer: {
-    gridColumnStart: '1',
-    gridColumnEnd: '3',
     border: '2px solid #d8d8d8',
     backgroundColor: '#f0f4f7',
     display: 'flex',
@@ -58,6 +55,11 @@ export default makeStyles(() => ({
   },
   servingContainer: {
     display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  formButtonsContainer: {
+    display: 'flex',
+    margin: '1em',
     justifyContent: 'space-evenly',
   },
 }));
