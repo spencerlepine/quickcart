@@ -41,14 +41,14 @@
 - [Spoonacular](https://spoonacular.com/food-api/docs)
 
 ## 🌟 Features:
-- Save grocery items to a database
+- Save grocery products to a cart
+- Browse new products
+- Analyze the cart to fill empty categories
+- Save new custom products
+- Create an account to access lists anywhere
 - Add custom images and values to each item
 - View recommended items to buy
-- Search for existing products from OpenFoodFacts dump
-- Search product images
-- Export data to file
-- Import from backup file
-- Log cart 'purchases'
+- Log cart purchases
 
 ## 🔑 Configue API Keys
 1.  **Create a Firebase project**:
