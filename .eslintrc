@@ -5,6 +5,7 @@
     "requireConfigFile": false
   },
   "extends": [
+    "react-app",
     "@upstatement/eslint-config/react",
     "eslint:recommended",
     "plugin:react/recommended",

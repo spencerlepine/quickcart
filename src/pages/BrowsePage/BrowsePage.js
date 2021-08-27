@@ -4,19 +4,17 @@ import BrowseItems from 'components/BrowseItems/BrowseItems';
 import useProducts from 'context/ProductsContext/ProductsContext';
 import useStyles from './styles.js';
 
-import sampleProducts from 'config/sampleData/sampleProducts.json';
+// import sampleProducts from 'config/sampleData/sampleProducts.json';
 
-const developmentMode = process.env.NODE_ENV === 'development';
+// const developmentMode = process.env.NODE_ENV === 'development';
 
 const BrowsePage = () => {
   const classes = useStyles();
 
-  let productsObj;
-  if (developmentMode) {
-    productsObj = sampleProducts;
-  } else {
-    productsObj = useProducts()['externalProducts'];
-  }
+  const productsObj = useProducts()['externalProducts'];
+  // if (developmentMode) {
+  //   productsObj = sampleProducts;
+  // }
 
   return (
     <div className={`browse-container ${classes.browseContainer}`}>

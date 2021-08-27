@@ -3,10 +3,11 @@ import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import { Link } from 'react-router-dom';
 import { LOGIN, SIGNUP } from 'config/constants/routeConstants';
 import demoImage from 'assets/images/demo_transparent.png';
+import useStyles from './styles.js';
+
 const searchDemoImage = ''; // import searchDemoImage from 'assets/images/demo_search.png';
 const listDemoImage = ''; // import listDemoImage from 'assets/images/demo_list.png';
 const customizeDemoImage = ''; // import customizeDemoImage from 'assets/images/demo_customize.png';
-import useStyles from './styles.js';
 
 const WelcomePage = () => {
   const classes = useStyles();
