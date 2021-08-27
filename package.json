@@ -31,9 +31,8 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
-    "lint-staged": "eslint --fix --ext .js,.jsx",
-    "prepare": "husky install"
+    "format": "prettier --write !(node_modules)/**/*.js'",
+    "lint-staged": "eslint --fix --ext .js,.jsx && npm run build && git add ."
   },
   "eslintConfig": {
     "extends": [

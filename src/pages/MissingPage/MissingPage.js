@@ -8,8 +8,8 @@ const MissingPage = () => {
 
   return (
     <div className={`missing-container ${classes.missingContainer}`}>
-      <p>Zoinkers! This page doesn't exist :(</p>
-      <Link to={HOME}>
+      <p>{'Zoinkers! This page doesn\'t exist :('}</p>
+      < Link to={HOME}>
         Homepage
       </Link>
     </div>
