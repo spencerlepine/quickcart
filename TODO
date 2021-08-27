@@ -1,91 +1,33 @@
 # Features to add:
- - float cart log price
- - Add to cart, sort by category and alphabet
-  - if last category doesn't match, insert a label
- - OCR scanning receipts:
-   o scan item name and price, match it with an item in the database for an id
-   o save the item to a cart log with the price
+ - Add more styles
+ - Add screenshots on welcome page
+ - Implement Searchbar + Search Filtering
+ - Connect Spoonacular API
+ - Connect OpenFoodFacts API
+ - Implement UPC Search + Barcode Scanner
+ - Implement Nutrition Facts (search by product ID or UPC)
+ - Implement page to view Cart Logs
+ - Remove Exporting data in settings
+ - Remove Importing data in settings
+ - Implement Account details in /settings and context state
+ - Add/Connect total saved counter to account details
+ - Add unit price indicator
+ - Implement Cart Analyzer with reccomendations
+ - Implement product reccomendations (for widget)
+ - Implement sending external product to for to customize fields and save as doc in user/SAVED
  - Checkmarks/Highlight in Cart
    o mark a grocery items found for easy shopping use
    o CLICK DIV - remove add/plus sign, display check mark, make darker
+
+
+Other Ideas:
  - Recipes:
   - Search common recipes and save the products required
   - Add products of recipe to cart
   - Should reference to personal grocery items ID
   - estimate recipe costs?
   - https://www.programmableweb.com/api/bigoven-recipe-rest-api-v2
-  - Search products to BUILD the recipe dynamically based on names and products
- - Feedback page:
-  - Allow users to submit reviews/testimonial
  - Account features
   - Reset password
   - Update email
   - Update password
- - Download CSV of grocery items
-
-# Work-in-progress:
- - value filler/search:
-  - search dumps for a product
-   - display a possible result
-   - send that value to the form
- - Explanation on home page
-   - Combination between Yuka, Instacart, and a To-do list
-   - Help yourself budget while grocery shopping
-   - Cycle through groceries and eat a variety
-   - view nutrional data and eco score
- - load the rest if the user searches
- - search thing is broken
- - copy delete stuff
- - SEARCH DETAILS
- - update readme screenshot
- - Home page:
-   - create a cart
-   - get reccomendations for the cart
-   - scan UPC
-   - search for products
-   - get nutrition data
-   - fill in missing fields
- -Get product details
- - https://api.spoonacular.com/food/products/{id}
- - Sort by price or name, date, ASC, DEC
- - assume pantry items that are over 10 servings per last more than 10 days (not exactly 1 serving everyday)
- - message for missing field value
- - expand on click to show ingredients
- - put image into square with canvas (crop image and make it always a square)
- - Food details
-  - show food grade
-  - show eco score
-  - show ingredients?
- - Product Onboarding experience:
-  - Search item in BrowseGroceries, prompt (can't find item? search here (link to search))
-  - Fill in details from search (missing feild? Search for product here)
- - Sort items in cart AND make categories clear
- - Tell which food groups you still need to buy (progress circles? Lots of veggies, not enough fruit)
- - Improve cart logs:
-  - load more button to view further back
-  - add graphs visualize
-  - Cart logs
-    - Admin can view cart data
-      - admin can create charts + graphs
-      - see most categories
-      - see average spending per week
-      - see money spent per Category
-      - most popular items
-      - count purchase per item with a countObj
-    - Display cart logs for the user?
-      - list with DATE, TOTAL_PRICE, GROCERY_COUNT
-        - dropdown button showing list of name, price, category
-- Add basic dump for all users to access
- - browse common items (mainly produce and menial things to add to a Quickcart account)
-
-# Bugs:
- - incorrect backup dates
- - full names not showing (not working in search either)
- - price input won't let me type it
- - Search REGEX will break when typing '['
- - import will create seemingly 'duplicate' items
- - search database for existing similar items?
- - when running through items in cart log, some DOCS w/ name, quantity, price DONT have any id
-   - try to search the database with an item close to that name
-   - fill in the id for that log
- - purchasing an item a second time will override current quantity in cartLogs
