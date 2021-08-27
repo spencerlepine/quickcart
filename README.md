@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://grocery-client-sl.herokuapp.com/">
-    <img alt="QuickCart" src="./src/images/demo_small.png" />
+    <img alt="QuickCart" src="./src/assets/images/thumbnail.png" />
   </a>
 </p>
 
