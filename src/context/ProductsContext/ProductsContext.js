@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as savedItemData from 'api/firebase/saved';
-// import * as ProductsData from 'api/firebase/products';
+import * as productsItemData from 'api/firebase/products';
 import groceryCategories from 'config/schema/groceryCategories';
 export const ProductsContext = React.createContext();
 
@@ -14,15 +14,22 @@ export function ProductsProvider({ children }) {
   const [savedProducts, setSavedProducts] = useState(placeholderObj);
   const [externalProducts, setExternalProducts] = useState(placeholderObj);
   const [loading, setLoading] = useState(false);
+  const [lastSavedID, setLastSavedID] = useState({});
+  const [lastExternalID, setLastExternalID] = useState({});
 
   function fetchCategoryDocs(categoryID, isSavedItems) {
     setLoading(true);
     if (isSavedItems) {
-      savedItemData.fetchCategory(categoryID, docList => {
-        const categoryObj = {};
-        docList.forEach(product => (
-          categoryObj[product['_id']] = product
-        ));
+      savedItemData.fetchCategory(categoryID, lastSavedID[categoryID], docList => {
+        const categoryObj = savedProducts[categoryID];
+
+        if (docList.length > 0) {
+          docList.forEach(product => (
+            categoryObj[product['_id']] = product
+          ));
+          setLastSavedID(prevObj => ({ ...prevObj, [categoryID]: docList[docList.length - 1]['_id'] }));
+        }
+
         setSavedProducts(prevProducts => ({
           ...prevProducts,
           [categoryID]: categoryObj,
@@ -30,20 +37,21 @@ export function ProductsProvider({ children }) {
         setLoading(false);
       });
     } else {
-      console.log('Fetch the external products in ProductsContext line:33');
-      console.log(setExternalProducts);
-      // externalItemData.fetchCategory(categoryID, docList => {
-      //   const categoryObj = {};
-      //   docList.forEach(product => (
-      //     categoryObj[product['_id']] = product
-      //   ));
+      productsItemData.fetchCategory(categoryID, lastExternalID[categoryID], docList => {
+        const categoryObj = externalProducts[categoryID];
 
-      //   setSavedProducts(prevProducts => ({
-      //     ...prevProducts,
-      //     [categoryID]: categoryObj,
-      //   }));
-      //   setLoading(false);
-      // });
+        if (docList.length > 0) {
+          docList.forEach(product => (
+            categoryObj[product['_id']] = product
+          ));
+          setLastExternalID(prevObj => ({ ...prevObj, [categoryID]: docList[docList.length - 1]['_id'] }));
+        }
+        setExternalProducts(prevProducts => ({
+          ...prevProducts,
+          [categoryID]: categoryObj,
+        }));
+        setLoading(false);
+      });
     }
   }
 
@@ -74,12 +82,11 @@ export function ProductsProvider({ children }) {
   function deleteSavedProduct(itemID, categoryID) {
     setLoading(true);
     savedItemData.deleteItem(itemID, categoryID, item => {
-      console.log(item);
-      // setSavedProducts(prevProducts => {
-      //   const obj = { ...prevProducts };
-      //   obj[categoryID][item['_id']] = item;
-      //   return obj;
-      // });
+      setSavedProducts(prevProducts => {
+        const obj = { ...prevProducts };
+        delete obj[categoryID][itemID];
+        return obj;
+      });
       setLoading(false);
     });
   }

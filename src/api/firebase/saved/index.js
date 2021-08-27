@@ -1,7 +1,8 @@
 import { auth, db } from '../config';
 import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.js';
+import { FETCH_ITEM_LIMIT } from 'config';
 
-export const fetchCategory = (categoryID, successCb) => {
+export const fetchCategory = (categoryID, lastId, successCb) => {
   const { uid: userId } = auth.currentUser;
 
   db.collection(ALL_USERS)
@@ -9,6 +10,9 @@ export const fetchCategory = (categoryID, successCb) => {
     .collection(SAVED_CATEGORIES)
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
+    .orderBy('_id')
+    .startAt(lastId || '')
+    .limit(FETCH_ITEM_LIMIT)
     .get()
     .then(data => {
       const allDocs = data.docs.map(firebaseDoc => firebaseDoc.data());

@@ -1,4 +1,7 @@
 /* users COLLECTION */
+export const ALL_PRODUCTS = 'products';
+
+/* users COLLECTION */
 export const ALL_USERS = 'users';
 /* users/USER_ID/accountInfo COLLECTION */
 export const USER_ACCOUNT = 'accountInfo';

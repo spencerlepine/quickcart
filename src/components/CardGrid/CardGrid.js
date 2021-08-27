@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from 'components/Card/Card';
 import useStyles from './styles.js';
 
-const CardGrid = ({ list, singleRow, minimalFormat, isSavedProducts }) => {
+const CardGrid = ({ list, singleRow, minimalFormat, isSavedProducts, handleViewMore }) => {
   const classes = useStyles();
 
   const overrideStyles = singleRow ? { flexWrap: 'nowrap' } : {};
@@ -13,6 +13,7 @@ const CardGrid = ({ list, singleRow, minimalFormat, isSavedProducts }) => {
       {list.map((item, i) => (
         <Card {...item} key={i} minimalFormat={minimalFormat} isSavedProducts={isSavedProducts} />
       ))}
+      <button onClick={handleViewMore}>View More</button>
     </div>
   );
 };
@@ -24,6 +25,7 @@ CardGrid.propTypes = {
   singleRow: PropTypes.bool.isRequired,
   isSavedProducts: PropTypes.bool.isRequired,
   minimalFormat: PropTypes.bool.isRequired,
+  handleViewMore: PropTypes.func.isRequired,
 };
 
 CardGrid.defaultProps = {

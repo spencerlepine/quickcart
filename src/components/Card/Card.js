@@ -26,7 +26,6 @@ const Card = props => {
 
   useEffect(() => {
     if (loadProductFromID !== undefined) {
-      console.log('I need to fetch from the server');
       // fetchItem(item['loadProductFromID']);
     }
   }, []);
