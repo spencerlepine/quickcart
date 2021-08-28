@@ -27,7 +27,7 @@ const AccountForm = props => {
   };
 
   return (
-    <div className={`account-form ${classes.accountForm}`}>
+    <form className={`account-form ${classes.accountForm}`}>
       <img
         src={QuickCartLogo}
         alt="QuickCart Logo"
@@ -47,7 +47,7 @@ const AccountForm = props => {
         ></input>
       ))}
 
-      <button onClick={() => handleSubmit(formEntries)} className={classes.loginButton}>
+      <button onClick={e => { e.preventDefault(); handleSubmit(formEntries); }} className={classes.loginButton}>
         {SubmitLabel}
       </button>
       <hr />
@@ -56,7 +56,7 @@ const AccountForm = props => {
       <div className={classes.accountRedirect}>
         <Link to={CorrectionFormLink}>{CorrectionFormName}</Link>
       </div>
-    </div>
+    </form>
   );
 };
 

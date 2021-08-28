@@ -46,7 +46,6 @@ export const createUserWithEmailAndPassword = (
       });
 
       const newUser = {
-        ...user,
         displayName: displayName,
         savedItemCount: 0,
         joinDate: new Date() || '00-00-00',

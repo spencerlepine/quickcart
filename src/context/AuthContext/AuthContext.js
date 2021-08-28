@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
 
   function signupUser(displayName, email, password) {
     setLoading(true);
-    authUser.createUserWithEmailAndPassword(email, password, user => {
+    authUser.createUserWithEmailAndPassword(displayName, email, password, user => {
       setCurrentUser(user);
       setLoading(false);
     });

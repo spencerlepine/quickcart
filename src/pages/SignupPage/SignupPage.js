@@ -2,16 +2,22 @@ import React from 'react';
 import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import AccountForm from 'components/AccountForm/AccountForm';
 import { LOGIN } from 'config/constants/routeConstants';
+import useAuth from 'context/AuthContext/AuthContext';
 import useStyles from './styles.js';
 
 const SignupPage = () => {
   const classes = useStyles();
+  const { signupUser } = useAuth();
 
   const handleSignup = formEntries => {
-    console.log('HERE, sign up the user', formEntries);
+    signupUser(formEntries['name'], formEntries['email'], formEntries['password']);
   };
 
   const signupFields = [
+    {
+      name: 'name',
+      placeholder: 'Name',
+    },
     {
       name: 'email',
       placeholder: 'Email',
@@ -28,8 +34,8 @@ const SignupPage = () => {
         SubmitLabel="Sign Up"
         FormTitle="Sign Up"
         FormFields={signupFields}
-        WrongFormLabel={'Don\'t have an account?'}
-        CorrectionFormName={'Sign Up'}
+        WrongFormLabel={'Already have an account?'}
+        CorrectionFormName={'Log In'}
         CorrectionFormLink={LOGIN}
         handleSubmit={handleSignup}
       />
