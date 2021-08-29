@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AddToCartButton from 'components/ui/AddToCartButton/AddToCartButton';
 import Popup from 'components/ui/Popup/Popup';
@@ -8,7 +8,7 @@ import useStyles from './styles.js';
 
 const Card = props => {
   const classes = useStyles();
-  // const { fetchItem } = useProducts();
+
   const {
     _id,
     name,
@@ -19,16 +19,16 @@ const Card = props => {
     servings_per,
     brand,
     category,
-    loadProductFromID,
+    // loadProductFromID,
     minimalFormat,
     isSavedProducts,
   } = props;
 
-  useEffect(() => {
-    if (loadProductFromID !== undefined) {
-      // fetchItem(item['loadProductFromID']);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (loadProductFromID !== undefined) {
+  //     // fetchItem(item['loadProductFromID']);
+  //   }
+  // }, []);
 
   const productPrice = parseFloat(
     purchase_price,

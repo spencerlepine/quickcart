@@ -18,9 +18,9 @@ const BrowseItems = ({ productsObj, isSavedProducts }) => {
       <SearchOptions searchMode={searchMode} setSearchFilter={setSearchFilter} setSearchMode={setSearchMode} />
 
       {searchMode ?
-        <ProductSearchResult searchFilter={searchFilter} allProducts={productsObj} />
+        <ProductSearchResult searchFilter={searchFilter} allProducts={productsObj} isSavedProducts={isSavedProducts} />
         :
-        <CategoryBrowser cateogryProducts={productsObj} isSavedProducts={isSavedProducts} />
+        <CategoryBrowser categoryProducts={productsObj} isSavedProducts={isSavedProducts} />
       }
     </div>
   );

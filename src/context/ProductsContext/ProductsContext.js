@@ -5,14 +5,16 @@ import * as productsItemData from 'api/firebase/products';
 import groceryCategories from 'config/schema/groceryCategories';
 export const ProductsContext = React.createContext();
 
-const placeholderObj = {};
+const placeholderSaved = {};
+const placeholderExternal = {};
 for (const cat in groceryCategories) {
-  placeholderObj[groceryCategories[cat]] = {};
+  placeholderSaved[groceryCategories[cat]] = {};
+  placeholderExternal[groceryCategories[cat]] = {};
 }
 
 export function ProductsProvider({ children }) {
-  const [savedProducts, setSavedProducts] = useState(placeholderObj);
-  const [externalProducts, setExternalProducts] = useState(placeholderObj);
+  const [savedProducts, setSavedProducts] = useState(placeholderSaved);
+  const [externalProducts, setExternalProducts] = useState(placeholderExternal);
   const [loading, setLoading] = useState(false);
   const [lastSavedID, setLastSavedID] = useState({});
   const [lastExternalID, setLastExternalID] = useState({});
