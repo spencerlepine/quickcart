@@ -23,7 +23,7 @@ const CartViewer = () => {
     for (const category in cartProducts) {
       const products = Object.values(cartProducts[category]);
 
-      products.forEach(item => cartToLogs(item));
+      products.forEach(item => cartToLogs(item, category));
     }
   };
 
