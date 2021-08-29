@@ -20,6 +20,7 @@ const Card = props => {
     brand,
     category,
     // loadProductFromID,
+    searchFilter,
     minimalFormat,
     isSavedProducts,
   } = props;
@@ -29,70 +30,76 @@ const Card = props => {
   //     // fetchItem(item['loadProductFromID']);
   //   }
   // }, []);
+  const searchRe = new RegExp(`${searchFilter}`, 'gi');
+  const itemMatchesSearch = searchRe.test(name);
 
   const productPrice = parseFloat(
     purchase_price,
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  if (minimalFormat) {
-    return (
-      <div className={`card ${classes.card}`}>
-        <Popup
-          DefaultElem={(
-            <div className={classes.minimalCard}>
-              <div className={classes.imageContainer}>
-                <img alt={name} src={image}></img>
+  if (!searchFilter || itemMatchesSearch) {
+    if (minimalFormat) {
+      return (
+        <div className={`card ${classes.card}`}>
+          <Popup
+            DefaultElem={(
+              <div className={classes.minimalCard}>
+                <div className={classes.imageContainer}>
+                  <img alt={name} src={image}></img>
+                </div>
+
+                <h4 className={classes.foodName}>{name}</h4>
+
+                <p className={classes.foodPrice}>{productPrice}</p>
+
+                <div className={classes.expandButton}>
+                  <ExpandMoreIcon />
+                </div>
               </div>
+            )}
+            PopupElem={<ProductDetails {...props} />}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className={`card ${classes.card}`}>
+          <Popup
+            DefaultElem={(
+              <div className={classes.minimalCard}>
+                <AddToCartButton isBubbleBtn={!minimalFormat} item={props} categoryID={category} />
+                <div className={classes.imageContainer}>
+                  <img alt={name} src={image}></img>
+                </div>
 
-              <h4 className={classes.foodName}>{name}</h4>
+                <h4 className={classes.foodName}>{name}</h4>
 
-              <p className={classes.foodPrice}>{productPrice}</p>
+                <p className={classes.foodPrice}>{productPrice}</p>
 
-              <div className={classes.expandButton}>
-                <ExpandMoreIcon />
+                <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
+
+                <div className={classes.expandButton}>
+                  <ExpandMoreIcon />
+                </div>
               </div>
-            </div>
-          )}
-          PopupElem={<ProductDetails {...props} />}
-        />
-      </div>
-    );
+            )}
+            PopupElem={<ProductDetails
+              _id={_id}
+              name={name}
+              purchase_size={purchase_size}
+              purchase_price={purchase_price}
+              serving_size={serving_size}
+              servings_per={servings_per}
+              brand={brand}
+              image={image}
+              category={category}
+              isSavedProducts={isSavedProducts} />}
+          />
+        </div>
+      );
+    }
   } else {
-    return (
-      <div className={`card ${classes.card}`}>
-        <Popup
-          DefaultElem={(
-            <div className={classes.minimalCard}>
-              <AddToCartButton isBubbleBtn={!minimalFormat} item={props} categoryID={category} />
-              <div className={classes.imageContainer}>
-                <img alt={name} src={image}></img>
-              </div>
-
-              <h4 className={classes.foodName}>{name}</h4>
-
-              <p className={classes.foodPrice}>{productPrice}</p>
-
-              <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
-
-              <div className={classes.expandButton}>
-                <ExpandMoreIcon />
-              </div>
-            </div>
-          )}
-          PopupElem={<ProductDetails
-            _id={_id}
-            name={name}
-            purchase_size={purchase_size}
-            purchase_price={purchase_price}
-            serving_size={serving_size}
-            servings_per={servings_per}
-            brand={brand}
-            image={image}
-            category={category}
-            isSavedProducts={isSavedProducts} />}
-        />
-      </div>
-    );
+    return null;
   }
 };
 

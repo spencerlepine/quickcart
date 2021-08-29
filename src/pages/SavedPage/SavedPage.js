@@ -9,8 +9,6 @@ const SavedPage = () => {
 
   const savedProducts = useProducts()['savedProducts'];
 
-  console.log('saved products');
-
   return (
     <div className={`saved-container ${classes.savedContainer}`}>
       <h3 className={classes.savedTitle}>All Saved Items</h3>
