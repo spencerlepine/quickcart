@@ -15,8 +15,10 @@ const ProductSizeInput = ({ purchase_price, fieldsProps }) => {
         {...fieldsProps}
         id="standard-adornment-amount"
         name={'purchase_price'}
-        value={purchase_price}
-        type={'number'}
+        placeholder={'0.00'}
+        value={purchase_price || ''}
+        inputProps={{ min: 0, step: 'any' }}
+        type="number"
         className={classes.ProductSizeInput}
         startAdornment={<InputAdornment position="start">$</InputAdornment>}
       />

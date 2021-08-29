@@ -67,8 +67,9 @@ const ProductSizeInput = ({ count, unit, fieldsProps }) => {
         className={classes.unitCount}
         name={'count'}
         type={'number'}
+        inputProps={{ min: 1 }}
         onChange={handleUnitUpdate}
-        value={count}
+        value={count || ''}
       />
       <UnitSelector
         classes={classes}

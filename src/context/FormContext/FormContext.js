@@ -59,8 +59,6 @@ export function FormProvider({ children }) {
     }));
   };
 
-
-
   const value = {
     formEntries,
     setFormEntries,

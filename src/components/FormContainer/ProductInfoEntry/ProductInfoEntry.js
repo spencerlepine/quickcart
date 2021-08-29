@@ -35,8 +35,14 @@ const ProductInfoEntry = props => {
     let value = event.target.value;
     const { name, type } = event.target;
     if (type === 'number') {
-      value = Number(value);
+      console.log(value);
+      if (value === '') {
+        value = 0;
+      } else {
+        value = Number(value);
+      }
     }
+
     setFormEntries(prevEntries => ({
       ...prevEntries,
       [name]: value,

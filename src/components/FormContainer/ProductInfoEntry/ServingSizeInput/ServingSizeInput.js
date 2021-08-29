@@ -69,6 +69,7 @@ const ServingSizeInput = ({ count, unit, fieldsProps }) => {
         className={classes.unitCount}
         name={'count'}
         placeholder={'Serving Size'}
+        inputProps={{ min: 0 }}
         type={'number'}
         value={count}
       />
