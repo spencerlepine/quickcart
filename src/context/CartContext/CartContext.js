@@ -88,12 +88,34 @@ export function CartProvider({ children }) {
     }
   }
 
+  function cartToLogs(item, categoryID) {
+    setLoading(true);
+    cartItemData.logCartItem(item, categoryID, () => {
+      removeFromCart(item['_id'], categoryID);
+
+      setCartProducts(prevCart => {
+        const updatedCategoryObj = {
+          ...prevCart[categoryID],
+        };
+        delete updatedCategoryObj[item['_id']];
+
+        return {
+          ...prevCart,
+          [categoryID]: updatedCategoryObj,
+        };
+      });
+      setLoading(false);
+    });
+  }
+
+
   const value = {
     loading,
     fetchCategoryDocs,
     addToCart,
     itemCount,
     removeFromCart,
+    cartToLogs,
     cartProducts,
   };
 
@@ -104,10 +126,11 @@ const useCart = () => {
   const {
     loading,
     itemCount,
+    cartProducts,
     fetchCategoryDocs,
     addToCart,
     removeFromCart,
-    cartProducts,
+    cartToLogs,
   } = useContext(CartContext);
 
   return {
@@ -116,6 +139,7 @@ const useCart = () => {
     fetchCategoryDocs,
     addToCart,
     removeFromCart,
+    cartToLogs,
     loading,
   };
 };

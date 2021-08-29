@@ -115,7 +115,7 @@ function formatDate(d) {
   return `${ye}-${mo}-${da}`;
 }
 
-export const logCartItem = async item => {
+export const logCartItem = (item, categoryID, successCb) => {
   try {
     const { uid: userId } = auth.currentUser;
 
@@ -132,22 +132,21 @@ export const logCartItem = async item => {
     };
 
     // Save the item
-    await db.collection('users')
+    db.collection('users')
       .doc(userId)
       .collection('userCartLogs')
       .doc(formattedDate)
       .collection('cartItems')
       .doc(item._id)
-      .set(itemLogObj);
-
-    // Add a field to the collection to make it appear in queries
-    await db.collection('users')
-      .doc(userId)
-      .collection('userCartLogs')
-      .doc(formattedDate)
-      .set({ logDate: formattedDate });
-
-    console.log('saved cart log for', item.name);
+      .set(itemLogObj)
+      .then(() => {
+        db.collection('users')
+          .doc(userId)
+          .collection('userCartLogs')
+          .doc(formattedDate)
+          .set({ logDate: formattedDate })
+          .then(successCb());
+      });
   } catch (error) {
     console.log(error.message);
   }

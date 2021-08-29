@@ -6,8 +6,6 @@ import useCart from 'context/CartContext/CartContext';
 import CategoryAnalyzer from '../CategoryAnalyzer/CategoryAnalyzer';
 import useStyles from './styles.js';
 
-import { logCartItem } from 'api/firebase/cart';
-
 const getCartTotal = productsObj => (
   Object.values(productsObj).reduce((arr, categoryObj) => arr.concat(Object.values(categoryObj)), []).reduce((sum, obj) => sum += parseFloat(obj['purchase_price']), 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 );
@@ -15,7 +13,7 @@ const getCartTotal = productsObj => (
 const CartViewer = () => {
   const classes = useStyles();
   const [analyzeMode, setAnalyzeMode] = useState(false);
-  const { cartProducts, itemCount } = useCart();
+  const { cartProducts, itemCount, cartToLogs } = useCart();
 
   const toggleCartMode = () => {
     setAnalyzeMode(prevMode => !prevMode);
@@ -25,7 +23,7 @@ const CartViewer = () => {
     for (const category in cartProducts) {
       const products = Object.values(cartProducts[category]);
 
-      products.forEach(item => logCartItem(item));
+      products.forEach(item => cartToLogs(item));
     }
   };
 
