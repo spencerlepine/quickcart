@@ -5,10 +5,11 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "start": "react-scripts start",
+    "prepare": "husky install",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write !(node_modules)/**/*.js'",
-    "lint-staged": "eslint --fix --ext .js,.jsx && git add ."
+    "lint-staged": "eslint src && eslint src --fix --ext .js,.jsx"
   },
   "browserslist": {
     "production": [
@@ -46,6 +47,7 @@
     "@babel/preset-react": "^7.14.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
+    "@upstatement/eslint-config": "^1.0.1",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.25.1",
@@ -57,10 +59,5 @@
     "hooks": {
       "pre-commit": "npm run lint-staged && git add ."
     }
-  },
-  "lint-staged": {
-    "*.{js,json,yml,yaml,css,scss,ts,tsx,md}": [
-      "prettier --write"
-    ]
   }
 }

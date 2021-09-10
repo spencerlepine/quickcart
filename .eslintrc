@@ -4,7 +4,9 @@
         "es2021": true
     },
     "extends": [
+        "react-app",
         "eslint:recommended",
+        "@upstatement/eslint-config/react",
         "plugin:react/recommended",
         "plugin:jest/recommended"
     ],
@@ -20,24 +22,7 @@
     ],
     "rules": {
         "no-console": "off",
-        "no-unused-vars": "off",
-        "no-undef": "off"
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".d.ts",
-                    ".ts",
-                    ".tsx"
-                ],
-                "moduleDirectory": [
-                    "node_modules",
-                    "src"
-                ]
-            }
-        }
+        "react-hooks/exhaustive-deps": "off",
+        "react/display-name": "off"
     }
 }

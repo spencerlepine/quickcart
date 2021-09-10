@@ -118,6 +118,7 @@ Card.propTypes = {
   loadProductFromID: PropTypes.bool,
   minimalFormat: PropTypes.bool,
   isSavedProducts: PropTypes.bool,
+  searchFilter: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

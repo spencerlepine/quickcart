@@ -6,24 +6,24 @@ import useProducts from 'context/ProductsContext/ProductsContext';
 import CartCard from '../CartCard/CartCard';
 import useStyles from './styles.js';
 
-const FillerItems = props => {
-  const cartCount = Object.values(props.cartProducts[props.category] || {}).length;
-  const saved = Object.values(props.savedProducts[props.category] || {});
+const FillerItems = ({ cartProducts, category, savedProducts, fetchCategoryDocs }) => {
+  const cartCount = Object.values(cartProducts[category] || {}).length;
+  const saved = Object.values(savedProducts[category] || {});
 
   useEffect(() => {
     if (saved.length === 0) {
-      props.fetchCategoryDocs(props.category, true);
+      fetchCategoryDocs(category, true);
     }
   }, []);
 
-  const requiredProducts = servingRequirements[props.category].products;
+  const requiredProducts = servingRequirements[category].products;
   if (cartCount < requiredProducts) {
     const suggested = saved.sort(() => Math.random() - 0.5).slice(0, Math.min(Math.max(parseInt((requiredProducts - cartCount) + 3), 0)));
     const progress = (cartCount * 100 / requiredProducts).toFixed(0);
 
     return (
       <div>
-        <h5>{window.toTitleCase(props.category)}</h5><p>{progress}%</p>
+        <h5>{window.toTitleCase(category)}</h5><p>{progress}%</p>
         {suggested.map((obj, i) => (<CartCard {...obj} key={i} />))}
       </div>
     );
@@ -32,7 +32,7 @@ const FillerItems = props => {
   }
 };
 
-const CategoryAnalyzer = ({ cartProducts }) => {
+const CategoryAnalyzer = ({ cartProducts, category }) => {
   const classes = useStyles();
   const { fetchCategoryDocs, savedProducts } = useProducts();
 
@@ -50,4 +50,12 @@ export default CategoryAnalyzer;
 
 CategoryAnalyzer.propTypes = {
   cartProducts: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
+};
+
+FillerItems.propTypes = {
+  savedProducts: PropTypes.object.isRequired,
+  fetchCategoryDocs: PropTypes.func.isRequired,
+  cartProducts: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
 };
