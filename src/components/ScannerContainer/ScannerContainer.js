@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BarcodeReader from 'react-webcam-barcode-scanner';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { CREATE } from 'config/constants/routeConstants';
 import useForm from 'context/FormContext/FormContext';
 import { fetchUPCItem as fetchUPCItemA } from 'api/spoonacular';
@@ -66,20 +66,25 @@ const ScannerContainer = () => {
   return (
     <div className={`upc-container ${classes.upcContainer}`}>
       {scanMode === 'camera' && (
-        <BarcodeReader
-          width={500}
-          height={700}
-          onUpdate={handleUpdate}
-        />
+        <React.Fragment>
+          <h4>Unable to SCAN? <Link to={CREATE}>ENTER MANUALLY</Link></h4>
+          <BarcodeReader
+            width={500}
+            height={700}
+            onUpdate={handleUpdate}
+          />
+        </React.Fragment>
       )}
 
-      {scanMode === 'error' && (<React.Fragment>
-        <button onClick={() => setScanMode('camera')}>Try Again</button>
-        <button onClick={() => history.push(CREATE)}>ENTER MANUALLY</button>
-      </React.Fragment>)}
+      {
+        scanMode === 'error' && (<React.Fragment>
+          <button onClick={() => setScanMode('camera')}>Try Again</button>
+          <button onClick={() => history.push(CREATE)}>ENTER MANUALLY</button>
+        </React.Fragment>)
+      }
 
       <p>{scanResult}</p>
-    </div>
+    </div >
   );
 };
 
