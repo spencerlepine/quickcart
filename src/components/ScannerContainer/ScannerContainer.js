@@ -18,11 +18,15 @@ const ScannerContainer = () => {
 
   const scanProductsFromUPC = (upcString, callback) => {
     // Nested callback to QUERY spoonacular database, and then openfoodfacts
-    fetchUPCItemA(upcString, (err, productDetails) => {
+    fetchUPCItemB(upcString, (err, productDetails) => {
       if (productDetails) {
         callback(null, productDetails);
       } else {
-        fetchUPCItemB(upcString, (err, productDetails) => {
+        if (err) {
+          console.log(err);
+        }
+
+        fetchUPCItemA(upcString, (err, productDetails) => {
           if (productDetails) {
             callback(null, productDetails);
           } else {
