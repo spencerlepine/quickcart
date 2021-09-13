@@ -17,9 +17,8 @@
     "npm": "7.20.3"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack --mode production",
-    "start": "node server.js",
+    "build": "webpack",
+    "start": "webpack-dev-server",
     "test": "jest --watchAll",
     "lint-staged": "eslint src --ext .js && eslint src --fix --ext .js && git add ."
   },
@@ -41,7 +40,6 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
-    "express": "^4.17.1",
     "firebase": "^8.9.1",
     "lodash": "^4.17.21",
     "material-ui-search-bar": "^1.0.0",
