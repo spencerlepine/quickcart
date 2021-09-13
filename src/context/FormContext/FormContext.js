@@ -18,6 +18,7 @@ const placeholderItem = {
 export function FormProvider({ children }) {
   const [formEntries, setFormEntries] = useState(placeholderItem);
   const { addSavedProduct, deleteSavedProduct } = useProducts();
+  console.log(formEntries);
 
   const [editingMode, setEditingMode] = useState(false);
   const [isExternal, setIsExternal] = useState(false);

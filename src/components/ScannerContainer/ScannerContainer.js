@@ -3,6 +3,8 @@ import BarcodeReader from 'react-webcam-barcode-scanner';
 import { useHistory } from 'react-router-dom';
 import { CREATE } from 'config/constants/routeConstants';
 import useForm from 'context/FormContext/FormContext';
+import { fetchUPCItem as fetchUPCItemA } from 'api/spoonacular';
+import { fetchUPCItem as fetchUPCItemB } from 'api/openfoodfacts';
 import useStyles from './styles.js';
 
 const ScannerContainer = () => {
@@ -14,10 +16,21 @@ const ScannerContainer = () => {
   const [scanMode, setScanMode] = useState('camera');
   const [scanResult, setScanResult] = useState('');
 
-
   const scanProductsFromUPC = (upcString, callback) => {
-    console.log('searching products online');
-    callback(null, {});
+    // Nested callback to QUERY spoonacular database, and then openfoodfacts
+    fetchUPCItemA(upcString, (err, productDetails) => {
+      if (productDetails) {
+        callback(null, productDetails);
+      } else {
+        fetchUPCItemB(upcString, (err, productDetails) => {
+          if (productDetails) {
+            callback(null, productDetails);
+          } else {
+            callback(err);
+          }
+        });
+      }
+    });
   };
 
   const handleError = err => {
@@ -29,7 +42,7 @@ const ScannerContainer = () => {
     setScanMode('loading');
     setScanResult(data);
 
-    scanProductsFromUPC(scanResult, (err, result) => {
+    scanProductsFromUPC(data, (err, result) => {
       if (err) {
         handleError();
       } else {
