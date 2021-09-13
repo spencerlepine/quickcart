@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popup from 'components/ui/Popup/Popup';
+import { Link } from 'react-router-dom';
+import { UPC_SCAN } from 'config/constants/routeConstants';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import FileBase from 'react-file-base64';
 import ProductImageSearch from './ProductImageSearch/ProductImageSearch';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
@@ -41,6 +44,9 @@ const ThumbnailUploader = ({ handleImageChange, currentImage, productBrand, prod
               <ProductImageSearch handleImageChange={handleImageChange} productBrand={productBrand} productName={productName} />
             )}
           />
+          <Link className={`${classes.promptBtn} ${classes.scanUPCBtn}`} to={UPC_SCAN}>
+            <PhotoCameraIcon fontSize='large' />
+          </Link>
         </div>}
     </div >
   );
