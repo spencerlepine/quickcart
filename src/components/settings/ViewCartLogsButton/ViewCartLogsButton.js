@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { CART_LOGS } from 'config/constants/routeConstants';
 import useStyles from './styles.js';
 
 const ViewCartLogsButton = () => {
@@ -6,7 +8,9 @@ const ViewCartLogsButton = () => {
 
   return (
     <div className={`viewCartLogsButton ${classes.logContianer}`}>
-      <button className={classes.logButton}>View Cart Logs</button>
+      <Link to={CART_LOGS} className={classes.logButton}>
+        View Cart Logs
+      </Link>
     </div>
   );
 };
