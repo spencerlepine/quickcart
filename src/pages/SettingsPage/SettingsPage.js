@@ -1,8 +1,6 @@
 import React from 'react';
 import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import AccountDetails from 'components/settings/AccountDetails/AccountDetails';
-import Exporter from 'components/settings/Exporter/Exporter';
-import BackupImporter from 'components/settings/BackupImporter/BackupImporter';
 import ViewCartLogsButton from 'components/settings/ViewCartLogsButton/ViewCartLogsButton';
 import LogoutButton from 'components/ui/LogoutButton/LogoutButton';
 import useStyles from './styles.js';
@@ -18,10 +16,6 @@ const SettingsPage = () => {
       </div>
 
       <AccountDetails />
-
-      <Exporter />
-
-      <BackupImporter />
     </div>
   );
 };
