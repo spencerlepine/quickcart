@@ -12,6 +12,10 @@
     "firebase",
     "quickcart"
   ],
+  "engines": {
+    "node": "v14.17.3",
+    "npm": "7.20.3"
+  },
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
