@@ -1,6 +1,4 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 
 // OpenFoodFacts REST endpoint
 const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
