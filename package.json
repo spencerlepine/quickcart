@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config webpack.config.js --progress",
     "test": "jest --watchAll",
     "lint-staged": "eslint src --ext .js && eslint src --fix --ext .js && git add ."
   },
