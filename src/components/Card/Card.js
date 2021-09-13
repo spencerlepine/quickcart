@@ -19,17 +19,11 @@ const Card = props => {
     servings_per,
     brand,
     category,
-    // loadProductFromID,
     searchFilter,
     minimalFormat,
     isSavedProducts,
   } = props;
 
-  // useEffect(() => {
-  //   if (loadProductFromID !== undefined) {
-  //     // fetchItem(item['loadProductFromID']);
-  //   }
-  // }, []);
   const searchRe = new RegExp(`${searchFilter}`, 'gi');
   const itemMatchesSearch = searchRe.test(name);
 
@@ -115,16 +109,14 @@ Card.propTypes = {
   servings_per: PropTypes.number.isRequired,
   brand: PropTypes.string,
   category: PropTypes.string.isRequired,
-  loadProductFromID: PropTypes.bool,
   minimalFormat: PropTypes.bool,
   isSavedProducts: PropTypes.bool,
-  searchFilter: PropTypes.func.isRequired,
+  searchFilter: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   minimalFormat: false,
   isSavedProducts: false,
-  loadProductFromID: true,
   image: 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=6&m=1147544807&s=612x612&w=0&h=8CXEtGfDlt7oFx7UyEZClHojvDjZR91U-mAU8UlFF4Y=',
   purchase_size: { unit: 'unit', count: 1 },
   purchase_price: 0.00,

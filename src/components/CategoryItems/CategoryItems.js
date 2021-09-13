@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useProducts from 'context/ProductsContext/ProductsContext';
-import CardGrid from 'components/CardGrid/CardGrid';
+import CardGrid from '..//CardGrid/CardGrid';
 import useStyles from './styles.js';
 
 const CategoryItems = ({ category, products, isSavedProducts }) => {
