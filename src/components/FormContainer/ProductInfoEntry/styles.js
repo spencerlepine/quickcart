@@ -26,6 +26,7 @@ export default makeStyles(() => ({
     padding: '15px',
   },
   itemName: {
+    margin: '0.5em',
     gridColumnStart: '1',
     gridColumnEnd: '3',
     '& input': {
@@ -44,13 +45,16 @@ export default makeStyles(() => ({
     border: '2px solid #d8d8d8',
     backgroundColor: '#f0f4f7',
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     padding: '1em',
   },
   purchaseContainer: {
+    paddingTop: '0.5em',
     border: '2px solid #d8d8d8',
     backgroundColor: '#f0f4f7',
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-evenly',
   },
   servingContainer: {

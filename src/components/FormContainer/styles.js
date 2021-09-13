@@ -5,7 +5,7 @@ export default makeStyles(() => ({
     borderRadius: '25px 25px 0px 0px',
     maxWidth: '600px',
     margin: 'auto',
-    padding: '24px',
+    minWidth: '335px',
     marginBottom: '1vh',
     backgroundColor: 'white',
   },

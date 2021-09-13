@@ -77,8 +77,7 @@ export default makeStyles(() => ({
     'border': '3px solid #deaa6a',
     '@media (max-width:700px)': {
       top: '60%',
-      left: '-2%',
-      width: '95%',
+      left: '0%',
     },
   },
   scanUPCBtn: {
@@ -117,8 +116,7 @@ export default makeStyles(() => ({
     'border': '3px solid #deaa6a',
     '@media (max-width:700px)': {
       top: '60%',
-      left: '-2%',
-      width: '95%',
+      right: '-2%',
     },
   },
 }));
