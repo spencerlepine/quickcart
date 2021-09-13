@@ -1,6 +1,17 @@
 {
   "name": "quickcart",
   "version": "1.0.0",
+  "author": "Spencer Lepine",
+  "description": "Organize and budget a personal grocery cart for easy shopping",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spencerlepine/quickcart"
+  },
+  "keywords": [
+    "groceries",
+    "firebase",
+    "quickcart"
+  ],
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
@@ -8,8 +19,7 @@
     "prepare": "husky install",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write !(node_modules)/**/*.js'",
-    "lint-staged": "eslint src && eslint src --fix --ext .js,.jsx"
+    "lint-staged": "eslint src --ext .js && eslint src --fix --ext .js && git add ."
   },
   "browserslist": {
     "production": [
