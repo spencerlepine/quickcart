@@ -24,6 +24,5 @@
         "no-console": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/display-name": "off",
-        "no-unused-vars": "off"
     }
 }

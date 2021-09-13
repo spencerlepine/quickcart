@@ -7,4 +7,5 @@ export { default as CreatePage } from './CreatePage/CreatePage';
 export { default as CartPage } from './CartPage/CartPage';
 export { default as SavedPage } from './SavedPage/SavedPage';
 export { default as CartLogsPage } from './CartLogsPage/CartLogsPage';
+export { default as UPCPage } from './UPCPage/UPCPage';
 export { default as MissingPage } from './MissingPage/MissingPage';

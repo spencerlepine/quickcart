@@ -14,6 +14,7 @@ const Routes = () => (
     <Route path={ROUTES.CART} component={PAGES.CartPage} />
     <Route path={ROUTES.SAVED} component={PAGES.SavedPage} />
     <Route path={ROUTES.CART_LOGS} component={PAGES.CartLogsPage} />
+    <Route path={ROUTES.UPC_SCAN} component={PAGES.UPCPage} />
     <Route path="/empty" component={PAGES.MissingPage} />
     <Route path="/" component={PAGES.MissingPage} />
   </Switch>

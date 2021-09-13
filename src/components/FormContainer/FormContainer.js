@@ -7,7 +7,14 @@ import useStyles from './styles.js';
 const FormContainer = () => {
   const classes = useStyles();
 
-  const { formEntries, setFormEntries, handleDelete, handleSubmit, handleImageChange, isExternal, editingMode } = useForm();
+  const { formEntries,
+    setFormEntries,
+    handleDelete,
+    handleSubmit,
+    handleImageChange,
+    isExternal,
+    editingMode,
+  } = useForm();
 
   return (
     <div className={`form-view-container ${classes.formViewContainer}`}>

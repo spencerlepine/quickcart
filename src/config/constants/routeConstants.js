@@ -7,3 +7,4 @@ export const CREATE = '/create';
 export const CART = '/cart';
 export const SAVED = '/saved';
 export const CART_LOGS = '/cart-logs';
+export const UPC_SCAN = '/upc-scan';
