@@ -1,5 +1,4 @@
 const https = require('https');
-require('dotenv').config();
 
 // https://github.com/jjmax75/google-image-search/blob/master/index.js
 /**
