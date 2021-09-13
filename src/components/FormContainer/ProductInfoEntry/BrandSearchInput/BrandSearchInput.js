@@ -26,6 +26,7 @@ const BrandSearchInput = ({ brand, handleChange }) => {
         renderInput={params => (
           <TextField {...params} label="Search Brands" margin="normal" variant="outlined" name="brand" value={brand} />
         )}
+        value={brand}
       />
     </div >
   );

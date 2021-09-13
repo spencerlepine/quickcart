@@ -7,9 +7,9 @@ export const FormContext = React.createContext();
 
 const placeholderItem = {
   name: '',
-  purchase_size: { unit: 'unit', count: 1 },
+  purchase_size: '1 unit',
   purchase_price: 0,
-  serving_size: { unit: 'unit', count: 1 },
+  serving_size: '1 unit',
   servings_per: 1,
   brand: '',
   category: 'other',

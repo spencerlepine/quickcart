@@ -82,6 +82,7 @@ export default makeStyles(() => ({
     },
   },
   scanUPCBtn: {
+    maxWidth: '100px',
     backgroundColor: '#375bf3',
     '&:hover': {
       backgroundColor: '#284adb',

@@ -1,6 +1,6 @@
 export const groceryItemSchema = {
   'name': 'string',
-  'purchase_size': 'string',
+  'purchase_size': 'object',
   'last_purchased': 'date (string)',
   'category': 'string',
   'serving_cost': 'number',
@@ -8,7 +8,7 @@ export const groceryItemSchema = {
   'upc': 'number',
   'brand': 'string',
   '_id': 'string',
-  'serving_size': 'string',
+  'serving_size': 'object',
   'serving_quantity': 'number',
   'image': 'string',
 };
@@ -43,7 +43,24 @@ const valueFromPossibleKeys = (obj, possibleKeys) => {
 const extractGroceryValue = (groceryObj, key) => {
   if (groceryObj) {
     const similarFields = similarGroceryFields[key];
-    const value = valueFromPossibleKeys(groceryObj, similarFields);
+    let value = valueFromPossibleKeys(groceryObj, similarFields);
+
+    if (key === 'serving_size' || key === 'purchase_size') {
+      const sizeRe = new RegExp(/(\d+)[ ]*([a-zA-Z]+)/, 'i');
+      const formatUnit = { 'grams': 'g', 'gram': 'g', 'ounces': 'oz' };
+
+      if (typeof value === 'string') {
+        const matches = value.match(sizeRe);
+
+        value = {
+          unit: formatUnit[matches[2]] ? formatUnit[matches[2]] : matches[2] || 'unit',
+          count: matches[1],
+        };
+      } else {
+        value = { unit: 1, count: 0 };
+      }
+    }
+
     return typeof value === 'string' ? value.trim() : value;
   }
 };

@@ -30,8 +30,11 @@ const UnitSelector = ({ classes, handleChange, currentUnit }) => {
         value={currentUnit}
         onChange={handleChange}
       >
+        {currentUnit && <MenuItem value={currentUnit}>
+          <em>{currentUnit}</em>
+        </MenuItem>}
         <MenuItem value="unit">
-          <em>Unit</em>
+          <em>unit</em>
         </MenuItem>
         <MenuItem value={'oz'}>oz</MenuItem>
         <MenuItem value={'g'}>g</MenuItem>
