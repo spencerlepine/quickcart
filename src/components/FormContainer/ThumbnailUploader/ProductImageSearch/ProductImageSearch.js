@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SearchBarComponent from 'material-ui-search-bar';
 import MissingMessage from 'components/ui/MissingMessage/MissingMessage';
 import googleImageCSE from 'api/google-cse';
 import useStyles from './styles.js';
 
-const ProductImageSearch = ({ handleImageChange }) => {
+const ProductImageSearch = ({ handleImageChange, productBrand, productName }) => {
   const classes = useStyles();
   const [imageQuery, setImageQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearch = () => {
-    googleImageCSE(imageQuery, resultArr => {
-      console.log(resultArr);
+  const handleSearch = (manualQuery = '') => {
+    googleImageCSE(manualQuery || imageQuery, resultArr => {
       const images = resultArr.map(obj => ({
         image: obj['image']['thumbnailLink'],
         name: obj['title'],
@@ -42,6 +41,14 @@ const ProductImageSearch = ({ handleImageChange }) => {
     );
   });
 
+  useEffect(() => {
+    if (productName) {
+      const defaultQuery = `${productName} ${productBrand || ''}`;
+      setImageQuery(defaultQuery);
+      handleSearch(defaultQuery);
+    }
+  }, []);
+
   return (
     <div className={classes.imageGoogleSearch}>
       <SearchBarComponent
@@ -68,4 +75,6 @@ export default ProductImageSearch;
 
 ProductImageSearch.propTypes = {
   handleImageChange: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
+  productBrand: PropTypes.string.isRequired,
 };

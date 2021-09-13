@@ -18,7 +18,12 @@ const FormContainer = () => {
 
   return (
     <div className={`form-view-container ${classes.formViewContainer}`}>
-      <ThumbnailUploader currentImage={formEntries['image']} handleImageChange={handleImageChange} />
+      <ThumbnailUploader
+        currentImage={formEntries['image']}
+        handleImageChange={handleImageChange}
+        productName={formEntries['name']}
+        productBrand={formEntries['brand']}
+      />
 
       <ProductInfoEntry
         setFormEntries={setFormEntries}

@@ -6,7 +6,7 @@ import ProductImageSearch from './ProductImageSearch/ProductImageSearch';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from './styles.js';
 
-const ThumbnailUploader = ({ handleImageChange, currentImage }) => {
+const ThumbnailUploader = ({ handleImageChange, currentImage, productBrand, productName }) => {
   const classes = useStyles();
 
   return (
@@ -38,7 +38,7 @@ const ThumbnailUploader = ({ handleImageChange, currentImage }) => {
               <ImageSearchIcon className={classes.searchPopup}></ImageSearchIcon>
             )}
             PopupElem={(
-              <ProductImageSearch handleImageChange={handleImageChange} />
+              <ProductImageSearch handleImageChange={handleImageChange} productBrand={productBrand} productName={productName} />
             )}
           />
         </div>}
@@ -51,4 +51,6 @@ export default ThumbnailUploader;
 ThumbnailUploader.propTypes = {
   handleImageChange: PropTypes.func.isRequired,
   currentImage: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
+  productBrand: PropTypes.string.isRequired,
 };
