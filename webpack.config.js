@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -19,7 +20,7 @@ const config = {
   },
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   devServer: {
@@ -27,6 +28,11 @@ const config = {
   },
   plugins: [
     new Dotenv(),
+
+    new HtmlWebPackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
   ],
   module: {
     rules: [
@@ -42,6 +48,14 @@ const config = {
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: 'asset',
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
 
       // Add your rules for custom modules here

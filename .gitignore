@@ -9,9 +9,10 @@
 /coverage
 
 # production
-dist/bundle.js
+dist
 
 # misc
+.*/
 ./vscode
 .DS_Store
 .env
