@@ -33,11 +33,11 @@ const CartViewer = () => {
   return (
     <div className={`cart-viewer ${classes.cartViewer}`}>
       <div className={`cart-options ${classes.cartOptions}`}>
-        <button onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
+        <button className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
 
-        <button onClick={toggleCartMode}>{modeTitle}</button>
+        <button onClick={toggleCartMode} className={`${classes.toggleBtn} ${classes.btn}`}>{modeTitle}</button>
 
-        <p>{cartTotal}</p>
+        <p className={classes.cartTotal}>Total: <span className={classes.dollarPrice}>{cartTotal}</span></p>
       </div>
 
       {analyzeMode ?
