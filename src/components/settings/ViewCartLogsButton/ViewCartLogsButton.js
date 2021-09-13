@@ -5,7 +5,7 @@ const ViewCartLogsButton = () => {
   const classes = useStyles();
 
   return (
-    <div className={`viewCartLogsButton ${classes.viewCartLogsBtn}`}>
+    <div className={`viewCartLogsButton ${classes.logContianer}`}>
       <button className={classes.logButton}>View Cart Logs</button>
     </div>
   );

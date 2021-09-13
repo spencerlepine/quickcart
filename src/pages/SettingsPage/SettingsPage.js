@@ -9,7 +9,7 @@ const SettingsPage = () => {
   const classes = useStyles();
 
   return (
-    <div className="settings-container">
+    <div className={`settings-container ${classes.settingsPage}`}>
       <div className={classes.settingOptions}>
         <LogoutButton />
         <ViewCartLogsButton />
