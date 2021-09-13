@@ -6,7 +6,7 @@ import FindInPageIcon from '@material-ui/icons/FindInPage';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import useStyles from './styles.js';
 
-const SearchPrompt = ({ closeSearchPrompt }) => {
+const SearchPrompt = ({ closePopup }) => {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,7 @@ const SearchPrompt = ({ closeSearchPrompt }) => {
         </Link>
       </div>
       <div className={classes.separator}>or</div>
-      <button className={classes.manualBtn} onClick={closeSearchPrompt}>
+      <button className={classes.manualBtn} onClick={closePopup}>
         ENTER MANUALLY
       </button>
     </div>
@@ -30,5 +30,5 @@ const SearchPrompt = ({ closeSearchPrompt }) => {
 export default SearchPrompt;
 
 SearchPrompt.propTypes = {
-  closeSearchPrompt: PropTypes.func.isRequired,
+  closePopup: PropTypes.func.isRequired,
 };

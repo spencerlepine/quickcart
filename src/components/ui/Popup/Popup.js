@@ -16,12 +16,12 @@ const Popup = ({ DefaultElem, PopupElem, manualDisplay }) => {
         <div className={`detailsPopup ${classes.detailsPopup}`} >
           <div ref={popupRef} className={`popupChild ${classes.popupChild}`}>
             <button className={classes.closeBtn} onClick={() => setDisplayPopup(false)}><CloseIcon fontSize={'large'} /></button>
-            {PopupElem}
+            {React.cloneElement(PopupElem, { closePopup: () => setDisplayPopup(false) })}
           </div>
         </div >
       ) : (
         <div className={`popup-container ${classes.popupContainer}`} onClick={() => setDisplayPopup(true)} role={'presentation'}>
-          {DefaultElem}
+          {React.cloneElement(DefaultElem, { closePopup: () => setDisplayPopup(false) })}
         </div>
       )}</React.Fragment>
   );
