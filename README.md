@@ -1,15 +1,16 @@
-<h1 align="center">QuickCart &middot; <a href="https://grocery-client-sl.herokuapp.com/">DEMO</a></h1>
+<h1 align="center">QuickCart <a href="https://grocery-client-sl.herokuapp.com/">  DEMO</a></h1>
 
 <p align="center">
   <img alt="QuickCart License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+  <img alt="CircleCI Badge" src="https://circleci.com/gh/spencerlepine/quickcart/tree/master.svg?style=svg" />
 </p>
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>
 
 <p align="center">
   <a href="#setup">Setup</a>  •
-	<a href="#technologies">Technologies</a> •
+  <a href="#technologies">Technologies</a> •
   <a href="#features">Features</a> •
   <a href="#contributing">Contributing</a>
 </p>
