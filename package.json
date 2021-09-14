@@ -22,7 +22,8 @@
     "build": "webpack --mode production",
     "create-hook": "npx husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "prepare": "npx husky install && npm run create-hook",
-    "test": "jest --watchAll",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint-staged": "eslint src --ext .js && eslint src --fix --ext .js && git add ."
   },
   "browserslist": {
@@ -78,11 +79,9 @@
     "eslint-plugin-react": "^7.25.1",
     "https": "^1.0.0",
     "husky": "^5.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "jest-watch-typeahead": "^0.6.4",
-    "ls": "^0.2.1",
-    "npm": "^7.23.0",
-    "style-loader": "^3.2.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.0",

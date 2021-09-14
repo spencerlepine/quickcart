@@ -37,7 +37,7 @@ exports[`should take a snapshot 1`] = `
         <img
           alt="QuickCart Logo"
           class="makeStyles-logoLink-8"
-          src="QuickCart-Logo.png"
+          src="test-file-stub"
         />
       </a>
       <a
@@ -94,7 +94,7 @@ exports[`should take a snapshot 1`] = `
       <img
         alt="QuickCart Screenshot"
         class="makeStyles-demoImg-21"
-        src="demo_transparent.png"
+        src="test-file-stub"
       />
       <div>
         <h2>
