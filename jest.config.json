@@ -1,15 +1,24 @@
 {
-  "compilerOptions": {
-    "baseUrl": "src"
-  },
-  "include": [
-    "src"
+  "setupFiles": [
+    "dotenv/config"
   ],
-  "exclude": [
-    "node_modules"
+  "moduleDirectories": [
+    "node_modules",
+    "src"
   ],
   "watchPlugins": [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "jsx"
+  ],
+  "moduleNameMapper": {
+    "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
+    "\\.(png|gif|ttf|eot|svg)$": "<rootDir>/src/__mocks__/fileMock.js"
+  },
+  "modulePaths": [
+    "/src/"
   ]
 }

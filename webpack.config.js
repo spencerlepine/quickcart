@@ -2,14 +2,12 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-const stylesHandler = 'style-loader';
-
-const config = {
+module.exports = {
+  // context: path.join(__dirname, 'client'),
+  mode: 'none',
   resolve: {
     fallback: {
       'https': false,
@@ -33,6 +31,10 @@ const config = {
       template: './public/index.html',
       filename: './index.html',
     }),
+
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
   ],
   module: {
     rules: [
@@ -42,8 +44,10 @@ const config = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/i,
-        use: [stylesHandler, 'css-loader'],
+        test: /\.css$/,
+        use: [
+          'style-loader', 'css-loader',
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -57,22 +61,6 @@ const config = {
           },
         ],
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-};
-
-module.exports = () => {
-  if (isProduction) {
-    config.mode = 'production';
-
-
-    config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-
-  } else {
-    config.mode = 'development';
-  }
-  return config;
 };
