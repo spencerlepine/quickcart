@@ -4,7 +4,7 @@ import AddToCartButton from './AddToCartButton';
 import { CartContext } from 'context/CartContext/CartContext';
 import sampleProduct from 'sampleProduct';
 
-describe('ProductCard', () => {
+describe('AddToCart', () => {
   test('renders a clickable element', () => {
     render(<AddToCartButton isBubbleBtn={false} item={sampleProduct} categoryID={sampleProduct['_id']} />);
 

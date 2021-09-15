@@ -38,30 +38,7 @@ const Card = props => {
           <Popup
             DefaultElem={(
               <div className={classes.minimalCard}>
-                <div className={classes.imageContainer}>
-                  <img alt={name} src={image}></img>
-                </div>
-
-                <h4 className={classes.foodName}>{name}</h4>
-
-                <p className={classes.foodPrice}>{productPrice}</p>
-
-                <div className={classes.expandButton}>
-                  <ExpandMoreIcon />
-                </div>
-              </div>
-            )}
-            PopupElem={<ProductDetails {...props} />}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className={`card ${classes.card}`}>
-          <Popup
-            DefaultElem={(
-              <div className={classes.minimalCard}>
-                <AddToCartButton isBubbleBtn={!minimalFormat} item={props} categoryID={category} />
+                {AddToCartButton && <AddToCartButton isBubbleBtn={minimalFormat} item={props} categoryID={category} />}
                 <div className={classes.imageContainer}>
                   <img alt={name} src={image}></img>
                 </div>
@@ -88,6 +65,29 @@ const Card = props => {
               image={image}
               category={category}
               isSavedProducts={isSavedProducts} />}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className={`card ${classes.card}`}>
+          <Popup
+            DefaultElem={(
+              <div className={classes.minimalCard}>
+                <div className={classes.imageContainer}>
+                  <img alt={name} src={image}></img>
+                </div>
+
+                <h4 className={classes.foodName}>{name}</h4>
+
+                <p className={classes.foodPrice}>{productPrice}</p>
+
+                <div className={classes.expandButton}>
+                  <ExpandMoreIcon />
+                </div>
+              </div>
+            )}
+            PopupElem={<ProductDetails {...props} />}
           />
         </div>
       );
