@@ -24,7 +24,7 @@
     "husky:prepare": "husky install && npm run create-hook",
     "test": "jest",
     "coverage": "jest  --coverage && coveralls < coverage/lcov.info",
-    "test:watch": "jest --watchAll",
+    "test:watch": "jest --watch",
     "lint-staged": "eslint client/src --ext .js && eslint client/src --fix --ext .js && git add ."
   },
   "browserslist": {
