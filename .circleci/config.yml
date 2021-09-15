@@ -29,15 +29,15 @@ jobs:
           name: code-coverage
           command: npm run coverage
       - coveralls/upload
-      - store_artifacts: # special step to save test results as as artifact
+     # - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: test-results
-          prefix: tests
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: coverage
-          prefix: coverage
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test-results
+          #path: test-results
+          #prefix: tests
+     # - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          #path: coverage
+          #prefix: coverage
+     # - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          #path: test-results
       - run: # test what branch we're on.
           name: "What branch am I on?"
           command: echo ${CIRCLE_BRANCH}
