@@ -12,6 +12,11 @@ import { createBrowserHistory } from 'history';
 import currentUser from 'currentUser';
 import '@testing-library/jest-dom';
 
+window.toTitleCase = str => {
+  const result = str.replace(/([A-Z])/g, ' $1');
+  return result.charAt(0).toUpperCase() + result.slice(1);
+};
+
 const history = createBrowserHistory();
 
 const AllTheProviders = ({ children }) => (
