@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "webpack serve --config ./webpack.dev.config.js",
-    "start": "webpack-dev-server --config ./webpack.prod.config.js",
+    "start": "npm run build && node server/index.js",
     "build": "BABEL_ENV=node webpack --config ./webpack.prod.config.js",
     "create-hook": "husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "husky:prepare": "husky install && npm run create-hook",
