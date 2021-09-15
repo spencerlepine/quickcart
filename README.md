@@ -26,6 +26,7 @@
 - Configue the ```.env``` file (**[Configure API Keys](<#configure api keys>)**)
 ```sh
     npm install
+    npm run husky:prepare
     npm run dev
 ```
 
