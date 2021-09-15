@@ -6,8 +6,7 @@ const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
 module.exports = {
-  // context: path.join(__dirname, 'client'),
-  mode: 'none',
+  mode: 'development',
   resolve: {
     fallback: {
       'https': false,
@@ -16,10 +15,10 @@ module.exports = {
     extensions: ['.js', '*'],
     modules: [path.resolve(__dirname, 'js'), 'node_modules', 'src'],
   },
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, 'client', 'src', 'index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'client', 'build'),
+    filename: '[name].[chunkhash].bundle.js',
   },
   devServer: {
     historyApiFallback: true,
@@ -28,12 +27,12 @@ module.exports = {
     new Dotenv(),
 
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: path.resolve(__dirname, 'client', 'public', 'index.html'),
       filename: './index.html',
     }),
 
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   module: {
