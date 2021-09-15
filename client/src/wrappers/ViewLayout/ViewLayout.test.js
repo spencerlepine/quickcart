@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, cleanup } from 'test-utils';
-import App from './App';
+import ViewLayout from './ViewLayout';
 
 describe('Card', () => {
   afterEach(cleanup);
 
   it('should render', () => {
-    expect(() => render(<App />)).not.toThrow(new Error);
+    expect(() => render(<ViewLayout><p>MOCK CHILD</p></ViewLayout>)).not.toThrow(new Error);
   });
 });
