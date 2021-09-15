@@ -4,7 +4,7 @@
   <img alt="QuickCart License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
   <img alt="CircleCI Badge" src="https://circleci.com/gh/spencerlepine/quickcart/tree/master.svg?style=shield" />
-  <img alt="Coverage Status" src="https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master)](https://coveralls.io/github/spencerlepine/quickcart?branch=master" />
+  <img alt="Coverage Status" src="https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master" />
 </p>
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>

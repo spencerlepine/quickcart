@@ -1,1 +1,12 @@
 repo_token: <coveralls.io token>
+
+# Use CircleCI: https://circleci.com/
+# Add coverage to config
+# COVERALL_REPO_TOKEN to .env (plus CircleCI)
+
+# Coveralls: https://docs.coveralls.io/
+# Install coverage package: npm i coveralls -D
+# Add coverage package.json script: "scripts: { jest  --coverage && coveralls < coverage/lcov.info }"
+
+# Refer to this repo for Jest + Coveralls tutorial
+# https://github.com/nickmerwin/node-coveralls/blob/master/package.json
