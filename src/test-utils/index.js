@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
-// import { ThemeProvider } from 'my-ui-lib';
 import { AuthProvider } from 'context/AuthContext/AuthContext';
 import { CartProvider } from 'context/CartContext/CartContext';
 import { FormProvider } from 'context/FormContext/FormContext';
@@ -9,6 +8,7 @@ import { NotificationsProvider } from 'context/NotificationsContext/Notification
 import { ProductsProvider } from 'context/ProductsContext/ProductsContext';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import '@testing-library/jest-dom';
 
 const history = createBrowserHistory();
 
