@@ -10,7 +10,7 @@
 .coveralls.yml
 
 # production
-dist
+build
 
 # misc
 .*/

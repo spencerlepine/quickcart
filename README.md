@@ -23,16 +23,10 @@
 </p>
 
 ## ⚙️ Setup:
-```sh
-    git clone https://github.com/spencerlepine/quickcart.git
-    cd quickcart
-    cp .env.sample .env
-```
 - Configue the ```.env``` file (**[Configure API Keys](<#configure api keys>)**)
 ```sh
     npm install
-    npm run build
-    npm start
+    npm run dev
 ```
 
 ## 📦 Technologies:
