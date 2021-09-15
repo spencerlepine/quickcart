@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
-import { AuthProvider } from 'context/AuthContext/AuthContext';
+// import { AuthProvider } from 'context/AuthContext/AuthContext';
+import { AuthContext } from 'context/AuthContext/AuthContext';
 import { CartProvider } from 'context/CartContext/CartContext';
 import { FormProvider } from 'context/FormContext/FormContext';
 import { NotificationsProvider } from 'context/NotificationsContext/NotificationsContext';
 import { ProductsProvider } from 'context/ProductsContext/ProductsContext';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import currentUser from 'currentUser';
 import '@testing-library/jest-dom';
 
 const history = createBrowserHistory();
 
 const AllTheProviders = ({ children }) => (
   // <ThemeProvider theme="light">
-  <AuthProvider>
+  <AuthContext.Provider value={currentUser}>
     <NotificationsProvider>
       <ProductsProvider>
         <CartProvider>
@@ -26,7 +28,7 @@ const AllTheProviders = ({ children }) => (
         </CartProvider>
       </ProductsProvider>
     </NotificationsProvider>
-  </AuthProvider>
+  </AuthContext.Provider>
   // </ThemeProvider>
 );
 
