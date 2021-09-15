@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup } from 'test-utils';
 import App from './App';
 
-describe('Card', () => {
+describe('App', () => {
   afterEach(cleanup);
 
   it('should render', () => {
