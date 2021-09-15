@@ -11,7 +11,6 @@ const SavedPage = () => {
 
   return (
     <div className={`saved-container ${classes.savedContainer}`}>
-      <h3 className={classes.savedTitle}>All Saved Items</h3>
       <BrowseItems productsObj={savedProducts} isSavedProducts={true} />
     </div>
   );

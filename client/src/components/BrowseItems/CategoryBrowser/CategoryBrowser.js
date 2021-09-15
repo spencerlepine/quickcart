@@ -15,8 +15,12 @@ const CategoryBrowser = ({ categoryProducts, isSavedProducts }) => {
         <React.Fragment key={category}>
           {categoryProducts[category] && (
             <section className={classes.categorySection}>
-              <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
-              <hr />
+              {Object.values(categoryProducts[category]).length > 0 && (<>
+                <h3 className={`${classes.categoryTitle}`}>{window.toTitleCase(category)}</h3>
+                {isSavedProducts && <h4 className={classes.savedTitle}>saved</h4>}
+                <hr />
+              </>)}
+
               <CategoryItems category={category} products={categoryProducts[category]} isSavedProducts={isSavedProducts} />
             </section>
           )}
