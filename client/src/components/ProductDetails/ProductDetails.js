@@ -52,7 +52,7 @@ const ProductDetails = props => {
 
           {isSavedProducts && <EditItemButton item={{ ...props }} isExternalProduct={!isSavedProducts} />}
 
-          <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />
+          {AddToCartButton && <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />}
         </div>
         {/* <div className={classes.nutritionDetials}>
           <NutritionFacts

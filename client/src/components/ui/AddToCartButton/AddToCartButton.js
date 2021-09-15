@@ -26,5 +26,9 @@ export default AddToCartButton;
 AddToCartButton.propTypes = {
   item: PropTypes.object.isRequired,
   categoryID: PropTypes.string.isRequired,
-  isBubbleBtn: PropTypes.bool.isRequired,
+  isBubbleBtn: PropTypes.bool,
+};
+
+AddToCartButton.defaultProps = {
+  isBubbleBtn: false,
 };

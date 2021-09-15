@@ -13,15 +13,15 @@ const Popup = ({ DefaultElem, PopupElem, manualDisplay }) => {
   return (
     <React.Fragment>{
       displayPopup ? (
-        <div className={`detailsPopup ${classes.detailsPopup}`} >
+        <div className={`popup-container ${classes.detailsPopup}`}>
           <div ref={popupRef} className={`popupChild ${classes.popupChild}`}>
             <button className={classes.closeBtn} onClick={() => setDisplayPopup(false)}><CloseIcon fontSize={'large'} /></button>
-            {React.cloneElement(PopupElem, { closePopup: () => setDisplayPopup(false) })}
+            {PopupElem}
           </div>
         </div >
       ) : (
         <div className={`popup-container ${classes.popupContainer}`} onClick={() => setDisplayPopup(true)} role={'presentation'}>
-          {React.cloneElement(DefaultElem, { closePopup: () => setDisplayPopup(false) })}
+          {DefaultElem}
         </div>
       )}</React.Fragment>
   );
