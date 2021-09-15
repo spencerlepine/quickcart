@@ -23,6 +23,7 @@
     "create-hook": "npx husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "prepare": "npx husky install && npm run create-hook",
     "test": "jest",
+    "coverage": "jest  --coverage && coveralls < coverage/lcov.info",
     "test:watch": "jest --watchAll",
     "lint-staged": "eslint src --ext .js && eslint src --fix --ext .js && git add ."
   },
@@ -71,6 +72,7 @@
     "@upstatement/eslint-config": "^1.0.1",
     "@webpack-cli/generators": "^2.3.0",
     "babel-loader": "^8.2.2",
+    "coveralls": "^3.1.1",
     "css-loader": "^6.2.0",
     "dotenv-webpack": "^7.0.3",
     "eslint": "^7.32.0",
