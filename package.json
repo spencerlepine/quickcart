@@ -18,25 +18,14 @@
   },
   "scripts": {
     "dev": "webpack serve --config ./webpack.dev.config.js",
-    "start": "npm run build && node server/index.js",
+    "start": "node server/index.js",
     "build": "BABEL_ENV=node webpack --config ./webpack.prod.config.js",
     "create-hook": "husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "husky:prepare": "husky install && npm run create-hook",
     "test": "jest",
-    "coverage": "jest  --coverage && coveralls < coverage/lcov.info",
+    "test:coverage": "npm run test -- --watchAll=false --coverage && coveralls < coverage/lcov.info",
     "test:watch": "jest --watch",
     "lint-staged": "eslint client/src --ext .js && eslint client/src --fix --ext .js && git add ."
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -94,5 +83,67 @@
     "hooks": {
       "pre-commit": "npm run lint-staged && git add ."
     }
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "client/src"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/client/src/__mocks__/styleMock.js",
+      "\\.(png|gif|ttf|eot|svg)$": "<rootDir>/client/src/__mocks__/fileMock.js"
+    },
+    "modulePaths": [
+      "/client/src/"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": [
+      "react-app",
+      "eslint:recommended",
+      "@upstatement/eslint-config/react",
+      "plugin:react/recommended",
+      "plugin:jest/recommended"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "no-console": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "react/display-name": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
