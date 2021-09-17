@@ -1,8 +1,8 @@
-import account from './account/index.js';
-import cart from './cart/index.js';
-import logs from './logs/index.js';
-import saved from './saved/index.js';
-import suggested from './suggested/index.js';
+import account from './account';
+import cart from './cart';
+import logs from './logs';
+import saved from './saved';
+import suggested from './suggested';
 
 const firebaseAPI = {
   account,
