@@ -1,9 +1,12 @@
 on: [push, pull_request]
+  
 env:
   CI: true
 
 jobs:
+  
   test:
+    environment: production_environment
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
