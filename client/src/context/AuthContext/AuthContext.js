@@ -4,8 +4,8 @@ import * as authUser from 'api/firebase/account';
 
 export const AuthContext = React.createContext();
 
-export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,36 +83,12 @@ export function AuthProvider({ children }) {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-const useAuth = () => {
-  const {
-    loading,
-    resetPassword,
-    updatePassword,
-    updateEmail,
-    currentUser,
-    loginUser,
-    signupUser,
-    logoutUser,
-    updateProfilePic,
-  } = useContext(AuthContext);
-
-  return {
-    resetPassword,
-    updatePassword,
-    updateEmail,
-    loading,
-    currentUser,
-    loginUser,
-    logoutUser,
-    signupUser,
-    updateProfilePic,
-  };
 };
+
+const useAuth = () => useContext(AuthContext);
 
 export default useAuth;
 
 AuthProvider.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
 };

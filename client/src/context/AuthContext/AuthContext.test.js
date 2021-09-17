@@ -1,15 +1,48 @@
-import React from 'react';
-import { screen, render } from 'test-utils';
-import { AuthProvider } from './AuthContext';
+// import React from 'react';
+// import { screen, render } from 'test-utils';
+// import * as authUser from 'api/firebase/account';
+import useAuth, { AuthProvider } from './AuthContext';
+import testContextExports from 'test-utils/testContextExports';
 
 describe('AuthContext', () => {
-  it('should render', () => {
-    expect(() => render(<AuthProvider><p>MOCK CHILD</p></AuthProvider>)).not.toThrow(new Error);
-  });
+  const expectedExports = [
+    {
+      key: 'loading',
+      targetInstance: Boolean,
+    },
+    {
+      key: 'resetPassword',
+      targetInstance: Function,
+    },
+    {
+      key: 'updatePassword',
+      targetInstance: Function,
+    },
+    {
+      key: 'updateEmail',
+      targetInstance: Function,
+    },
+    {
+      key: 'currentUser',
+      targetInstance: Object,
+    },
+    {
+      key: 'loginUser',
+      targetInstance: Function,
+    },
+    {
+      key: 'logoutUser',
+      targetInstance: Function,
+    },
+    {
+      key: 'signupUser',
+      targetInstance: Function,
+    },
+    {
+      key: 'updateProfilePic',
+      targetInstance: Function,
+    },
+  ];
 
-  it('should render the children', () => {
-    render(<AuthProvider><p>MOCK CHILD</p></AuthProvider>);
-
-    expect(screen.getByText('MOCK CHILD')).toBeInTheDocument();
-  });
+  testContextExports(AuthProvider, useAuth, expectedExports);
 });

@@ -1,15 +1,40 @@
-import React from 'react';
-import { screen, render } from 'test-utils';
-import { ProductsProvider } from './ProductsContext';
+// import React from 'react';
+// import { screen, render } from 'test-utils';
+// import * as authUser from 'api/firebase/account';
+import useProducts, { ProductsProvider } from './ProductsContext';
+import testContextExports from 'test-utils/testContextExports';
 
-describe('ProductsContextContext', () => {
-  it('should render', () => {
-    expect(() => render(<ProductsProvider><p>MOCK CHILD</p></ProductsProvider>)).not.toThrow(new Error);
-  });
+describe('ProductsContext', () => {
+  const expectedExports = [
+    {
+      key: 'loading',
+      targetInstance: Boolean,
+    },
+    {
+      key: 'fetchCategoryDocs',
+      targetInstance: Function,
+    },
+    {
+      key: 'fetchDocByID',
+      targetInstance: Function,
+    },
+    {
+      key: 'savedProducts',
+      targetInstance: Object,
+    },
+    {
+      key: 'addSavedProduct',
+      targetInstance: Function,
+    },
+    {
+      key: 'externalProducts',
+      targetInstance: Function,
+    },
+    {
+      key: 'deleteSavedProduct',
+      targetInstance: Function,
+    },
+  ];
 
-  it('should render the children', () => {
-    render(<ProductsProvider><p>MOCK CHILD</p></ProductsProvider>);
-
-    expect(screen.getByText('MOCK CHILD')).toBeInTheDocument();
-  });
+  testContextExports(ProductsProvider, useProducts, expectedExports);
 });
