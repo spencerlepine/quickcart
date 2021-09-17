@@ -24,6 +24,7 @@
     "husky:prepare": "husky install && npm run create-hook",
     "test": "jest",
     "test:coverage": "npm run test -- --watchAll=false --coverage && coveralls < coverage/lcov.info",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test:watch": "jest --watch",
     "lint-staged": "eslint client/src --ext .js && eslint client/src --fix --ext .js && git add ."
   },
