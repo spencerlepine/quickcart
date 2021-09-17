@@ -66,13 +66,9 @@
   - Create an account [here](https://spoonacular.com/food-api)
   - Navigate to > Console > Profile
 
-## Contributing
+## ❇️ Contributing
 
 See [TODO](./TODO) - Feel free to create a pull request or suggest a feature :D
-
-## License
-
-MIT
 
 ---
 
