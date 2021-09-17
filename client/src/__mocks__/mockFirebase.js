@@ -1,3 +1,5 @@
+import currentUser from 'currentUser';
+
 export default class FirestoreMock {
   constructor() {
     // mocked methods that return the class
@@ -78,9 +80,21 @@ jest.mock('firebase/app', () => ({
   default: {
     initializeApp: () => ({
       db: () => new FirestoreMock(),
-      auth: () => ({ onAuthStateChanged: () => { } }),
+      auth: () => ({
+        onAuthStateChanged: () => { },
+        currentUser,
+      }),
     }),
     storage: () => { },
     firestore: () => { },
+  },
+}));
+
+jest.mock('config/firebase', () => ({
+  __esModule: true,
+  default: {
+    auth: {
+      currentUser,
+    },
   },
 }));

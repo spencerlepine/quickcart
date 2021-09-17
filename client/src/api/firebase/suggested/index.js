@@ -2,7 +2,7 @@ import { auth, db } from 'config/firebase';
 import { ALL_USERS, SAVED_CATEGORIES } from '../userSchema.js';
 
 export const getCategorySuggestions = (categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -18,7 +18,7 @@ export const getCategorySuggestions = (categoryID, successCb) => {
 };
 
 export const getItemReplacement = (badItem, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)

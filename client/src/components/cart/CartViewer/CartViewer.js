@@ -35,12 +35,12 @@ const CartViewer = () => {
       <div className={`cart-options ${classes.cartOptions}`}>
         <button className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
 
-        <button onClick={toggleCartMode} className={`${classes.toggleBtn} ${classes.btn}`}>{modeTitle}</button>
+        <button onClick={toggleCartMode} className={`${classes.toggleBtn} ${classes.btn} toggleBtn`}>{modeTitle}</button>
 
         <p className={classes.cartTotal}>Total: <span className={classes.dollarPrice}>{cartTotal}</span></p>
       </div>
 
-      {analyzeMode ?
+      {analyzeMode && cartProducts ?
         <section className={classes.analyzeContainer}>
           <CategoryAnalyzer cartProducts={cartProducts} />
         </section>

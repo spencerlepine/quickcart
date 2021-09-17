@@ -2,7 +2,7 @@ import { auth, db } from 'config/firebase';
 import { ALL_USERS, USER_CART, CATEGORY_ITEMS } from '../firebaseSchema.js';
 
 export const fetchAll = successCb => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -17,7 +17,7 @@ export const fetchAll = successCb => {
 };
 
 export const fetchCategory = (categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -33,7 +33,7 @@ export const fetchCategory = (categoryID, successCb) => {
 };
 
 export const saveItem = (item, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
   const { _id: id } = item;
 
   // Add a filler value
@@ -62,7 +62,7 @@ export const saveItem = (item, categoryID, successCb) => {
 };
 
 export const removeItem = async (itemID, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   const itemDocRef = db
     .collection(ALL_USERS)
@@ -84,7 +84,7 @@ export const removeItem = async (itemID, categoryID, successCb) => {
 };
 
 export const updateItem = async (item, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   const itemDocRef = db
     .collection(ALL_USERS)
@@ -117,7 +117,7 @@ function formatDate(d) {
 
 export const logCartItem = (item, categoryID, successCb) => {
   try {
-    const { uid: userId } = auth.currentUser;
+    const { uid: userId } = (auth.currentUser || {});
 
     const today = new Date();
     const formattedDate = formatDate(today);
@@ -156,7 +156,7 @@ export const logCartItem = (item, categoryID, successCb) => {
 
 // export const addToCart = async itemToAdd => {
 //   try {
-//     const { uid: userId } = auth.currentUser;
+//     const { uid: userId } = (auth.currentUser || {});
 
 //     const itemToAddId = itemToAdd['_id'];
 
