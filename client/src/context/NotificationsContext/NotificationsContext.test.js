@@ -1,15 +1,20 @@
-import React from 'react';
-import { screen, render } from 'test-utils';
-import { NotificationsProvider } from './NotificationsContext';
+// import React from 'react';
+// import { screen, render } from 'test-utils';
+// import * as authUser from 'api/firebase/account';
+import useNotifications, { NotificationsProvider } from './NotificationsContext';
+import testContextExports from 'test-utils/testContextExports';
 
-describe('NotificationsContextContext', () => {
-  it('should render', () => {
-    expect(() => render(<NotificationsProvider><p>MOCK CHILD</p></NotificationsProvider>)).not.toThrow(new Error);
-  });
+describe('NotificationsContext', () => {
+  const expectedExports = [
+    {
+      key: 'currentNotification',
+      targetInstance: String,
+    },
+    {
+      key: 'setCurrentNotification',
+      targetInstance: Function,
+    },
+  ];
 
-  it('should render the children', () => {
-    render(<NotificationsProvider><p>MOCK CHILD</p></NotificationsProvider>);
-
-    expect(screen.getByText('MOCK CHILD')).toBeInTheDocument();
-  });
+  testContextExports(NotificationsProvider, useNotifications, expectedExports);
 });
