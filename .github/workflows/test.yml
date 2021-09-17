@@ -1,10 +1,10 @@
 on: [push, pull_request]
-  
+
 env:
   CI: true
 
 jobs:
-  
+
   test:
     environment: production_environment
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
@@ -17,26 +17,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - name: Create env file
-        run: |
-          cat << EOF >> .env
-          REACT_APP_FIREBASE_API_KEY=${{ secrets.REACT_APP_FIREBASE_API_KEY }}
-          REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
-          REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
-          REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
-          REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
-          REACT_APP_FIREBASE_APP_ID=${{ secrets.REACT_APP_FIREBASE_APP_ID }}
-          REACT_APP_FIREBASE_MEASUREMENT_ID=${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
-          REACT_APP_SCANDIT_LISCENSE_KEY=${{ secrets.REACT_APP_SCANDIT_LISCENSE_KEY }}
-          REACT_APP_CSE_ID=${{ secrets.REACT_APP_CSE_ID }}
-          REACT_APP_CSE_API_KEY=${{ secrets.REACT_APP_CSE_API_KEY }}
-          REACT_APP_SPOONACULAR_API_KEY=${{ secrets.REACT_APP_SPOONACULAR_API_KEY }}
-          REACT_APP_MAX_THUMBNAIL_SIZE=${{ secrets.REACT_APP_MAX_THUMBNAIL_SIZE }}
-          SKIP_PREFLIGHT_CHECK=${{ secrets.SKIP_PREFLIGHT_CHECK }}
-          EXTEND_ESLINT=${{ secrets.EXTEND_ESLINT }}
-          COVERALL_REPO_TOKEN=${{ secrets.COVERALL_REPO_TOKEN }}
-          EOF
-          
       - name: Clone repository
         uses: actions/checkout@v2
 
