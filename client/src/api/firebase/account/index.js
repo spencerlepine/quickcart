@@ -1,4 +1,4 @@
-import { auth, storage, db } from '../config.js';
+import { auth, storage, db } from 'config/firebase';
 import { ALL_USERS, USER_ACCOUNT, ACCOUNT_DETAILS } from '../firebaseSchema.js';
 
 export const checkLoginStatus = successCb => {

@@ -9,7 +9,7 @@ describe('CartCard', () => {
   });
 
   test('renders the product image', () => {
-    expect(screen.findByRole('image')).toBeInTheDocument();
+    expect(screen.findByRole('img')).toBeInTheDocument();
   });
 
   test('renders the product price formatted $1.99', () => {

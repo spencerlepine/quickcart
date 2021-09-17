@@ -18,7 +18,7 @@ const withAuthRedirect = (Component, isAuthPage = false) =>
       if (isAuthPage) {
         return <Component />;
       } else {
-        return <Redirect to={WELCOME} />;
+        return <Redirect className="redirect" to={WELCOME} />;
       }
     }
   };

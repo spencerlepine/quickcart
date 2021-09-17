@@ -1,4 +1,4 @@
-import { auth, db } from '../config.js';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, USER_CART, CATEGORY_ITEMS } from '../firebaseSchema.js';
 
 export const fetchAll = successCb => {

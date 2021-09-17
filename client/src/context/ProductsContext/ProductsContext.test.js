@@ -28,7 +28,7 @@ describe('ProductsContext', () => {
     },
     {
       key: 'externalProducts',
-      targetInstance: Function,
+      targetInstance: Object,
     },
     {
       key: 'deleteSavedProduct',

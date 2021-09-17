@@ -1,4 +1,4 @@
-import { auth, db } from '../config';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.js';
 import { FETCH_ITEM_LIMIT } from 'config';
 

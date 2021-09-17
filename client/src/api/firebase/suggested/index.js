@@ -1,4 +1,4 @@
-import { auth, db } from './index';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, SAVED_CATEGORIES } from '../userSchema.js';
 
 export const getCategorySuggestions = (categoryID, successCb) => {

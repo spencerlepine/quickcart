@@ -1,4 +1,4 @@
-import { auth, db } from '../config.js';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, CART_LOGS, LOG_ITEMS } from '../firebaseSchema.js';
 
 export const logItem = (item, logID, successCb) => {

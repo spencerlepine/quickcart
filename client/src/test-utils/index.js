@@ -11,10 +11,6 @@ import { createBrowserHistory } from 'history';
 import currentUser from 'currentUser';
 import '@testing-library/jest-dom';
 
-// Need to mock firebase? (try npm firebase-mock?)
-// https://stackoverflow.com/questions/52043886/how-do-you-mock-firebase-firestore-methods-using-jest
-// https://stackoverflow.com/questions/61686830/error-mocking-firebase-admin-in-jest-typeerror-admin-firestore-is-not-a-funct
-
 window.toTitleCase = str => {
   const result = str.replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);
