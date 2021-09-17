@@ -3,7 +3,6 @@
 <p align="center">
   <img alt="QuickCart License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
-  <img alt="CircleCI Badge" src="https://circleci.com/gh/spencerlepine/quickcart/tree/master.svg?style=shield" />
   <img alt="Coverage Status" src="https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master" />
 </p>
 
@@ -51,11 +50,11 @@
 ## 🔑 Configue API Keys
 1.  **Create a Firebase project**:
 
-  - Navigate through until you find the SDK slide
+  - Navigate through to the SDK slide
   - Save Firebase API keys
-  - Under **Authentication**:
+  - Update the **Authentication** tab:
     - Activate email/password authentication
-    - List <__domain_url__> or __localhost__ under:
+    - List <__your_domain_url__> or __localhost__ under:
       > Authentication > Sign-in method > Authorized domains
   - Under **Firestore**:
     - Configure a Firestore database
