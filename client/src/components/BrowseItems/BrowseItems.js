@@ -18,6 +18,7 @@ const BrowseItems = ({ productsObj, isSavedProducts }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [searchMode, setSearchMode] = useState(false);
   const [searchFilter, setSearchFilter] = useState('');
+  const [sortMode, setSortMode] = useState({});
 
   useEffect(() => {
     // DON'T Reduce the categorized object whenenever searchFilter updates
@@ -26,11 +27,18 @@ const BrowseItems = ({ productsObj, isSavedProducts }) => {
 
   return (
     <div className={`browse-items ${classes.browseItems}`}>
-      <SearchBar searchMode={searchMode} searchFilter={searchFilter} setSearchMode={setSearchMode} setSearchFilter={setSearchFilter} />
+      <SearchBar
+        searchMode={searchMode}
+        searchFilter={searchFilter}
+        setSearchMode={setSearchMode}
+        setSearchFilter={setSearchFilter}
+        sortMode={sortMode}
+        setSortMode={setSortMode}
+      />
       <SearchOptions searchMode={searchMode} setSearchFilter={setSearchFilter} setSearchMode={setSearchMode} />
 
       {searchMode ?
-        <ProductSearchResult searchFilter={searchFilter} allProducts={productsArray} isSavedProducts={isSavedProducts} />
+        <ProductSearchResult searchFilter={searchFilter} allProducts={productsArray} isSavedProducts={isSavedProducts} sortMode={sortMode} />
         :
         <CategoryBrowser categoryProducts={productsObj} isSavedProducts={isSavedProducts} />
       }

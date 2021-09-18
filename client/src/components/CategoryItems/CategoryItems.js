@@ -14,6 +14,7 @@ const CategoryItems = ({ category, products, isSavedProducts }) => {
   }, []);
 
   const categoryItems = Object.values(products);
+
   if (categoryItems.length) {
     return (
       <div className={`category-items ${classes.categoryItems}`}>

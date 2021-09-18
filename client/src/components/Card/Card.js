@@ -15,70 +15,62 @@ const Card = props => {
     purchase_price,
     image,
     category,
-    searchFilter,
     minimalFormat,
   } = props;
-
-  const searchRe = new RegExp(`${searchFilter}`, 'gi');
-  const itemMatchesSearch = searchRe.test(name);
 
   const productPrice = parseFloat(
     purchase_price,
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  if (!searchFilter || itemMatchesSearch) {
-    if (minimalFormat) {
-      return (
-        <div className={`card ${classes.card}`}>
-          <Popup
-            DefaultElem={(
-              <div className={classes.minimalCard}>
-                {AddToCartButton && <AddToCartButton isBubbleBtn={minimalFormat} item={props} categoryID={category} />}
-                <div className={classes.imageContainer}>
-                  <img alt={name} src={image}></img>
-                </div>
-
-                <h4 className={classes.foodName}>{name}</h4>
-
-                <p className={classes.foodPrice}>{productPrice}</p>
-
-                <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
-
-                <div className={classes.expandButton}>
-                  <ExpandMoreIcon />
-                </div>
+  if (minimalFormat) {
+    return (
+      <div className={`card ${classes.card}`}>
+        <Popup
+          DefaultElem={(
+            <div className={classes.minimalCard}>
+              {AddToCartButton && <AddToCartButton isBubbleBtn={minimalFormat} item={props} categoryID={category} />}
+              <div className={classes.imageContainer}>
+                <img alt={name} src={image}></img>
               </div>
-            )}
-            PopupElem={<ProductDetails {...props} />}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className={`card ${classes.card}`}>
-          <Popup
-            DefaultElem={(
-              <div className={classes.minimalCard}>
-                <div className={classes.imageContainer}>
-                  <img alt={name} src={image}></img>
-                </div>
 
-                <h4 className={classes.foodName}>{name}</h4>
+              <h4 className={classes.foodName}>{name}</h4>
 
-                <p className={classes.foodPrice}>{productPrice}</p>
+              <p className={classes.foodPrice}>{productPrice}</p>
 
-                <div className={classes.expandButton}>
-                  <ExpandMoreIcon />
-                </div>
+              <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
+
+              <div className={classes.expandButton}>
+                <ExpandMoreIcon />
               </div>
-            )}
-            PopupElem={<ProductDetails {...props} />}
-          />
-        </div>
-      );
-    }
+            </div>
+          )}
+          PopupElem={<ProductDetails {...props} />}
+        />
+      </div>
+    );
   } else {
-    return null;
+    return (
+      <div className={`card ${classes.card}`}>
+        <Popup
+          DefaultElem={(
+            <div className={classes.minimalCard}>
+              <div className={classes.imageContainer}>
+                <img alt={name} src={image}></img>
+              </div>
+
+              <h4 className={classes.foodName}>{name}</h4>
+
+              <p className={classes.foodPrice}>{productPrice}</p>
+
+              <div className={classes.expandButton}>
+                <ExpandMoreIcon />
+              </div>
+            </div>
+          )}
+          PopupElem={<ProductDetails {...props} />}
+        />
+      </div>
+    );
   }
 };
 

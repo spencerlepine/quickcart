@@ -8,7 +8,7 @@ import App from './App';
 const history = createBrowserHistory();
 
 window.toTitleCase = key => {
-  const result = key.replace(/([A-Z])/g, ' $1');
+  const result = key.replace('_', ' ').replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);
 };
 
