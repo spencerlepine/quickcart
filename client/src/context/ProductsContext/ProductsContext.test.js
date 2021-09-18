@@ -34,6 +34,10 @@ describe('ProductsContext', () => {
       key: 'deleteSavedProduct',
       targetInstance: Function,
     },
+    {
+      key: 'fetchNutritionDetails',
+      targetInstance: Function,
+    },
   ];
 
   testContextExports(ProductsProvider, useProducts, expectedExports);

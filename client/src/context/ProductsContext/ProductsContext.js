@@ -93,6 +93,15 @@ export function ProductsProvider({ children }) {
     });
   }
 
+  function fetchNutritionDetails(productId, categoryID, isExternalProduct) {
+    spoonacularApi.fetchProductDetails(productId, (detailsObj) => {
+      // pull the nurtition facts from this object
+      // look for the product in categories
+      // append the nutritionFacts key to the object
+      // update saved or external
+    })
+  }
+
   const value = {
     loading,
     fetchCategoryDocs,
@@ -101,6 +110,7 @@ export function ProductsProvider({ children }) {
     addSavedProduct,
     externalProducts,
     deleteSavedProduct,
+    fetchNutritionDetails,
   };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;

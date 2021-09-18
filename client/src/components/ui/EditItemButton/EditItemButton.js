@@ -19,7 +19,8 @@ const EditItemButton = ({ item, isExternalProduct }) => {
 
   return (
     <div className='edit-item-button'>
-      <button className={classes.editItemBtn} onClick={handleClick}>Edit Item</button>
+      <button className={classes.editItemBtn} onClick={handleClick}>
+        {isExternalProduct ? 'Customize' : 'Edit'} Item</button>
     </div>
   );
 };

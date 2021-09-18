@@ -26,7 +26,7 @@ export function FormProvider({ children }) {
 
   const handleDelete = e => {
     e.preventDefault();
-    if (editingMode) {
+    if (editingMode && !isExternal) {
       const item = Object.assign({}, formEntries);
       if (!(item && Object.keys(item).length === 0 && item.constructor === Object)) {
         setEditingMode(false);

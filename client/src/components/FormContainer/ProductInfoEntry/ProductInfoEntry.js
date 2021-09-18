@@ -85,7 +85,7 @@ const ProductInfoEntry = props => {
         <section className={classes.formButtonsContainer}>
           <DeleteButton handleDelete={handleDelete} existingProduct={isExternal} />
 
-          <SubmitButton handleSubmit={handleSubmit} editingMode={editingMode} />
+          <SubmitButton handleSubmit={handleSubmit} editingMode={editingMode} isExternalProduct={isExternal} />
         </section>
 
         <section className={classes.categoryContainer}>

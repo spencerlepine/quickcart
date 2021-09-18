@@ -10,18 +10,13 @@ const Card = props => {
   const classes = useStyles();
 
   const {
-    _id,
     name,
     purchase_size,
     purchase_price,
     image,
-    serving_size,
-    servings_per,
-    brand,
     category,
     searchFilter,
     minimalFormat,
-    isSavedProducts,
   } = props;
 
   const searchRe = new RegExp(`${searchFilter}`, 'gi');
@@ -54,17 +49,7 @@ const Card = props => {
                 </div>
               </div>
             )}
-            PopupElem={<ProductDetails
-              _id={_id}
-              name={name}
-              purchase_size={purchase_size}
-              purchase_price={purchase_price}
-              serving_size={serving_size}
-              servings_per={servings_per}
-              brand={brand}
-              image={image}
-              category={category}
-              isSavedProducts={isSavedProducts} />}
+            PopupElem={<ProductDetails {...props} />}
           />
         </div>
       );
@@ -112,6 +97,7 @@ Card.propTypes = {
   minimalFormat: PropTypes.bool,
   isSavedProducts: PropTypes.bool,
   searchFilter: PropTypes.string.isRequired,
+  nutritionFacts: PropTypes.object,
 };
 
 Card.defaultProps = {
@@ -124,4 +110,5 @@ Card.defaultProps = {
   servings_per: 1,
   category: 'other',
   brand: '',
+  nutritionFacts: {},
 };
