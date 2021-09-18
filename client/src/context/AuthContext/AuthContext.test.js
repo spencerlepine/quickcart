@@ -42,6 +42,14 @@ describe('AuthContext', () => {
       key: 'updateProfilePic',
       targetInstance: Function,
     },
+    {
+      key: 'accountDetials',
+      targetInstance: Object,
+    },
+    {
+      key: 'getAccountDetails',
+      targetInstance: Function,
+    },
   ];
 
   testContextExports(AuthProvider, useAuth, expectedExports);

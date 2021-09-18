@@ -9,7 +9,7 @@ export const checkLoginStatus = successCb => {
   });
 };
 
-export const fetchDetails = successCb => {
+export const fetchAccountDetails = successCb => {
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -17,7 +17,7 @@ export const fetchDetails = successCb => {
     .collection(USER_ACCOUNT)
     .doc(ACCOUNT_DETAILS)
     .get()
-    .then(data => successCb(data))
+    .then(data => successCb(data.data()))
     .catch(error => console.log(error));
 };
 

@@ -5,6 +5,6 @@ export default makeStyles(() => ({
     margin: 'auto',
     width: 'fit-content',
     background: 'white',
-    padding: '1em',
+    padding: '3em',
   },
 }));

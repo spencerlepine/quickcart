@@ -6,6 +6,7 @@ export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
+  const [accountDetails, setAccountDetails] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,6 +16,14 @@ export const AuthProvider = ({ children }) => {
       }
     }, []);
   }, []);
+
+  function getAccountDetails() {
+    setLoading(true);
+    authUser.fetchAccountDetails(userDetails => {
+      setAccountDetails(userDetails);
+      setLoading(false);
+    });
+  }
 
   function loginUser(email, password) {
     setLoading(true);
@@ -72,6 +81,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     loading,
+    accountDetails,
     resetPassword,
     updatePassword,
     updateEmail,
@@ -79,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     signupUser,
+    getAccountDetails,
     updateProfilePic,
   };
 
