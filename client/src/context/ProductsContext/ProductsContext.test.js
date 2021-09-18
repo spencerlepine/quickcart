@@ -35,7 +35,7 @@ describe('ProductsContext', () => {
       targetInstance: Function,
     },
     {
-      key: 'fetchNutritionDetails',
+      key: 'getNutritionDetails',
       targetInstance: Function,
     },
   ];

@@ -8,6 +8,8 @@ describe('SearchBar', () => {
     setSearchMode: () => { },
     searchFilter: '',
     setSearchFilter: () => { },
+    sortMode: {},
+    setSortMode: () => { },
   };
 
   test('renders an input element', () => {

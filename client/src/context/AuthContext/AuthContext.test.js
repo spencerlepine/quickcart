@@ -43,7 +43,7 @@ describe('AuthContext', () => {
       targetInstance: Function,
     },
     {
-      key: 'accountDetials',
+      key: 'accountDetails',
       targetInstance: Object,
     },
     {
