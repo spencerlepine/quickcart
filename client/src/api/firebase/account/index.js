@@ -1,4 +1,4 @@
-import { auth, storage, db } from '../config.js';
+import { auth, storage, db } from 'config/firebase';
 import { ALL_USERS, USER_ACCOUNT, ACCOUNT_DETAILS } from '../firebaseSchema.js';
 
 export const checkLoginStatus = successCb => {
@@ -10,7 +10,7 @@ export const checkLoginStatus = successCb => {
 };
 
 export const fetchDetails = successCb => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -68,7 +68,7 @@ export const updateProfilePic = (newFile, successCb) => {
     return;
   }
 
-  const user = auth.currentUser;
+  const user = (auth.currentUser || {});
   const storageRef = storage.ref(`${user.uid}/profilePicture/avatar.png`);
 
   storageRef

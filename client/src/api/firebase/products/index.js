@@ -1,4 +1,4 @@
-import { db } from '../config';
+import { db } from 'config/firebase';
 import { ALL_PRODUCTS, CATEGORY_ITEMS } from '../firebaseSchema.js';
 import { FETCH_ITEM_LIMIT } from 'config';
 
