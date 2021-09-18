@@ -60,4 +60,15 @@ export default makeStyles(() => ({
   dollarPrice: {
     color: '#a82d0b',
   },
+  redirectButton: {
+    textDecoration: 'none',
+    color: 'white',
+    backgroundColor: '#ee8f21',
+    '&:hover': {
+      backgroundColor: '#b06917',
+    },
+    '@media (max-width:450px)': {
+      padding: '1em 3em',
+    },
+  },
 }));
