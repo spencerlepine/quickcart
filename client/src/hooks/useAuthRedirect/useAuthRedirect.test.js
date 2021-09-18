@@ -1,36 +1,52 @@
 import React from 'react';
-import { screen, render } from 'test-utils';
+import { screen, render as rltRender } from 'test-utils';
 import useAuthRedirect from './useAuthRedirect';
-// import { AuthContext } from 'context/AuthContext';
-// render(<useAuthRedirect {...sampleProduct} searchFilter={''} minimalFormat={false} />);
+import { AuthContext } from 'context/AuthContext/AuthContext';
+import currentUser from 'currentUser';
+
+const render = (ui, contextValue = {}) => {
+  const defualtValues = {};
+  return rltRender(
+    <AuthContext.Provider value={{ ...defualtValues, ...contextValue }}>
+      {ui}
+    </AuthContext.Provider>,
+  );
+};
 
 describe('useAuthRedirect', () => {
-  const WrappedComponent = useAuthRedirect(<p>CHILD</p>);
+  beforeEach(() => { jest.resetAllMocks(); });
 
-  test('returns a function when invoked', () => {
-    expect(typeof WrappedComponent).toBe('function');
+  const mockChild = () => <p>CHILD</p>;
+
+  test('renders HOME redirect with Valid CurrentUser and true isAuthPage arguments', () => {
+    // import { Redirect } from 'react-router-dom'; => doesn't render
+    const WrappedComponent = useAuthRedirect(mockChild, true);
+
+    render(<WrappedComponent />, { currentUser });
+    expect(screen.queryByText('CHILD')).toBeNull();
   });
 
-  test('renders a (wrapped) child component from first argument', async () => {
-    render(<WrappedComponent />);
+  test('renders child with Valid CurrentUser and false isAuthPage arguments', () => {
+    const WrappedComponent = useAuthRedirect(mockChild, false);
 
-    const childComponent = await screen.findAllByText(/CHILD/);
-    expect(childComponent).toHaveLength(1);
+    render(<WrappedComponent />, { currentUser });
+
+    expect(screen.getByText('CHILD')).toBeInTheDocument();
   });
 
-  test('renders HOME redirect with Valid CurrentUser and true isAuthPage arguments', async () => {
-    expect(false).toBe(true);
+  test('renders child with Invalid CurrentUser and true isAuthPage arguments', () => {
+    const WrappedComponent = useAuthRedirect(mockChild, true);
+
+    render(<WrappedComponent />, null);
+
+    expect(screen.getByText('CHILD')).toBeInTheDocument();
   });
 
-  test('renders child with Valid CurrentUser and false isAuthPage arguments', async () => {
-    expect(false).toBe(true);
-  });
+  test('renders WELCOME redirect with Invalid CurrentUser and false isAuthPage arguments', () => {
+    const WrappedComponent = useAuthRedirect(mockChild, false);
 
-  test('renders child with Invalid CurrentUser and true isAuthPage arguments', async () => {
-    expect(false).toBe(true);
-  });
+    render(<WrappedComponent />, null);
 
-  test('renders WELCOME redirect with Invalid CurrentUser and false isAuthPage arguments', async () => {
-    expect(false).toBe(true);
+    expect(screen.queryByText('CHILD')).toBeNull();
   });
 });

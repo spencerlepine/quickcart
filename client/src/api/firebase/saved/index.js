@@ -1,9 +1,12 @@
-import { auth, db } from '../config';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.js';
 import { FETCH_ITEM_LIMIT } from 'config';
 
 export const fetchCategory = (categoryID, lastId, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  if (!auth) {
+    return;
+  }
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -22,7 +25,7 @@ export const fetchCategory = (categoryID, lastId, successCb) => {
 };
 
 export const createItem = (newItem, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
   const { _id: itemID } = newItem;
 
   const categoryCollection = db.collection(ALL_USERS)
@@ -51,7 +54,7 @@ export const createItem = (newItem, categoryID, successCb) => {
 };
 
 export const updateItem = (updatedItem, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
   const { _id: itemID } = updatedItem;
 
   db.collection(ALL_USERS)
@@ -68,7 +71,7 @@ export const updateItem = (updatedItem, categoryID, successCb) => {
 };
 
 export const fetchItem = (itemID, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -82,7 +85,7 @@ export const fetchItem = (itemID, categoryID, successCb) => {
 };
 
 export const deleteItem = (itemID, categoryID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)

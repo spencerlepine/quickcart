@@ -1,8 +1,8 @@
-import { auth, db } from '../config.js';
+import { auth, db } from 'config/firebase';
 import { ALL_USERS, CART_LOGS, LOG_ITEMS } from '../firebaseSchema.js';
 
 export const logItem = (item, logID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   // Trim the item in for cart log storage
   const itemLogObj = {
@@ -27,7 +27,7 @@ export const logItem = (item, logID, successCb) => {
 };
 
 export const fetchItem = (docReferenceID, successCb) => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)
@@ -43,7 +43,7 @@ export const fetchItem = (docReferenceID, successCb) => {
 };
 
 export const fetchAll = successCb => {
-  const { uid: userId } = auth.currentUser;
+  const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
     .doc(userId)

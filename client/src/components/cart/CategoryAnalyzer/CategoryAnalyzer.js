@@ -32,7 +32,7 @@ const FillerItems = ({ cartProducts, category, savedProducts, fetchCategoryDocs 
   }
 };
 
-const CategoryAnalyzer = ({ cartProducts, category }) => {
+const CategoryAnalyzer = ({ cartProducts }) => {
   const classes = useStyles();
   const { fetchCategoryDocs, savedProducts } = useProducts();
 
@@ -50,7 +50,6 @@ export default CategoryAnalyzer;
 
 CategoryAnalyzer.propTypes = {
   cartProducts: PropTypes.object.isRequired,
-  category: PropTypes.string.isRequired,
 };
 
 FillerItems.propTypes = {
