@@ -42,9 +42,9 @@ jobs:
       #     flag-name: ${{matrix.os}}-node-${{ matrix.node }}
       #     parallel: true
 
-  finish:
-    needs: test
-    runs-on: ubuntu-latest
+  # finish:
+  #   needs: test
+  #   runs-on: ubuntu-latest
     # steps:
     #   - name: Coveralls Finished
     #     uses: coverallsapp/github-action@master
