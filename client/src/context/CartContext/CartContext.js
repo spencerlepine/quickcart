@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as cartItemData from 'api/firebase/cart';
+// import * as cartLogger from 'api/firebase/logs';
 
 export const CartContext = React.createContext();
 
@@ -8,6 +9,15 @@ export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState({});
   const [itemCount, setItemCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [cartLogs, setCartLogs] = useState(null);
+
+  function getCartLogs(lastLogDate) {
+    // cartLogger.fetchAll()
+    cartItemData.fetchCartLogs(lastLogDate, recentCartLogs => {
+      console.log(recentCartLogs);
+      setCartLogs(prevLogs => (prevLogs || []).concat(recentCartLogs));
+    });
+  }
 
   function fetchCategoryDocs(categoryID) {
     setLoading(true);
@@ -117,32 +127,14 @@ export function CartProvider({ children }) {
     removeFromCart,
     cartToLogs,
     cartProducts,
+    getCartLogs,
+    cartLogs,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-const useCart = () => {
-  const {
-    loading,
-    itemCount,
-    cartProducts,
-    fetchCategoryDocs,
-    addToCart,
-    removeFromCart,
-    cartToLogs,
-  } = useContext(CartContext);
-
-  return {
-    cartProducts,
-    itemCount,
-    fetchCategoryDocs,
-    addToCart,
-    removeFromCart,
-    cartToLogs,
-    loading,
-  };
-};
+const useCart = () => useContext(CartContext);
 
 export default useCart;
 
