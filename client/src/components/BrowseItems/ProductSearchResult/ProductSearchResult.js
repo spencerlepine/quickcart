@@ -9,7 +9,6 @@ const ProductSearchResult = ({ searchFilter, allProducts, isSavedProducts, sortM
   /* TAKE AN ARRAY OF PRODUCTS AND FILTER THEM */
   const searchRe = new RegExp(`${searchFilter}`, 'gi');
   let sortedList = allProducts.filter(product => (product['name'] || '').match(searchRe) || (product['brand'] || '').match(searchRe));
-  console.log(sortedList);
   if (sortMode && sortMode['sortBy'] && sortMode['orderBy']) {
     const keyMaps = {
       'Purchase Price': 'purchase_price',

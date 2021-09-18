@@ -38,6 +38,14 @@ describe('ProductsContext', () => {
       key: 'getNutritionDetails',
       targetInstance: Function,
     },
+    {
+      key: 'searchSavedProducts',
+      targetInstance: Function,
+    },
+    {
+      key: 'searchExternalProducts',
+      targetInstance: Function,
+    },
   ];
 
   testContextExports(ProductsProvider, useProducts, expectedExports);

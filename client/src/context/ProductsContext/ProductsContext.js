@@ -95,17 +95,17 @@ export function ProductsProvider({ children }) {
   }
 
   function extendExistingProduct(newProduct, setProductList) {
-    const { categoryID, productId } = newProduct;
-    if (categoryID && productId && setProductList) {
+    const { category: categoryID, _id: productId } = newProduct;
+    if ((categoryID || 'other') && productId && setProductList) {
       setProductList(prevProducts => {
         const obj = { ...prevProducts };
-        const existingProduct = obj[categoryID][productId];
-        if (existingProduct) {
-          obj[categoryID][productId] = {
-            ...existingProduct,
-            ...newProduct,
-          };
-        }
+        const existingProduct = obj[categoryID][productId] || {};
+
+        obj[categoryID || 'other'][productId] = {
+          ...existingProduct,
+          ...newProduct,
+        };
+
         return obj;
       });
     }
@@ -115,8 +115,8 @@ export function ProductsProvider({ children }) {
     setLoading(true);
     spoonacularApi.fetchProductDetails(productId, nutritionObj => {
       const updatedValues = {
-        productId,
-        categoryID,
+        _id: productId,
+        category: categoryID,
         nutritionFacts: nutritionObj,
       };
 
@@ -131,6 +131,26 @@ export function ProductsProvider({ children }) {
     });
   }
 
+  function searchSavedProducts(query) {
+    setLoading(true);
+    savedItemData.queryDatabase(query, docList => {
+      docList.forEach(product => {
+        extendExistingProduct(product, setSavedProducts);
+      });
+      setLoading(false);
+    });
+  }
+
+  function searchExternalProducts(query) {
+    setLoading(true);
+    productsItemData.queryDatabase(query, docList => {
+      docList.forEach(product => {
+        extendExistingProduct(product, setExternalProducts);
+      });
+      setLoading(false);
+    });
+  }
+
   const value = {
     loading,
     fetchCategoryDocs,
@@ -140,6 +160,8 @@ export function ProductsProvider({ children }) {
     externalProducts,
     deleteSavedProduct,
     getNutritionDetails,
+    searchExternalProducts,
+    searchSavedProducts,
   };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;

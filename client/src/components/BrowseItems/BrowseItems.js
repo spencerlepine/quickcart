@@ -28,6 +28,7 @@ const BrowseItems = ({ productsObj, isSavedProducts }) => {
   return (
     <div className={`browse-items ${classes.browseItems}`}>
       <SearchBar
+        searchingExternal={!isSavedProducts}
         searchMode={searchMode}
         searchFilter={searchFilter}
         setSearchMode={setSearchMode}
