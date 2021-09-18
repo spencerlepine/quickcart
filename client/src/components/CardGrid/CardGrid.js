@@ -13,7 +13,7 @@ const CardGrid = ({ list, singleRow, minimalFormat, isSavedProducts, handleViewM
       {list.map(item => (
         <Card {...item} key={item['_id']} minimalFormat={minimalFormat} isSavedProducts={isSavedProducts} searchFilter={searchFilter} />
       ))}
-      {handleViewMore && <button onClick={handleViewMore}>View More</button>}
+      {handleViewMore && <button onClick={handleViewMore} className={classes.viewMoreBtn}>View More</button>}
     </div>
   );
 };
