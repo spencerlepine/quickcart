@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useCart from 'context/CartContext/CartContext';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import useStyles from './styles.js';
+
 
 const CartCard = props => {
   const classes = useStyles();
   const { _id, quantity, image, name, category, serving_size, purchase_price } = props;
   const { addToCart, removeFromCart } = useCart();
+  const [itemFound, setItemFound] = useState(false);
+
+  const toggleCompletion = () => {
+    setItemFound(!itemFound);
+  };
+
+  const completionStyle = itemFound ? ({
+    filter: 'opacity(0.4)',
+  }) : {};
 
   const itemPrice = (
     parseFloat(purchase_price) *
@@ -15,37 +26,45 @@ const CartCard = props => {
 
   return (
     <div className={`cart-card ${classes.cartCard}`}>
-      <div className={classes.imageContainer}>
-        <img className={classes.itemImage} src={image} alt={name}></img>
-      </div>
-      <div className={classes.itemInfo}>
-        <p className={classes.itemName}>{name}</p>
-        <p className={classes.itemSize}>
-          ({`${serving_size['count']} ${serving_size['unit']}`})
-          <span className={classes.itemPrice}>
-            {` - ${itemPrice}`}
-          </span>
-        </p>
+      <div className={classes.clickableElem} onClick={toggleCompletion} role="presentation" style={completionStyle}>
+        <div className={classes.imageContainer}>
+          <img className={classes.itemImage} src={image} alt={name}></img>
+        </div>
+
+        <div className={classes.itemInfo}>
+          <p className={classes.itemName}>{name}</p>
+          <p className={classes.itemSize}>
+            ({`${serving_size['count']} ${serving_size['unit']}`})
+            <span className={classes.itemPrice}>
+              {` - ${itemPrice}`}
+            </span>
+          </p>
+        </div>
       </div>
 
-      <div
-        className={`${classes.btn}
+      {!itemFound ? (<>
+        <div
+          className={`${classes.btn}
         ${classes.deleteBtn}`}
-        onClick={() => removeFromCart(_id, category)}
-        role={'presentation'}
-      >
-        -
-      </div>
+          onClick={() => removeFromCart(_id, category)}
+          role={'presentation'}
+        >
+          -
+        </div>
 
-      <p className={classes.itemCount}>{quantity}</p>
+        <p className={classes.itemCount}>{quantity}</p>
 
-      <div
-        className={classes.btn}
-        onClick={() => addToCart(props, category)}
-        role={'presentation'}>
-        +
-      </div>
-    </div>
+        <div
+          className={classes.btn}
+          onClick={() => addToCart(props, category)}
+          role={'presentation'}>
+          +
+        </div>
+      </>) : (<>
+        <CheckCircleIcon onClick={toggleCompletion} className={classes.foundIcon} fontSize="large" />
+      </>)}
+
+    </div >
   );
 };
 
