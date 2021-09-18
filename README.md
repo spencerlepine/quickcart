@@ -3,8 +3,9 @@
 <p align="center">
   <img alt="QuickCart License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
-  <img alt="Build Status" src="https://github.com/spencerlepine/quickcart/actions/workflows/test.yml/badge.svg" />
+  <img alt="Build Status" src="https://github.com/spencerlepine/quickcart/actions/workflows/test.yml/badge.svg?branch=master" />
 </p>
+
 <!-- <img alt="Coverage Status" src="https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master" /> -->
 
 <p align="center">Make a shopping list with personal grocery data to help budget.</p>
