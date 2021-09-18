@@ -7,9 +7,15 @@ export const FormContext = React.createContext();
 
 const placeholderItem = {
   name: '',
-  purchase_size: '1 unit',
+  purchase_size: {
+    count: 1,
+    unit: 'unit',
+  },
   purchase_price: 0,
-  serving_size: '1 unit',
+  serving_size: {
+    count: 1,
+    unit: 'unit',
+  },
   servings_per: 1,
   brand: '',
   category: 'other',
@@ -27,6 +33,7 @@ export function FormProvider({ children }) {
   const handleDelete = e => {
     e.preventDefault();
     if (editingMode && !isExternal) {
+      console.log('calling', deleteSavedProduct);
       const item = Object.assign({}, formEntries);
       if (!(item && Object.keys(item).length === 0 && item.constructor === Object)) {
         setEditingMode(false);

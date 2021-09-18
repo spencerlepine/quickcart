@@ -29,7 +29,8 @@ export default makeStyles(() => ({
       fontSize: '16px',
       fontWeight: '600',
       marginBottom: '0',
-      height: '2em',
+      height: '2.2em',
+      overflow: 'hidden',
       marginTop: '10px',
     },
     '& p': {
@@ -70,7 +71,7 @@ export default makeStyles(() => ({
     overflowWrap: 'anywhere',
   },
   imageContainer: {
-    'width': '17vh',
+    // 'width': '17vh',
     height: '17vh',
     position: 'relative',
     'maxHeight': '140px',

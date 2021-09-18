@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as savedItemData from 'api/firebase/saved';
 import * as productsItemData from 'api/firebase/products';
-import * as spoonacularApi from 'api/spoonacular';
+import * as spoonacularAPI from 'api/spoonacular';
 import groceryCategories from 'config/schema/groceryCategories';
 export const ProductsContext = React.createContext();
 
@@ -113,7 +113,7 @@ export function ProductsProvider({ children }) {
 
   function getNutritionDetails(productId, categoryID, isExternalProduct) {
     setLoading(true);
-    spoonacularApi.fetchProductDetails(productId, nutritionObj => {
+    spoonacularAPI.fetchProductDetails(productId, nutritionObj => {
       const updatedValues = {
         _id: productId,
         category: categoryID,
@@ -149,6 +149,19 @@ export function ProductsProvider({ children }) {
       });
       setLoading(false);
     });
+
+    spoonacularAPI.searchProductsByName(query, productList => {
+      productList.forEach(product => {
+        extendExistingProduct(product, setExternalProducts);
+      });
+    });
+
+    // openFoodFactsAPI.searchProductsByName(query, productList => {
+    //   console.log(productList);
+    //   // docList.forEach(product => {
+    //   //   extendExistingProduct(product, setExternalProducts);
+    //   // });
+    // });
   }
 
   const value = {
