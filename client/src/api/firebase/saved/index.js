@@ -3,6 +3,9 @@ import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.j
 import { FETCH_ITEM_LIMIT } from 'config';
 
 export const fetchCategory = (categoryID, lastId, successCb) => {
+  if (!auth) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)

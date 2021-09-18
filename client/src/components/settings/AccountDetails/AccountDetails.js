@@ -5,7 +5,6 @@ import useStyles from './styles.js';
 const AccountDetails = () => {
   const classes = useStyles();
   const { currentUser } = useAuth();
-  console.log(currentUser);
 
   return (
     <div className={`accountDetails ${classes.accountDetails}`}>

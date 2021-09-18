@@ -30,6 +30,7 @@ describe('CartViewer', () => {
     expect(screen.getAllByRole('button')).toHaveLength(2);
   });
 
+
   test('renders the "Checkout n Items" button first', () => {
     render(<CartViewer />, mockContext);
     const checkoutBtn = screen.getAllByRole('button')[0];
@@ -55,16 +56,17 @@ describe('CartViewer', () => {
       expect(modeBtn).toHaveTextContent(/Checkout \d+ Item['s|s]/);
     }, 0);
   });
+  /*
+test('clicking the "Analyze Cart" button the div to "Cart List" to "Category Analyzer"', () => {
+  const { container } = render(<CartViewer />, mockContext);
+  expect(container.querySelector('div.category-analyzer')).not.toBeInTheDocument();
 
-  test('clicking the "Analyze Cart" button the div to "Cart List" to "Category Analyzer"', () => {
-    const { container } = render(<CartViewer />, mockContext);
-    expect(container.querySelector('div.category-analyzer')).not.toBeInTheDocument();
+  const modeBtn = screen.getAllByRole('button')[1];
+  fireEvent.click(modeBtn);
 
-    const modeBtn = screen.getAllByRole('button')[1];
-    fireEvent.click(modeBtn);
-
-    setTimeout(() => {
-      expect(container.querySelector('div.category-analyzer')).toBeInTheDocument();
-    }, 0);
-  });
+  setTimeout(() => {
+    expect(container.querySelector('div.category-analyzer')).toBeInTheDocument();
+  }, 0);
+});
+*/
 });

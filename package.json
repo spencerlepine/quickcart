@@ -22,7 +22,7 @@
     "build": "BABEL_ENV=node webpack --config ./webpack.prod.config.js",
     "create-hook": "husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "husky:prepare": "husky install && npm run create-hook",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:coverage": "npm run test -- --ci --reporters=default --watchAll=false --coverage && coveralls < coverage/lcov.info",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test:watch": "jest --watch",

@@ -40,7 +40,7 @@ const CartViewer = () => {
         <p className={classes.cartTotal}>Total: <span className={classes.dollarPrice}>{cartTotal}</span></p>
       </div>
 
-      {analyzeMode && cartProducts ?
+      {analyzeMode ?
         <section className={classes.analyzeContainer}>
           <CategoryAnalyzer cartProducts={cartProducts} />
         </section>
