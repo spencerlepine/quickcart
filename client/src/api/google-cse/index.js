@@ -1,4 +1,4 @@
-const https = require('https');
+import axios from 'axios';
 
 // https://github.com/jjmax75/google-image-search/blob/master/index.js
 /**
@@ -25,41 +25,16 @@ function getImageSearchResults(searchTerm, callback, start, num) {
   parameters += start ? `&start=${start}` : '';
   parameters += `&num=${num}`;
 
-  const options = {
-    host: 'www.googleapis.com',
-    path: `/customsearch/v1?key=${process.env.REACT_APP_CSE_API_KEY}&cx=${process.env.REACT_APP_CSE_ID}${parameters}`,
-  };
+  const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_CSE_API_KEY}&cx=${process.env.REACT_APP_CSE_ID}${parameters}`;
 
-  let result = '';
-
-  https.get(options, response => {
-    response.setEncoding('utf8');
-
-    response.on('data', data => {
-      result += data;
-    });
-
-    response.on('end', () => {
-      const data = JSON.parse(result);
-      const resultsArray = [];
-      // check for usage limits (contributed by @ryanmete)
-      // This handles the exception thrown when a user's Google CSE quota has been exceeded for the day.
-      // Google CSE returns a JSON object with a field called "error" if quota is exceed.
-      if (data.error && data.error.errors) {
-        resultsArray.push(data.error.errors[0]);
-        // returns the JSON formatted error message in the callback
-        callback(resultsArray);
-      } else if (data.items) {
-        // search returned results
-        data.items.forEach(item => {
-          resultsArray.push(item);
-        });
-        callback(resultsArray);
+  axios.get(url)
+    .then(result => {
+      if (result.data && result.data.items) {
+        callback(result.data.items);
       } else {
         callback([]);
       }
     });
-  });
 }
 
-module.exports = getImageSearchResults;
+export default getImageSearchResults;
