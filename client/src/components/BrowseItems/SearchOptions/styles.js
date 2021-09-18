@@ -18,7 +18,7 @@ export default makeStyles(() => ({
       backgroundColor: '#2d9819',
     },
     '@media (max-width:450px)': {
-      padding: '1em 3em',
+      padding: '1em',
     },
   },
 }));

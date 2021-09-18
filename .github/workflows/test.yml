@@ -5,6 +5,8 @@ name: Build
 env:
   CI: true
 
+name: Build
+
 jobs:
 
   test:

@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as cartItemData from 'api/firebase/cart';
+// import * as cartLogger from 'api/firebase/logs';
 
 export const CartContext = React.createContext();
 
@@ -8,6 +9,21 @@ export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState({});
   const [itemCount, setItemCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [cartLogs, setCartLogs] = useState(null);
+
+  useEffect(() => {
+    setItemCount(Object.values(cartProducts).reduce((itemCount, categoryObj) => (
+      itemCount += Object.values(categoryObj).reduce((quantitySum, product) => quantitySum += (product['quantity'] || 0), 0)
+    ), 0));
+  }, [cartProducts]);
+
+  function getCartLogs(lastLogDate) {
+    // cartLogger.fetchAll()
+    cartItemData.fetchCartLogs(lastLogDate, recentCartLogs => {
+      console.log(recentCartLogs);
+      setCartLogs(prevLogs => (prevLogs || []).concat(recentCartLogs));
+    });
+  }
 
   function fetchCategoryDocs(categoryID) {
     setLoading(true);
@@ -15,10 +31,6 @@ export function CartProvider({ children }) {
       const categoryObj = {};
       docList.forEach(product => (
         categoryObj[product['_id']] = product
-      ));
-
-      setItemCount(() => (
-        Object.values(categoryObj).reduce((arr, categoryObj) => arr.concat(Object.values(categoryObj)), []).length
       ));
 
       setCartProducts(prevCart => ({
@@ -47,14 +59,14 @@ export function CartProvider({ children }) {
     });
   }
 
-  function removeFromCart(itemID, categoryID) {
+  function removeFromCart(itemID, categoryID, overrideDelete = false) {
     setLoading(true);
     const existingCartItem = cartProducts[categoryID][itemID];
     if (!existingCartItem) {
       console.log(itemID, 'did not exists in', categoryID);
     }
 
-    if (existingCartItem['quantity'] > 1) {
+    if (!overrideDelete && existingCartItem['quantity'] > 1) {
       const updatedQuantity = { ...existingCartItem, quantity: existingCartItem['quantity'] - 1 };
       cartItemData.updateItem(updatedQuantity, categoryID, updatedItem => {
         setCartProducts(prevCart => {
@@ -91,7 +103,7 @@ export function CartProvider({ children }) {
   function cartToLogs(item, categoryID) {
     setLoading(true);
     cartItemData.logCartItem(item, categoryID, () => {
-      removeFromCart(item['_id'], categoryID);
+      removeFromCart(item['_id'], categoryID, true);
 
       setCartProducts(prevCart => {
         const updatedCategoryObj = {
@@ -117,32 +129,14 @@ export function CartProvider({ children }) {
     removeFromCart,
     cartToLogs,
     cartProducts,
+    getCartLogs,
+    cartLogs,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-const useCart = () => {
-  const {
-    loading,
-    itemCount,
-    cartProducts,
-    fetchCategoryDocs,
-    addToCart,
-    removeFromCart,
-    cartToLogs,
-  } = useContext(CartContext);
-
-  return {
-    cartProducts,
-    itemCount,
-    fetchCategoryDocs,
-    addToCart,
-    removeFromCart,
-    cartToLogs,
-    loading,
-  };
-};
+const useCart = () => useContext(CartContext);
 
 export default useCart;
 

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './styles.js';
 
-const MissingMessage = ({ message, iconType }) => {
+const MissingMessage = ({ message, iconType, child }) => {
   const classes = useStyles();
 
   return (
     <div className={`missing-message ${classes.messageContainer}`}>
       <p>{message}</p>
-      <p>{iconType}</p>
+      {child}
+      {/* TODO: <p>{iconType}</p> */}
     </div>
   );
 };
@@ -16,6 +17,7 @@ const MissingMessage = ({ message, iconType }) => {
 export default MissingMessage;
 
 MissingMessage.propTypes = {
+  child: PropTypes.node,
   message: PropTypes.string.isRequired,
   iconType: PropTypes.oneOf(['lonely_shiba', 'search', 'image']),
 };

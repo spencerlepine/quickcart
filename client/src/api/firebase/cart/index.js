@@ -115,6 +115,7 @@ function formatDate(d) {
   return `${ye}-${mo}-${da}`;
 }
 
+// THIS SHOULD BE REPLACED with api/firebase/logs functoins
 export const logCartItem = (item, categoryID, successCb) => {
   try {
     const { uid: userId } = (auth.currentUser || {});
@@ -152,6 +153,35 @@ export const logCartItem = (item, categoryID, successCb) => {
   }
 };
 
+// THIS SHOULD BE REPLACED with api/firebase/logs functoins
+export const fetchCartLogs = (lastLogDate, successCb) => {
+  const { uid: userId } = (auth.currentUser || {});
+
+  // Save the item
+  db.collection('users')
+    .doc(userId)
+    .collection('userCartLogs')
+    .get()
+    .then(data => {
+      const docs = data.docs || [];
+      // const logDocs = docs.map(firebaseDoc => (
+      //   firebaseDoc.data()
+      // ));
+      const docPromises = docs.map(firebaseDoc => firebaseDoc.ref.collection('cartItems').get());
+      return Promise.all(docPromises);
+    })
+    .then(arrayOfCollections => {
+      try {
+        const cartLogsWithDetails = arrayOfCollections.map(data => (
+          [data.query._delegate._path.segments[3]].concat(data.docs.map(firebaseDoc => firebaseDoc.data()))
+        ));
+        successCb(cartLogsWithDetails);
+      } catch {
+        successCb([]);
+      }
+    })
+    .catch(error => console.log(error));;
+};
 
 
 // export const addToCart = async itemToAdd => {

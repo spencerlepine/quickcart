@@ -18,8 +18,6 @@ const UnitSelector = ({ classes, handleChange, currentUnit }) => {
     setOpen(true);
   };
 
-  console.log(currentUnit);
-
   return (
     <FormControl className={classes.unitInput}>
       <Select

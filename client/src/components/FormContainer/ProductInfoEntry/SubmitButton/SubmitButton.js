@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles.js';
 
-const SubmitButton = ({ handleSubmit, editingMode }) => {
+const SubmitButton = ({ handleSubmit, editingMode, isExternalProduct }) => {
   const classes = useStyles();
+
+  let submitText = 'Submit';
+  if (isExternalProduct) {
+    submitText = 'Create';
+  } else if (editingMode) {
+    submitText = 'Update';
+  }
 
   return (
     <div className={classes.submitContainer} >
@@ -16,7 +23,7 @@ const SubmitButton = ({ handleSubmit, editingMode }) => {
         className={classes.updateButton}
         onClick={handleSubmit}
       >
-        {editingMode ? 'Update' : 'Submit'}
+        {submitText}
       </Button>
     </div >
   );
@@ -27,6 +34,7 @@ export default SubmitButton;
 SubmitButton.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   editingMode: PropTypes.bool,
+  isExternalProduct: PropTypes.isRequired,
 };
 
 SubmitButton.defaultProps = {

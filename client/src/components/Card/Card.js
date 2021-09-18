@@ -10,90 +10,67 @@ const Card = props => {
   const classes = useStyles();
 
   const {
-    _id,
     name,
     purchase_size,
     purchase_price,
     image,
-    serving_size,
-    servings_per,
-    brand,
     category,
-    searchFilter,
     minimalFormat,
-    isSavedProducts,
   } = props;
-
-  const searchRe = new RegExp(`${searchFilter}`, 'gi');
-  const itemMatchesSearch = searchRe.test(name);
 
   const productPrice = parseFloat(
     purchase_price,
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  if (!searchFilter || itemMatchesSearch) {
-    if (minimalFormat) {
-      return (
-        <div className={`card ${classes.card}`}>
-          <Popup
-            DefaultElem={(
-              <div className={classes.minimalCard}>
-                {AddToCartButton && <AddToCartButton isBubbleBtn={minimalFormat} item={props} categoryID={category} />}
-                <div className={classes.imageContainer}>
-                  <img alt={name} src={image}></img>
-                </div>
-
-                <h4 className={classes.foodName}>{name}</h4>
-
-                <p className={classes.foodPrice}>{productPrice}</p>
-
-                <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
-
-                <div className={classes.expandButton}>
-                  <ExpandMoreIcon />
-                </div>
+  if (minimalFormat) {
+    return (
+      <div className={`card ${classes.card}`}>
+        <Popup
+          DefaultElem={(
+            <div className={classes.minimalCard}>
+              {AddToCartButton && <AddToCartButton isBubbleBtn={minimalFormat} item={props} categoryID={category} />}
+              <div className={classes.imageContainer}>
+                <img alt={name} src={image}></img>
               </div>
-            )}
-            PopupElem={<ProductDetails
-              _id={_id}
-              name={name}
-              purchase_size={purchase_size}
-              purchase_price={purchase_price}
-              serving_size={serving_size}
-              servings_per={servings_per}
-              brand={brand}
-              image={image}
-              category={category}
-              isSavedProducts={isSavedProducts} />}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className={`card ${classes.card}`}>
-          <Popup
-            DefaultElem={(
-              <div className={classes.minimalCard}>
-                <div className={classes.imageContainer}>
-                  <img alt={name} src={image}></img>
-                </div>
 
-                <h4 className={classes.foodName}>{name}</h4>
+              <h4 className={classes.foodName}>{name}</h4>
 
-                <p className={classes.foodPrice}>{productPrice}</p>
+              <p className={classes.foodPrice}>{productPrice}</p>
 
-                <div className={classes.expandButton}>
-                  <ExpandMoreIcon />
-                </div>
+              <p className={classes.purchaseSize}>{`${purchase_size['count']} ${purchase_size['unit']}`}</p>
+
+              <div className={classes.expandButton}>
+                <ExpandMoreIcon />
               </div>
-            )}
-            PopupElem={<ProductDetails {...props} />}
-          />
-        </div>
-      );
-    }
+            </div>
+          )}
+          PopupElem={<ProductDetails {...props} />}
+        />
+      </div>
+    );
   } else {
-    return null;
+    return (
+      <div className={`card ${classes.card}`}>
+        <Popup
+          DefaultElem={(
+            <div className={classes.minimalCard}>
+              <div className={classes.imageContainer}>
+                <img alt={name} src={image}></img>
+              </div>
+
+              <h4 className={classes.foodName}>{name}</h4>
+
+              <p className={classes.foodPrice}>{productPrice}</p>
+
+              <div className={classes.expandButton}>
+                <ExpandMoreIcon />
+              </div>
+            </div>
+          )}
+          PopupElem={<ProductDetails {...props} />}
+        />
+      </div>
+    );
   }
 };
 
@@ -112,6 +89,7 @@ Card.propTypes = {
   minimalFormat: PropTypes.bool,
   isSavedProducts: PropTypes.bool,
   searchFilter: PropTypes.string.isRequired,
+  nutritionFacts: PropTypes.object,
 };
 
 Card.defaultProps = {
@@ -124,4 +102,5 @@ Card.defaultProps = {
   servings_per: 1,
   category: 'other',
   brand: '',
+  nutritionFacts: {},
 };

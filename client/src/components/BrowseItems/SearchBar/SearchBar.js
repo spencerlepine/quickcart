@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBarComponent from 'material-ui-search-bar';
+import SearchFilter from './SearchFilter/SearchFilter';
 import useStyles from './styles.js';
 
-const SearchBar = ({ searchMode, setSearchMode, setSearchFilter, searchFilter }) => {
+const SearchBar = ({ searchMode, setSearchMode, setSearchFilter, searchFilter, sortMode, setSortMode }) => {
   const classes = useStyles();
 
   const handleSearch = () => {
@@ -18,10 +19,10 @@ const SearchBar = ({ searchMode, setSearchMode, setSearchFilter, searchFilter })
   return (
     <div className={`searchbar-container ${classes.searchbarContainer}`}>
       {searchMode && (
-        <React.Fragment>
-          <button className={classes.orderOption}>SORT BY</button>{/*<button>Price</button>*/}
-          <button className={classes.orderOption}>DESC</button>
-        </React.Fragment>
+        <SearchFilter
+          sortMode={sortMode}
+          setSortMode={setSortMode}
+        />
       )}
 
       <SearchBarComponent
@@ -41,4 +42,6 @@ SearchBar.propTypes = {
   setSearchMode: PropTypes.func.isRequired,
   searchFilter: PropTypes.string.isRequired,
   setSearchFilter: PropTypes.func.isRequired,
+  sortMode: PropTypes.object.isRequired,
+  setSortMode: PropTypes.func.isRequired,
 };

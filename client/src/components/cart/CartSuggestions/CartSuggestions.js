@@ -21,9 +21,11 @@ const CartSuggestions = () => {
 
   return (
     <section className={classes.cartSuggestions}>
-      <h3>Recommended</h3>
-      <hr />
-      <CardGrid list={suggestedItems} singleRow={true} />
+      {(suggestedItems && suggestedItems.length > 0) && (<>
+        <h3>Recommended</h3>
+        <hr />
+        <CardGrid list={suggestedItems} singleRow={true} />
+      </>)}
     </section>
   );
 };

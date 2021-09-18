@@ -10,6 +10,12 @@ export default makeStyles(() => ({
       backgroundColor: 'whitesmoke',
     },
   },
+  clickableElem: {
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    display: 'flex',
+    width: '-webkit-fill-available',
+  },
   itemSize: {
     maxWidth: '200px',
     textWrap: 'anywhere',
@@ -108,5 +114,9 @@ export default makeStyles(() => ({
     'height': 'fit-content',
     'margin': 'auto',
   },
+  foundIcon: {
+    margin: 'auto',
+    padding: '1em',
+    color: 'green',
+  },
 }));
-

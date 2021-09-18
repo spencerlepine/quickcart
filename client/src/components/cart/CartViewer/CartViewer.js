@@ -4,6 +4,9 @@ import CartSuggestions from '../CartSuggestions/CartSuggestions';
 import groceryCategories from 'config/schema/groceryCategories';
 import useCart from 'context/CartContext/CartContext';
 import CategoryAnalyzer from '../CategoryAnalyzer/CategoryAnalyzer';
+import MissingMessage from 'components/ui/MissingMessage/MissingMessage';
+import { Link } from 'react-router-dom';
+import { HOME } from 'config/constants/routeConstants';
 import useStyles from './styles.js';
 
 const getCartTotal = productsObj => (
@@ -33,7 +36,7 @@ const CartViewer = () => {
   return (
     <div className={`cart-viewer ${classes.cartViewer}`}>
       <div className={`cart-options ${classes.cartOptions}`}>
-        <button className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
+        <button disabled={itemCount === 0} className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
 
         <button onClick={toggleCartMode} className={`${classes.toggleBtn} ${classes.btn} toggleBtn`}>{modeTitle}</button>
 
@@ -46,9 +49,21 @@ const CartViewer = () => {
         </section>
         :
         <section className={classes.cartListContainer}>
-          {categories.map((category, i) => (
-            <CartCategoryItems products={cartProducts[category] || {}} categoryID={category} key={i} />
-          ))}
+          <>
+            {categories.map((category, i) => (
+              <CartCategoryItems products={cartProducts[category] || {}} categoryID={category} key={i} />
+            ))}
+
+            {(Object.values(cartProducts).length === 0) && (
+              <MissingMessage
+                message={'Cart is Empty'}
+                iconType={'lonely_shiba'}
+                child={(
+                  <Link to={HOME} className={`${classes.redirectButton} ${classes.btn}`}>Browse Products</Link>
+                )}
+              />
+            )}
+          </>
         </section>
       }
 

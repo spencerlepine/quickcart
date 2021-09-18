@@ -1,7 +1,6 @@
 import React from 'react';
 import withAuthRedirect from 'hooks/useAuthRedirect/useAuthRedirect';
 import CartViewer from 'components/cart/CartViewer/CartViewer';
-import CartSuggestions from 'components/cart/CartSuggestions/CartSuggestions';
 import useStyles from './styles.js';
 
 const CartPage = () => {
@@ -10,8 +9,6 @@ const CartPage = () => {
   return (
     <div className={`cart-container ${classes.cartContainer}`}>
       <CartViewer />
-
-      <CartSuggestions />
     </div >
   );
 };

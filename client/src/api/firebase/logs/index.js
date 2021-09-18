@@ -42,7 +42,9 @@ export const fetchItem = (docReferenceID, successCb) => {
     .catch(error => console.log(error));
 };
 
-export const fetchAll = successCb => {
+export const fetchAll = (lastLogDoc, successCb) => {
+  // maybe start at lastLog to fetch 10 at a time
+
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -51,8 +53,20 @@ export const fetchAll = successCb => {
     .get()
     .then(data => {
       const docs = data.docs || [];
-      const logDocs = docs.map(firebaseDoc => firebaseDoc.data());
-      successCb(logDocs);
+      // const logDocs = docs.map(firebaseDoc => (
+      //   firebaseDoc.data()
+      // ));
+      const docPromises = docs.map(firebaseDoc => firebaseDoc.collection('logItems').get);
+      return Promise.all(docPromises);
+    })
+    .then(docs => {
+      console.log(docs);
+
+      console.log(docs.map(firebaseDoc => (
+        firebaseDoc.data()
+      )));
+
+      successCb(docs);
     })
     .catch(error => console.log(error));
 };

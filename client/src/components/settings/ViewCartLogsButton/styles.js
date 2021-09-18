@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   logContianer: {
-    margin: 'auto',
     width: 'fit-content',
     padding: '0.5em',
+    margin: '1em auto',
   },
   logButton: {
     width: 'fit-content',

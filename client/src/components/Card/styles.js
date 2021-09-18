@@ -29,9 +29,7 @@ export default makeStyles(() => ({
       fontSize: '16px',
       fontWeight: '600',
       marginBottom: '0',
-      maxWidth: '150px',
-      maxHeight: '18px',
-      overflow: 'hidden',
+      height: '2em',
       marginTop: '10px',
     },
     '& p': {
