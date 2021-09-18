@@ -2,10 +2,10 @@ import axios from 'axios';
 
 // OpenFoodFacts REST endpoint
 const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
-const baseOFFURL = 'https://api.spoonacular.com';
+const baseURL = 'https://api.spoonacular.com';
 
 export const fetchUPCItem = (upc, callback) => {
-  const searchUrl = `${baseOFFURL}/food/products/upc/${upc}?apiKey=${apiKey}`;
+  const searchUrl = `${baseURL}/food/products/upc/${upc}?apiKey=${apiKey}`;
   axios.get(searchUrl)
     .then(result => {
       if (result.data) {
@@ -21,11 +21,25 @@ export const fetchUPCItem = (upc, callback) => {
     });
 };
 
+export const fetchProductDetails = (productId, successCb) => {
+  const searchUrl = `${baseURL}/food/products/upc/${productId}?apiKey=${apiKey}`;
+
+  axios.get(searchUrl)
+    .then(result => {
+      if (result) {
+        console.log(result.data['nutrition']);
+        successCb(result.data['nutrition']);
+      } else {
+        return null;
+      };
+    });
+};
+
 /*
 export const searchProducts = async (searchString) => {
   try {
     const searchLimit = 10;
-    const searchUrl = baseOFFURL + `/food/products/search?query=${searchString}&number=${searchLimit}&apiKey=${apiKey}`;
+    const searchUrl = baseURL + `/food/products/search?query=${searchString}&number=${searchLimit}&apiKey=${apiKey}`;
 
     const result = await axios({
       method: 'get',
@@ -41,30 +55,12 @@ export const searchProducts = async (searchString) => {
   }
 }
 
-export const fetchProductDetails = async (id) => {
-  try {
-    const searchUrl = baseOFFURL + `/food/products/${id}?apiKey=${apiKey}`;
-
-    const result = await axios({
-      method: 'get',
-      url: searchUrl,
-    }).then(result => {
-      if (result) {
-        return result.data;
-      } else return null;
-    });
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
 export const searchProductByName = async (searchString) => {
   try {
     const spaceRe = / /ig;
     const dashRe = /'/ig;
     const searchLimit = 10;
-    const searchUrl = baseOFFURL + `/food/products/search?query=${searchString.toLowerCase()}&number=${searchLimit}&apiKey=${apiKey}`;
+    const searchUrl = baseURL + `/food/products/search?query=${searchString.toLowerCase()}&number=${searchLimit}&apiKey=${apiKey}`;
     const formatUrl = searchUrl.replace(spaceRe, '-').replace(dashRe, '');
 
     const result = await axios({
@@ -87,7 +83,7 @@ export const searchProductById = async (id) => {
   const formattedId = Math.abs(parseInt(id)).toString();
 
   try {
-    const searchUrl = baseOFFURL + `/food/products/${formattedId}?apiKey=${apiKey}`
+    const searchUrl = baseURL + `/food/products/${formattedId}?apiKey=${apiKey}`
 
     const result = await axios({
       method: 'get',

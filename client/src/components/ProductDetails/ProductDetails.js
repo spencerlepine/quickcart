@@ -56,7 +56,7 @@ const ProductDetails = props => {
 
           {AddToCartButton && <AddToCartButton className={classes.addToCartBtn} item={{ ...props }} categoryID={category} />}
         </div>
-        {/*
+
         <div className={classes.nutritionDetials}>
           <NutritionFacts
             productId={upc || _id}
@@ -66,7 +66,7 @@ const ProductDetails = props => {
             servingSize={`${serving_size['count']} ${serving_size['unit']}`}
             servingQuantity={servings_per}>
           </NutritionFacts>
-        </div> */}
+        </div>
       </div>
     </div >
   );

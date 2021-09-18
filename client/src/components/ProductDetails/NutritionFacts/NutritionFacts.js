@@ -6,7 +6,7 @@ import hasNutritionData from './hasValidNutritionFacts';
 
 const NutritionFacts = ({ productId, categoryID, isExternalProduct, nutFacts, servingSize = null, servingQuantity = null }) => {
   const [showNutritionFacts, setShowNutritionFacts] = useState(false);
-  const { fetchNutritionDetails } = useProducts();
+  const { getNutritionDetails } = useProducts();
 
   useEffect(() => {
     const validNutrition = hasNutritionData(nutFacts);
@@ -38,7 +38,7 @@ const NutritionFacts = ({ productId, categoryID, isExternalProduct, nutFacts, se
     return (
       <>
         <p>Failed to load Nutrition Data</p>
-        <button onClick={() => fetchNutritionDetails(productId, categoryID, isExternalProduct)}>Search Again</button >
+        <button onClick={() => getNutritionDetails(productId, categoryID, isExternalProduct)}>Search Again</button >
       </>
     );
   }

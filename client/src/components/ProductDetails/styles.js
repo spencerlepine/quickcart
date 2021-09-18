@@ -107,6 +107,13 @@ export default makeStyles(() => ({
     },
   },
   productDetails: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    maxHeight: '30em',
+    overflowY: 'scroll',
+    paddingBottom: '2em',
+    margin: '0 2em',
     '@media (max-width:900px)': {
       textAlign: 'left',
       gridRowStart: '4',

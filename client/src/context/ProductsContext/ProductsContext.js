@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import * as savedItemData from 'api/firebase/saved';
 import * as productsItemData from 'api/firebase/products';
+import * as spoonacularApi from 'api/spoonacular';
 import groceryCategories from 'config/schema/groceryCategories';
 export const ProductsContext = React.createContext();
 
@@ -93,13 +94,41 @@ export function ProductsProvider({ children }) {
     });
   }
 
-  function fetchNutritionDetails(productId, categoryID, isExternalProduct) {
-    spoonacularApi.fetchProductDetails(productId, (detailsObj) => {
-      // pull the nurtition facts from this object
-      // look for the product in categories
-      // append the nutritionFacts key to the object
-      // update saved or external
-    })
+  function extendExistingProduct(newProduct, setProductList) {
+    const { categoryID, productId } = newProduct;
+    if (categoryID && productId && setProductList) {
+      setProductList(prevProducts => {
+        const obj = { ...prevProducts };
+        const existingProduct = obj[categoryID][productId];
+        if (existingProduct) {
+          obj[categoryID][productId] = {
+            ...existingProduct,
+            ...newProduct,
+          };
+        }
+        return obj;
+      });
+    }
+  }
+
+  function getNutritionDetails(productId, categoryID, isExternalProduct) {
+    setLoading(true);
+    spoonacularApi.fetchProductDetails(productId, nutritionObj => {
+      const updatedValues = {
+        productId,
+        categoryID,
+        nutritionFacts: nutritionObj,
+      };
+
+      if (nutritionObj) {
+        if (isExternalProduct) {
+          extendExistingProduct(updatedValues, setExternalProducts);
+        } else {
+          extendExistingProduct(updatedValues, setSavedProducts);
+        }
+      }
+      setLoading(false);
+    });
   }
 
   const value = {
@@ -110,33 +139,13 @@ export function ProductsProvider({ children }) {
     addSavedProduct,
     externalProducts,
     deleteSavedProduct,
-    fetchNutritionDetails,
+    getNutritionDetails,
   };
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 
-const useProducts = () => {
-  const {
-    loading,
-    fetchCategoryDocs,
-    fetchDocByID,
-    savedProducts,
-    addSavedProduct,
-    deleteSavedProduct,
-    externalProducts,
-  } = useContext(ProductsContext);
-
-  return {
-    fetchCategoryDocs,
-    fetchDocByID,
-    savedProducts,
-    loading,
-    addSavedProduct,
-    deleteSavedProduct,
-    externalProducts,
-  };
-};
+const useProducts = () => useContext(ProductsContext);
 
 export default useProducts;
 
