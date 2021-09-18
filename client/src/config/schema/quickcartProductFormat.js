@@ -66,9 +66,15 @@ const extractGroceryValue = (groceryObj, key) => {
 };
 
 export const formatProductForQuickcart = productObj => {
-  const formattedObj = {};
+  const formattedObj = {
+    category: 'other',
+    last_purchased: (new Date()).toString(),
+    serving_cost: 0,
+    serving_quantity: 0,
+  };
   for (const key in groceryItemSchema) {
-    formattedObj[key] = extractGroceryValue(productObj, key);
+    formattedObj[key] = extractGroceryValue(productObj, key) || formattedObj[key];
   }
+  console.log(formattedObj);
   return formattedObj;
 };

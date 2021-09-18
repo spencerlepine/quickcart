@@ -1,8 +1,12 @@
 import axios from 'axios';
+import { formatProductForQuickcart } from 'config/schema/quickcartProductFormat';
 
 // OpenFoodFacts REST endpoint
 const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
 const baseURL = 'https://api.spoonacular.com';
+// THESE are different routes
+// /food/products/upc/:productUPC
+// /food/products/:productId
 
 export const fetchUPCItem = (upc, callback) => {
   const searchUrl = `${baseURL}/food/products/upc/${upc}?apiKey=${apiKey}`;
@@ -32,73 +36,28 @@ export const fetchProductDetails = (productId, successCb) => {
       } else {
         return null;
       };
+    })
+    .catch(err => {
+      console.error(err);
     });
 };
 
-/*
-export const searchProducts = async (searchString) => {
-  try {
-    const searchLimit = 10;
-    const searchUrl = baseURL + `/food/products/search?query=${searchString}&number=${searchLimit}&apiKey=${apiKey}`;
+export const searchProductsByName = (searchString, callback) => {
+  const searchLimit = 5;
+  const searchUrl = `${baseURL}/food/products/search?query=${searchString}&number=${searchLimit}&apiKey=${apiKey}`;
 
-    const result = await axios({
-      method: 'get',
-      url: searchUrl,
-    }).then(result => {
-      if (result) {
-        return result.data.products
-      } else return null
+  axios.get(searchUrl)
+    .then(result => (
+      Promise.all(result.data.products.map(product => (
+        axios.get(`${baseURL}/food/products/${product['id']}?apiKey=${apiKey}`)
+      )))
+    ))
+    .then(detailedProducts => {
+      if (detailedProducts) {
+        callback(detailedProducts.map(p => formatProductForQuickcart(p.data)));
+      }
+    })
+    .catch(err => {
+      console.error(err);
     });
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-export const searchProductByName = async (searchString) => {
-  try {
-    const spaceRe = / /ig;
-    const dashRe = /'/ig;
-    const searchLimit = 10;
-    const searchUrl = baseURL + `/food/products/search?query=${searchString.toLowerCase()}&number=${searchLimit}&apiKey=${apiKey}`;
-    const formatUrl = searchUrl.replace(spaceRe, '-').replace(dashRe, '');
-
-    const result = await axios({
-      method: 'get',
-      url: formatUrl,
-    }).then(async (result) => {
-      if (result) {
-        const idToFetch = result.data.products.length > 0 ? result.data.products[0]['id'] : 0;
-        const details = await fetchProductDetails(idToFetch);
-        return details;
-      } else return null;
-    });
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-export const searchProductById = async (id) => {
-  const formattedId = Math.abs(parseInt(id)).toString();
-
-  try {
-    const searchUrl = baseURL + `/food/products/${formattedId}?apiKey=${apiKey}`
-
-    const result = await axios({
-      method: 'get',
-      url: searchUrl,
-    }).then(async (result) => {
-      if (result) {
-        const idToFetch = result.data['id'];
-        const details = await fetchProductDetails(idToFetch);
-        return details;
-      } else return null;
-    });
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-*/
-
+};
