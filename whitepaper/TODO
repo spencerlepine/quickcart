@@ -1,26 +1,29 @@
 # Features to add:
- - Check test coverage
+ - add "react-content-loader" for placeholder UI
+ - Implement Notifications pop up
  - Add more styles
- - Add screenshots on welcome page
- - Implement Searchbar + Search Filtering
- - Implement Nutrition Facts (search by product ID or UPC)
- - Implement page to view Cart Logs
- - Implement Account details in /settings and context state
- - Add/Connect total saved counter to account details
- - Add unit price indicator
- - Implement Cart Analyzer with reccomendations
- - Implement product reccomendations (for widget)
- - Implement sending external product to for to customize fields and save as doc in user/SAVED
- - Checkmarks/Highlight in Cart
-   o mark a grocery items found for easy shopping use
-   o CLICK DIV - remove add/plus sign, display check mark, make darker
+ - Integrate OpenFoodFacts
+  - searching external products
+  - scanning UPC codes
+  - getting nutrional data
+ - Improve Nutrition Facts (search by product ID or UPC)
+ - Track total saved products count in account details document
+ - Improve budgeting:
+  - Add unit price indicator
+  - Sort by unit price
+ - Implement product reccomendations widget
 
-
-Other Ideas:
+Other:
  - Improve Cart Analyzer
-  - Don't display items recently bought?
-  - Choose Serving amount and Product amount target for each category
- - Recipes:
+  - search through cart logs
+  - implement "find replacement"
+  - DON'T display items if:
+    - recently bought
+    - clicked "find replacement"
+  - Customizable 'target servings' configuration
+   - Change to 7 days, 2 weeks
+   - Maybe remove "cannedGood" or categories never used
+ - Integrate Recipes:
   - Search common recipes and save the products required
   - Add products of recipe to cart
   - Should reference to personal grocery items ID
