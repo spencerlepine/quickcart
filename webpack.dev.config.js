@@ -20,10 +20,6 @@ module.exports = {
     path: path.resolve(__dirname, 'client', 'build'),
     filename: '[name].[chunkhash].bundle.js',
   },
-  devServer: {
-    host: '0.0.0.0',
-    historyApiFallback: true,
-  },
   plugins: [
     new Dotenv(),
 

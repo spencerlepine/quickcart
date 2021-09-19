@@ -41,10 +41,6 @@ module.exports = {
       name: 'manifest',
     },
   },
-  devServer: {
-    host: '0.0.0.0',
-    historyApiFallback: true,
-  },
   plugins: [
     new Dotenv({ systemvars: true }),
 
