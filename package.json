@@ -36,7 +36,6 @@
     "axios": "^0.21.1",
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.1",
-    "firebase-mock": "^2.3.2",
     "material-ui-search-bar": "^1.0.0",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",
@@ -89,8 +88,7 @@
   },
   "jest": {
     "setupFiles": [
-      "dotenv/config",
-      "<rootDir>/client/src/test-utils/jest.setup.js"
+      "dotenv/config"
     ],
     "moduleDirectories": [
       "node_modules",
