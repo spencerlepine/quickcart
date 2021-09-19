@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import groceryCategories from 'config/schema/groceryCategories';
 import servingRequirements from 'config/schema/servingRequirements';
 import useProducts from 'context/ProductsContext/ProductsContext';
-import CartCard from '../CartCard/CartCard';
+import ProgressBar from './ProgressBar/ProgressBar';
+import SuggesterCard from './SuggesterCard/SuggesterCard';
 import useStyles from './styles.js';
 
-const FillerItems = ({ cartProducts, category, savedProducts, fetchCategoryDocs }) => {
+const FillerItems = ({ cartProducts, classString, category, savedProducts, fetchCategoryDocs }) => {
   const cartCount = Object.values(cartProducts[category] || {}).length;
   const saved = Object.values(savedProducts[category] || {});
 
@@ -22,9 +23,10 @@ const FillerItems = ({ cartProducts, category, savedProducts, fetchCategoryDocs 
     const progress = (cartCount * 100 / requiredProducts).toFixed(0);
 
     return (
-      <div>
-        <h5>{window.toTitleCase(category)}</h5><p>{progress}%</p>
-        {suggested.map((obj, i) => (<CartCard {...obj} key={i} />))}
+      <div className={classString}>
+        <h4>{window.toTitleCase(category)}</h4>
+        <ProgressBar progress={progress} />
+        {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
       </div>
     );
   } else {
@@ -40,7 +42,14 @@ const CategoryAnalyzer = ({ cartProducts }) => {
   return (
     <div className={`category-analyzer ${classes.categoryAnalyzer}`}>
       {categories.map((category, i) => (
-        <FillerItems category={category} cartProducts={cartProducts} savedProducts={savedProducts} key={i} fetchCategoryDocs={fetchCategoryDocs} />
+        <FillerItems
+          classString={classes.fillerCategory}
+          key={i}
+          category={category}
+          cartProducts={cartProducts}
+          savedProducts={savedProducts}
+          fetchCategoryDocs={fetchCategoryDocs}
+        />
       ))}
     </div>
   );
@@ -53,6 +62,7 @@ CategoryAnalyzer.propTypes = {
 };
 
 FillerItems.propTypes = {
+  classString: PropTypes.string.isRequired,
   savedProducts: PropTypes.object.isRequired,
   fetchCategoryDocs: PropTypes.func.isRequired,
   cartProducts: PropTypes.object.isRequired,
