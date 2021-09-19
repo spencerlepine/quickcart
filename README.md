@@ -1,15 +1,10 @@
 # [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; ![QuickCart License](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/test.yml/badge.svg?branch=master)
 Make a shopping list with personal grocery data to help budget.
 
-- [Setup](#setup)
-- [Technologies](#technologies)
-- [Features](#features)
-- [Contributing](#contributing)
-
 ![Demo Sreenshot](./client/src/assets/images/thumbnail.png)
 
 ## ⚙️ Setup:
-- Configue the ```.env``` file (**[Configure API Keys](<#configure api keys>)**)
+- Create the ```.env``` file
 ```sh
     npm install
     # npm run husky:prepare
