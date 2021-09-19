@@ -79,12 +79,17 @@ export default makeStyles(() => ({
     margin: 'auto 0.25em',
     backgroundColor: 'transparent',
     fontWeight: '500',
-    zIndex: '4',
+    zIndex: '5',
     '&:hover': {
       backgroundColor: '#a7f1c6',
     },
   },
   deleteBtn: {
+    color: '#b33c12',
+    borderColor: '#b12c2c',
+    '&:hover': {
+      backgroundColor: '#ffc9c9',
+    },
     marginLeft: 'auto',
     width: 'auto',
   },

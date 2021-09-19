@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import groceryCategories from 'config/schema/groceryCategories';
 import servingRequirements from 'config/schema/servingRequirements';
 import useProducts from 'context/ProductsContext/ProductsContext';
 import ProgressBar from './ProgressBar/ProgressBar';
 import SuggesterCard from './SuggesterCard/SuggesterCard';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from './styles.js';
 
 const FillerItems = ({ cartProducts, classString, category, savedProducts, fetchCategoryDocs }) => {
   const cartCount = Object.values(cartProducts[category] || {}).length;
   const saved = Object.values(savedProducts[category] || {});
+  const [displayMe, setDisplayMe] = useState(true);
 
   useEffect(() => {
     if (saved.length === 0) {
@@ -24,9 +26,12 @@ const FillerItems = ({ cartProducts, classString, category, savedProducts, fetch
 
     return (
       <div className={classString}>
-        <h4>{window.toTitleCase(category)}</h4>
-        <ProgressBar progress={parseInt(progress)} />
-        {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
+        <ExpandMoreIcon onClick={() => setDisplayMe(!displayMe)} style={{ transform: displayMe ? 'scaleY(-1)' : 'none' }} fontSize="large" />
+        <h4 className="categoryTitle">{window.toTitleCase(category)}</h4>
+        {displayMe && (<>
+          <ProgressBar progress={parseInt(progress)} />
+          {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
+        </>)}
       </div>
     );
   } else {

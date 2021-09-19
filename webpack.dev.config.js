@@ -32,6 +32,10 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
+  devServer: {
+    host: '0.0.0.0',
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {

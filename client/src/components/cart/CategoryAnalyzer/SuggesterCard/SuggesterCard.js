@@ -32,7 +32,7 @@ const SuggesterCard = props => {
     quantity
   ).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  if (!display || hiddenProductIds.indexOf(_id)) {
+  if (!display || !hiddenProductIds.indexOf(_id)) {
     return null;
   }
 
