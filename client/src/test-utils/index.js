@@ -30,13 +30,7 @@ jest.mock('config/firebase', () => ({
     db: mockfirestore,
     auth: mockauth,
   },
-  // db: mockfirestore,
-  // auth: { ...mockauth, onAuthStateChanged: () => { } },
 }));
-
-// export const db = firebase.firestore();
-// export const auth = app.auth();
-// export const storage = firebase.storage();
 
 /*********************************** */
 window.toTitleCase = str => {
