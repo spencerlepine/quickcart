@@ -11,28 +11,11 @@ import { createBrowserHistory } from 'history';
 import currentUser from 'currentUser';
 import '@testing-library/jest-dom';
 
-/*********************************** */
-
-import firebasemock from 'firebase-mock';
-const mockauth = new firebasemock.MockFirebase();
-const mockfirestore = new firebasemock.MockFirestore();
-const mocksdk = firebasemock.MockFirebaseSdk(null, function () {
-  return mockauth;
-}, function () {
-  return mockfirestore;
-});
-const mockapp = mocksdk.initializeApp();
-
 jest.mock('config/firebase', () => ({
-  __esModule: true,
-  defualt: {
-    ...mockapp,
-    db: mockfirestore,
-    auth: mockauth,
-  },
+  auth: null,
+  db: null,
 }));
 
-/*********************************** */
 window.toTitleCase = str => {
   const result = str.replace(/([A-Z])/g, ' $1');
   return result.charAt(0).toUpperCase() + result.slice(1);

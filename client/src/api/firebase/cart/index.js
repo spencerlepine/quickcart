@@ -1,7 +1,11 @@
 import { auth, db } from 'config/firebase';
 import { ALL_USERS, USER_CART, CATEGORY_ITEMS } from '../firebaseSchema.js';
+const validFirebase = auth && db;
 
 export const fetchAll = successCb => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -17,6 +21,9 @@ export const fetchAll = successCb => {
 };
 
 export const fetchCategory = (categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -33,6 +40,9 @@ export const fetchCategory = (categoryID, successCb) => {
 };
 
 export const saveItem = (item, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
   const { _id: id } = item;
 
@@ -62,6 +72,9 @@ export const saveItem = (item, categoryID, successCb) => {
 };
 
 export const removeItem = async (itemID, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   const itemDocRef = db
@@ -84,6 +97,9 @@ export const removeItem = async (itemID, categoryID, successCb) => {
 };
 
 export const updateItem = async (item, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   const itemDocRef = db
@@ -117,6 +133,9 @@ function formatDate(d) {
 
 // THIS SHOULD BE REPLACED with api/firebase/logs functoins
 export const logCartItem = (item, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   try {
     const { uid: userId } = (auth.currentUser || {});
 
@@ -155,6 +174,9 @@ export const logCartItem = (item, categoryID, successCb) => {
 
 // THIS SHOULD BE REPLACED with api/firebase/logs functoins
 export const fetchCartLogs = (lastLogDate, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
   const { uid: userId } = (auth.currentUser || {});
 
   // Save the item

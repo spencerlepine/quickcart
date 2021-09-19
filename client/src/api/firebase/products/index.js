@@ -2,8 +2,13 @@ import { db } from 'config/firebase';
 import { ALL_PRODUCTS, CATEGORY_ITEMS } from '../firebaseSchema.js';
 import { FETCH_ITEM_LIMIT } from 'config';
 import groceryCategories from 'config/schema/groceryCategories';
+const validFirebase = db;
 
 export const fetchCategory = (categoryID, lastId, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
+
   db.collection(ALL_PRODUCTS)
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
@@ -19,6 +24,10 @@ export const fetchCategory = (categoryID, lastId, successCb) => {
 };
 
 export const createItem = (newItem, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
+
   const { _id: itemID } = newItem;
 
   const categoryCollection = db.collection(ALL_PRODUCTS)
@@ -59,6 +68,10 @@ const getCategoryNames = new Promise((res, rej) => (
 ));
 
 export const queryDatabase = (query, callback) => {
+  if (!validFirebase) {
+    return;
+  }
+
   getCategoryNames
     .then(categoryNames => (
       Promise.all(categoryNames.map(nameStr => (
@@ -79,6 +92,10 @@ export const queryDatabase = (query, callback) => {
 };
 
 export const fetchItem = (itemID, categoryID, successCb) => {
+  if (!validFirebase) {
+    return;
+  }
+
   db.collection(ALL_PRODUCTS)
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
