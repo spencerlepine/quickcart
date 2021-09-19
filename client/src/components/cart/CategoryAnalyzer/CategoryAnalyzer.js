@@ -11,7 +11,9 @@ import useStyles from './styles.js';
 const FillerItems = ({ cartProducts, classString, category, savedProducts, fetchCategoryDocs }) => {
   const cartCount = Object.values(cartProducts[category] || {}).length;
   const saved = Object.values(savedProducts[category] || {});
-  const [displayMe, setDisplayMe] = useState(true);
+  const requiredProducts = servingRequirements[category].products;
+
+  const [displayMe, setDisplayMe] = useState(cartCount < requiredProducts);
 
   useEffect(() => {
     if (saved.length === 0) {
@@ -19,24 +21,19 @@ const FillerItems = ({ cartProducts, classString, category, savedProducts, fetch
     }
   }, []);
 
-  const requiredProducts = servingRequirements[category].products;
-  if (cartCount < requiredProducts) {
-    const suggested = saved.sort(() => Math.random() - 0.5).slice(0, Math.min(Math.max(parseInt((requiredProducts - cartCount) + 3), 0)));
-    const progress = (cartCount * 100 / requiredProducts).toFixed(0);
+  const suggested = saved.sort(() => Math.random() - 0.5).slice(0, Math.min(Math.max(parseInt((requiredProducts - cartCount) + 3), 0)));
+  const progress = (cartCount * 100 / requiredProducts).toFixed(0);
 
-    return (
-      <div className={classString}>
-        <ExpandMoreIcon onClick={() => setDisplayMe(!displayMe)} style={{ transform: displayMe ? 'scaleY(-1)' : 'none' }} fontSize="large" />
-        <h4 className="categoryTitle">{window.toTitleCase(category)}</h4>
-        {displayMe && (<>
-          <ProgressBar progress={parseInt(progress)} />
-          {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
-        </>)}
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <div className={classString}>
+      <ExpandMoreIcon onClick={() => setDisplayMe(!displayMe)} style={{ transform: displayMe ? 'scaleY(-1)' : 'none' }} fontSize="large" />
+      <h4 className="categoryTitle">{window.toTitleCase(category)}</h4>
+      {displayMe && (<>
+        <ProgressBar progress={parseInt(progress)} />
+        {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
+      </>)}
+    </div>
+  );
 };
 
 const CategoryAnalyzer = ({ cartProducts }) => {

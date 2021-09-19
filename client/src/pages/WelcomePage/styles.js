@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles(() => ({
   welcomeContainer: {
     width: 'fit-content',
-    maxWidth: '700px',
+    maxWidth: 'min(700px, 90%)',
     margin: 'auto',
   },
   demoImg: {
@@ -88,5 +88,13 @@ export default makeStyles(() => ({
     'marginTop': '2em',
     textAlign: 'center',
     color: 'rgb(114, 118, 126)',
+  },
+  showcaseFigure: {
+    '&& h2': {
+      color: '#564f97',
+    },
+  },
+  showcaseImg: {
+    maxWidth: '-webkit-fill-available',
   },
 }));

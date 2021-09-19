@@ -8,7 +8,7 @@ const withAuthRedirect = (Component, isAuthPage = false) =>
     // Get the current user from AuthContext
     const { currentUser } = useAuth();
 
-    if (currentUser) {
+    if (currentUser && Object.keys(currentUser).length > 1) {
       if (isAuthPage) {
         return <Redirect to={HOME} />;
       } else {

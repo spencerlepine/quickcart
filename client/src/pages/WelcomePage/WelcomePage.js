@@ -5,9 +5,12 @@ import { LOGIN, SIGNUP } from 'config/constants/routeConstants';
 import demoImage from 'assets/images/demo_transparent.png';
 import useStyles from './styles.js';
 
-const searchDemoImage = ''; // import searchDemoImage from 'assets/images/demo_search.png';
-const listDemoImage = ''; // import listDemoImage from 'assets/images/demo_list.png';
-const customizeDemoImage = ''; // import customizeDemoImage from 'assets/images/demo_customize.png';
+import searchDemoImage from 'assets/images/search-screenshot.png';
+import cartDemoImage from 'assets/images/cart-screenshot.png';
+import analyzerDemoImage from 'assets/images/analyzer-screenshot.png';
+import savedDemoImage from 'assets/images/saved-screenshot.png';
+import scanDemoImage from 'assets/images/scan-upc.png';
+import customizeDemoImage from 'assets/images/customize-product.png';
 
 const WelcomePage = () => {
   const classes = useStyles();
@@ -33,30 +36,57 @@ const WelcomePage = () => {
         alt='QuickCart Screenshot'
       ></img>
 
-      <div className={classes.searchFigure}>
+      <div className={classes.showcaseFigure}>
+        <h2>Generate a Shopping List</h2>
+        <img
+          className={classes.showcaseImg}
+          src={cartDemoImage}
+          alt='generate a shopping list on QuickCart'
+        ></img>
+      </div>
+
+      <div className={classes.showcaseFigure}>
         <h2>Search Products</h2>
         <img
-          className={classes.searchDemoImg}
+          className={classes.showcaseImg}
           src={searchDemoImage}
           alt='search products on QuickCart'
         ></img>
       </div>
 
-      <div className={classes.shoppingListFigure}>
-        <h2>Generate a Shopping List</h2>
+      <div className={classes.showcaseFigure}>
+        <h2>Scan a Barcode</h2>
         <img
-          className={classes.listDemoImg}
-          src={listDemoImage}
-          alt='generate a shopping list on QuickCart'
+          className={classes.showcaseImg}
+          src={scanDemoImage}
+          alt='scan UPC codes for products on QuickCart'
         ></img>
       </div>
 
-      <div className={classes.customizeFigure}>
+      <div className={classes.showcaseFigure}>
+        <h2>Analyze the Cart</h2>
+        <img
+          className={classes.showcaseImg}
+          src={analyzerDemoImage}
+          alt='analyze cart items on QuickCart'
+        ></img>
+      </div>
+
+      <div className={classes.showcaseFigure}>
         <h2>Customize Product Details</h2>
         <img
-          className={classes.customizeDemoImg}
+          className={classes.showcaseImg}
           src={customizeDemoImage}
           alt='customize product details on QuickCart'
+        ></img>
+      </div>
+
+      <div className={classes.showcaseFigure}>
+        <h2>Save Favourite Products</h2>
+        <img
+          className={classes.showcaseImg}
+          src={savedDemoImage}
+          alt='save a list of personal products on QuickCart'
         ></img>
       </div>
 
