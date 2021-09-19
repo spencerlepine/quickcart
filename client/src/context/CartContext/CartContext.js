@@ -10,6 +10,11 @@ export function CartProvider({ children }) {
   const [itemCount, setItemCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [cartLogs, setCartLogs] = useState(null);
+  const [hiddenProductIds, setHiddenProductIds] = useState([]);
+
+  function hideProductsById(_id) {
+    setHiddenProductIds(hiddenProductIds.concat(_id));
+  }
 
   useEffect(() => {
     setItemCount(Object.values(cartProducts).reduce((itemCount, categoryObj) => (
@@ -131,6 +136,8 @@ export function CartProvider({ children }) {
     cartProducts,
     getCartLogs,
     cartLogs,
+    hideProductsById,
+    hiddenProductIds,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -34,6 +34,14 @@ describe('CartContext', () => {
       key: 'cartProducts',
       targetInstance: Object,
     },
+    {
+      key: 'hiddenProductIds',
+      targetInstance: Array,
+    },
+    {
+      key: 'hideProductsById',
+      targetInstance: Function,
+    },
   ];
 
   testContextExports(CartProvider, useCart, expectedExports);

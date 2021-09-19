@@ -36,7 +36,7 @@ const CartViewer = () => {
   return (
     <div className={`cart-viewer ${classes.cartViewer}`}>
       <div className={`cart-options ${classes.cartOptions}`}>
-        <button disabled={itemCount === 0} className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>
+        {!analyzeMode && <button disabled={itemCount === 0} className={`${classes.checkoutBtn} ${classes.btn}`} onClick={handleCheckoutCart}>{`Checkout ${itemCount} Item${itemCount > 0 ? 's' : ''}`}</button>}
 
         <button onClick={toggleCartMode} className={`${classes.toggleBtn} ${classes.btn} toggleBtn`}>{modeTitle}</button>
 
