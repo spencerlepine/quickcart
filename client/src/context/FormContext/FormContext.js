@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import useProducts from 'context/ProductsContext/ProductsContext';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { SAVED } from 'config/constants/routeConstants';
 export const FormContext = React.createContext();
 
