@@ -1,6 +1,10 @@
-on: [push, pull_request]
+name: build
 
-name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 env:
   CI: true
@@ -15,41 +19,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [12, 14]
-        os: [ubuntu-latest, windows-latest]
+        # node: [12, 14]
+        node: [14]
+        # os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
 
     steps:
-      - name: Clone repository
+      - name: ♻️ Clone repository
         uses: actions/checkout@v2
 
-      - name: Set Node.js version
+      - name:	🔖  Set Node.js version
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install npm dependencies
+      - name: ⬇️  Install npm dependencies
+       - uses: c-hive/gha-npm-cache@v1
         run: npm install # switch to `npm ci` when Node.js 6 support is dropped
 
-#       - name: Run lint
-#         run: npm run lint
-
-      - name: Run tests
+      - name: ✅  Run tests
         run: npm run test
-        # run: npm run test:coverage
-
-      # - name: Coveralls
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     flag-name: ${{matrix.os}}-node-${{ matrix.node }}
-      #     parallel: true
-
-  # finish:
-  #   needs: test
-  #   runs-on: ubuntu-latest
-    # steps:
-    #   - name: Coveralls Finished
-    #     uses: coverallsapp/github-action@master
-    #     with:
-    #       github-token: ${{ secrets.GITHUB_TOKEN }}
-    #       parallel-finished: true
