@@ -89,7 +89,8 @@
   },
   "jest": {
     "setupFiles": [
-      "dotenv/config"
+      "dotenv/config",
+      "<rootDir>/client/src/test-utils/jest.setup.js"
     ],
     "moduleDirectories": [
       "node_modules",
