@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "webpack serve --config ./webpack.dev.config.js",
     "start": "node server/index.js",
-    "build": "BABEL_ENV=node webpack --config ./webpack.prod.config.js",
+    "build": "webpack --config ./webpack.prod.config.js",
     "create-hook": "husky add .husky/pre-commit 'npm run lint-staged && git add .'",
     "husky:prepare": "husky install && npm run create-hook",
     "test": "jest",
@@ -35,7 +35,6 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "axios": "^0.21.1",
     "firebase": "^8.9.1",
-    "firebase-admin": "^9.11.1",
     "material-ui-search-bar": "^1.0.0",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",
@@ -78,7 +77,6 @@
     "style-loader": "^3.2.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.2.0",
     "workbox-webpack-plugin": "^6.3.0"
   },
   "husky": {
@@ -99,8 +97,7 @@
       "jest-watch-typeahead/testname"
     ],
     "moduleFileExtensions": [
-      "js",
-      "jsx"
+      "js"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/client/src/__mocks__/styleMock.js",
