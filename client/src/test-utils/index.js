@@ -10,15 +10,25 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import currentUser from 'currentUser';
 import '@testing-library/jest-dom';
-// import 'mockFirebase';
+
+/*********************************** */
+
+import firebasemock from 'firebase-mock';
+const mockauth = new firebasemock.MockFirebase();
+const mockfirestore = new firebasemock.MockFirestore();
+const mocksdk = firebasemock.MockFirebaseSdk(null, function () {
+  return mockauth;
+}, function () {
+  return mockfirestore;
+});
+const mockapp = mocksdk.initializeApp();
 
 jest.mock('config/firebase', () => ({
   __esModule: true,
   defualt: {
-    // auth: () => ({
-    //   onAuthStateChanged: () => { },
-    //   currentUser: { "uid": "yeet" },
-    // }),
+    ...mockapp,
+    db: mockfirestore,
+    auth: mockauth,
   },
 }));
 

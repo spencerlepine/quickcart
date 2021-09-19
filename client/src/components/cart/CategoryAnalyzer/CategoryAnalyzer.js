@@ -25,7 +25,7 @@ const FillerItems = ({ cartProducts, classString, category, savedProducts, fetch
     return (
       <div className={classString}>
         <h4>{window.toTitleCase(category)}</h4>
-        <ProgressBar progress={progress} />
+        <ProgressBar progress={parseInt(progress)} />
         {suggested.map((obj, i) => (<SuggesterCard {...obj} key={i} />))}
       </div>
     );

@@ -10,6 +10,7 @@ describe('SearchBar', () => {
     setSearchFilter: () => { },
     sortMode: {},
     setSortMode: () => { },
+    searchingExternal: true,
   };
 
   test('renders an input element', () => {
