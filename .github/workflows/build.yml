@@ -83,7 +83,6 @@ jobs:
           message: ${{ env.COVERAGE }}
           color: green
           namedLogo: jest
-          parallel-finished: true
 
 
 #    # Main doesn't have a PR for comments so skip that branch
