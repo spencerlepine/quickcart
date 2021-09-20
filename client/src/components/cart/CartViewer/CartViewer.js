@@ -10,7 +10,14 @@ import { HOME } from 'config/constants/routeConstants';
 import useStyles from './styles.js';
 
 const getCartTotal = productsObj => (
-  Object.values(productsObj).reduce((arr, categoryObj) => arr.concat(Object.values(categoryObj)), []).reduce((sum, obj) => sum += parseFloat(obj['purchase_price']), 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+  Object.values(productsObj)
+    .reduce((arr, categoryObj) => (
+      arr.concat(Object.values(categoryObj))
+    ), [])
+    .reduce((sum, obj) => (
+      sum += (parseFloat(obj['purchase_price']) * obj['quantity'])
+    ), 0)
+    .toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 );
 
 const CartViewer = () => {
