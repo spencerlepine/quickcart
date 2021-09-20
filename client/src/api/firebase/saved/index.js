@@ -10,7 +10,7 @@ export const fetchCategory = (categoryID, lastId, successCb) => {
   }
   const { uid: userId } = (auth.currentUser || {});
 
-  db.collection(ALL_USERS) // this
+  db.collection(ALL_USERS)
     .doc(userId)
     .collection(SAVED_CATEGORIES)
     .doc(categoryID)
@@ -71,10 +71,32 @@ export const updateItem = (updatedItem, categoryID, successCb) => {
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
     .doc(itemID)
-    .update({
-      ...updatedItem,
-    }, { merge: true })
-    .then(() => successCb(updatedItem))
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+          db.collection(ALL_USERS)
+          .doc(userId)
+          .collection(SAVED_CATEGORIES)
+          .doc(categoryID)
+          .collection(CATEGORY_ITEMS)
+          .doc(itemID)
+            .update({
+            ...updatedItem,
+          }, { merge: true })
+          .then(() => successCb(updatedItem))
+        } else {
+           db.collection(ALL_USERS)
+          .doc(userId)
+          .collection(SAVED_CATEGORIES)
+          .doc(categoryID)
+          .collection(CATEGORY_ITEMS)
+          .doc(itemID)
+             .set({
+            ...updatedItem,
+          })
+          .then(() => successCb(updatedItem))
+        }
+    })
     .catch(error => console.log(error));
 };
 
