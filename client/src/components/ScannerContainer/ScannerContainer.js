@@ -50,7 +50,6 @@ const ScannerContainer = () => {
       if (err) {
         handleError();
       } else {
-        setEditingMode(true);
         setFormEntries(result);
         history.push(CREATE);
       }
