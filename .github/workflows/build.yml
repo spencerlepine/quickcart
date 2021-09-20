@@ -11,7 +11,7 @@ env:
 
 jobs:
 
-  test:
+  build:
     environment: production_environment
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -38,3 +38,6 @@ jobs:
 
       - name: ✅  Run tests
         run: npm run test
+
+      - name: 🏗️  Build
+        run: npm run build
