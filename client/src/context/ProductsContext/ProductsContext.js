@@ -111,6 +111,14 @@ export function ProductsProvider({ children }) {
     }
   }
 
+  function updateSavedProduct(updatedProduct, categoryID) {
+    setLoading(true);
+    savedItemData.updateItem(updatedProduct, categoryID, () => {
+      extendExistingProduct(updatedProduct, setSavedProducts);
+      setLoading(false);
+    });
+  }
+
   function getNutritionDetails(productId, categoryID, isExternalProduct) {
     setLoading(true);
     spoonacularAPI.fetchProductDetails(productId, nutritionObj => {
@@ -167,6 +175,7 @@ export function ProductsProvider({ children }) {
   const value = {
     loading,
     fetchCategoryDocs,
+    updateSavedProduct,
     fetchDocByID,
     savedProducts,
     addSavedProduct,

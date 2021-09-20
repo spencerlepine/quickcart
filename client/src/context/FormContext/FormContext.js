@@ -23,7 +23,7 @@ const placeholderItem = {
 
 export function FormProvider({ children }) {
   const [formEntries, setFormEntries] = useState(placeholderItem);
-  const { addSavedProduct, deleteSavedProduct } = useProducts();
+  const { addSavedProduct, deleteSavedProduct, updateSavedProduct } = useProducts();
 
   const [editingMode, setEditingMode] = useState(false);
   const [isExternal, setIsExternal] = useState(false);
@@ -33,7 +33,6 @@ export function FormProvider({ children }) {
   const handleDelete = e => {
     e.preventDefault();
     if (editingMode && !isExternal) {
-      console.log('calling', deleteSavedProduct);
       const item = Object.assign({}, formEntries);
       if (!(item && Object.keys(item).length === 0 && item.constructor === Object)) {
         setEditingMode(false);
@@ -51,10 +50,15 @@ export function FormProvider({ children }) {
     e.preventDefault();
     const item = Object.assign({}, formEntries);
     if (!(item && Object.keys(item).length === 0 && item.constructor === Object)) {
+      if (editingMode && !isExternal) {
+        updateSavedProduct(item, item['category']);
+      } else {
+        addSavedProduct(item, item['category']);
+      }
+
       setEditingMode(false);
       setIsExternal(false);
       setFormEntries({});
-      addSavedProduct(item, item['category']);
       history.push(SAVED);
     }
   };

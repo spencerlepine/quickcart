@@ -15,8 +15,7 @@ const BrandSearchInput = ({ brand, handleChange }) => {
         className={classes.brandSearch}
         id="free-solo-demo"
         freeSolo
-        onChange={(event, newValue) => {
-          event.preventDefault();
+        onInputChange={(event, newValue) => {
           handleChange({
             preventDefault: () => { },
             target: { value: newValue, name: 'brand' },

@@ -71,7 +71,7 @@ export const updateItem = (updatedItem, categoryID, successCb) => {
     .doc(categoryID)
     .collection(CATEGORY_ITEMS)
     .doc(itemID)
-    .set({
+    .update({
       ...updatedItem,
     }, { merge: true })
     .then(() => successCb(updatedItem))
