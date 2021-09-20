@@ -1,4 +1,4 @@
-# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; ![QuickCart License](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/build.yml/badge.svg?branch=master)
+# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; ![QuickCart License](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml)
 Make a shopping list with personal grocery data to help budget.
 
 ![Demo Sreenshot](./client/src/assets/images/thumbnail.png)
