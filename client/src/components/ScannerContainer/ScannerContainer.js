@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { CREATE } from 'config/constants/routeConstants';
 import useForm from 'context/FormContext/FormContext';
 import { fetchUPCItem as fetchUPCItemA } from 'api/spoonacular';
-import { fetchUPCItem as fetchUPCItemB } from 'api/openfoodfacts';
+// import { fetchUPCItem as fetchUPCItemB } from 'api/openfoodfacts';
 import useStyles from './styles.js';
 
 const ScannerContainer = () => {
@@ -18,7 +18,7 @@ const ScannerContainer = () => {
 
   const scanProductsFromUPC = (upcString, callback) => {
     // Nested callback to QUERY spoonacular database, and then openfoodfacts
-    fetchUPCItemB(upcString, (err, productDetails) => {
+    fetchUPCItemA(upcString, (err, productDetails) => {
       if (productDetails) {
         callback(null, productDetails);
       } else {
@@ -26,13 +26,13 @@ const ScannerContainer = () => {
           console.log(err);
         }
 
-        fetchUPCItemA(upcString, (err, productDetails) => {
-          if (productDetails) {
-            callback(null, productDetails);
-          } else {
-            callback(err);
-          }
-        });
+//         fetchUPCItemA(upcString, (err, productDetails) => {
+//           if (productDetails) {
+//             callback(null, productDetails);
+//           } else {
+//             callback(err);
+//           }
+//         });
       }
     });
   };
