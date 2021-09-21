@@ -59,7 +59,7 @@ const ProductInfoEntry = props => {
   return (
     <div className={`productInfoEntry ${classes.formContainer}`}>
       <Popup
-        manualDisplay={!editingMode}
+        manualDisplay={!props['name']}
         DefaultElem={(<React.Fragment></React.Fragment>)}
         PopupElem={(<SearchPrompt />)}
       />
