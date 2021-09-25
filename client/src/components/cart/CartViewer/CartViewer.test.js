@@ -46,27 +46,28 @@ describe('CartViewer', () => {
     expect(modeBtn).toHaveTextContent('Analyze Cart');
   });
 
-  test('clicking the "Analyze Cart" button changes text to "Veiw List"', () => {
+  test('clicking the "Analyze Cart" button changes text to "Veiw List"', done => {
     render(<CartViewer />, mockContext);
     const modeBtn = screen.getAllByRole('button')[1];
 
     fireEvent.click(modeBtn);
 
     setTimeout(() => {
-      expect(modeBtn).toHaveTextContent(/Checkout \d+ Item['s|s]/);
+      expect(modeBtn).toHaveTextContent('View List');
+      done();
     }, 0);
   });
-  /*
-test('clicking the "Analyze Cart" button the div to "Cart List" to "Category Analyzer"', () => {
-  const { container } = render(<CartViewer />, mockContext);
-  expect(container.querySelector('div.category-analyzer')).not.toBeInTheDocument();
 
-  const modeBtn = screen.getAllByRole('button')[1];
-  fireEvent.click(modeBtn);
+  test('clicking the "Analyze Cart" button the div to "Cart List" to "Category Analyzer"', done => {
+    const { container } = render(<CartViewer />, mockContext);
+    expect(container.querySelector('div.category-analyzer')).not.toBeInTheDocument();
 
-  setTimeout(() => {
-    expect(container.querySelector('div.category-analyzer')).toBeInTheDocument();
-  }, 0);
-});
-*/
+    const modeBtn = screen.getAllByRole('button')[1];
+    fireEvent.click(modeBtn);
+
+    setTimeout(() => {
+      expect(container.querySelector('div.category-analyzer')).toBeInTheDocument();
+      done();
+    }, 0);
+  });
 });

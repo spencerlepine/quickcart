@@ -129,7 +129,8 @@
     "rules": {
       "no-console": "off",
       "react-hooks/exhaustive-deps": "off",
-      "react/display-name": "off"
+      "react/display-name": "off",
+      "jest/no-done-callback": "off"
     }
   },
   "browserslist": {
