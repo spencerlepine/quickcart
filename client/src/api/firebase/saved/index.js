@@ -2,12 +2,8 @@ import { auth, db } from 'config/firebase';
 import { ALL_USERS, SAVED_CATEGORIES, CATEGORY_ITEMS } from '../firebaseSchema.js';
 import { FETCH_ITEM_LIMIT } from 'config';
 import groceryCategories from 'config/schema/groceryCategories';
-const validFirebase = auth && db;
 
 export const fetchCategory = (categoryID, lastId, successCb) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -27,9 +23,6 @@ export const fetchCategory = (categoryID, lastId, successCb) => {
 };
 
 export const createItem = (newItem, categoryID, successCb) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
   const { _id: itemID } = newItem;
 
@@ -59,9 +52,6 @@ export const createItem = (newItem, categoryID, successCb) => {
 };
 
 export const updateItem = (updatedItem, categoryID, successCb) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
   const { _id: itemID } = updatedItem;
 
@@ -74,36 +64,33 @@ export const updateItem = (updatedItem, categoryID, successCb) => {
     .get()
     .then(doc => {
       if (doc.exists) {
-          db.collection(ALL_USERS)
+        db.collection(ALL_USERS)
           .doc(userId)
           .collection(SAVED_CATEGORIES)
           .doc(categoryID)
           .collection(CATEGORY_ITEMS)
           .doc(itemID)
-            .update({
+          .update({
             ...updatedItem,
           }, { merge: true })
           .then(() => successCb(updatedItem))
-        } else {
-           db.collection(ALL_USERS)
+      } else {
+        db.collection(ALL_USERS)
           .doc(userId)
           .collection(SAVED_CATEGORIES)
           .doc(categoryID)
           .collection(CATEGORY_ITEMS)
           .doc(itemID)
-             .set({
+          .set({
             ...updatedItem,
           })
           .then(() => successCb(updatedItem))
-        }
+      }
     })
     .catch(error => console.log(error));
 };
 
 export const fetchItem = (itemID, categoryID, successCb) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -118,9 +105,6 @@ export const fetchItem = (itemID, categoryID, successCb) => {
 };
 
 export const deleteItem = (itemID, categoryID, successCb) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
 
   db.collection(ALL_USERS)
@@ -149,9 +133,6 @@ const getCategoryNames = new Promise((res, rej) => (
 ));
 
 export const queryDatabase = (query, callback) => {
-  if (!validFirebase) {
-    return;
-  }
   const { uid: userId } = (auth.currentUser || {});
 
   getCategoryNames

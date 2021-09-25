@@ -9,12 +9,8 @@ import { ProductsProvider } from 'context/ProductsContext/ProductsContext';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import currentUser from 'currentUser';
+import 'firebaseMock';
 import '@testing-library/jest-dom';
-
-jest.mock('config/firebase', () => ({
-  auth: null,
-  db: null,
-}));
 
 window.toTitleCase = str => {
   const result = str.replace(/([A-Z])/g, ' $1');

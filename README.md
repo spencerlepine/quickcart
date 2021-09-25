@@ -4,10 +4,9 @@ Make a shopping list with personal grocery data to help budget.
 ![Demo Sreenshot](./client/src/assets/images/thumbnail.png)
 
 ## ⚙️ Setup:
-- Create the ```.env``` file
 ```sh
+    cp .env.sample .env
     npm install
-    # npm run husky:prepare
     npm run dev
 ```
 
