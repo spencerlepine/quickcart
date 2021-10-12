@@ -5,9 +5,9 @@ Make a shopping list with personal grocery data to help budget.
 
 ## ⚙️ Setup:
 ```sh
-    cp .env.sample .env
-    npm install
-    npm run dev
+    $ cp .env.sample .env
+    $ npm install
+    $ npm run dev
 ```
 
 ## 📦 Technologies:
