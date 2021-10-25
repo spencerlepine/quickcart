@@ -83,6 +83,16 @@
     }
   },
   "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html",
+      "lcov"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/*.test.js/"
+    ],
     "setupFiles": [
       "dotenv/config"
     ],
