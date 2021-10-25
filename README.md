@@ -30,13 +30,14 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 - [Spoonacular](https://spoonacular.com/food-api/docs)
 
 ## 🌟 Features:
-- Browse grocery products
-- Save items to cart
-- Analyze the cart to fill empty categories
-- Save new customized products
-- Create an account to access lists anywhere
-- Scan a bar code to upload a product
-- See a history of cart receipts
+- Browse grocery products records served from the Firestore database
+- Save products to your cart, always persisted in the cloud.
+- Analyze the cart to identify empty categories
+- Customized product records and create a personal list
+- Create an account to access your list anywhere
+- Scan a bar code to upload a product pulled from Spoonacular or OpenFoodFacts
+- View a history of transaction receipts previous from shopping lists
+- Save product images with a convient image searching pop-up connected to Google CSE
 
 ![Demo Screenshot](./client/src/assets/images/demo_transparent.png)
 ![Cart Feature Screenshot](./client/src/assets/images/cart-screenshot.png)
