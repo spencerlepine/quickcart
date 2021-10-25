@@ -1,7 +1,7 @@
-# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; ![QuickCart License](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml)
+# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml)
 Make a shopping list with personal grocery data to help budget.
 
-![Demo Sreenshot](./client/src/assets/images/thumbnail.png)
+![Demo GIF](./client/src/assets/images/demo.gif)
 
 ## ⚙️ Setup:
 ```sh
@@ -27,6 +27,15 @@ Make a shopping list with personal grocery data to help budget.
 - Create an account to access lists anywhere
 - Scan a bar code to upload a product
 - See a history of cart receipts
+
+![Demo Screenshot](./client/src/assets/images/demo_transparent.png)
+![Cart Feature Screenshot](./client/src/assets/images/cart-screenshot.png)
+![Search Feature Screenshot](./client/src/assets/images/search-screenshot.png)
+![Scan Feature Screenshot](./client/src/assets/images/scan-upc.png)
+![Analyzer Feature Screenshot](./client/src/assets/images/analyzer-screenshot.png)
+![Customize Feature Screenshot](./client/src/assets/images/customize-product.png)
+![Saved Feature Screenshot](./client/src/assets/images/saved-screenshot.png)
+
 
 ---
 
