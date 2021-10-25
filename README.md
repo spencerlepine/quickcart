@@ -1,7 +1,17 @@
-# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; ![QuickCart License](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml)
+# [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml) [![Coverage Status](https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master)](https://coveralls.io/github/spencerlepine/quickcart?branch=master)
+
 Make a shopping list with personal grocery data to help budget.
 
-![Demo Sreenshot](./client/src/assets/images/thumbnail.png)
+![Demo GIF](./client/src/assets/images/demo.gif)
+
+## Overview:
+A grocery product catalog to assist budgeting and managing a shopping list stored in the cloud.
+
+- Designed a Firebase Cloud Firestore NoSQL database managing user records, grocery product catalogs, and cart purchase histories
+- Organized state management for products, account information, and carts with Context hooks also persisted in the database.
+- Integrated Firebase Authentication to assist storing user unique shopping lists, along with customized product records.
+- Created a clean and modern user experience  with Material UI following a wireframe and site-wide color theme.
+- Implemented barcode scanning and external records from the OpenFoodFacts API to onboard new products
 
 ## ⚙️ Setup:
 ```sh
@@ -27,6 +37,15 @@ Make a shopping list with personal grocery data to help budget.
 - Create an account to access lists anywhere
 - Scan a bar code to upload a product
 - See a history of cart receipts
+
+![Demo Screenshot](./client/src/assets/images/demo_transparent.png)
+![Cart Feature Screenshot](./client/src/assets/images/cart-screenshot.png)
+![Search Feature Screenshot](./client/src/assets/images/search-screenshot.png)
+![Scan Feature Screenshot](./client/src/assets/images/scan-upc.png)
+![Analyzer Feature Screenshot](./client/src/assets/images/analyzer-screenshot.png)
+![Customize Feature Screenshot](./client/src/assets/images/customize-product.png)
+![Saved Feature Screenshot](./client/src/assets/images/saved-screenshot.png)
+
 
 ---
 
