@@ -45,6 +45,4 @@ jobs:
       - name: 🌪️ Publish to coveralls.io
         uses: coverallsapp/github-action@v1.1.2
         with:
-          base-path: ./server/app
-          path-to-lcov: ./server/app/coverage/lcov.info
           github-token: ${{ secrets.GITHUB_TOKEN }}
