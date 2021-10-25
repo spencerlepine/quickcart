@@ -4,6 +4,15 @@ Make a shopping list with personal grocery data to help budget.
 
 ![Demo GIF](./client/src/assets/images/demo.gif)
 
+## Overview:
+A grocery product catalog to assist budgeting and managing a shopping list stored in the cloud.
+
+- Designed a Firebase Cloud Firestore NoSQL database managing user records, grocery product catalogs, and cart purchase histories
+- Organized state management for products, account information, and carts with Context hooks also persisted in the database.
+- Integrated Firebase Authentication to assist storing user unique shopping lists, along with customized product records.
+- Created a clean and modern user experience  with Material UI following a wireframe and site-wide color theme.
+- Implemented barcode scanning and external records from the OpenFoodFacts API to onboard new products
+
 ## ⚙️ Setup:
 ```sh
     $ cp .env.sample .env
