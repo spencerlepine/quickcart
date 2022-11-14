@@ -4,6 +4,8 @@ Make a shopping list with personal grocery data to help budget. Inspired by [Ins
 
 ![Demo GIF](./client/src/assets/images/demo.gif)
 
+[![Youtube Video](./whitepaper/images/THUMBNAIL-smaller.png)](https://www.youtube.com/watch?v=2YrizGT_2xA)
+
 ## Overview:
 A grocery product catalog to assist budgeting and managing a shopping list stored in the cloud.
 
@@ -12,6 +14,14 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 - Integrated Firebase Authentication to assist storing user unique shopping lists, along with customized product records.
 - Created a clean and modern user experience  with Material UI following a wireframe and site-wide color theme.
 - Implemented barcode scanning and external records from the OpenFoodFacts API to onboard new products
+
+## 🌐 Links
+- Demo website: https://grocery-client-sl.herokuapp.com/
+- Demo video: [Youtube](https://www.youtube.com/watch?v=2YrizGT_2xA)
+- Video slideshow: [Google Slides](https://docs.google.com/presentation/d/1lFIEkAwt66BZvwRzKK3AKm6k8-whgVNtVKtogR_32C8)
+- Source code: github.com/spencerlepine/quickcart
+- Blog post: https://www.spencerlepine.com/portfolio/quickcart
+
 
 ## ⚙️ Setup:
 ```sh
