@@ -1,34 +1,19 @@
 # [QuickCart](https://grocery-client-sl.herokuapp.com/) &middot; [![Build Status](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/spencerlepine/quickcart/actions/workflows/main.yml) [![Coverage Status](https://coveralls.io/repos/github/spencerlepine/quickcart/badge.svg?branch=master)](https://coveralls.io/github/spencerlepine/quickcart?branch=master)
 
-Make a shopping list with personal grocery data to help budget. Inspired by [Instacart](https://www.instacart.com/)
+Create and store weekly grocery shopping lists. Find real products via search or barcode scan, view nutrition facts, or upload your own.
 
 ![Demo GIF](./client/src/assets/images/demo.gif)
 
 [![Youtube Video](./whitepaper/images/THUMBNAIL-smaller.png)](https://www.youtube.com/watch?v=2YrizGT_2xA)
 
-## Overview:
+## 🎯 Project Overview
 A grocery product catalog to assist budgeting and managing a shopping list stored in the cloud.
 
-- Designed a Firebase Cloud Firestore NoSQL database managing user records, grocery product catalogs, and cart purchase histories
+- Designed a **Firebase Cloud Firestore NoSQL** database managing user records, grocery product catalogs, and cart purchase histories
 - Organized state management for products, account information, and carts with Context hooks also persisted in the database.
-- Integrated Firebase Authentication to assist storing user unique shopping lists, along with customized product records.
-- Created a clean and modern user experience  with Material UI following a wireframe and site-wide color theme.
-- Implemented barcode scanning and external records from the OpenFoodFacts API to onboard new products
-
-## 🌐 Links
-- Demo website: https://grocery-client-sl.herokuapp.com/
-- Demo video: [Youtube](https://www.youtube.com/watch?v=2YrizGT_2xA)
-- Video slideshow: [Google Slides](https://docs.google.com/presentation/d/1lFIEkAwt66BZvwRzKK3AKm6k8-whgVNtVKtogR_32C8)
-- Source code: github.com/spencerlepine/quickcart
-- Blog post: https://www.spencerlepine.com/portfolio/quickcart
-
-
-## ⚙️ Setup:
-```sh
-    $ cp .env.sample .env
-    $ npm install
-    $ npm run dev
-```
+- Integrated Firebase **Authentication** to assist storing user unique shopping lists, along with customized product records.
+- Created a clean and modern user experience with **React/MaterialUI** following a wireframe and site-wide color theme.
+- Implemented barcode scanning and external records from the **Spoonacular** + **OpenFoodFacts** API to onboard new products
 
 ## 📦 Technologies:
 - [React](https://reactjs.org/)
@@ -38,6 +23,10 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 - [OpenFoodFacts](https://world.openfoodfacts.org)
 - [Google CSE](https://cse.google.com)
 - [Spoonacular](https://spoonacular.com/food-api/docs)
+
+## 🏗️ Architecture
+
+![Architecture](./whitepaper/images/architecture.png)
 
 ## 🌟 Features:
 - Browse grocery products records served from the Firestore database
@@ -57,7 +46,15 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 ![Customize Feature Screenshot](./client/src/assets/images/customize-product.png)
 ![Saved Feature Screenshot](./client/src/assets/images/saved-screenshot.png)
 
+## ⚙️ Local Development
 
----
+```sh
+    $ cp .env.sample .env
+    $ npm install
+    $ npm run dev
+```
 
-🏠 [spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; 😺 GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; 🐦 Twitter [@spencerlepine](http://twitter.com/spencerlepine)
+## 🌐 Links
+- Demo website: (DEPRECATED) https://grocery-client-sl.herokuapp.com/
+- Demo video: [Youtube](https://www.youtube.com/watch?v=2YrizGT_2xA)
+- Blog post: https://www.spencerlepine.com/portfolio/quickcart
