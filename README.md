@@ -23,6 +23,7 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 - [OpenFoodFacts](https://world.openfoodfacts.org)
 - [Google CSE](https://cse.google.com)
 - [Spoonacular](https://spoonacular.com/food-api/docs)
+- [Heroku](https://www.heroku.com/) (for hosting frontend)
 
 ## 🏗️ Architecture
 
@@ -49,9 +50,9 @@ A grocery product catalog to assist budgeting and managing a shopping list store
 ## ⚙️ Local Development
 
 ```sh
-    $ cp .env.sample .env
-    $ npm install
-    $ npm run dev
+$ cp .env.sample .env
+$ npm install
+$ npm run dev
 ```
 
 ## 🌐 Links
